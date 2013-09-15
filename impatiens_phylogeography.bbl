@@ -1,0 +1,102 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{Flammang2002}
+Flammang P (2002) {Biomechanics of adhesion in sea cucumber Cuvierian tubules
+  (Echinodermata, Holothuroidea)}.
+\newblock \ldots and comparative biology 1115: 1107--1115.
+\bibAnnoteFile{Flammang2002}
+
+\bibitem{Becker+Flammang2010}
+Becker P, Flammang P (2010) {Unravelling the sticky threads of sea
+  cucumbers—A comparative study on Cuvierian tubule morphology and
+  histochemistry}.
+\newblock In: Biological Adhesive Systems, chapter~6. pp. 87--98.
+\newblock \doi{10.1007/978-3-7091-0286-2\_6}.
+\newblock
+  \urlprefix\url{http://www.springerlink.com/index/N748832634862773.pdf}.
+\bibAnnoteFile{Becker+Flammang2010}
+
+\bibitem{Bakus1974}
+Bakus G (1974) {Toxicity in holothurians: a geographical pattern}.
+\newblock Biotropica 6: 229--236.
+\bibAnnoteFile{Bakus1974}
+
+\bibitem{Roberts1982}
+Roberts D, Bryce C (1982) {Further observations on tentacular feeding
+  mechanisms in holothurians}.
+\newblock Journal of Experimental Marine Biology and Ecology 59: 151--163.
+\bibAnnoteFile{Roberts1982}
+
+\bibitem{Hampton1958}
+HAMPTON JS (1958) {Chemical Analysis of Holothurian Sclerites}.
+\newblock Nature 181: 1608--1609.
+\bibAnnoteFile{Hampton1958}
+
+\bibitem{Cutress1996}
+Cutress B (1996) {Changes in dermal ossicles during somatic growth in Caribbean
+  littoral sea cucumbers (Echinoidea: Holothuroidea: Aspidochirotida)}.
+\newblock Bulletin of Marine Science 58: 44--116.
+\bibAnnoteFile{Cutress1996}
+
+\bibitem{Martens1994}
+Martens E, Clerck GD (1994) {Interstitial and parasitic Platyhelminthes from
+  the coast of the Seychelles}.
+\newblock In: van~der Land J, editor, Oceanic Reefs of the Seychelles, Leiden:
+  National Museum of Natural History, chapter 6.5. pp. 1--10.
+\newblock \urlprefix\url{http://www.vliz.be/imisdocs/publications/127198.pdf}.
+\bibAnnoteFile{Martens1994}
+
+\bibitem{Lacey2005}
+Lacey KMJ, McCormack GP, Keegan BF, Powell R (2005) {Phylogenetic relationships
+  within the class holothuroidea, inferred from 18S rRNA gene data}.
+\newblock Marine Biology 147: 1149--1154.
+\bibAnnoteFile{Lacey2005}
+
+\bibitem{Honey-Escandon2012}
+HONEY-ESCAND\'{O}N M, LAGUARDA-FIGUERAS A, SOL\'{I}S-MAR\'{I}N FA (2012)
+  {Molecular phylogeny of the subgenus Holothuria (Selenkothuria) Deichmann,
+  1958 (Holothuroidea: Aspidochirotida)}.
+\newblock Zoological Journal of the Linnean Society 165: 109--120.
+\bibAnnoteFile{Honey-Escandon2012}
+
+\bibitem{Toral-Granda2008}
+Toral-Granda V (2008) {Population status, fisheries and trade of sea cucumbers
+  in Latin America and the Caribbean}.
+\newblock In: Toral-Granda V, Lovatelli A, VASCONCELOS MFDE, editors, Sea
+  cucumbers. A global overview of fisheries and trade. FAO Fisheries and
+  Aquaculture Technical Paper 516., Rome: FAO of the United Nations. pp.
+  213--229.
+\newblock
+  \urlprefix\url{http://www.vliz.be/imis/imis.php?module=ref\&refid=133656}.
+\bibAnnoteFile{Toral-Granda2008}
+
+\bibitem{Conand2007}
+Conand C, Muthiga NA (2007) {Commercial sea cucumbers: a review for the Western
+  Indian Ocean}.
+\newblock WIOMSA Book Series 5: 66.
+\bibAnnoteFile{Conand2007}
+
+\bibitem{Pakoa2009}
+Pakoa K, Lasi F, Tardy E, Friedman K (2009) {The status of Sea Cucumbers
+  exploited by Palau's Subsistence Fishery}.
+\newblock Noum\'{e}a, New Caledonia: Secretariat of the Pacific Community, 44
+  pp.
+\newblock
+  \urlprefix\url{https://www.spc.int/DigitalLibrary/Doc/FAME/Reports/Pakoa\_09%
+\_Subsistence\_Sea\_Cucumber\_Fishery\_Palau.pdf}.
+\bibAnnoteFile{Pakoa2009}
+
+\end{thebibliography}
