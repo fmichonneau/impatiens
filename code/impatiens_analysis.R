@@ -2,6 +2,7 @@
 source("~/R-scripts/seqManagement.R")
 source("~/R-scripts/fasToPhase.R")
 source("~/R-scripts/extToLbl.R")
+source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
 
 runNJonAlg <- function(folder, pattern, db=impDB) {
 ### Makes NJ trees saved in individual PDF files from alignments
@@ -80,15 +81,30 @@ impESU1 <- impESU1$Extract[nzchar(impESU1$Extract)]
 ### full impatiens Tree
 ### ---- impatiens-tree ----
 impTree <- read.tree(file="data/allImpatiens.phy")
-impTree <- extToLbl(impTree, impDB)
+impTree <- drop.tip(impTree, "S0213") # remove outgroup
+impTree <- drop.tip(impTree, "N0057") # remove this one, as only H3a and messes up monophyly, NEED TO REDO analysis!
+impTree <- drop.tip(impTree, "G0108") # remove this one, as only mtData and messes up monophyly, NEED TO REDO analysis!
+impTree <- ladderize(impTree)
+posTips <- treeDepth(impTree) #max(branching.(impTree))
+impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
+             "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+##esuCol <- hcl(h=seq(0, 360, length=length(esuList)), c=100, l=50)
+esuCol <- c("#FE0835", "#A50026","#D73027","#F46D43","#FDAE61","#FEE090","#FFFFBF","#E0F3F8","#ABD9E9","#74ADD1","#4575B4","#313695")
+impTree$root.edge <- 8 - treeDepth(impTree)
 impNodLbl <- as.numeric(impTree$node.label)
 impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
 impNodLblCol <- rep(NULL, length(impNodLbl))
 impNodLblCol[impNodLbl == 1] <- "black"
 impNodLblCol[impNodLbl >= .975 & impNodLbl < 1] <- "red"
-impNodLblCol[impNodLbl >= .90 & impNodLbl < .95] <- "orange"
-plot.phylo(impTree, show.tip.label=FALSE)
-nodelabels(text=rep("", length(impNodLblCol)), frame="circ", col=impNodLblCol, bg=impNodLblCol, fg=impNodLblCol, cex=.2)
+impNodLblCol[impNodLbl >= .90 & impNodLbl < .975] <- "orange"
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,10))
+nodelabels(text=rep("", length(impNodLblCol)), frame="circ", col=impNodLblCol, bg=impNodLblCol, fg=impNodLblCol, cex=.3)
+barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
+                cex.plot=.3, extra.space=.5, text.offset=1.02, seg.col=esuCol)
+axis(side=1, at=0:8, labels=paste("-", 8:0, sep=""))
+legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", "$0.975 \\leq PP < 1$", "$ 0.9 \\leq PP < 0.975$"))
+
 
 #####################
 
@@ -117,7 +133,7 @@ nodelabels(text=rep("", length(impNodLblCol)), frame="circ", col=impNodLblCol, b
 ## trc0775 <- read.tree(file="20130507-c0775.tre")
 ## trLSU <- read.tree(file="20130507-LSU.tre")
 ## trITS <- read.tree(file="20130507-ITS.tre")
-## trH3a <- read.tree(file="20130507-H3a.tre")
+## trH3a <- read.tree(file="../20130507-H3a.tre")
 
 ## trc0036 <- extToLbl(trc0036, impDB)
 ## trc0775 <- extToLbl(trc0775, impDB)
