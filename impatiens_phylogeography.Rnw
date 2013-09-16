@@ -3,7 +3,7 @@
 \usepackage{authblk}
 
 <<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
-opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-',
+opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
 read_chunk('code/impatiens_analysis.R')
 @ 
@@ -331,9 +331,16 @@ generations.
 
 
 \subsection{Phylogenetic relationships among the ESUs}
-<<impatiens-tree, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=12, fig.cap='full phylogenetic of the impatiens complex'>>=
+% TODO -- add definition of abbreviation for each ESU if needed.
+<<impatiens-tree, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
 
+The \textit{Holothuria impatiens} includes 12, reciprocally monophyletic,
+well-supported (all with posterior probabilities higher than 0.975), ESUs
+(Fig~\ref{fig:impatiens-tree}). Some of these ESUs have restricted geographical
+distributions to an oceanic bassin (Mediterranean, Caribbean, Eastern Pacific,
+Red Sea) or to an archipelago (Hawaii and Galapagos), while other ESUs are wide
+ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3) (Fig~\ref{fig:impatiens-maps}).
 
 % cryptic species because indistinguishable, indistinguishable because similar
 % looking or too much variation to make sense of it
