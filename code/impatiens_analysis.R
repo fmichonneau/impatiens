@@ -46,7 +46,7 @@ makeTraitFile <- function(alg, output, db=impDB) {
   TRUE
 }
 
-impDB <- read.csv(file="~/Documents/Impatiens/impatiensDB.csv", stringsAsFactors=FALSE)
+impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
 impExt <- impDB$Extract[nzchar(impDB$Extract)]
 stopifnot(ncol(impDB) > 1)
 
@@ -81,7 +81,14 @@ impESU1 <- impESU1$Extract[nzchar(impESU1$Extract)]
 ### ---- impatiens-tree ----
 impTree <- read.tree(file="data/allImpatiens.phy")
 impTree <- extToLbl(impTree, impDB)
-plot(impTree)
+impNodLbl <- as.numeric(impTree$node.label)
+impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
+impNodLblCol <- rep(NULL, length(impNodLbl))
+impNodLblCol[impNodLbl == 1] <- "black"
+impNodLblCol[impNodLbl >= .975 & impNodLbl < 1] <- "red"
+impNodLblCol[impNodLbl >= .90 & impNodLbl < .95] <- "orange"
+plot.phylo(impTree, show.tip.label=FALSE)
+nodelabels(text=rep("", length(impNodLblCol)), frame="circ", col=impNodLblCol, bg=impNodLblCol, fg=impNodLblCol, cex=.2)
 
 #####################
 

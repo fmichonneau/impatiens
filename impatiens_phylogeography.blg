@@ -1,52 +1,60 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: impatiens_phylogeography.aux
 The style file: plos2009.bst
 Database file #1: impatiens_phylogeography.bib
 Warning--I didn't find a database entry for "Pearson1915"
 Warning--I didn't find a database entry for "Rowe1969"
+Warning--I didn't find a database entry for "Samyn2013"
 Warning--I didn't find a database entry for "Harriot1985"
-Warning--I didn't find a database entry for "Hampton1959"
 Warning--I didn't find a database entry for "Clark1921"
+Warning--I didn't find a database entry for "Veron1992"
+Warning--I didn't find a database entry for "Voris2000"
+Warning--I didn't find a database entry for "MichonneauInPrep"
+Warning--I didn't find a database entry for "Hoareau2010"
+Warning--I didn't find a database entry for "Arndt1996"
+Warning--I didn't find a database entry for "Lessios2008"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--missing publisher in Becker+Flammang2010
-You've used 12 entries,
+You've used 19 entries,
             2441 wiz_defined-function locations,
-            662 strings with 7842 characters,
-and the built_in function-call counts, 9340 in all, are:
-= -- 866
-> -- 112
+            740 strings with 10084 characters,
+and the built_in function-call counts, 15181 in all, are:
+= -- 1415
+> -- 204
 < -- 5
-+ -- 54
-- -- 28
-* -- 776
-:= -- 1101
-add.period$ -- 32
-call.type$ -- 12
-change.case$ -- 17
++ -- 100
+- -- 51
+* -- 1283
+:= -- 1805
+add.period$ -- 46
+call.type$ -- 19
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 25
-duplicate$ -- 935
-empty$ -- 996
-format.name$ -- 36
-if$ -- 2105
+cite$ -- 39
+duplicate$ -- 1505
+empty$ -- 1602
+format.name$ -- 64
+if$ -- 3407
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 121
-newline$ -- 80
-num.names$ -- 16
-pop$ -- 155
+int.to.str$ -- 19
+missing$ -- 192
+newline$ -- 115
+num.names$ -- 23
+pop$ -- 225
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 90
+skip$ -- 135
 stack$ -- 0
-substring$ -- 1259
-swap$ -- 262
+substring$ -- 2127
+swap$ -- 404
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 64
-width$ -- 14
-write$ -- 160
-(There were 6 warnings)
+while$ -- 108
+width$ -- 21
+write$ -- 236
+(There were 12 warnings)

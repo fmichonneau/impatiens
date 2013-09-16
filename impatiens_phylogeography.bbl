@@ -13,10 +13,15 @@
   \textsc{Annotation:}\ #2\end{quotation}}
 \providecommand{\eprint}[2][]{\url{#2}}
 
+\bibitem{Knowlton1993}
+Knowlton N (1993) {Sibling species in the sea}.
+\newblock Annual Review of Ecology and Systematics 24: 189--216.
+\bibAnnoteFile{Knowlton1993}
+
 \bibitem{Flammang2002}
-Flammang P (2002) {Biomechanics of adhesion in sea cucumber Cuvierian tubules
-  (Echinodermata, Holothuroidea)}.
-\newblock \ldots and comparative biology 1115: 1107--1115.
+Flammang P, Ribesse J, Jangoux M (2002) {Biomechanics of adhesion in sea
+  cucumber Cuvierian tubules (Echinodermata, Holothuroidea)}.
+\newblock \ldots and comparative biology 42: 1107--1115.
 \bibAnnoteFile{Flammang2002}
 
 \bibitem{Becker+Flammang2010}
@@ -41,9 +46,14 @@ Roberts D, Bryce C (1982) {Further observations on tentacular feeding
 \bibAnnoteFile{Roberts1982}
 
 \bibitem{Hampton1958}
-HAMPTON JS (1958) {Chemical Analysis of Holothurian Sclerites}.
+Hampton JS (1958) {Chemical Analysis of Holothurian Sclerites}.
 \newblock Nature 181: 1608--1609.
 \bibAnnoteFile{Hampton1958}
+
+\bibitem{Hampton1959}
+Hampton JJS (1959) {Statistical analysis of holothurian sclerites}.
+\newblock Micropaleontology 5: 335--349.
+\bibAnnoteFile{Hampton1959}
 
 \bibitem{Cutress1996}
 Cutress B (1996) {Changes in dermal ossicles during somatic growth in Caribbean
@@ -66,9 +76,9 @@ Lacey KMJ, McCormack GP, Keegan BF, Powell R (2005) {Phylogenetic relationships
 \bibAnnoteFile{Lacey2005}
 
 \bibitem{Honey-Escandon2012}
-HONEY-ESCAND\'{O}N M, LAGUARDA-FIGUERAS A, SOL\'{I}S-MAR\'{I}N FA (2012)
-  {Molecular phylogeny of the subgenus Holothuria (Selenkothuria) Deichmann,
-  1958 (Holothuroidea: Aspidochirotida)}.
+Honey-Escandon M, Laguarda-Figueras A, Solis-Marin FA (2012) {Molecular
+  phylogeny of the subgenus Holothuria (Selenkothuria) Deichmann, 1958
+  (Holothuroidea: Aspidochirotida)}.
 \newblock Zoological Journal of the Linnean Society 165: 109--120.
 \bibAnnoteFile{Honey-Escandon2012}
 
@@ -95,8 +105,39 @@ Pakoa K, Lasi F, Tardy E, Friedman K (2009) {The status of Sea Cucumbers
 \newblock Noum\'{e}a, New Caledonia: Secretariat of the Pacific Community, 44
   pp.
 \newblock
-  \urlprefix\url{https://www.spc.int/DigitalLibrary/Doc/FAME/Reports/Pakoa\_09%
-\_Subsistence\_Sea\_Cucumber\_Fishery\_Palau.pdf}.
+  \urlprefix\url{https://www.spc.int/DigitalLibrary/Doc/FAME/Reports/Pakoa\_09\_Subsistence\_Sea\_Cucumber\_Fishery\_Palau.pdf}.
 \bibAnnoteFile{Pakoa2009}
+
+\bibitem{Rowe+Richmond2004}
+Rowe F, Richmond M (2004) {A preliminary account of the shallow-water
+  echinoderms of Rodrigues, Mauritius, western Indian Ocean}.
+\newblock Journal of Natural History 38: 3273--3314.
+\bibAnnoteFile{Rowe+Richmond2004}
+
+\bibitem{Bowen2013}
+Bowen BW, Rocha La, Toonen RJ, Karl Sa (2013) {The origins of tropical marine
+  biodiversity}.
+\newblock Trends in Ecology \& Evolution : 1--8.
+\bibAnnoteFile{Bowen2013}
+
+\bibitem{Paulay1990}
+Paulay G (1990) {Effects of late Cenozoic sea-level fluctuations on the bivalve
+  faunas of tropical oceanic islands}.
+\newblock Paleobiology 16: 415--434.
+\bibAnnoteFile{Paulay1990}
+
+\bibitem{Pons2006}
+Pons J, Barraclough T, Gomez-Zurita J, Cardoso A, Duran D, et~al. (2006)
+  {Sequence-Based Species Delimitation for the DNA Taxonomy of Undescribed
+  Insects}.
+\newblock Systematic Biology 55: 595--609.
+\bibAnnoteFile{Pons2006}
+
+\bibitem{Monaghan2009a}
+Monaghan MT, Wild R, Elliot M, Fujisawa T, Balke M, et~al. (2009) {Accelerated
+  species inventory on Madagascar using coalescent-based models of species
+  delineation.}
+\newblock Systematic biology 58: 298--311.
+\bibAnnoteFile{Monaghan2009a}
 
 \end{thebibliography}

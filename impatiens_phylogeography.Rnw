@@ -2,6 +2,13 @@
 \documentclass{article}
 \usepackage{authblk}
 
+<<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
+opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-',
+               external=TRUE, fig.width=7, fig.height=4, fig.align="center")
+read_chunk('code/impatiens_analysis.R')
+@ 
+
+
 \title{Cryptic and not-so-cryptic species in the complex ``\textit{Holothuria
     (Thymiosycia) imaptiens}'' (Forrsk\r{a}ll, 1775) (Echinodermata:
   Holothuroidea: Holothuriidae)} \author[1]{Fran\c{c}ois
@@ -321,6 +328,11 @@ generations.
 \subsection{Diversity}
 % how many clades
 % how many specimens per clades
+
+
+\subsection{Phylogenetic relationships among the ESUs}
+<<impatiens-tree, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=12, fig.cap='full phylogenetic of the impatiens complex'>>=
+@
 
 
 % cryptic species because indistinguishable, indistinguishable because similar
