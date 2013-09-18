@@ -1,13 +1,19 @@
 
 \documentclass{article}
 \usepackage{authblk}
+\usepackage{tabularx}
+\usepackage{float}
 
 <<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
 opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
 read_chunk('code/impatiens_analysis.R')
+read_chunk('code/impatiens_map.R')
 @ 
 
+
+\newcolumntype{b}{X}
+\newcolumntype{s}{>{\hsize=.2\hsize}X}
 
 \title{Cryptic and not-so-cryptic species in the complex ``\textit{Holothuria
     (Thymiosycia) imaptiens}'' (Forrsk\r{a}ll, 1775) (Echinodermata:
@@ -102,11 +108,26 @@ observed in their color patterns and reported by previous workers (e.g.,
 \cite[p.178]{Clark1921}, \cite{Rowe+Richmond2004}) has yet to be
 investigated. In the present study, using a combination of morphological,
 genetic and ecological data, we show that \textit{Holothuria impatiens}
-represents a complex of 12 species. If some of these species can be
-distinguished relatively easily from their live appearance, others are harder to
-tease apart. This, in combination with the fact that several of these species
-co-occur, and sometimes even share the habitat, has contributed to the failure
-to identify the species limits in this complex.
+represents a complex of at least 12 putative species. If some of these species
+can be distinguished relatively easily from their live appearance, others are
+harder to tease apart. This, in combination with the fact that several of these
+species co-occur, and sometimes even share the same habitat, has contributed to
+the failure to identify the species limits in this complex.
+
+The development of genetic data and its application to species identification
+has allowed the discovery of many species complexes. Ideally, once unraveled,
+diagnostic characters other than genetics or internal morphological traits
+should be able to be used to tease apart the newly identified forms, so that
+they can be identified in the field. The genetic differentiation observed in
+species previously thought to be found across large geographic areas (e.g,
+circum-tropical species) has changed our understanding of how biodiversity is
+distributed in the sea, with isolated oceanic bassins and archipelagoes
+exhibiting much higher endemism rates than previously thought
+(e.g., %find references for Caribbean, Red Sea, Medit
+\cite{Meyer2005a}). If unraveling diversity among geographically isolated
+populations affects estimates of global diversity, unraveling diversity among
+sympatric populations affects not only local estimates of diversity, but also
+challenges our understanding of the processes generating biodiversity.
 
 Understanding the dynamics of diversification in the sea is challenged by the
 fact that most marine invertebrates have a highly dispersive larval stage and
@@ -170,19 +191,23 @@ ranges and colonized one of the bassin very recently.
 
 \section{Methods}
 
+
+
 \subsection{Sampling}
 
 Specimens used for this study are housed in the collections of the Florida
-Museum of Natural History at the University of Florida, Gainesville, FL, USA. A
-few additional tissue samples with voucher hosted in other institutions or with
-no voucher were obtained through collaborators (Table~\ref{tab:voucherInfo} for
-details).
+Museum of Natural History (FLMNH) at the University of Florida, Gainesville, FL,
+USA. A few additional tissue samples with voucher hosted in other institutions
+or with no voucher were obtained through collaborators
+(Table~\ref{tab:voucherInfo} for details).
 
 Specimens were collected at low tide, on snorkel, on SCUBA or by dredging. Most
 specimens were photographed while alive \textit{in situ} or in the lab,
 anesthetized in a 1:1 solution of sea water and 7.5\% solution of magnesium
-chloride hexahydrate, before being fixed in 75\% ethanol. When possible
-tentacles were clipped before fixation to be used in DNA extractions.
+chloride hexahydrate, before fixation in 75\% ethanol. When possible tentacles
+were clipped, immediately put in 95-99\% ethanol, to later be used in DNA
+extractions. These tissues are stored in the Genetic Resources Respository of
+the FLMNH.
 
 Two hundred and fifty three specimens were examined morphologically and 216 were
 used for molecular analyses. These specimens were collected across the entire
@@ -195,48 +220,59 @@ Tropical Indian and Pacific Oceans.
 
 DNA was extracted using either Invitrogen\texttrademark\ DNAZol\textregistered\
 or Omega Bio-Tek\texttrademark\ E.Z.N.A\textregistered\ Mollusc DNA kit following
-manufacturer recommendations. 
+manufacturer recommendations. DNA was most often extracted from tentacles,
+sometimes from gonads, longitudinal muscles or body wall. When possible, the
+extractions were performed on tissue sampled in the field.
 
 In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
-nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775. These
-last two markers have been developed from a 454 run on genomic DNA from
-\textit{H. edulis}, and additional details will be provided in a future study
-(\cite{MichonneauInPrep}). Primers, and PCR conditions used are provided in
+nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775. ATP6
+primers have been developed in this study based on sequences available for this
+gene in GenBank. c0036 and c0775 markers have been developed from a 454 run on
+genomic DNA from \textit{H. edulis}, and additional details will be provided in
+a future study (\cite{MichonneauInPrep}). c0036 is a portion of the gene
+encoding for an histone H3-like centromeric protein A-like, while c0775 is a
+portion of the gene encoding for the protein SFI1 based on annotations of the
+sea urchin \textit{Strongylocentrotus purpuratus} genome.
+
+Primers, and PCR conditions used are provided in
 Table~\ref{tab:pcrConditions}. Because of the length of ITS1-5.8S-ITS2, we used
 the sequencing primer fm-5.8S-f. The primers fm-ITS-f is the reverse complement
 sequence of the primer 18S-1708R (\ref{}) and fm-ITS-r is the reverse complement
 of LSUFW1 (\ref{}).
 
-We conducted PCR in 25µL reactions using either 15.4µL of water, 2.5µL of
-Sigma-Alrich \textregistered 10X PCR buffer, 2.5µL of dNTP, 2µL of $MgCl_2$, 1µL
-of the forward primer, 1µL of the reverse primer, and 0.1µL of
-Sigma-Aldrich\textregistered Jumpstart\texttrademark Taq DNA polymerase or the
-Promega GoTaq MasterMix following manufacturer recommendations.
+We conducted PCR in 25$\mu$L reactions using either 15.4$\mu$L of water,
+2.5$\mu$L of Sigma-Alrich \textregistered 10X PCR buffer, 2.5$\mu$L of dNTP,
+2$\mu$L of $MgCl_2$, 1$\mu$L of the forward primer, 1$\mu$L of the reverse
+primer, and 0.1$\mu$L of Sigma-Aldrich\textregistered Jumpstart\texttrademark
+Taq DNA polymerase or the Promega GoTaq MasterMix following manufacturer
+recommendations.
 
 Sequencing of PCR products was performed by the Interdisciplinary Center for
 Biotechnology Research at the University of Florida.
 
 \begin{table}
-  \centering
-  \begin{tabular}{ | l | p{5cm} | p{5cm} | p{1cm} | p{1cm} | p{1cm} |}
-    Marker        & Primer Forward ($5'-3'$) & Primer Reverse ($5'-3'$)  & Annealing temperature &  Number of
-    cycles & Reference \\
-    COI           & COIceF ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC & COIceR
-    TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & 42 & 40 & \cite{Hoareau2010} \\
-    16S & 16SAR CGC CTG TTT ATC AAA AAC AT & 16SBR GCC GGT CTG AAC TCA GAT CAC
-    GT & 52 & 35 & \cite{Arndt1996} \\
-    ATP6 & ATP6f GGA CAA TTT TCC CCA GAC CT & ATP6r GGT GAA GAG GGT GTT GAT GG &
-    42 & 40 & this study \\
-    28S & LSUFW1 AGC GGA GGA AAA GAA ACT A & LSUREV2 ACG ATC GAT TTG CAC GTC AG
-    & 42 & 40 & \cite{} \\
-    ITS1-5.8S-ITS2 & fm-ITS-f AGG TGA ACC TGC AGA TGG ATC A, fm-5.8S-f CGT CGA TGA AGA ACG
-    CAG YW & fm-ITS-r TAG TTT CTT TTC CTC CGC T & 45 & 40 & This study, \cite{}, \cite{} \\
-    c0036 & c0036f TAA CGA CGG ATC TCA CGG AG & c0036r AAT AAT GCT GGC GTG ACG
-    TC & 42 & 45 & This study \\
-    c0775 & c0775f GCT CTT CGT TCA ATT TAT CTC GC & c0775r GGG ATG CAG TTT GTC
-    GAG TG & 42 & 40 &This study \\
-  \end{tabular}
-  \label{tab:pcrConditions}
+  \caption{Primers and PCR conditions for the markers used in this study.}
+\begin{tabular}{ l p{6cm} l l p{1.3cm}}
+  \hline
+  Marker & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\ \hline
+  COI    & COIceF ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC \newline
+           COIceR TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & 42 & 40 & \cite{Hoareau2010} \\
+  16S    & 16SAR CGC CTG TTT ATC AAA AAC AT \newline 
+           16SBR GCC GGT CTG AAC TCA GAT CAC GT & 52 & 35 & \cite{Arndt1996} \\
+  ATP6   & ATP6f GGA CAA TTT TCC CCA GAC CT \newline 
+           ATP6r GGT GAA GAG GGT GTT GAT GG & 42 & 40 & this study \\
+  28S    & LSUFW1 AGC GGA GGA AAA GAA ACT A \newline 
+           LSUREV2 ACG ATC GAT TTG CAC GTC AG & 42 & 40 & \cite{} \\
+  ITS1-5.8S-ITS2 & fm-ITS-f AGG TGA ACC TGC AGA TGG ATC A \newline 
+                   fm-5.8S-f CGT CGA TGA AGA ACG CAG YW \newline 
+                   fm-ITS-r TAG TTT CTT TTC CTC CGC T & 45 & 40 & This study, \cite{}, \cite{} \\
+  c0036  & c0036f TAA CGA CGG ATC TCA CGG AG \newline 
+           c0036r AAT AAT GCT GGC GTG ACG TC & 42 & 45 & This study \\
+  c0775  & c0775f GCT CTT CGT TCA ATT TAT CTC GC \newline
+           c0775r GGG ATG CAG TTT GTC GAG TG & 42 & 40 &This study \\
+  \hline
+\end{tabular}
+\label{tab:pcrConditions}
 \end{table}
 
 \subsection{Genetic diversity}
@@ -272,7 +308,8 @@ that the three codon position for each protein coding locus (ATP6, COI, H3a,
 c0036 and c0775) and each of 16S, ITS and LSU were individual partitions. We
 selected the best-fit model based on the Bayesian Information Criterion. The
 best fit model had 9 partitions. After some initial test runs in BEAST, we
-modified slightly the model of molecular evolution to improve mixing of the MCMC
+modified slightly the model of molecular evolution to improve mixing of the
+MCMC, and reduced to the number of partitions to 
 see Table \ref{tabPartitions}.
 
 The analysis was run using independent strict molecular clock for each
@@ -280,7 +317,7 @@ locus. For COI we calibrated the clock to 0.037 substitutions per site per
 million years following the review by Lessios \cite{Lessios2008}. All other
 clocks were estimated with a log-normal distribution prior (mean -1, standard
 deviation of 1). The tree prior was set to a Yule process and a random starting
-tree. The Markov Chains were run for $50 10^6$ generations. The analysis was
+tree. The Markov Chains were run for $50 . 10^6$ generations. The analysis was
 repeated twice.
 
 We used Tracer \cite{} to check that the MCMC chains had reach stationarity and
@@ -331,7 +368,7 @@ generations.
 
 
 \subsection{Phylogenetic relationships among the ESUs}
-% TODO -- add definition of abbreviation for each ESU if needed.
+% TODO -- add definition of abbreviation for each ESU in figure legend if needed.
 <<impatiens-tree, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
 
@@ -340,7 +377,18 @@ well-supported (all with posterior probabilities higher than 0.975), ESUs
 (Fig~\ref{fig:impatiens-tree}). Some of these ESUs have restricted geographical
 distributions to an oceanic bassin (Mediterranean, Caribbean, Eastern Pacific,
 Red Sea) or to an archipelago (Hawaii and Galapagos), while other ESUs are wide
-ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3) (Fig~\ref{fig:impatiens-maps}).
+ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3)
+(Fig~\ref{fig:impatiens-map-WA}).
+
+<<impatiens-map-WA, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs.">>=
+@ 
+
+<<impatiens-map-group1, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 1.">>=
+@ 
+
+<<impatiens-map-group2, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 2.">>=
+@ 
+
 
 % cryptic species because indistinguishable, indistinguishable because similar
 % looking or too much variation to make sense of it
@@ -391,7 +439,7 @@ ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3) (Fig~\ref{f
 
 \begin{table}
   \centering
-  \begin{tabular} { | l | l | l |}
+  \begin{tabular} { l l l }
     1      & $TrN+I$      & $16S, ATP6_2$ \\
     2      & $GTR+I+G$    & $16Sc$        \\
     3      & $HKY+I+G$    & $ATP6_1$\\ 
@@ -405,19 +453,19 @@ ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3) (Fig~\ref{f
 \end{table}
 
 
+%% Notes about the biology of the species
+%% - EP: discharge Cuv tubules \cite{Bakus1974}, ``relatively very active''
+%% \cite{Bakus1974}, 
+%% - Egypt: tables appear earlier than buttons in juveniles, look for pl.8 fig4-5,
+%% and pl.9 2 in Savigny \cite{Mortensen1902}10.1111/j.1096-3642.1926.tb00326.x
+
+%% READ \cite{Cutress1996}, seems like there is a lot of information about
+%% ontogenetic changes in the shape of the ossicles.
+%% ``Buttons in OM dermis of the 195 mm specimen from Ceylon, however, are
+%% distinctly smaller.'' 
 
 \end{document}
 
 
-Notes about the biology of the species
-- EP: discharge Cuv tubules \cite{Bakus1974}, ``relatively very active''
-\cite{Bakus1974}, 
-- Egypt: tables appear earlier than buttons in juveniles, look for pl.8 fig4-5,
-and pl.9 2 in Savigny \cite{Mortensen1902}10.1111/j.1096-3642.1926.tb00326.x
-
-READ \cite{Cutress1996}, seems like there is a lot of information about
-ontogenetic changes in the shape of the ossicles.
-``Buttons in OM dermis of the 195 mm specimen from Ceylon, however, are
-distinctly smaller.'' 
 
 
