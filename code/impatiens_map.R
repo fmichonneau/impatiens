@@ -2,80 +2,67 @@ library(maps)
 library(plyr)
 library(ggplot2)
 
-impMap <- read.csv(file="impatiensDB.csv", stringsAsFactors=FALSE)
+impMap <- read.csv(file="data/impatiensDB.csv", stringsAsFactors=FALSE)
 impMap <- impMap[nzchar(impMap$consensusESU), ]
-impMap <- impMap[-grep("\\?|^needs", impMap$consensusESU), ]
-impMap$consensusESU <- gsub("\\/", "-", impMap$consensusESU)
 center <- 200
 impMap$Long.recenter <- ifelse(impMap$Long < center - 180, impMap$Long + 360, impMap$Long)
 
 ####
-## By Scott Chamberlain http://r.789695.n4.nabble.com/Geographic-distance-between-lat-long-points-in-R-td3442338.html
-# Convert degrees to radians
+### By Scott Chamberlain http://r.789695.n4.nabble.com/Geographic-distance-between-lat-long-points-in-R-td3442338.html
+## Convert degrees to radians
 deg2rad <- function(deg) return(deg*pi/180)
 
-# Calculates the geodesic distance between two points specified by
-# radian latitude/longitude using the Haversine formula
+## Calculates the geodesic distance between two points specified by
+## radian latitude/longitude using the Haversine formula
 gcd.hf <- function(long1, lat1, long2, lat2) {
-  R <- 6371 # Earth mean radius [km]
-  delta.long <- (long2 - long1)
-  delta.lat <- (lat2 - lat1)
-  a <- sin(delta.lat/2)^2 + cos(lat1) * cos(lat2) * sin(delta.long/2)^2
-  c <- 2 * asin(min(1,sqrt(a)))
-  d = R * c
-  return(d) # Distance in km
+    R <- 6371 # Earth mean radius [km]
+    delta.long <- (long2 - long1)
+    delta.lat <- (lat2 - lat1)
+    a <- sin(delta.lat/2)^2 + cos(lat1) * cos(lat2) * sin(delta.long/2)^2
+    c <- 2 * asin(min(1,sqrt(a)))
+    d = R * c
+    return(d) # Distance in km
 }
 
-# Fxn to calculate matrix of distances between each two sites
+## Fxn to calculate matrix of distances between each two sites
 CalcDists <- function(latlongs) {
-  name <- list(rownames(latlongs), rownames(latlongs))
-  n <- nrow(latlongs)
-  z <- matrix(0, n, n, dimnames = name)
-  for (i in 1:n) {
-    for (j in 1:n) z[i, j] <- gcd.hf(long1 = latlongs[i, 1],
-                                     lat1 = latlongs[i, 2], long2 = latlongs[j, 1], lat2 = latlongs[j,2])
-  }
-  z <- as.dist(z)
-  return(z)
+    name <- list(rownames(latlongs), rownames(latlongs))
+    n <- nrow(latlongs)
+    z <- matrix(0, n, n, dimnames = name)
+    for (i in 1:n) {
+        for (j in 1:n) z[i, j] <- gcd.hf(long1 = latlongs[i, 1],
+                                         lat1 = latlongs[i, 2], long2 = latlongs[j, 1], lat2 = latlongs[j,2])
+    }
+    z <- as.dist(z)
+    return(z)
 }
 
 
 thinCoords <- function(coords=impMap) {
-  eachESU <- unique(coords$consensusESU)
-  res <- vector("list", length(eachESU))
-  #for (i in 1:length(eachESU)) {
-  #  cat(i, "\n")
-    tmpDt <- coords #subset(coords, consensusESU == eachESU[i])
+    eachESU <- unique(coords$consensusESU)
+    res <- vector("list", length(eachESU))  
+    tmpDt <- coords 
     tmpDt <- tmpDt[!is.na(tmpDt$Lat) & !is.na(tmpDt$Long), ]
     tmpDt$Lat2 <- tmpDt$Lat
     tmpDt$Long2 <- tmpDt$Long
-    tmpDt$Long2.recenter <- tmpDt$Long.recenter
-    #if (nrow(tmpDt) > 2) {
-      d <- CalcDists(cbind(deg2rad(tmpDt$Long), deg2rad(tmpDt$Lat)))
-      d <- as.matrix(d)
-      d[upper.tri(d, diag=T)] <- NA
-      lbl <- cbind(dimnames(d)[[1]][row(d)], dimnames(d)[[1]][col(d)])
-      d <- as.vector(d)
-      whichDup <- lbl[which(d < 200), ]      
-      if (length(whichDup) > 0) {
+    tmpDt$Long2.recenter <- tmpDt$Long.recenter    
+    d <- CalcDists(cbind(deg2rad(tmpDt$Long), deg2rad(tmpDt$Lat)))
+    d <- as.matrix(d)
+    d[upper.tri(d, diag = TRUE)] <- NA
+    lbl <- cbind(dimnames(d)[[1]][row(d)], dimnames(d)[[1]][col(d)])
+    d <- as.vector(d)
+    whichDup <- lbl[which(d < 200), ]      
+    if (length(whichDup) > 0) {
         if(length(whichDup) == 2) {
-          whichDup <- matrix(whichDup, ncol=2, byrow=TRUE) # to deal with single result
+            whichDup <- matrix(whichDup, ncol = 2, byrow = TRUE) # to deal with single result
         }
         for (j in 1:nrow(whichDup)) {
-          tmpDt$Lat2[as.numeric(whichDup[j,2])] <- tmpDt$Lat2[as.numeric(whichDup[j,1])]
-          tmpDt$Long2[as.numeric(whichDup[j,2])] <- tmpDt$Long2[as.numeric(whichDup[j,1])]
-          tmpDt$Long2.recenter[as.numeric(whichDup[j,2])] <- tmpDt$Long2.recenter[as.numeric(whichDup[j,1])]
+            tmpDt$Lat2[as.numeric(whichDup[j,2])] <- tmpDt$Lat2[as.numeric(whichDup[j,1])]
+            tmpDt$Long2[as.numeric(whichDup[j,2])] <- tmpDt$Long2[as.numeric(whichDup[j,1])]
+            tmpDt$Long2.recenter[as.numeric(whichDup[j,2])] <- tmpDt$Long2.recenter[as.numeric(whichDup[j,1])]
         }
-      }
-     # res[[i]] <- tmpDt
-    #}
-    #else {
-    #  res[[i]] <- tmpDt
-    #}
-  #}
-  #res <- do.call("rbind", res)
-  #res
-  tmpDt
+    }                                        
+    tmpDt
 }
 
 impMapThin <- thinCoords(impMap)
@@ -83,77 +70,55 @@ impMapThin <- impMapThin[!duplicated(paste(impMapThin$consensusESU, impMapThin$L
 
 iwp <- map_data("world2")
 
+### ---- impatiens-map ----
 ### Global impatiens map
-gMap <- ggplot(impMapThin) + annotation_map(iwp, fill="gray50", colour="gray50") +
-  geom_point(aes(x=Long2.recenter, y=Lat2, colour=consensusESU), data=impMapThin,
-             position=position_dodge(width=5, height=1)) +
-  xlim(c(15,310)) + ylim(c(-40, 40)) +
-  coord_map(projection="mercator", orientation=c(90, 160, 0)) +
-  theme(panel.background = element_rect(fill='lightblue'))
+## gMap <- ggplot(impMapThin) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+##     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = impMapThin,
+##                position = position_dodge(width = 5, height = 1)) +
+##     xlim(c(15,310)) + ylim(c(-40, 40)) +
+##     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
+##     theme(panel.background = element_rect(fill = 'aliceblue'))
 
-gMap
+## gMap
 
+### ---- impatiens-map-WA ----
 ## 1. WA + EP + Gala
-c1Map <- ggplot(impMapThin) + annotation_map(iwp, fill="gray50", colour="gray50") +
-  geom_point(aes(x=Long2.recenter, y=Lat2, colour=consensusESU), data=impMapThin,
-             position=position_dodge(width=5, height=1)) +
-  xlim(c(250,310)) + ylim(c(-25, 25)) +
-  coord_map(projection="mercator", orientation=c(90, 160, 0)) +
-  theme(panel.background = element_rect(fill='lightblue'))
-
+tmpMap <- subset(impMapThin, consensusESU %in% c("WA", "EP", "Gala"))
+c1Map <- ggplot(impMapThin) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+    geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
+               position = position_dodge(width = 5), shape=15) +
+    xlim(c(250,310)) + ylim(c(-25, 25)) + ylab("Latitude") + xlab("Longitude") +
+    coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
+    theme(panel.background = element_rect(fill = 'aliceblue'))
 c1Map
 
+### ---- impatiens-map-group2 ----
 ## 2. tiger + ESU2 + redSeaTiger
 tmpMap <- subset(impMapThin, consensusESU %in% c("tiger", "ESU2", "tigerRedSea"))
-c2Map <- ggplot(tmpMap) + annotation_map(iwp, fill="gray50", colour="gray50") +
-  geom_point(aes(x=Long2.recenter, y=Lat2, colour=consensusESU), data=tmpMap,
-             position=position_dodge(width=5, height=1)) +
-  xlim(c(15,220)) + ylim(c(-25, 25)) +
-  coord_map(projection="mercator", orientation=c(90, 160, 0)) +
-  theme(panel.background = element_rect(fill='lightblue'))
-
+c2Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+    geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
+               position = position_jitter(width = 5), shape=15) +
+    xlim(c(15,220)) + ylim(c(-25, 25)) +  ylab("Latitude") + xlab("Longitude") +
+    coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
+    theme(panel.background = element_rect(fill = 'aliceblue'))
 c2Map
 
+### ---- impatiens-map-group1 ----
 ## 3. ESU3 + RedSea + Gracilis + Hawaii + WPac + ESU1
 tmpMap <- subset(impMapThin, consensusESU %in% c("ESU1", "ESU3", "RedSea", "gracilis",
                                                  "Hawaii", "ESU1-Hawaii", "Wpac"))
-c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill="gray50", colour="gray50") +
-  geom_point(aes(x=Long2.recenter, y=Lat2, colour=consensusESU), data=tmpMap,
-             position=position_dodge(width=2.5, height=1)) +
-  xlim(c(15,220)) + ylim(c(-27, 27)) +
-  coord_map(projection="mercator", orientation=c(90, 160, 0)) +
-  theme(panel.background = element_rect(fill='lightblue'))
-
+c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+    geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
+               position = position_dodge(width = 2.5), shape=15) +
+    xlim(c(15,220)) + ylim(c(-27, 27)) + ylab("Latitude") + xlab("Longitude") +
+    coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
+    theme(panel.background = element_rect(fill = 'aliceblue'))
 c3Map
 
-pdf(paper="USr", file="impatiensMaps.pdf")
-print(gMap)
-print(c1Map)
-print(c2Map)
-print(c3Map)
-dev.off()
-
-
-#######
-### junk
-
-remap <- function(map) {
-
-  ## identify same regions that include differences in longitude > 300
-  breaks <- (diff(map$group) == 0) & (abs(diff(map$long)) > 300)
-  
-  ## make sure there is an even number pair of breaks
-  if(sum(breaks) %% 2 != 0) browser()
-
-  maxGroup <- max(map$group)
-  whereBreaks <- which(breaks) 
-  for (i in seq(1, by=2, to=length(whereBreaks))) {
-    maxGroup <- maxGroup + 1
-    map$group[(whereBreaks[i]+1):(whereBreaks[i+1])] <- maxGroup + 1
-  }
-  map
-}
-
-
-####
+## pdf(paper = "USr", file = "impatiensMaps.pdf")
+## print(gMap)
+## print(c1Map)
+## print(c2Map)
+## print(c3Map)
+## dev.off()
 
