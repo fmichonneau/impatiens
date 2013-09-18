@@ -1,3 +1,7 @@
+## --- Main to be ignored ---
+impatiens_phylogeography.tex
+impatiens_phylogeography.pdf
+
 ## --- LaTeX ignore files --- 
 *.acn
 *.acr
@@ -39,3 +43,15 @@
 
 # Example code in package build process
 *-Ex.R
+
+## --- various ---
+data/.~lock*
+*-tikzDictionary
+*.pdf
+*.R\#
+.\#*.*
+
+## --- paths ---
+figures/*.*
+cache/*.*
+
