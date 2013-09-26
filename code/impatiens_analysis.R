@@ -57,13 +57,16 @@ impESU1 <- impESU1$Extract[nzchar(impESU1$Extract)]
 ### Main analysis -- these commands should produce the final output for the published
 ###  analyses. If it's not the case, it should go somewhere else.
 
-## impAlg <- mergeSeq(impExt, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
-##                    markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"), justCheck=F)
-##                    ##markers=c("16Sc", "16S", "COI", "ATP6", "H3a", "LSU"))
-## concatenateAlignments(pattern="afa$", path="/tmp/seq", output="/tmp/seq/20130710.impatiens.phy",
-##                       partition="/tmp/seq/20130710.impatiens.part", partition.format="nexus",
-##                       create.conc=TRUE, colsep="", colw=10000)
-## phy2nex(file="/tmp/seq/20130710.impatiens.phy", partition.file="/tmp/seq/20130710.impatiens.part")
+## Create alignments for individual markers
+impAlg <- mergeSeq(impExt, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
+                   markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
+                   gblocks=list("ITS" = "-t=d -b4=5 -b5=a -p=n"), justCheck=F)
+concatenateAlignments(pattern="afa$", path="/tmp/seq", output="/tmp/seq/20130923.impatiens.phy",
+                      partition="/tmp/seq/20130923.impatiens.part", partition.format="nexus",
+                      create.conc=TRUE, colsep="", colw=10000)
+alg2nex(file="/tmp/seq/20130923.impatiens.phy", partition.file="/tmp/seq/20130923.impatiens.part")
+
+## unfortunately at this stage, still need manual editing of the partition... compare -orig.nex and .nex
 
 ## fasToPhase("~/Documents/Impatiens/000.currentFiles/20130710-224540-c0036.afa") # removed N1167 by hand (too much missing data)
 ## fasToPhase("~/Documents/Impatiens/000.currentFiles/20130710-224540-c0775.afa")
