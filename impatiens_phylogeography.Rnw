@@ -372,7 +372,7 @@ the model in the multiple GMYC approach.
 
 The GMYC models were fit onto a the COI lineage genealogy estimated from
 BEAST. We enforced a strict molecular clock, specified a Yule diversification
-process, a GTR+I+G model of molecular evolution, and ran the chains for 10e6
+process, a GTR+I+G model of molecular evolution, and ran the chains for $10^6$
 generations. 
 
 
@@ -387,36 +387,51 @@ generations.
 Given the shallow genetic divergence observed among some of the ESUs detected by
 GYMC and the lack of morphological differentiation among them. We attempted to
 compare species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
-Bayes Factors evaluated by the stepping-stone (SS) and path sampling (PS)
+Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
 methods \cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus datasets by incorporating the
 multi-species coalescent in a Bayesian framework to account for intraspecies
 polymorphism and incomplete lineage sorting. This method assumes reproductive
-isolation (absence of gene flow) among the species and the ability to assign
+isolation (absence of gene flow) among the species and requires to assign
 individuals to species \textit{a priori}.
 
 Bayes Factors (BF) provides a powerful framework for model selection by
 comparing marginal likelihoods. The models do not have to be nested and the
 complexity of the models are directly accounted for by the marginal likelihoods
-\cite{Baele2012}. Kass \& Raftery \cite{Kass1995} adapted guidelines to
-interpret the BF values such that $2 ln(B_{01})$ must be $> 6$ to consider the
-evidence ``strong'' and $> 10$ to consider it ``very strong''. In this paper, we
-use the path-sampling (PS, \cite{}) and stepping-stone (SS, \cite{}) methods to
-estimate the BF as implemented by Baele \cite{Baele2012}. These methods have
-been demonstrated to be much more accurate than other alternatives.
+\cite{Baele2012}. Kass \& Raftery \cite{Kass1995} developed guidelines to
+interpret BF values such that $2.ln(B_{01})$ (where $B_{01} =
+\frac{p(Y|M_1)}{p(Y|M_0)}$ with $Y$ is the observed data and $M_i$ the model under
+consideration) must be $> 6$ to consider the evidence ``strong'' and $> 10$ to
+consider it ``very strong''. In this paper, we use PS and SS methods to estimate
+and compare the marginal likelihoods of alternative assignments of individuals
+to species in *BEAST. With this approach, we test whether we can detect signal
+of reproductive isolation among individuals that cannot be teased apart reliably
+based on morphology alone.
 
 We investigated whether *BEAST favored models where all or some of the following
 ESUs were considered as distinct species: ESU1, WPac, Hawaii, RedSea, and
 gracilis; and used ESU2 and ESU3 as outgroups (Table
-\ref{tab:delineationModels}).
+\ref{tab:delineationModels}). In these analyses, we selected individuals for
+which we had at least one mitochondrial marker and one nuclear marker. We used
+data from the following markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and
+H3a; and the same approach as for the phylogeny of the entire complex, using
+Gblocks to remove ambiguous parts of the alignment in ITS, PartitionFinder to
+find the most appropriate partition scheme and models of molecular evolution. We
+unlinked clocks for all markers, used strict clocks, fixing COI clock at 3.7\%
+while estimating the rate of the others. We ran the analysis for $10^8$ steps and
+repeated it twice for each combination. % I hope I'll have time to do that!
+
+For the estimation of the marginal likelihoods, we used the settings recommended
+by Baele et al. \cite{Baele2012} with chain lengths of $10^6$, path steps of
+100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$.
 
 \begin{table}
   \centering
   \caption{Species groupings used in models of species delineation.}
   \begin{tabular} { l l l }
     \hline
-    Model &     Number of species  &  ESUs considered a single species with ESU1 \\
+    Model &     Number of putative species  &  ESUs considered a single species with ESU1 \\
     \hline
     M0    &     1                  &  WPac, Hawaii, RedSea, gracilis \\
     M1    &     2                  &  WPac, Hawaii, RedSea \\
@@ -429,9 +444,6 @@ gracilis; and used ESU2 and ESU3 as outgroups (Table
   \end{tabular}
   \label{tab:delineationModels}
 \end{table}
-
-
-
 
 \section{Results}
 
