@@ -115,15 +115,33 @@ species co-occur, and sometimes even share the same habitat, has contributed to
 the failure to identify the species limits in this complex.
 
 The development of genetic data and its application to species identification
-has allowed the discovery of many species complexes. Ideally, once unraveled,
-diagnostic characters other than genetics or internal morphological traits
-should be able to be used to tease apart the newly identified forms, so that
-they can be identified in the field. The genetic differentiation observed in
-species previously thought to be found across large geographic areas (e.g,
-circum-tropical species) has changed our understanding of how biodiversity is
-distributed in the sea, with isolated oceanic bassins and archipelagoes
-exhibiting much higher endemism rates than previously thought
-(e.g., %find references for Caribbean, Red Sea, Medit
+have allowed the discovery of many species complexes. The DNA barcoding approach
+of using an easy-to-amplify single locus to delineate species provides a
+promising venue to speed up biodiversity documentation. Ideally the analysis of
+the genetic data should delineate the biological species accurately with little
+or no subjectivity, so that the process can be automated and used on large
+datasets. However the biological processes generating the genetic
+differentiation that can be used to delineate species, depends on a variety of
+other factors than reproductive isolation that a single locus cannot
+capture. Nonetheless, threshold based methods (e.g. \cite{}) or other methods
+developped \cite{Pons2006}, \cite{Monaghan2009} to detect species limits are
+relatively succesful. While the possibility of detecting accurately species
+limits from a single marker remains contentious, using multiple lines of
+evidence to assess species limits in species complexes detected from
+single-locus dataset is widespread. The development of integrative taxonomy
+which uses multiple lines of evidence to delinate species has recently seen more
+formal development in how to determine the species limits based on available
+evidence. The most recent developments favor finding a biological explanation
+behind contradictory lines of evidence \cite{Schlick-Steiner2010}. For genetic
+data, recent developments in Bayesian statistics allow for integrating genetic
+signal from a variety of markers by invoking the multi-coalescent process and
+also compare competing models.
+
+The genetic differentiation observed in species previously thought to be found
+across large geographic areas (e.g, circum-tropical species) has changed our
+understanding of how biodiversity is distributed in the sea, with isolated
+oceanic bassins and archipelagoes exhibiting much higher endemism rates than
+previously thought (e.g., %find references for Caribbean, Red Sea, Medit
 \cite{Meyer2005a}). If unraveling diversity among geographically isolated
 populations affects estimates of global diversity, unraveling diversity among
 sympatric populations affects not only local estimates of diversity, but also
