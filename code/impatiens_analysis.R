@@ -143,10 +143,10 @@ legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", 
 ### GMYC analyses
 ### ---- gmyc-coi ----
 library(splits)
-trBeast <- read.nexus(file="data/20130201-COI-PB-strict.tre.nex")
+trBeast <- read.nexus(file="data/20130201-COI-BD-relaxedClock.tre")
 trBeast <- drop.tip(trBeast, "S0213")
 simpleGmyc <- gmyc(trBeast)
-multiGmyc <- gmyc(trBeast, method="m", interval=c(-0.2,-0.005))
+multiGmyc <- gmyc(trBeast, method="m", interval=c(-1,-0.003))
 
 #####################
 
