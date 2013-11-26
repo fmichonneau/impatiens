@@ -1,9 +1,10 @@
+### ---- init-map ----
 library(maps)
 library(plyr)
 library(ggplot2)
 
-impMap <- read.csv(file="data/impatiensDB.csv", stringsAsFactors=FALSE)
-impMap <- impMap[nzchar(impMap$consensusESU), ]
+
+impMap <- impDB[nzchar(impDB$consensusESU), ]
 center <- 200
 impMap$Long.recenter <- ifelse(impMap$Long < center - 180, impMap$Long + 360, impMap$Long)
 

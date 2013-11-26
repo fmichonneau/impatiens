@@ -29,6 +29,52 @@ reformatBeastStdOut <- function(file, outputLog, outputMarginal) {
     }
 }
 
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.allESU1/20131007.impatiens_allESU1/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.allESU1/20131007.impatiens_allESU1/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noHawaii/20131007.impatiens_noHawaii/impbeast.out",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noHawaii/20131007.impatiens_noHawaii/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noRedSea/20131002.impatiens_noRedSea_run1/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noRedSea/20131002.impatiens_noRedSea_run1/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noRedSea/20131007.impatiens_noRedSea_run2/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noRedSea/20131007.impatiens_noRedSea_run2/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noWpac/20131007.impatiens_noWpac/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noWpac/20131007.impatiens_noWpac/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noWpacHawaii/20131002.impatiens_noWpacHawaii/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noWpacHawaii/20131002.impatiens_noWpacHawaii/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noWpacHawaii/20131007.impatiens_noWpacHawaii/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noWpacHawaii/20131007.impatiens_noWpacHawaii/marginalLik.txt")
+
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noWpacHawaiiRedSea/20131007.impatiens_noWpacHawaiiRedSea/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noWpacHawaiiRedSea/20131007.impatiens_noWpacHawaiiRedSea/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.noWpacRedSea/20131007.impatiens_noWpacRedSea/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.noWpacRedSea/20131007.impatiens_noWpacRedSea/marginalLik.txt")
+
+reformatBeastStdOut(file="/home/francois/Documents/Impatiens/000.random/20131007.impatiens_random/stdout.txt",
+                    outputLog=NULL,
+                    outputMarginal="/home/francois/Documents/Impatiens/000.random/20131007.impatiens_random/marginalLik.txt")
+
+
+##################
+
+
 reformatBeastStdOut(file="~/Photos/impatiens_analyses/20131002.allImpatiens/stdout.txt",
                     outputLog="~/Photos/impatiens_analyses/20131002.allImpatiens/newLog.txt",
                     outputMarginal="~/Photos/impatiens_analyses/20131002.allImpatiens/marginalLik.txt")

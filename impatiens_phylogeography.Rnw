@@ -4,14 +4,6 @@
 \usepackage{tabularx}
 \usepackage{float}
 
-<<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
-opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
-               external=TRUE, fig.width=7, fig.height=4, fig.align="center")
-read_chunk('code/impatiens_analysis.R')
-read_chunk('code/impatiens_map.R')
-@ 
-
-
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
 
@@ -26,6 +18,19 @@ read_chunk('code/impatiens_map.R')
 
 
 \begin{document}
+
+<<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
+opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
+               external=TRUE, fig.width=7, fig.height=4, fig.align="center")
+read_chunk('code/impatiens_analysis.R')
+read_chunk('code/impatiens_map.R')
+@ 
+
+<<init-phylo, echo=FALSE, cache=TRUE, include=FALSE>>=
+@ 
+
+<<init-map, echo=FALSE, cache=TRUE, include=FALSE>>=
+@ 
 
 \maketitle
 
@@ -214,19 +219,25 @@ ranges and colonized one of the bassin very recently.
 To estimate the extant of the diversity in the \textit{Holothuria impatiens}
 complex, we first assessed differentiation observed in COI to make sense of the
 poorly understood morphological variation that is seen in the \textit{Holothuria
-  impatiens} complex. To this end, we delineated species within the
-\textit{Holothuria impatiens} complex using (1) a threshold approach on a
-Neighbor-Joining tree, and (2) the general mixed Yule-coalescent (GMYC) model on
-a tree obtained using Bayesian inference with BEAST \cite{}. To compare how COI
-performs in these genetic based delineation methods, we repeated this approach
-using all mitochondrial data, all the nuclear data, and on the combined nuclear
-and mitochondrial data. This latter tree was also used to assess the
-diversification history in the complex.
+  impatiens} complex. To this end, we delineated species within the complex
+using (1) a threshold approach on a Neighbor-Joining tree, and (2) the general
+mixed Yule-coalescent (GMYC) model on a tree obtained using Bayesian inference
+with BEAST \cite{Drummond2012}.
+
+To investigate the history of diversification and the affinities among the
+cryptic species within the \textit{H. impatiens} complex, we built a
+multi-locus, time-calibrated phylogeny.
 
 Based on the putative species estimated by the genetic-based methods, we
 investigated patterns of variation in the live appearance, ossicle shape,
 habitat and geographical range to determine whether these additional lines of
 evidence were concordant with the genetic data.
+
+In some cases, genetic-based methods distinguished putative species that were
+only slightly differentiated and could not be teased apart with other lines of
+evidence. Therefore, we compared the marginal likelihoods of competing models of
+species delineation using the multispecies coalescent in a Bayesian framework as
+implemented in *BEAST \cite{Heled2010}.
 
 \subsection{Sampling}
 
@@ -336,7 +347,7 @@ minimum length of a block of 5 (-b4=5) and all gap positions can be selected
 (-b5=a).
 
 We estimated the phylogenetic relationships and the timing of the divergence
-among the different lineages of \textit{Holothuria impatiens} using BEAST v1.7.5
+among the different lineages of \textit{Holothuria impatiens} using BEAST v2.0.2
 \cite{}. We used the closure of the isthmus of Panama to calibrate our
 phylogeny. However, given that the sister ESU to the West Atlantic ESU is found
 in the Galapagos and not in the Eastern Pacific, we used a log-normal prior
@@ -357,12 +368,9 @@ modified slightly the model of molecular evolution to improve mixing of the
 MCMC, and reduced to the number of partitions to see Table \ref{tabPartitions}.
 
 The analysis was run using independent strict molecular clock for each
-locus. For COI we calibrated the clock to 0.037 substitutions per site per
-million years following the review by Lessios \cite{Lessios2008}. All other
-clocks were estimated with a log-normal distribution prior (mean -1, standard
-deviation of 1). The tree prior was set to a Yule process and a random starting
-tree. The Markov Chains were run for $50 . 10^6$ generations. The analysis was
-repeated twice.
+locus. The tree prior was set to a Yule process and a random starting tree. The
+Markov Chains were run for $1.58 . 10^8$ generations. The analysis was repeated
+twice.
 
 We used Tracer \cite{} to check that the MCMC chains had reach stationarity and
 that the two independent runs were consistent. We ensured that enough of the posterior
@@ -373,25 +381,25 @@ run, the trees sampled were combined.
 
 \subsection{GMYC}
 To delineate putative species based on molecular data, we fit generalized mixed
-Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009a}) to the COI
-sequence data. This approach attempts to detect transitions in the branching
-rate of an ultrametric tree corresponding to the expected increase in lineage
-accumulation resulting from the shift to speciation to intraspecific coalescent
-events. We fit the single (\cite{Pons2006}) and the multiple
-(\cite{Monaghan2009a}) GYMC models, which allow either a single occurrence of
-transition between inter- and intra-specific branching rate, or multiple
-occurrences respectively. To determine the location of the occurrence, the GMYC
-model is fit at different time points along the tree, and the time that provides
-the best likelihood is selected. To assess whether including a transition in the
-branching rate is statistically significant, a likelihood ratio test between the
-model with no transition and the model with the transition is performed. The
-same approach is used to determine if additional transitions improve the fit of
-the model in the multiple GMYC approach.
+Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009a},
+\cite{Fujisawa2013}) to the COI sequence data. This approach attempts to detect
+transitions in the branching rate of an ultrametric tree corresponding to the
+expected increase in lineage accumulation resulting from the shift to speciation
+to intraspecific coalescent events. We fit the single-threshold
+(\cite{Pons2006}) GYMC model, as it was shown to perform as well or better than
+the multiple-threshold model \cite{Fujisawa2013}. To determine the location of
+the threshold, the GMYC model is fit at different nodes along the tree, and the
+time that provides the best likelihood for the location of the switch is
+selected. Clusters of sequences found beyond this threshold are considered to
+represent different putative species. Singletons (unique sequences that do not
+belong to one of the identified clusters) were not considered putative species
+for the purpose of this study as mutliple individuals are needed to estimate the
+parameters of the multispecies coalescent model \cite{Heled2010}.
 
-The GMYC models were fit onto a the COI lineage genealogy estimated from
-BEAST. We enforced a strict molecular clock, specified a Yule diversification
-process, a GTR+I+G model of molecular evolution, and ran the chains for $10^{6}$
-generations. 
+The GMYC model was fit onto a the COI lineage genealogy estimated using BEAST
+1.7.5. We enforced a strict molecular clock, specified a Yule diversification
+process, a HKY+I+G model of molecular evolution, and ran the chains for $10^{8}$
+generations.
 
 
 % Method in Pons+2006 and 
@@ -408,61 +416,66 @@ compare species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
 Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
 methods \cite{Baele2012}.
 
-*BEAST infers the species trees from a multi-locus datasets by incorporating the
+*BEAST infers the species trees from a multi-locus dataset by incorporating the
 multi-species coalescent in a Bayesian framework to account for intraspecies
 polymorphism and incomplete lineage sorting. This method assumes reproductive
-isolation (absence of gene flow) among the species and requires to assign
+isolation (absence of gene flow) among species and requires to assign
 individuals to species \textit{a priori}.
 
 Bayes Factors (BF) provides a powerful framework for model selection by
 comparing marginal likelihoods. The models do not have to be nested and the
-complexity of the models are directly accounted for by the marginal likelihoods
+complexity of the models is directly accounted for by the marginal likelihoods
 \cite{Baele2012}. Kass \& Raftery \cite{Kass1995} developed guidelines to
 interpret BF values such that $2.ln(B_{01})$ (where $B_{01} =
 \frac{p(Y|M_1)}{p(Y|M_0)}$ with $Y$ is the observed data and $M_i$ the model
 under consideration) must be $> 6$ to consider the evidence ``strong'' and $>
-10$ to consider it ``very strong''. In this paper, we use PS and SS methods to
+10$ to consider it ``very strong''. Here, we use PS and SS methods to
 estimate and compare the marginal likelihoods of alternative assignments of
 individuals to species in *BEAST. With this approach, we test whether we can
 detect signal of reproductive isolation among individuals that cannot be teased
 apart reliably based on morphology alone.
 
 We investigated whether *BEAST favored models where all or some of the following
-ESUs were considered as distinct species: ESU1, WPac, Hawaii and RedSea; and
-used ESU3 and gracilis as outgroups (Table \ref{tab:delineationModels}). In
-these analyses, we selected individuals for which we had at least one
-mitochondrial marker and one nuclear marker. We used data from the following
-markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and H3a; and the same approach
-as for the phylogeny of the entire complex, using Gblocks to remove ambiguous
-parts of the alignment in ITS, PartitionFinder to find the most appropriate
-partition scheme and models of molecular evolution. We unlinked clocks for all
-markers, used strict clocks, fixing COI clock at 3.7\% while estimating the rate
-of the others. We ran the analysis for $10^{8}$ steps and repeated it twice for
-each combination. % I hope I'll have time to do that!
+ESUs were considered distinct species: WPac, Hawaii and RedSea or actually could
+not be distinguished from ESU1 (Table \ref{tab:delineationModels}). We used
+ESU3 and gracilis as outgroups. In these analyses, we selected individuals for
+which we had at least one mitochondrial marker and one nuclear marker. We used
+data from the following markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and H3a;
+and the same approach as for the phylogeny of the entire complex, using Gblocks
+to remove ambiguous parts of the alignment in ITS, PartitionFinder to find the
+most appropriate partition scheme and models of molecular evolution. We unlinked
+clocks for all markers, used strict molecular clocks, fixing the COI clock at
+3.7\% \cite{Lessios2008} while estimating the rate of the others. We ran the
+analysis for $5.10^{8}$ generations and repeated it twice for each gro.
 
 For the estimation of the marginal likelihoods, we used the settings recommended
 by Baele et al. \cite{Baele2012} with chain lengths of $10^{6}$, path steps of
-100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$.
+100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$ distribution.
 
 \begin{table}
   \centering
   \caption{Species groupings used in models of species delineation.}
-  \begin{tabular} { l l l }
+  \begin{tabular}{ l l l }
     \hline
-    Model &     Number of putative species  &  ESUs considered a single species
-    with ESU1 & PS & SS \\
-    \hline
-    M1    &     2                  &  WPac, Hawaii, RedSea &  -17450.870519303116 & -17451.375955379674 \\
-    M2    &     3                  &  WPac, RedSea         &    &   \\
-    M3    &     3                  &  WPac, Hawaii         &  -17442.661459810097 & -17443.749857738272 \\
-    M4    &     4                  &  WPac                 &    &   \\
-    M5    &     4                  &  Hawaii               &  -17436.301395675302 & -17437.44896833068  \\
-    M6    &     4                  &  RedSea               &    &   \\
-    M7    &     5                  &  --                   &  -17424.667640336073 &  -17425.728116674578 \\
+    Model & Number of species & ESUs attributed to ESU1 \\
+    \hline 
+    M1    &     2             &  WPac, Hawaii, RedSea   \\
+    M2    &     3             &  WPac, RedSea           \\
+    M3    &     3             &  WPac, Hawaii           \\
+    M4    &     4             &  WPac                   \\
+    M5    &     4             &  Hawaii                 \\
+    M6    &     4             &  RedSea                 \\
+    M7    &     5             &  --                     \\
     \hline
   \end{tabular}
   \label{tab:delineationModels}
 \end{table}
+
+
+To confirm that the differentiation in COI which delineate the putative species
+using GMYC does not drive the marginal likelihood calculations, and therefore
+the model of species delineation favored by *BEAST, we repeated the analyses
+omitting the mitochondrial markers.
 
 \section{Results}
 
@@ -473,7 +486,7 @@ by Baele et al. \cite{Baele2012} with chain lengths of $10^{6}$, path steps of
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
-<<impatiens-tree, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
+<<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
 
 The \textit{Holothuria impatiens} includes 12, reciprocally monophyletic,
@@ -484,13 +497,13 @@ Red Sea) or to an archipelago (Hawaii and Galapagos), while other ESUs are wide
 ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3)
 (Fig~\ref{fig:impatiens-map-WA}).
 
-<<impatiens-map-WA, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs.">>=
+<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs.">>=
 @ 
 
-<<impatiens-map-group1, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 1.">>=
+<<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 1.">>=
 @ 
 
-<<impatiens-map-group2, eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 2.">>=
+<<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 2.">>=
 @ 
 
 \subsection{Species limits}
@@ -542,6 +555,15 @@ ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3)
 % Add something about how differences in colors among ESUs might be a result of
 % the same type of proteins than GRP.
 
+% Low PP on some nodes, probably from using low number of loci. This low number
+% of loci, is also not enough to obtain accurate population estimates (see
+% Harris+2013,10.1111/evo.12280).
+
+\section{Acknowledgments}
+
+CIPRES portal.
+UF HPC, HiPerGator.
+
 \bibliographystyle{plos2009}
 \bibliography{impatiens_phylogeography}
 
@@ -559,6 +581,8 @@ ranging and are found across the Indo-Pacific (ESU1, ESU2, and ESU3)
     8      & $HKY+G$      & ITS \\       
   \end{tabular}
 \end{table}
+
+
 
 
 %% Notes about the biology of the species
