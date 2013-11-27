@@ -60,10 +60,29 @@ mtext(side=1, at=colMeans(bpss), line=0, text=lbls, las=2, adj=0)
 text(bpss[1:2], bpssMat[,1] - 1.5, c("*", "*"))
 abline(h=-5, lty=2)
 
+### NJ analyses
+### ---- nj-coi ----
+source("~/R-scripts/findGroups.R")
+impCOI <- read.nexus.data(file="data/20131009_impatiens_COIuniq.nex")
+impNJ <- nj(dist.dna(as.DNAbin(impCOI)))
+impNJ$edge.length[impNJ$edge.length < 0] <- 0
+impNJ <- root(impNJ, "S0213", resolve.root=T)
+impNJ <- drop.tip(impNJ, "S0213")
+trNJ4 <- as(ladderize(impNJ), "phylo4")
+grpImp <- findGroups(trNJ4, threshold=.015)
+tipLabels(grpImp) <- paste(tipData(grpImp)$Group, tipLabels(grpImp), sep="_")
+grpLbl <- paste("^", 1:max(tipData(grpImp)), "_", sep="")
+par(mai=c(0.5,0,2,0), xpd=T)
+plot(as(grpImp, "phylo"), cex=.5, show.tip.label=T, no.margin=F, label.offset=0)
+barMonophyletic(1:max(tipData(grpImp)), grpLbl, as(grpImp, "phylo"), extra.space=0.01, cex.plot=.5, cex.text=.5,
+                bar.at.tips=TRUE, include.tip.label=TRUE)
+add.scale.bar()
+
+
 ### GMYC analyses
 ### ---- gmyc-coi ----
 library(splits)
-trBeast <- read.nexus(file="data/20130201-COI-BD-relaxedClock.tre")
+trBeast <- read.nexus(file="~/Documents/Impatiens/20131125.impatiens_COIuniq_strict/20131125_impatiens_COIuniq_strict.tree.nex")
 trBeast <- drop.tip(trBeast, "S0213")
 trBeast <- extToLbl(trBeast, impDB)
 simpleGmyc <- gmyc(trBeast)
@@ -75,6 +94,7 @@ summary(simpleGmyc)
 pdf(height=20)
 plot(simpleGmyc)
 dev.off()
+
 #####################
 
 ### Just for ESU1
