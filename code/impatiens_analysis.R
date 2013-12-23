@@ -43,26 +43,43 @@ legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", 
 ### ---- starbeast-summary ----
 sbeast <- read.csv(file="data/starbeastResults.csv")
 tmpSbeast <- sbeast[, c("groupings", "runs", "PS_logLik", "SS_logLik")]
-bppsMat <- matrix(tmpSbeast[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
-bppsMat <- bppsMat - bppsMat[, 1]
-bpssMat <- matrix(tmpSbeast[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
-bpssMat <- bpssMat - bpssMat[, 1]
-lbls <- unique(tmpSbeast$groupings); lbls <- lbls[-length(lbls)]
-par(mfrow=c(1,2))
+wMtSBeast <- tmpSbeast[-grep("(^noMt)", tmpSbeast$groupings), ]
+noMtSBeast <- tmpSbeast[grep("^noMt", tmpSbeast$groupings), ]
+bppsMat <- matrix(wMtSBeast[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
+bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
+bpssMat <- matrix(wMtSBeast[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
+bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
+noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
+noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
+noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
+noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
+lbls <- unique(wMtSBeast$groupings); lbls <- lbls[-length(lbls)]
+noMtlbls <- unique(noMtSBeast$groupings); 
+bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
+                beside=T, #main="Stepping-stone sampling",
+                ylim=c(-50, 5))
+mtext(side=1, at=colMeans(bpss), line=0, text=as.character(lbls), las=2, adj=0)
+text(bpss[1:2], bpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
+abline(h=-5, lty=2)
+## noMtbpss <- barplot(noMtbpssMat, ylab="Difference in log-marginal likelihoods",
+##                     beside=T, main="Stepping-stone sampling", ylim=c(-5,5))
+## mtext(side=1, at=colMeans(noMtbpss), line=0, text=noMtlbls, las=2, adj=0)
+
+
+### ---- sm-starbeast-summary ----
 bpps <- barplot(bppsMat, ylab="Difference in log-marginal likelihoods",
-                beside=T, main="Path sampling", ylim=c(-50, 0))
-mtext(side=1, at=colMeans(bpps), line=0, text=lbls, las=2, adj=0)
+                beside=T, #main="Path sampling",
+                ylim=c(-50, 0))
+mtext(side=1, at=colMeans(bpps), line=0, text=as.character(lbls), las=2, adj=0)
 text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
 abline(h=-5, lty=2)
-bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
-                beside=T, main="Stepping-stone sampling", ylim=c(-50, 0))
-mtext(side=1, at=colMeans(bpss), line=0, text=lbls, las=2, adj=0)
-text(bpss[1:2], bpssMat[,1] - 1.5, c("*", "*"))
-abline(h=-5, lty=2)
+## noMtbpps <- barplot(noMtbppsMat, ylab="Difference in log-marginal likelihoods",
+##                     beside=T, main="Path sampling", ylim=c(-5,5))
+## mtext(side=1, at=colMeans(noMtbpps), line=0, text=noMtlbls, las=2, adj=0)
 
 ### NJ analyses
 ### ---- nj-coi ----
-source("~/R-scripts/findGroups.R")
+xsource("~/R-scripts/findGroups.R")
 impCOI <- read.nexus.data(file="data/20131009_impatiens_COIuniq.nex")
 impNJ <- nj(dist.dna(as.DNAbin(impCOI)))
 impNJ$edge.length[impNJ$edge.length < 0] <- 0
