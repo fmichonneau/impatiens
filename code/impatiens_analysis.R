@@ -42,9 +42,10 @@ legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", 
 ### StarBeast summary results (marginal likelihood summaries)
 ### ---- starbeast-summary ----
 sbeast <- read.csv(file="data/starbeastResults.csv")
-tmpSbeast <- sbeast[, c("groupings", "runs", "PS_logLik", "SS_logLik")]
+tmpSbeast <- sbeast[, c("groupings", "runs", "chainLength", "PS_logLik", "SS_logLik")]
 wMtSBeast <- tmpSbeast[-grep("(^noMt)", tmpSbeast$groupings), ]
 noMtSBeast <- tmpSbeast[grep("^noMt", tmpSbeast$groupings), ]
+wMtSBeast <- subset(wMtSBeast, chainLength=="long")
 bppsMat <- matrix(wMtSBeast[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
 bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
 bpssMat <- matrix(wMtSBeast[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
