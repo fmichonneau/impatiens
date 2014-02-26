@@ -455,8 +455,10 @@ analysis for $5.10^{8}$ generations and repeated it twice for each group.
 
 For the estimation of the marginal likelihoods, we used the settings recommended
 by Baele et al. \cite{Baele2012} with chain lengths of $10^{6}$, path steps of
-100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$ distribution.
-
+100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$
+distribution. However, given the differences observed in the marginal likelihood
+estimations between the independent runs, we ran the analysis again with chain
+lengths of $3.10^{6}$.
 
 
 \begin{table}
@@ -486,6 +488,29 @@ omitting the mitochondrial markers.
 \section{Results}
 
 
+\subsection{Species based on morphology}
+
+Members of the impatiens group are usually characterized by having two main
+colors, a darker one and a lighter one, that vary in their hues across species
+and across individuals. The dark color is typically brown but varies in
+lightness and can take an red or purple tint. The lighter color is typically
+gray but varies in lightness from light brown to yellow or even white. The
+light-colored areas, are also typically harboring a ``salt-and-pepper'' pattern
+with small spots of a darker coloration on the light background.
+
+ESU2: Easily recognizable because of (1) yellow tentacles and tube feet, (2)
+round tubercles, (3) light gray/purplish background with white areas, and dark
+stripes in the anterior ends, progressively becoming blotches towards posterior
+end, clearly marked salt-and-pepper coloration typically more prevalent towards
+posterior end. In some specimens (most common in juveniles), coloration
+uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
+tubules, rarely released, long, relatively wide, white.
+
+
+
+
+
+
 \subsection{Diversity}
 % how many clades
 % how many specimens per clades
@@ -511,8 +536,6 @@ differentiation seen in COI.
 <<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
 
-
-
 <<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs.">>=
 @ 
 
@@ -530,9 +553,9 @@ supplementary material \ref{sm:pathsampling} for the PS results). The model with
 all the putative species identified by GMYC has the highest marginal likelihood,
 and this holds for both independent fittings
 \ref{fig:starbeast-summary}. However, the difference in marginal likelihoods for
-the model that considers the Wpac putative species as not being reproductively
-isolated from ESU1 is only below the threshold needed to consider the evidence
-strong.
+the model that considers the Wpac and Hawaii putative species as not being
+reproductively isolated from ESU1 is only below the threshold needed to consider
+the evidence strong.
 
 <<starbeast-summary, fig.height=6, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
 @ 
