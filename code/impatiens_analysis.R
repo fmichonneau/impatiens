@@ -1,11 +1,11 @@
 
 ### ---- init-phylo ----
+setwd("~/Documents/Impatiens/impatiens_phylogeography/")
 impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
-source("~/R-scripts/seqManagement.R")
+library(seqManagement)
 source("~/R-scripts/fasToPhase.R")
 source("~/R-scripts/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
-
 impExt <- impDB$Extract[nzchar(impDB$Extract)]
 stopifnot(ncol(impDB) > 1)
 
@@ -41,27 +41,36 @@ legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", 
 
 ### StarBeast summary results (marginal likelihood summaries)
 ### ---- starbeast-summary ----
-sbeast <- read.csv(file="data/starbeastResults.csv")
-tmpSbeast <- sbeast[, c("groupings", "runs", "chainLength", "PS_logLik", "SS_logLik")]
-wMtSBeast <- tmpSbeast[-grep("(^noMt)", tmpSbeast$groupings), ]
-noMtSBeast <- tmpSbeast[grep("^noMt", tmpSbeast$groupings), ]
-wMtSBeast <- subset(wMtSBeast, chainLength=="long")
-bppsMat <- matrix(wMtSBeast[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
-bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
-bpssMat <- matrix(wMtSBeast[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
-bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
-noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
-noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
-noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
-noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
-lbls <- unique(wMtSBeast$groupings); lbls <- lbls[-length(lbls)]
-noMtlbls <- unique(noMtSBeast$groupings); 
+sbeastOrig <- read.csv(file="data/starbeastResults.csv")
+sbeast <- sbeastOrig[, c("groupings", "runs", "chainLength", "dataIncluded",
+                         "PS_logLik", "SS_logLik")]
+wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all" & runs != "run3")
+bppsMat <- matrix(wMtSB[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
+bppsMat <- bppsMat - max(bppsMat[,1]) #bppsMat[, 1]
+bpssMat <- matrix(wMtSB[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
+bpssMat <- bpssMat - max(bpssMat[,1]) #bpssMat[, 1]
+lbls <- unique(wMtSB$groupings); lbls <- lbls[-length(lbls)]
+noCOISB <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI")
+noCOIbpssMat <- matrix(noCOISB[, c("SS_logLik")], nrow=2)
+noCOIbpssMat <- noCOIbpssMat - max(noCOIbpssMat[, 1])
+noCOIlbls <- unique(noCOISB$groupings)
+par(mfrow=c(1, 2))
 bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
-                beside=T, #main="Stepping-stone sampling",
-                ylim=c(-50, 5))
+                beside=T, main="With COI", ylim=c(-50, 5))
 mtext(side=1, at=colMeans(bpss), line=0, text=as.character(lbls), las=2, adj=0)
 text(bpss[1:2], bpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
 abline(h=-5, lty=2)
+noCOIbpss <- barplot(noCOIbpssMat, beside=T, main="Without COI",
+                     ylim=c(-50, 5))
+mtext(side=1, at=colMeans(noCOIbpss), line=0, text=as.character(noCOIlbls),
+      las=2, adj=0)
+abline(h=-5, lty=2)
+text(noCOIbpss[1:2], noCOIbpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
+## noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
+## noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
+## noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
+## noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
+## noMtlbls <- unique(noMtSBeast$groupings); 
 ## noMtbpss <- barplot(noMtbpssMat, ylab="Difference in log-marginal likelihoods",
 ##                     beside=T, main="Stepping-stone sampling", ylim=c(-5,5))
 ## mtext(side=1, at=colMeans(noMtbpss), line=0, text=noMtlbls, las=2, adj=0)
@@ -112,6 +121,24 @@ summary(simpleGmyc)
 pdf(height=20)
 plot(simpleGmyc)
 dev.off()
+
+### starBEAST PPS
+### ---- starbeast-pps ----
+library(starbeastPPS)
+
+impxml <- read.starbeast(beast.xml="/home/francois/Photos/impatiens_analyses/000.allESU1/starbeastPPS_allESU1_longSampling_run1/20131230.allESU1_longSampling.xml", "/home/francois/Photos/impatiens_analyses/000.allESU1/starbeastPPS_allESU1_longSampling_run1/combined")
+
+impcoal <- analyze.coalescent(impxml, "~/Software/msdir/")
+
+impseq <- analyze.sequences(impxml, "/home/francois/Software/Seq-Gen.v1.3.3")
+
+### bGMYC analysis
+### ---- bgmyc ----
+library(bGMYC)
+
+resSingle <- bgmyc.singlephy(trBeast, mcmc=50000, burnin=1, thinning=10, t1=2, t2=100, start=c(1,1,25))
+
+
 
 #####################
 

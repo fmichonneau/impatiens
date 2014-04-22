@@ -212,6 +212,10 @@ ranges and colonized one of the bassin very recently.
 % how to include peripatric speciation?
 % say something about how these 2 models are not mutually exclusive
 
+% use these bayesian methods and test for adequacy of multispecies coalescent
+% justified because wide ranging species with no clear geographical barriers to
+% their range.
+
 \section{Methods}
 
 \subsection{Approach}
@@ -504,7 +508,10 @@ stripes in the anterior ends, progressively becoming blotches towards posterior
 end, clearly marked salt-and-pepper coloration typically more prevalent towards
 posterior end. In some specimens (most common in juveniles), coloration
 uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
-tubules, rarely released, long, relatively wide, white.
+tubules, rarely released, few in numbers, long, relatively wide ($\tilde$ 2mm in
+diameter), white with a light blue tint.
+
+ESU3: 
 
 
 
@@ -589,6 +596,26 @@ the evidence strong.
 
 \section{Discussion}
 
+%            OUTLINE          %
+%  %%%%%%%%%%%%%%%%%%%%%%%%%  %
+
+% Many cryptic species = change in patterns of biodiversity
+% - find examples of other species that show similar patterns indicative of small
+%   scale endemism
+% - potential to redefine hotspots
+% - 
+
+% Speed of speciation/secondary sympatry
+% - how they managed to accomplish that
+% - signature of population expansion?
+% - implication for identification of geographical boundaries in distribution
+% - role of pre- and post-zygotic barriers
+% - role of selection?
+
+
+%        end of outline       %
+%   %%%%%%%%%%%%%%%%%%%%%%%%  %
+
 % According to \cite{Renema2008}, the modern IWP fauna has its origin in the
 % Miocene. Generation of hotspots associated with tectonic events, so importance
 % of abiotic factors.
@@ -608,6 +635,9 @@ the evidence strong.
 % Low PP on some nodes, probably from using low number of loci. This low number
 % of loci, is also not enough to obtain accurate population estimates (see
 % Harris+2013,10.1111/evo.12280).
+
+
+
 
 \section{Acknowledgments}
 
