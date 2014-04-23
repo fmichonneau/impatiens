@@ -1,4 +1,4 @@
-
+% -*- 
 \documentclass{article}
 \usepackage{authblk}
 \usepackage{tabularx}
@@ -40,66 +40,101 @@ Blabla
 
 \section{Introduction}
 
-Despite the challenges associated with its definition, species are, by far, the most commonly used biological unit to assess patterns of diversity and design conservation policies. For many taxonomic groups, identifying species based on morphological characters alone can be problematic as species limits might be misunderstood. Molecular-based identification methods that use a short DNA fragment (typically mitochondrial DNA in metazoans) to identify species has been 
+Despite the challenges associated with its definition, species are, by far, the
+most commonly used biological unit to assess patterns of diversity, identify
+regions of conservation concern and manage exploited resources. For many
+taxonomic groups, identifying species based on morphological characters alone
+can be problematic as species limits might be misunderstood. Barcoding, the
+molecular-based identification methods that use a short DNA fragment (typically
+mitochondrial DNA in metazoans) provide an inexpensive and efficient way to
+identify species complexes, and gain insights into species limits. These methods
+are efficient as genetic data can carry the signature of the historical
+processes that have shaped modern patterns. In particular, the expected level of
+genetic divergence between reproductively isolated populations is proportional
+to the amount of time since they shared a common ancestor
+\cite{Hey2010}. However, divergence in mitochondrial DNA alone is insufficient
+to conclude to reproductive isolation. Historical interruption of gene flow
+between populations might lead to genetic divergence, but without reproductive
+isolation, upon secondary contact, these populations will resume
+inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
+\cite{} can mask reproductive isolation.
 
-The failure to distinguish reproductively isolated species can stem
-from either the choice of an inappropriate set of characters to
-distinguish species otherwise morphologically variable, or from the
-absence of variation in morphology but differentiation in other traits
-(e.g., ecology, chemical cues) allows them to remain reproductively
-isolated \cite{Knowlton1993}.
+% include something on how importance of rate of secondary sympatry for building
+% up local diversity, and confusion about sympatry + genetic differentiation in
+% case of no clear barriers and possibility for rapid changes in population
+% sizes, geographical ranges
+
+Based on the precept that species are defined on the criterion of reproductive
+isolation, three processes operating at different rates are interacting during
+speciation: (1) acquisition of reproductive isolation, (2) morphological
+differentiation, (3) genetic differentiation. In many cases, these three
+processes can be independent making species delineation challenging. For
+instance, broadcast spawning marine invertebrates for which reproductive
+cohesion is maintained behaviorally (e.g., spawning aggregations cukes?,
+lobsters? \cite{}, spawning based on environmental clues corals? \cite{}) and
+biochemically (e.g., gamete recognition proteins \cite{}), selection on these
+traits is unlikely to drive morphological differentiation among closely related
+species \cite{Knowlton1993}. Similarly, barcoding markers evolve typically
+neutrally and the time taken for them to show enough differentiation to be
+recognized as different species will depend on effective population sizes or DNA
+repair mechanisms (in absence of introgression) that will also be independent of
+the species identity.
+
+Assessing divergence in characters used by species to maintain reproductive
+isolation is challenging as they are in most cases unknown or poorly
+understood. We therefore only have access to morphological and genetic
+information for which the differentiation is a by-product of reproductive
+isolation that do not guarantee to be effective in discriminating
+species. Integrative taxonomy has been proposed to integrate these multiple
+lines of evidence ... 
+
+The failure to distinguish reproductively isolated species can stem from either
+the choice of an inappropriate set of characters to distinguish species
+otherwise morphologically variable, or from the absence of variation in
+morphology but differentiation in other traits (e.g., ecology, chemical cues)
+allows them to remain reproductively isolated 
 
 For morphological characters to be appropriate to distinguish between
-populations of reproductively isolated individuals, they require to
-evolve at a rate of the same par as populations become species. They
-also must exhibit less intraspecific than interspecific
-variation. Traits that are under sexual selection usually meet these
-criteria. When species use visual clues to identify their mates,
-taxonomists can use the same characters to discrimminate between these
-populations of reproductively isolated individuals. However, in
-situations where mate recognition does not involve visual clues (e.g.,
-chemical communication, sperm/egg recognition proteins), whether a
-particular morphological trait evolves at the appropriate pace to
-distinguish between species is governed by other evolutionary
-forces. These traits are, at best, a by-product of reproductive
-isolation that do not guarantee to be effective in discrimminating
-species.
+populations of reproductively isolated individuals, they require to evolve at a
+rate of the same par as populations become species. They also must exhibit less
+intraspecific than interspecific variation. Traits that are under sexual
+selection usually meet these criteria. When species use visual clues to identify
+their mates, taxonomists can use the same characters to discrimminate between
+these populations of reproductively isolated individuals. However, in situations
+where mate recognition does not involve visual clues (e.g., chemical
+communication, sperm/egg recognition proteins), 
 
-Most marine invertebrate taxonomy results from the study of dry or
-preserved specimens. With these methods, many delicate morphological
-characters and very often color patterns are lost. Therefore, in
-groups characterized by hard parts, taxonomists have relied on these
-skeletal elements to find characters that allow them to differentiate
-species. For instance, in sea cucumbers, in particular in the
-Holothuriidae, species-level taxonomy has entirely been focused on the
-shape of ossicles, microscopic calcareous secretions found in many
-tissues. At least until the late 1980's most species descriptions
-would ignore intraindividual variation by figuring only ossicles found
-in the body wall of the species, and generally ignored any
-intraspecific variation by illustrating the ossicle assemblage of a
-single individual.
+Most marine invertebrate taxonomy results from the study of dry or preserved
+specimens. With these methods, many delicate morphological characters and very
+often color patterns are lost. Therefore, in groups characterized by hard parts,
+taxonomists have relied on these skeletal elements to find characters that allow
+them to differentiate species. For instance, in sea cucumbers, in particular in
+the Holothuriidae, species-level taxonomy has entirely been focused on the shape
+of ossicles, microscopic calcareous secretions found in many tissues. At least
+until the late 1980's most species descriptions would ignore intraindividual
+variation by figuring only ossicles found in the body wall of the species, and
+generally ignored any intraspecific variation by illustrating the ossicle
+assemblage of a single individual.
 
 % who were the first authors to illustrate ossicles?
 
 Forrsk\r{a}ll described \textit{Holothuria impatiens} in 1775 from the
-collections he was making in Suez, Egypt. The original description is
-vague, and could fit many other holothuriid species of the area, he
-did however include a drawing of the species. Since then, the range of
-\textit{H. impatiens} has been extended, and the species is now
-thought to be occurring in the Red Sea, the entire Indo-West Pacific
-region, the Caribbean and the Mediterrean seas.
+collections he was making in Suez, Egypt. The original description is vague, and
+could fit many other holothuriid species of the area, he did however include a
+drawing of the species. Since then, the range of \textit{H. impatiens} has been
+extended, and the species is now thought to be occurring in the Red Sea, the
+entire Indo-West Pacific region, the Caribbean and the Mediterrean seas.
 
 \textit{Holothuria impatiens} is the type species of the subgenus
-\textit{Thymiosycia} one of the 18 subgenera that are forming the
-genus \textit{Holothuria}. The subgenus \textit{Thymiosycia} was first
-erected by Pearson \cite{Pearson1915} to include all holothuriid being
-characterized by the absence of ``true pedicels'' and anal teeth, and
-the presence of ``papillae scattered all over the body, generally on
-eminences''; and designed \textit{H. impatiens} as the type species
-for the subgenus. In the most recent revision of the family, Rowe
-\cite{Rowe1969} redefined \textit{Thymiosycia} to only include species
-which are characterized by having well developed, regular and
-symmetrical tables and buttons. The ossicle assemblage of
+\textit{Thymiosycia} one of the 18 subgenera that are forming the genus
+\textit{Holothuria}. The subgenus \textit{Thymiosycia} was first erected by
+Pearson \cite{Pearson1915} to include all holothuriid being characterized by the
+absence of ``true pedicels'' and anal teeth, and the presence of ``papillae
+scattered all over the body, generally on eminences''; and designed
+\textit{H. impatiens} as the type species for the subgenus. In the most recent
+revision of the family, Rowe \cite{Rowe1969} redefined \textit{Thymiosycia} to
+only include species which are characterized by having well developed, regular
+and symmetrical tables and buttons. The ossicle assemblage of
 \textit{H. impatiens} therefore exemplifies the holothuriid ossicles.
 
 \textit{Holothuria impatiens} is a common, locally fairly abundant, species
