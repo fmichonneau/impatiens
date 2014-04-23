@@ -52,6 +52,6 @@ data/.~lock*
 .\#*.*
 
 ## --- paths ---
-figures/*.*
-cache/*.*
+figures/
+cache/
 
