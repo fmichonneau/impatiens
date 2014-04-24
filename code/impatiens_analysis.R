@@ -44,11 +44,12 @@ legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", 
 sbeastOrig <- read.csv(file="data/starbeastResults.csv")
 sbeast <- sbeastOrig[, c("groupings", "runs", "chainLength", "dataIncluded",
                          "PS_logLik", "SS_logLik")]
-wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all" & runs != "run3")
+sbeast <- sbeast[grep("[0-9]$", sbeast$runs), ] # runs with X at the ends are not meant to be included
+wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all")
 bppsMat <- matrix(wMtSB[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
-bppsMat <- bppsMat - max(bppsMat[,1]) #bppsMat[, 1]
+bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
 bpssMat <- matrix(wMtSB[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
-bpssMat <- bpssMat - max(bpssMat[,1]) #bpssMat[, 1]
+bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
 lbls <- unique(wMtSB$groupings); lbls <- lbls[-length(lbls)]
 noCOISB <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI")
 noCOIbpssMat <- matrix(noCOISB[, c("SS_logLik")], nrow=2)

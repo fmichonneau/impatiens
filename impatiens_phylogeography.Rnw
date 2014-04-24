@@ -53,7 +53,7 @@ processes that have shaped modern patterns. In particular, the expected level of
 genetic divergence between reproductively isolated populations is proportional
 to the amount of time since they shared a common ancestor
 \cite{Hey2010}. However, divergence in mitochondrial DNA alone is insufficient
-to conclude to reproductive isolation. Historical interruption of gene flow
+to conclude for reproductive isolation. Historical interruption of gene flow
 between populations might lead to genetic divergence, but without reproductive
 isolation, upon secondary contact, these populations will resume
 inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
@@ -541,8 +541,8 @@ omitting the mitochondrial markers.
 Members of the impatiens group are usually characterized by having two main
 colors, a darker one and a lighter one, that vary in their hues across species
 and across individuals. The dark color is typically brown but varies in
-lightness and can take an red or purple tint. The lighter color is typically
-gray but varies in lightness from light brown to yellow or even white. The
+lightness and can take a red or purple tint. The lighter color is typically gray
+but varies in lightness from light brown to yellow or even white. The
 light-colored areas, are also typically harboring a ``salt-and-pepper'' pattern
 with small spots of a darker coloration on the light background.
 
@@ -643,6 +643,13 @@ the evidence strong.
 The ability for taxonomists to be able to recognize populations of
 reproductively isolated individuals as species requires
 differentiation at three levels: morphological, genetically
+
+%% From the BEAST book
+% It can happen that the species assignment is incorrect, which results in co-
+% alescent events higher up in the species tree than if the species assignment is
+% correct. As a result population size estimates will be unusually high. So,
+% relative high population size estimates may indicate incorrect assignments, but
+% it can also indicate the existence of a cryptic s
 
 %            OUTLINE          %
 %  %%%%%%%%%%%%%%%%%%%%%%%%%  %
