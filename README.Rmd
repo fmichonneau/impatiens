@@ -121,6 +121,46 @@ three sections (and an additional one for early analyses that I didn't keep).
 * Strict clock: estimated with lognormal prior mean (-4), SD (1)
   Relaxed clock: estimated with lognormal prior mean (-4), SD (1)
 
+## 20140428 -- BEAST on COI sequences
+* I now need to do the same analyses as for 20140422 but with removing the
+  duplicated sequences. It also seems that using HKY+I+G is causing some
+  convergence problems, so changing to HKY+G
+* Furthermore, the path-sampling stepping-stone is for some reason very slow and
+  completely inaccurate, and not that important for this analysis. So I'm
+  dropping it. If it turns out that it's something I want to do in the future,
+  it won't take too long. At this stage, I want to know if the other parameters
+  are influencing the number of species estimated by the various GMYC
+  algorithms.
+* To generate the NEXUS file for the analyses:
+  - get `20140421.COI.phy` from the partitionfinder folder
+  - run RAxML to remove duplicated sequences and obtain file
+    `20140428.COI_noDup.phy`
+  - create partition file for each codon position
+  - converts to NEXUS using `alg2nex()`
+
+```{R}
+library(seqManagement)
+setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
+        partition.file="20140428.COI_noDup.part")
+```
+  - then in this folder, generate all the BEAST input files (using
+    BEAST 1.8.0)
+  - to get the tips in the WA+EP+Gala clade:
+```{R}
+library(ape)
+setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                  stringsAsFactors=FALSE)
+alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
+nm <- dimnames(alg)[[1]]
+m <- match(nm, impDB$Extract)
+tmpDB <- impDB[m, ]
+sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
+```
+  - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
+    WA+EP+Gala constrained as monophyletic in this analysis and not in the
+    other!
 
 
 - - - - - - -
