@@ -90,7 +90,7 @@ abline(h=-5, lty=2)
 
 ### NJ analyses
 ### ---- nj-coi ----
-xsource("~/R-scripts/findGroups.R")
+source("~/R-scripts/findGroups.R")
 impCOI <- read.nexus.data(file="data/20131009_impatiens_COIuniq.nex")
 impNJ <- nj(dist.dna(as.DNAbin(impCOI)))
 impNJ$edge.length[impNJ$edge.length < 0] <- 0
@@ -102,14 +102,53 @@ tipLabels(grpImp) <- paste(tipData(grpImp)$Group, tipLabels(grpImp), sep="_")
 grpLbl <- paste("^", 1:max(tipData(grpImp)), "_", sep="")
 par(mai=c(0.5,0,2,0), xpd=T)
 plot(as(grpImp, "phylo"), cex=.5, show.tip.label=T, no.margin=F, label.offset=0)
-barMonophyletic(1:max(tipData(grpImp)), grpLbl, as(grpImp, "phylo"), extra.space=0.01, cex.plot=.5, cex.text=.5,
-                bar.at.tips=TRUE, include.tip.label=TRUE)
+barMonophyletic(1:max(tipData(grpImp)), grpLbl, as(grpImp, "phylo"), cex.plot=.5,
+                cex.text=.5, extra.space=0.01, bar.at.tips=TRUE,
+                include.tip.label=TRUE)
 add.scale.bar()
 
 
 ### GMYC analyses
+### ---- generate-gmyc-trees ----
+gmycFactors <- expand.grid(c("allSeq", "noDup"), c("strict", "relaxed"),
+                           c("yule", "coalexp", "coalcst"))
+gmycFactors <- apply(gmycFactors, 1, paste0, collapse="_")
+gmycFactors <- paste0("20140422.", gmycFactors)
+treeannotatorCmd <-
+    c("~/Software/BEASTv1.8.0/bin/./treeannotator -heights ca -burnin 1000")
+pathResults <- "~/Documents/Impatiens"
+inFile <- file.path(pathResults, gmycFactors, paste0(gmycFactors, ".trees"))
+outFile <- file.path(pathResults, gmycFactors, paste0(gmycFactors, ".tre.nex"))
+## can't parallize this, too much RAM needed.
+## foreach (i = 1:length(gmycFactors)) %dopar% {
+for (i in 1:length(gmycFactors)) {
+    if (file.exists(inFile[i])) {
+        tmpCmd <- paste(treeannotatorCmd, inFile[i], outFile[i])
+        if (! file.exists(outFile[i])) {
+            system(tmpCmd)
+        }
+        else {
+            message(outFile[i], " already exists.")
+        }
+    }
+    else {
+        message(inFile[i], " doesn't exist.")
+    }
+}
+
 ### ---- gmyc-coi ----
+### depends on previous chunk
 library(splits)
+gmycRes <- foreach (i = 1:length(outFile)) {
+    if (! file.exists(outFile[i])) {
+        message(outFile[i], " doesn't exist.")
+    }
+    else {
+        tmpTr <- read.nexus(file=outFile[i])
+        list(simpleGmyc = gmyc(tmpTr), multiGmyc = gmyc(tmpTr, method="m"))
+    }
+}
+
 trBeast <- read.nexus(file="~/Documents/Impatiens/20131125.impatiens_COIuniq_strict/20131125_impatiens_COIuniq_strict.tree.nex")
 trBeast <- drop.tip(trBeast, "S0213")
 trBeast <- extToLbl(trBeast, impDB)
