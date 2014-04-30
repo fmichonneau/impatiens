@@ -185,7 +185,13 @@ ggplot(data=subset(xx, subset=sequences == "allSeq"), aes(x=interaction(clock, d
     scale_y_discrete(ylim=c(12, 25)) +
     ylab("Estimated number of species")
 
-
+source("code/getLikelihoodFromSTDOUT.R")
+logAllRelaxedYule <- getNbFromFile("../20140422.allSeq_relaxed_yule/STDOUT") # OK
+logAllRelaxedCoalcst <- getNbFromFile("../20140422.allSeq_relaxed_coalcst/STDOUT") # quite different and POSITIVE!
+logAllRelaxedCoalexp <- getNbFromFile("../20140422.allSeq_relaxed_coalexp/STDOUT") # 
+logAllStrictYule <- getNbFromFile("../20140422.allSeq_strict_yule/STDOUT")
+logAllStrictCoalcst <- getNbFromFile("../20140422.allSeq_strict_coalcst/STDOUT")
+logAllStrictCoalexp <- getNbFromFile("../20140422.allSeq_strict_coalexp/STDOUT")
 
 trBeast <- read.nexus(file="~/Documents/Impatiens/20131125.impatiens_COIuniq_strict/20131125_impatiens_COIuniq_strict.tree.nex")
 trBeast <- drop.tip(trBeast, "S0213")
