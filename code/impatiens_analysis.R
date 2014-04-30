@@ -110,10 +110,10 @@ add.scale.bar()
 
 ### GMYC analyses
 ### ---- generate-gmyc-trees ----
-gmycFactors <- expand.grid(c("allSeq", "noDup"), c("strict", "relaxed"),
+gmycFactors <- expand.grid(c("strict", "relaxed"),
                            c("yule", "coalexp", "coalcst"))
 gmycFactors <- apply(gmycFactors, 1, paste0, collapse="_")
-gmycFactors <- paste0("20140422.", gmycFactors)
+gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors), paste0("20140428.noDup_", gmycFactors))
 treeannotatorCmd <-
     c("~/Software/BEASTv1.8.0/bin/./treeannotator -heights ca -burnin 1000")
 pathResults <- "~/Documents/Impatiens"
@@ -139,15 +139,53 @@ for (i in 1:length(gmycFactors)) {
 ### ---- gmyc-coi ----
 ### depends on previous chunk
 library(splits)
-gmycRes <- foreach (i = 1:length(outFile)) {
-    if (! file.exists(outFile[i])) {
-        message(outFile[i], " doesn't exist.")
-    }
-    else {
-        tmpTr <- read.nexus(file=outFile[i])
-        list(simpleGmyc = gmyc(tmpTr), multiGmyc = gmyc(tmpTr, method="m"))
-    }
-}
+library(doMC)
+library(ggplot2)
+## registerDoMC(cores=7)
+## gmycRes <- foreach (i = 1:length(outFile)) %dopar% {
+##     if (! file.exists(outFile[i])) {
+##         message(outFile[i], " doesn't exist.")
+##     }
+##     else {
+##         tmpTr <- read.nexus(file=outFile[i])
+##         list(simpleGmyc = gmyc(tmpTr), multiGmyc = gmyc(tmpTr, method="m"))
+##     }
+## }
+## names(gmycRes) <- outFile
+## save(gmycRes, file="gmycRes.RData")
+load("data/gmycRes.RData")
+
+xx <- lapply(gmycRes, function(x) {
+    tmpSimple <- x$simpleGmyc
+    tmpMulti <- x$multiGmyc
+    ciSimple <- range(tmpSimple$entity[tmpSimple$likelihood > (max(tmpSimple$likelihood) - 2)])
+    ciMulti <- range(tmpMulti$entity[tmpMulti$likelihood > (max(tmpMulti$likelihood) - 2)])
+    ## each element of the list returns a vector of length 3: mean, range
+    list(simpleMeanCI=c(tmpSimple$entity[which.max(tmpSimple$likelihood)], ciSimple),
+         multiMeanCI=c(tmpMulti$entity[which.max(tmpMulti$likelihood)], ciMulti))
+})
+
+names(xx) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(xx))
+xx <- t(data.frame(xx))
+xx <- data.frame(xx)
+names(xx) <- c("mean", "low", "high")
+tt <- rownames(xx)
+tmpSM <- sapply(tt, function(x) unlist(strsplit(x, "\\."))[2])
+tmpSM <- gsub("MeanCI", "", tmpSM)
+tmpFac <- strsplit(gsub("\\..+$", "", tt), "_")
+tmpSeq <- sapply(tmpFac, function(x) x[1])
+tmpClo <- sapply(tmpFac, function(x) x[2])
+tmpDem <- sapply(tmpFac, function(x) x[3])
+xx <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
+            analysisType = tmpSM, xx)
+
+ggplot(data=subset(xx, subset=sequences == "allSeq"), aes(x=interaction(clock, demographic), y=mean,
+           ymin=low, ymax=high, color=analysisType)) +
+    geom_errorbar(width=.2) + geom_point() + #ylim(c(12, 25)) +
+    scale_y_discrete(ylim=c(12, 25)) +
+    ylab("Estimated number of species")
+
+
 
 trBeast <- read.nexus(file="~/Documents/Impatiens/20131125.impatiens_COIuniq_strict/20131125_impatiens_COIuniq_strict.tree.nex")
 trBeast <- drop.tip(trBeast, "S0213")

@@ -87,80 +87,7 @@ three sections (and an additional one for early analyses that I didn't keep).
   the number of iterations to 3e6 with 2 independent runs, 1 with the same seed
   as one of the previous runs, and one with a random seed.
 
-## 20140421 -- Partitionfinder and BEAST on COI sequences
-* Given that the number of estimated species seem to vary depending on the
-  parameters used for the BEAST analysis, I decided to use a more methodological
-  approach to understand the relative importance of each.
-* First, I re-ran partitionfinder on the COI alignment to figure out best
-  partitioning scheme.
-* To create alignment, got latest from files `20130923-185350-COI.fas` wrote
-  script (`20140421.COI_partitionFinder.R`) to make:
-  - PHYLIP file for partitionfinder
-  - NEXUS file for BEAST
-* According to partitionfinder best model is:
-  - 1st codon position: HKY+I+G
-  - 2nd codon position: GTR+G
-  - 3rd codon position: HKY
-* BEAST parameters to vary:
-  - include all sequences vs. include only different sequences
-  - use strict or relaxed clock model
-  - use constant or exponential growth with coalescent prior; or speciation Yule
-* BEAST parameters that won't vary
-  - calibrate divergence of isthmus of Panama
-  - allSeq\_strict/relaxed\_yule/coalcst/coalexp
-  - each in their own folder
-  - allSeq\_strict\_yule 1e7 generations with sampling every 1e3, all others with
-    5e7 generations and sampling every 5e3.
 
-## 20140422 -- BEAST on COI sequences
-* It turns out that the the HiPer Gator cluster doesn't have BEAST 2.1.2 yet,
-  and the files I generated don't work with BEAST 2.0.2. I'm thus going to use
-  BEAST 1.8.0 so I can use Cipres and submitted all my analyses at once.
-* Define EP+WA+Gala as group with MRCA set to lognormal distribution mean (1.5),
-  sd (0.75) and offset (2.5) 
-* Strict clock: estimated with lognormal prior mean (-4), SD (1)
-  Relaxed clock: estimated with lognormal prior mean (-4), SD (1)
-
-## 20140428 -- BEAST on COI sequences
-* I now need to do the same analyses as for 20140422 but with removing the
-  duplicated sequences. It also seems that using HKY+I+G is causing some
-  convergence problems, so changing to HKY+G
-* Furthermore, the path-sampling stepping-stone is for some reason very slow and
-  completely inaccurate, and not that important for this analysis. So I'm
-  dropping it. If it turns out that it's something I want to do in the future,
-  it won't take too long. At this stage, I want to know if the other parameters
-  are influencing the number of species estimated by the various GMYC
-  algorithms.
-* To generate the NEXUS file for the analyses:
-  - get `20140421.COI.phy` from the partitionfinder folder
-  - run RAxML to remove duplicated sequences and obtain file
-    `20140428.COI_noDup.phy`
-  - create partition file for each codon position
-  - converts to NEXUS using `alg2nex()`
-
-```{R}
-library(seqManagement)
-setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
-        partition.file="20140428.COI_noDup.part")
-```
-  - then in this folder, generate all the BEAST input files (using
-    BEAST 1.8.0)
-  - to get the tips in the WA+EP+Gala clade:
-```{R}
-library(ape)
-setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
-                  stringsAsFactors=FALSE)
-alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
-nm <- dimnames(alg)[[1]]
-m <- match(nm, impDB$Extract)
-tmpDB <- impDB[m, ]
-sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
-```
-  - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
-    WA+EP+Gala constrained as monophyletic in this analysis and not in the
-    other!
 
 
 - - - - - - -
@@ -208,6 +135,104 @@ sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
 
 ## 20131126 COI
 * same as before but changing tree prior to coalescent growth.
+
+## 20140421 -- Partitionfinder and BEAST on COI sequences
+* Given that the number of estimated species seem to vary depending on the
+  parameters used for the BEAST analysis, I decided to use a more methodological
+  approach to understand the relative importance of each.
+* First, I re-ran partitionfinder on the COI alignment to figure out best
+  partitioning scheme.
+* To create alignment, got latest from files `20130923-185350-COI.fas` wrote
+  script (`20140421.COI_partitionFinder.R`) to make:
+  - PHYLIP file for partitionfinder
+  - NEXUS file for BEAST
+* According to partitionfinder best model is:
+  - 1st codon position: HKY+I+G
+  - 2nd codon position: GTR+G
+  - 3rd codon position: HKY
+* BEAST parameters to vary:
+  - include all sequences vs. include only different sequences
+  - use strict or relaxed clock model
+  - use constant or exponential growth with coalescent prior; or speciation Yule
+* BEAST parameters that won't vary
+  - calibrate divergence of isthmus of Panama
+  - allSeq\_strict/relaxed\_yule/coalcst/coalexp
+  - each in their own folder
+  - allSeq\_strict\_yule 1e7 generations with sampling every 1e3, all others with
+    5e7 generations and sampling every 5e3.
+
+## 20140422 -- BEAST on COI sequences
+* It turns out that the the HiPer Gator cluster doesn't have BEAST 2.1.2 yet,
+  and the files I generated don't work with BEAST 2.0.2. I'm thus going to use
+  BEAST 1.8.0 so I can use Cipres and submitted all my analyses at once.
+* Define EP+WA+Gala as group with MRCA set to lognormal distribution mean (1.5),
+  sd (0.75) and offset (2.5) 
+* Strict clock: estimated with lognormal prior mean (-4), SD (1)
+  Relaxed clock: estimated with lognormal prior mean (-4), SD (1)
+
+## 20140428 -- BEAST on COI sequences
+* To make code easier
+* I now need to do the same analyses as for 20140422 but with removing the
+  duplicated sequences. It also seems that using HKY+I+G is causing some
+  convergence problems, so changing to HKY+G
+* Furthermore, the path-sampling stepping-stone is for some reason very slow and
+  completely inaccurate, and not that important for this analysis. So I'm
+  dropping it. If it turns out that it's something I want to do in the future,
+  it won't take too long. At this stage, I want to know if the other parameters
+  are influencing the number of species estimated by the various GMYC
+  algorithms.
+* To generate the NEXUS file for the analyses:
+  - get `20140421.COI.phy` from the partitionfinder folder
+  - run RAxML to remove duplicated sequences and obtain file
+    `20140428.COI_noDup.phy`
+  - create partition file for each codon position
+  - converts to NEXUS using `alg2nex()`
+
+```{R}
+library(seqManagement)
+setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
+        partition.file="20140428.COI_noDup.part")
+```
+  - then in this folder, generate all the BEAST input files (using
+    BEAST 1.8.0)
+  - to get the tips in the WA+EP+Gala clade:
+```{R}
+library(ape)
+setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                  stringsAsFactors=FALSE)
+alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
+nm <- dimnames(alg)[[1]]
+m <- match(nm, impDB$Extract)
+tmpDB <- impDB[m, ]
+sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
+```
+  - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
+    WA+EP+Gala constrained as monophyletic in this analysis and not in the
+    other!
+### Results for these analyses
+* *noDup_relaxed_coalcst* no convergence, needs to be run longer
+* *noDup_relaxed_coalexp* no convergence, needs to be run longer
+* *noDup_relaxed_yule* no convergence, needs to be run longer
+* *noDup_strict_coalcst* no problem, almost all ESS >> 300
+* *noDup_strict_coalexp* no convergence, needs to be run longer
+* *noDup_strict_yule* barely converged, all ESS just about 100
+
+## 20140429 -- BEAST on COI sequences
+### Rationale
+* Even after re-running all the analyses on the dataset without the duplicated
+  sequences for another 50e7 generations, I can't get convergence and combining
+  the results from the two runs are not making things better.
+* It's a little unclear whether this lack of convergence/mixing changes anything
+  (the bad mixing mostly affects "prior") but it looks like there is
+  overparametrization.
+* An easy way to reduce the overparametrization is by making the partitioning
+  scheme simpler. So I'm re-doing a partitionfinder on the alignemnt to see if I
+  can do a simpler model.
+### Results
+* The exact same model as before is being selected... so not the best way to
+  reduce number of parameters.
 
 - - - - - - - - - - - 
 

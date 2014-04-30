@@ -535,6 +535,9 @@ omitting the mitochondrial markers.
 
 \section{Results}
 
+\subsection{Sequence analysis}
+For the datasets used in xxx analysis, the COI alignment was xxx bp long and
+included xxx variable sites, of which xxx were phylogenetic informative. 
 
 \subsection{Species based on morphology}
 
@@ -641,8 +644,24 @@ the evidence strong.
 \section{Discussion}
 
 The ability for taxonomists to be able to recognize populations of
-reproductively isolated individuals as species requires
-differentiation at three levels: morphological, genetically
+reproductively isolated individuals as species requires differentiation at three
+levels: morphological, genetically
+
+One of the main questions when studying patterns of speciation is whether modern
+species distributions reflect their distributions at the time of speciation. For
+marine organisms, and in particular within the Indo-Pacific, this assumption is
+particularly difficult to hold as (1) current barriers for dispersal are few in
+numbers; (2) the dispersal ability of most marine invertebrates is high; (3) the
+current landscape of the Indo-Pacific is relatively recent. For instance, the
+faunal breaks observed among species composition of reef-building corals are
+only poorly correlated with present-day conditions but are much more strongly
+associated with geological features \cite{Keith2013}.
+
+
+
+%% Present distributions may not reflect the 
+
+
 
 %% From the BEAST book
 % It can happen that the species assignment is incorrect, which results in co-
