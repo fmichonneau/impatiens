@@ -1,14 +1,20 @@
 
 
-getNbFromFile <- function(file) {
+getNbFromFile <- function(file, fast=TRUE) {
     onlyNb <- function(x) {
         gsub("(.+)\\s(.+)$", "\\2", x)
     }
-    logFile <- readLines(con=file)
+    if (fast) { ## this option doesn't return the seed
+        logFile <- system(paste("tail -300", file), intern=TRUE)
+    }
+    else {
+        logFile <- readLines(con=file)
+    }
     seedLine <- grep("random", logFile, value=TRUE, ignore.case=TRUE)
     logLinePS <- grep("path .+ pathLikelihood.delta", logFile, value=TRUE)
     logLineSS <- grep("stepping .+ pathLikelihood.delta", logFile, value=TRUE)
-    c("Seed"=as.numeric(onlyNb(seedLine)), "logPS"=as.numeric(onlyNb(logLinePS)),
+    c("Seed"=as.numeric(onlyNb(seedLine)),
+      "logPS"=as.numeric(onlyNb(logLinePS)),
       "logSS"=as.numeric(onlyNb(logLineSS)))
 }
 
