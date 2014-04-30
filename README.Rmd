@@ -143,9 +143,24 @@ three sections (and an additional one for early analyses that I didn't keep).
 * First, I re-ran partitionfinder on the COI alignment to figure out best
   partitioning scheme.
 * To create alignment, got latest from files `20130923-185350-COI.fas` wrote
-  script (`20140421.COI_partitionFinder.R`) to make:
+  script  to make:
   - PHYLIP file for partitionfinder
   - NEXUS file for BEAST
+  ```{r eval=FALSE}
+  library(seqManagement)
+  setwd("~/Documents/Impatiens/20140421.COI_partitionFinder")
+  system("muscle -in 20130923-185350-COI.fas -out 20130923-185350-COI.afa")
+  fas2phy(file="20130923-185350-COI.afa", toDrop="S0213", overwrite=TRUE)
+  file.rename("20130923-185350-COI.phy", "20140421.COI.phy")
+  alg2nex(file="20140421.COI.phy", format="seq", interleaved=FALSE,
+            partition.file="20140421.COI_partitions.part")
+  ## get extraction numbers for EP+WA+Gala
+  alg <- ape::read.dna(file="20140421.COI.phy", format="seq")
+  nm <- dimnames(alg)[[1]]
+  m <- match(nm, impDB$Extract)
+  tmpDB <- impDB[m, ]
+  sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
+  ```
 * According to partitionfinder best model is:
   - 1st codon position: HKY+I+G
   - 2nd codon position: GTR+G
@@ -169,6 +184,11 @@ three sections (and an additional one for early analyses that I didn't keep).
   sd (0.75) and offset (2.5) 
 * Strict clock: estimated with lognormal prior mean (-4), SD (1)
   Relaxed clock: estimated with lognormal prior mean (-4), SD (1)
+  
+### Results for these analyses
+* The trace files look good. However the values of the marginal likelihoods are
+  all over the place and indicate that something is going on. I email on
+  20140430 Guy Baele to see what could be the problem here. 
 
 ## 20140428 -- BEAST on COI sequences
 * To make code easier
@@ -187,30 +207,30 @@ three sections (and an additional one for early analyses that I didn't keep).
     `20140428.COI_noDup.phy`
   - create partition file for each codon position
   - converts to NEXUS using `alg2nex()`
-
-```{R}
-library(seqManagement)
-setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
-        partition.file="20140428.COI_noDup.part")
-```
+  ```{r eval=FALSE}
+  library(seqManagement)  
+  setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+  alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
+            partition.file="20140428.COI_noDup.part")
+  ```	
   - then in this folder, generate all the BEAST input files (using
     BEAST 1.8.0)
   - to get the tips in the WA+EP+Gala clade:
-```{R}
-library(ape)
-setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
-                  stringsAsFactors=FALSE)
-alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
-nm <- dimnames(alg)[[1]]
-m <- match(nm, impDB$Extract)
-tmpDB <- impDB[m, ]
-sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
-```
+  ```{r eval=FALSE}
+  library(ape)
+  setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
+  impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                      stringsAsFactors=FALSE)
+  alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
+  nm <- dimnames(alg)[[1]]
+  m <- match(nm, impDB$Extract)
+  tmpDB <- impDB[m, ]
+  sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
+  ```
   - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
     WA+EP+Gala constrained as monophyletic in this analysis and not in the
     other!
+	
 ### Results for these analyses
 * *noDup_relaxed_coalcst* no convergence, needs to be run longer
 * *noDup_relaxed_coalexp* no convergence, needs to be run longer
@@ -219,8 +239,11 @@ sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
 * *noDup_strict_coalexp* no convergence, needs to be run longer
 * *noDup_strict_yule* barely converged, all ESS just about 100
 
+
 ## 20140429 -- BEAST on COI sequences
+
 ### Rationale
+
 * Even after re-running all the analyses on the dataset without the duplicated
   sequences for another 50e7 generations, I can't get convergence and combining
   the results from the two runs are not making things better.
@@ -230,9 +253,35 @@ sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
 * An easy way to reduce the overparametrization is by making the partitioning
   scheme simpler. So I'm re-doing a partitionfinder on the alignemnt to see if I
   can do a simpler model.
+
 ### Results
+
 * The exact same model as before is being selected... so not the best way to
   reduce number of parameters.
+
+
+## 20140430 -- BEAST on COI sequences
+
+### Rationale
+
+Given the results of 20140422, 20140428 and 20140429, I'm going to re-run the
+analyses using a simple model of molecular evolution for COI (just 1 partition
+with GTR + G) to see if that makes things easier (better convergence and
+possible to estimate marginal likelihoods). I'm going to run it on (1) all
+sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
+
+### Methods
+* For _noDup_ use file in 20140428.noDup_datapreparation
+* For _allSeq_ use file in 20140421.COI_partitionfinder
+* Same priors as before:
+  - GTR+G model of molecular evolution
+  - lognormal relaxed clock with prior mean -4, SD 1
+  - tmrca for EP+WA+Gala set as lognormal with mean 1.5, SD 0.75, offset 2.5
+  - 5e7 generations with sampling every 5000
+  - estimation of log marginal
+  - CIPRES is down, submitted to diagriid (not sure they sent notifications when
+    job is done...)
+
 
 - - - - - - - - - - - 
 
