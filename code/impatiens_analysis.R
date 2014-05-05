@@ -222,7 +222,11 @@ library(bGMYC)
 
 resSingle <- bgmyc.singlephy(trBeast, mcmc=50000, burnin=1, thinning=10, t1=2, t2=100, start=c(1,1,25))
 
-
+### ---- ClockStaR ----
+## system("cd ~/R-dev/; git clone git@github.com:sebastianduchene/ClockstaR.git")
+## install("~/R-dev/ClockstaR")
+library(ClockstaR2)
+optim.trees.interactive()
 
 #####################
 
