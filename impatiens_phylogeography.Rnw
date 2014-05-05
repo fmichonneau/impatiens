@@ -250,6 +250,22 @@ connected (\cite{Voris2000}); (2) one of the two lineages was lost because of
 local extinction or selective sweep; (3) the species recently expanded their
 ranges and colonized one of the bassin very recently.
 
+In this study, we use comprehensive sampling in the complex \textit{Holothuria
+  impatiens} covering its entire known geographic range, to investigate species
+distribution and patterns of speciation. Specifically, we aim to:
+\begin{itemize}
+  \item assess species limits in the complex;
+  \item determine morphological characters that can be used to distinguish among
+    the species;
+  \item reconstruct the diversification history of the complex to understand how
+    species came to co-occur.
+\end{itemize}
+We compare patterns of species distribution with a time-calibrated phylogeny,
+and test species limits in a subset of the species that are not morphologically
+differentiated using the multi-species coalescent statistical framework. We also
+investigate how the general mixed Yule coalescent model of species delineation
+performs with our data set, and how sensitive this method is to the parameters
+used to reconstruct the phylogeny.
 
 % Allopatry without clear geographic barriers (Diadema setosum, Lessios 2001)
 
@@ -411,6 +427,10 @@ constant population size tree prior, a HKY+I+G model of molecular evolution, and
 ran the chains for $10^{8}$ generations. We used Tracer \cite{} to check that
 the chains reached stationarity and were mixing appropriately (all ESS values
 were above 100). We checked for convergence by repeating the analysis twice.
+
+% Monaghan 2009 says constant coalescent prior is more conservative than Yule
+% prior. Is it the case with my dataset?
+
 
 % Method in Pons+2006 and 
 % Examples: Volger+2008 (COTS paper), Marshall+2011 (cicadas in New Zealand);
@@ -643,6 +663,29 @@ the evidence strong.
 
 \section{Discussion}
 
+%% Taxonomic consequences
+% impatiens should be elevated to sub-genus level
+% no other Thymiosycia (except from gracilis) are in this group.
+
+%% Differences in ecology among the species
+% ESU1 not picky but lagoons
+% ESU2 
+% Wpac, gracilis and ESU3 continental (hence distribution)
+
+%% Diversification of the complex is really ~20 MY really fits with idea that
+%% most of the reef-associated fauna diversified with corals see citations
+%% within Williams et al 2011.
+
+%% Compared to other species (e.g., Cephalopholis argus see Gaither et al 2011;
+%% many other cukes), there is no Indian Ocean -- Pacific Ocean divide here.
+%% How do range distributions in impatiens can shed light on the debate on the
+%% origins behind the patterns of species distribution in the IWP?
+
+%% Geography of speciation
+% Do closely related species are close geographically or are they isolated? Is
+% there evidence for range contraction (sister species between distant parts of
+% the IWP)?
+
 The ability for taxonomists to be able to recognize populations of
 reproductively isolated individuals as species requires differentiation at three
 levels: morphological, genetically
@@ -658,8 +701,13 @@ only poorly correlated with present-day conditions but are much more strongly
 associated with geological features \cite{Keith2013}.
 
 
+%% Speed of secondary sympatry
+% in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
 
-%% Present distributions may not reflect the 
+%% Coloration & taxonomy
+% This paper http://dx.doi.org/10.1016/j.ympev.2014.01.017
+% is an example of potential overspliting based on coloration or really recent
+% species not yet distinguishable genetically and/or morphologically.
 
 
 
