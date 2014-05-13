@@ -310,8 +310,8 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
 ### Results of latest batch of analyses
 
 * These are the results of the 20140505 analyses, no marginal likelihood
-  estimation, analyses ran only on noDup dataset, 1 model of molecular evolution
-  per codon position (submitted the wrong template to CIPRES):
+  estimation, analyses ran only on **noDup** dataset, 1 model of molecular
+  evolution per codon position (submitted the wrong template to CIPRES):
 * **TODO** ~~check models of molecular evolution as some might actually be the
   old one with one partition per codon.~~ Yes, they are.
 
@@ -324,10 +324,23 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
    |`noDup_strict_coalexp` |  no    |  no    |   no
    |`noDup_strict_yule`    |  barely|  XXX   |   XXX    
 
-### conclusion
+### conclusions
 
-* The analyses would need to be run longer
-* Not sure that a 
+* The analyses need to be run longer:
+  - Not a problem, only takes a couple of hours without BEAGLE on CIPRES for the
+    dataset without duplicates. Shouldn't be too much longer for the all dataset.
+* I can't do the marginal likelhood estimations on CIPRES, it takes too long if
+  I don't use BEAGLE.
+  - not much I can do about this, other than running the analyses on HiPerGator,
+    but even there, not sure it's going to work. Might be worth submitting 1 job
+    to see how long it would take;
+* How important are these analyses? I have spent already a lot of time trying to
+  get them to work, and I don't know if it's worth it.
+  > **Goal** Showing that priors on the analysis play a huge role in number of
+  species estimated by GMYC and it has nothing to do with phylogenetic
+  uncertainty.
+
+  
 
 
 **TODO:**
