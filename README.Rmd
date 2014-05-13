@@ -271,6 +271,7 @@ possible to estimate marginal likelihoods). I'm going to run it on (1) all
 sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
 
 ### Methods
+
 * For _noDup_ use file in 20140428.noDup_datapreparation
 * For _allSeq_ use file in 20140421.COI_partitionfinder
 * Same priors as before:
@@ -281,6 +282,58 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   - estimation of log marginal
   - CIPRES is down, submitted to diagriid (not sure they sent notifications when
     job is done...)
+
+### Update (20140501)
+
+* job on diagriid still running
+* submitted jobs on CIPRES nonetheless
+* Guy Baele suggested that the underflow computations were coming from the
+  beagle scaling, and suggested to use beagle_scaling always; HiPerGator is
+  still running the all impatiens analysis, so running on my computer. Took me
+  most of the afternoon to figure out how to install beagle on my laptop. Now
+  running.
+
+### Update (20140505)
+
+* analysis on diagrid still running (at least one of them), still issues with
+  underflow.
+* analyses still running on CIPRES, killed and deleted (also showing underflow)
+* resubmitted the analysis on CIPRES without using BEAGLE.
+
+### Update (20140508)
+
+* Analyses submitted on May 5th haven't completed yet, but the log doesn't show
+  any issues with underflow.
+* Resubmitting all the analyses from April 28th without using BEAGLE
+* Using (20140505) prefix to avoid confusion
+
+### Results of latest batch of analyses
+
+* These are the results of the 20140505 analyses, no marginal likelihood
+  estimation, analyses ran only on noDup dataset, 1 model of molecular evolution
+  per codon position (submitted the wrong template to CIPRES):
+* **TODO** ~~check models of molecular evolution as some might actually be the
+  old one with one partition per codon.~~ Yes, they are.
+
+   |    Analysis           |  run1  |  run2  | combined
+   |-----------------------|--------|--------|---------
+   |`noDup_relaxed_coalcst`| barely |   no   |  barely
+   |`noDup_relaxed_coalexp`| barely |   no   |  barely
+   |`noDup_relaxed_yule`   | barely | barely |   yes
+   |`noDup_strict_coalcst` |  no    | barely |   yes
+   |`noDup_strict_coalexp` |  no    |  no    |   no
+   |`noDup_strict_yule`    |  barely|  XXX   |   XXX    
+
+### conclusion
+
+* The analyses would need to be run longer
+* Not sure that a 
+
+
+**TODO:**
+* run diff on input files for both runs to make sure the input file is
+exactly identical.
+
 
 
 - - - - - - - - - - - 
@@ -302,7 +355,7 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   caused probably by sane amount of over-parameterization
 * The clockRate estimates were out of the roof (1e25) with the uniform prior
 * ESS really bad for COI\_2 site estimates
-* Modifications:
+  * Modifications:
   - changed clockRate prior to Normal [0,1] truncated on [0,+Inf[
   - changed COI\_2 to HKY+G
 
@@ -323,18 +376,18 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   anything, I'll restart the previous analysis for another week.
 
 ## 20140424 entire complex
+### Methods
 * I might be setting myself up for failure but...
 * In site model:
   - used partitions as before, estimating them all but use fixed mean rate:
-    - p1     GTR+I+G  (16S + 16Sc)
+    - p1     GTR+I+G  (16S + 16Sc + ATP62)
     - p3     HKY+I+G  (ATP61 + COI1)
-	- p4     HKY+I+G  (ATP62 + c0775)
+	- p4     HKY+I+G  (ATP63 + c0775)
 	- p5     GTR+I+G  (c0036)
 	- p6     HKY+G    (COI2 + H3a2)
 	- H3a3   HKY+I    (H3a3 + COI3)
 	- p8     HKY      (H3a1 + LSU)
 	- p9     HKY+G    (ITS)
-
 * all clocks estimated and set to relaxed lognormal, with exponential prior with
   mean = 1
 * set tMRCA prior for EP+WA+Gala:
@@ -342,6 +395,61 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   - SD 1.5
   - offset 1.705
   - gives: 2.5% at 3.5, Median at 5.14 and 97.5% at 36.2
+
+### Results
+* After a week, the run went for 119e6 generations. Convergence almost reached
+  (ESS barely > 100 for prior and posterior, good for likelihood at 695) at 45e6
+  generations.
+* ESS for Tree likelihood for c0036 is low (only 37)
+* ESS for TreeHeight, YuleModel and birthRate below 200
+* interaction between alpha and pInv for partition 1, 5, and to a lesser extent
+  4. Partition p3 is good though. Also needs to remove pInv for H3a_3 (replaced
+     with Gamma)
+* Looked quickly into ClockstaR to figure out clocks, but it seems that it needs
+  quite a bit of prep work to get it working, I'm going to reduce the number of
+  clocks to:
+  - one for mt loci
+  - one for nuc loci (c0036, c0775 and H3a)
+  - one for nuc rDNA (ITS + LSU)
+  
+## 20140502 -- BEAST entire complex
+
+### Methods
+
+* Partition scheme
+    - p1     GTR+G    (16S + 16Sc + ATP62)
+    - p3     HKY+I+G  (ATP61 + COI1)
+	- p4     HKY+G    (ATP63 + c0775)
+	- p5     GTR+G    (c0036)
+	- p6     HKY+G    (COI2 + H3a2)
+	- H3a3   HKY+G    (H3a3 + COI3)
+	- p8     HKY      (H3a1 + LSU)
+	- p9     HKY+G    (ITS)
+* Clocks lognormal relaxed for:
+    - mitochondrial loci
+	- coding nuclear loci
+	- ribosomal nuclear loci
+	- all using lognormal with mean -4, SD 1
+* Set uniform prior at 5 MY for divergence of EP+WA+Gala group, will use
+  divergence of mediterranean clade to see how good that is.
+
+### Side test
+
+While analyzing the data on my laptop it seemed that BEAST didn't use all of the
+cores, and that I was using the options `-threads` and `-beast_instances`
+wrongly. I read this
+[thread](https://groups.google.com/forum/#!topic/beast-users/y9nQ56zygYQ) and
+given that I have exactly 8 partitions, I wondered what to do. I set up a really
+short run (100,000 generations, sampled every 100) using the full XML file. In
+one case used `-beast_instances 1 -threads 8`, in the other `-beast_instances 8
+-threads 8`. I used the same seed (10101) and made sure to run both in the same
+call as there might be differences in CPU speed depending on the instances used
+on HiPerGator. At the end of the run the likelihoods of both runs were
+identical, and the second option (specifying 8 instances) was a little faster
+(towards the end getting 1h13m/M samples against 1h30m/M samples; total time 552
+seconds against 459 seconds). Didn't keep the results.
+
+
 
 
 

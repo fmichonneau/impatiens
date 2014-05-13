@@ -288,7 +288,6 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   - CIPRES is down, submitted to diagriid (not sure they sent notifications when
     job is done...)
 
-
 ### Update (20140501)
 
 * job on diagriid still running
@@ -298,7 +297,48 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   still running the all impatiens analysis, so running on my computer. Took me
   most of the afternoon to figure out how to install beagle on my laptop. Now
   running.
-* Interestingly, it seems that the 
+
+### Update (20140505)
+
+* analysis on diagrid still running (at least one of them), still issues with
+  underflow.
+* analyses still running on CIPRES, killed and deleted (also showing underflow)
+* resubmitted the analysis on CIPRES without using BEAGLE.
+
+### Update (20140508)
+
+* Analyses submitted on May 5th haven't completed yet, but the log doesn't show
+  any issues with underflow.
+* Resubmitting all the analyses from April 28th without using BEAGLE
+* Using (20140505) prefix to avoid confusion
+
+### Results of latest batch of analyses
+
+* These are the results of the 20140505 analyses, no marginal likelihood
+  estimation, analyses ran only on noDup dataset, 1 model of molecular evolution
+  per codon position (submitted the wrong template to CIPRES):
+* **TODO** ~~check models of molecular evolution as some might actually be the
+  old one with one partition per codon.~~ Yes, they are.
+
+   |    Analysis           |  run1  |  run2  | combined
+   |-----------------------|--------|--------|---------
+   |`noDup_relaxed_coalcst`| barely |   no   |  barely
+   |`noDup_relaxed_coalexp`| barely |   no   |  barely
+   |`noDup_relaxed_yule`   | barely | barely |   yes
+   |`noDup_strict_coalcst` |  no    | barely |   yes
+   |`noDup_strict_coalexp` |  no    |  no    |   no
+   |`noDup_strict_yule`    |  barely|  XXX   |   XXX    
+
+### conclusion
+
+* The analyses would need to be run longer
+* Not sure that a 
+
+
+**TODO:**
+* run diff on input files for both runs to make sure the input file is
+exactly identical.
+
 
 
 - - - - - - - - - - - 
