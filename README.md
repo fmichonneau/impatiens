@@ -188,7 +188,7 @@ three sections (and an additional one for early analyses that I didn't keep).
   
 ### Results for these analyses
 * The trace files look good. However the values of the marginal likelihoods are
-  all over the place and indicate that something is going on. I email on
+  all over the place and indicate that something is going on. I emailed on
   20140430 Guy Baele to see what could be the problem here. 
 
 ## 20140428 -- BEAST on COI sequences
@@ -323,7 +323,7 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
    |    Analysis           |  run1  |  run2  | combined
    |-----------------------|--------|--------|---------
    |`noDup_relaxed_coalcst`| barely |   no   |  barely
-   |`noDup_relaxed_coalexp`| barely |   no   |  barely
+   |`noDup_relaxed_coalexp`|   no   |   no   |    no
    |`noDup_relaxed_yule`   | barely | barely |   yes
    |`noDup_strict_coalcst` |  no    | barely |   yes
    |`noDup_strict_coalexp` |  no    |  no    |   no
@@ -340,10 +340,48 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
     but even there, not sure it's going to work. Might be worth submitting 1 job
     to see how long it would take;
 * How important are these analyses? I have spent already a lot of time trying to
-  get them to work, and I don't know if it's worth it.
+  get them to work, and I need to refocus on goal:
   > **Goal** Showing that priors on the analysis play a huge role in number of
   species estimated by GMYC and it has nothing to do with phylogenetic
   uncertainty.
+  > **Questions for next round of analyses**
+  * What kind of model of molecular evolution is needed? and how does it
+     influence the results. It seems to really influence mixing, which probably
+     influences branch length estimation and has consequences for the question
+     I'm interested in.
+     * simple (single GTR+G for all codon position)
+	 * intermediate (use what's suggested by PartitionFinder, but simplify to
+       not use GTR and replace with HKY+G)
+	 * intermediate (use SDR06 model)
+	 * complex keep using what's suggested by PartitionFinder.
+  * These analyses are pretty quick, so let's run one of each on a data that
+    didn't perform well (poor mixing) in previous set (`noDup_relaxed_coalexp`)
+    and see what happens.
+
+# 20140512 -- BEAST with COI sequences -- models of molecular evolution tests
+
+* submitted 5 analyses in a single job on HiPerGator:
+- `noDup_relaxed_coalexp_3models_estimated` same models as suggested with
+  partitionFinder, and estimated base frequencies
+- `noDup_relaxed_coalexp_3models_empirical` same as above but with empircal base
+  frequencies
+- `noDup_relaxed_coalexp_3HKY_esimated` using only HKY models but still with
+  Gamma for 1st and 2nd as in partitionFinder
+- `noDup_relaxed_coalexp_1GTRG_estimated` a single GTR+G gamma across all
+  partitions
+- `noDup_relaxed_coalexp_SDRGTR_estimated` using the SDR06 (1,2 + 3 codon
+  position, didn't check that my alignment actually conforms to these codon
+  positions but should give an idea of it performs regarding mixing) model with
+  GTR+G model.
+ 
+
+# 20140513 -- BEAST with COI sequences
+
+* Regenerate the XML files from the phy files without including any partition
+  information as it seems that BEAST will estimate partition_treeLikelihood for
+  all partitions specified in the NEXUS file no matter what.
+* Use a single model of molecular evolution for the entire alignment.... see
+  above, waiting for results.
 
   
 
