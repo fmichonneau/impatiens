@@ -355,7 +355,8 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
 
 # 20140512 -- BEAST with COI sequences -- models of molecular evolution tests
 
-* submitted 5 analyses in a single job on HiPerGator:
+* submitted ~~5 analyses in a single job on HiPerGator~~ (didn't finish
+  overnight as I was hoping) to CIPRES
 - `noDup_relaxed_coalexp_3models_estimated` same models as suggested with
   partitionFinder, and estimated base frequencies
 - `noDup_relaxed_coalexp_3models_empirical` same as above but with empircal base
@@ -500,8 +501,12 @@ identical, and the second option (specifying 8 instances) was a little faster
 (towards the end getting 1h13m/M samples against 1h30m/M samples; total time 552
 seconds against 459 seconds). Didn't keep the results.
 
+### Results after a week
 
-
+Terrible mixing. Values are all over the place with mutation rate values
+completely out of control. Fixing the mean values is not quite enough. Trying to
+run it again, this time fixing the substitution rate for p1 (16S+16Sc+ATP6_2) at
+1 and estimating all others.
 
 
 - - - - - - - - - 
