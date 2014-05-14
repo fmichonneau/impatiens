@@ -369,7 +369,21 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   position, didn't check that my alignment actually conforms to these codon
   positions but should give an idea of it performs regarding mixing) model with
   GTR+G model.
+
+## Results
+
+The models using SDR06, 1 model per partition (with either empirical or
+estimated base frequencies) were showing signs of poor mixing on posterior and
+prior that seemed correlated with over-parametrization of the model. This
+however doesn't seem a problem (nice mixing, and convergence) for the run with a
+single GTR+G model or for the model with 3 partitions (HKY+G for positions 1 &
+2, but HKY for position 3). ESUs above 350 in these cases. 
  
+There are slight differences in the topologies and the posterior probabilities
+associated with the nodes, but nothing too crazy. However, some haplotypes with
+low support jump around quite a bit and depending on their positions, I see that
+they could influence the number of estimated ESUs with GMYC. For now, I'm going
+to use HKY+G for each of the first 2 codon positions, and HKY for the last one.
 
 # 20140513 -- BEAST with COI sequences
 
