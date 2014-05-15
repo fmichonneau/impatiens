@@ -113,7 +113,8 @@ add.scale.bar()
 gmycFactors <- expand.grid(c("strict", "relaxed"),
                            c("yule", "coalexp", "coalcst"))
 gmycFactors <- apply(gmycFactors, 1, paste0, collapse="_")
-gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors), paste0("20140428.noDup_", gmycFactors))
+gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors),
+                 paste0("20140514.noDup_", gmycFactors))
 treeannotatorCmd <-
     c("~/Software/BEASTv1.8.0/bin/./treeannotator -heights ca -burnin 1000")
 pathResults <- "~/Documents/Impatiens"
@@ -137,10 +138,11 @@ for (i in 1:length(gmycFactors)) {
 }
 
 ### ---- gmyc-coi ----
-### depends on previous chunk
-library(splits)
-library(doMC)
-library(ggplot2)
+### depends on previous chunk to generate the trees, but once they are there
+###   no need to be run again
+## library(splits)
+## library(doMC)
+## library(ggplot2)
 ## registerDoMC(cores=7)
 ## gmycRes <- foreach (i = 1:length(outFile)) %dopar% {
 ##     if (! file.exists(outFile[i])) {
@@ -152,7 +154,7 @@ library(ggplot2)
 ##     }
 ## }
 ## names(gmycRes) <- outFile
-## save(gmycRes, file="gmycRes.RData")
+## save(gmycRes, file="data/gmycRes.RData")
 load("data/gmycRes.RData")
 
 xx <- lapply(gmycRes, function(x) {
@@ -164,7 +166,6 @@ xx <- lapply(gmycRes, function(x) {
     list(simpleMeanCI=c(tmpSimple$entity[which.max(tmpSimple$likelihood)], ciSimple),
          multiMeanCI=c(tmpMulti$entity[which.max(tmpMulti$likelihood)], ciMulti))
 })
-
 names(xx) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(xx))
 xx <- t(data.frame(xx))
 xx <- data.frame(xx)
@@ -178,33 +179,23 @@ tmpClo <- sapply(tmpFac, function(x) x[2])
 tmpDem <- sapply(tmpFac, function(x) x[3])
 xx <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
             analysisType = tmpSM, xx)
+levels(xx$sequences)[levels(xx$sequences) == "allSeq"] <- "All haplotypes"
+levels(xx$sequences)[levels(xx$sequences) == "noDup"]  <- "Unique haplotypes"
+levels(xx$clock)[levels(xx$clock) == "strict"] <- "Strict clock"
+levels(xx$clock)[levels(xx$clock) == "relaxed"] <- "Relaxed clock"
 
-ggplot(data=subset(xx, subset=sequences == "allSeq"), aes(x=interaction(clock, demographic), y=mean,
+
+ggplot(data=xx, aes(x=demographic, y=mean,
            ymin=low, ymax=high, color=analysisType)) +
-    geom_errorbar(width=.2) + geom_point() + #ylim(c(12, 25)) +
-    scale_y_discrete(ylim=c(12, 25)) +
-    ylab("Estimated number of species")
+    geom_errorbar(width=.2, position=position_dodge(width = 0.6)) +
+    geom_point(position=position_dodge(width = 0.6)) + 
+    ylab("Estimated number of species") +
+    facet_grid( ~ sequences + clock) +
+    labs(x = "Molecular clocks and tree priors used") +
+    theme(legend.position="top", legend.title=element_blank()) +
+    scale_color_discrete(#breaks=c("mutli", "simple"),
+                        labels=c("multi-threshold GMYC", "single threshold GMYC"))
 
-source("code/getLikelihoodFromSTDOUT.R")
-logAllRelaxedYule <- getNbFromFile("../20140422.allSeq_relaxed_yule/STDOUT") # OK
-logAllRelaxedCoalcst <- getNbFromFile("../20140422.allSeq_relaxed_coalcst/STDOUT") # quite different and POSITIVE!
-logAllRelaxedCoalexp <- getNbFromFile("../20140422.allSeq_relaxed_coalexp/STDOUT") # 
-logAllStrictYule <- getNbFromFile("../20140422.allSeq_strict_yule/STDOUT")
-logAllStrictCoalcst <- getNbFromFile("../20140422.allSeq_strict_coalcst/STDOUT")
-logAllStrictCoalexp <- getNbFromFile("../20140422.allSeq_strict_coalexp/STDOUT")
-
-trBeast <- read.nexus(file="~/Documents/Impatiens/20131125.impatiens_COIuniq_strict/20131125_impatiens_COIuniq_strict.tree.nex")
-trBeast <- drop.tip(trBeast, "S0213")
-trBeast <- extToLbl(trBeast, impDB)
-simpleGmyc <- gmyc(trBeast)
-multiGmyc <- gmyc(trBeast, method="m", interval=c(-1,-0.003))
-
-
-summary(simpleGmyc)
-
-pdf(height=20)
-plot(simpleGmyc)
-dev.off()
 
 ### starBEAST PPS
 ### ---- starbeast-pps ----

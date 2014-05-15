@@ -20,7 +20,7 @@
 \begin{document}
 
 <<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
-opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
+opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', #dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
 read_chunk('code/impatiens_analysis.R')
 read_chunk('code/impatiens_map.R')
@@ -603,7 +603,8 @@ Most of these putative species have distinct color patterns, and the apparent
 variability seen in \textit{Holothuria impatiens} is correlated with the genetic
 differentiation seen in COI.
 
-
+<<gmyc-coi, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4>>=
+@ 
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
