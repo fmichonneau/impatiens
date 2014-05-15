@@ -3,6 +3,7 @@
 setwd("~/Documents/Impatiens/impatiens_phylogeography/")
 impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
 library(seqManagement)
+library(wesanderson)
 source("~/R-scripts/fasToPhase.R")
 source("~/R-scripts/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
@@ -184,17 +185,20 @@ levels(xx$sequences)[levels(xx$sequences) == "noDup"]  <- "Unique haplotypes"
 levels(xx$clock)[levels(xx$clock) == "strict"] <- "Strict clock"
 levels(xx$clock)[levels(xx$clock) == "relaxed"] <- "Relaxed clock"
 
-
 ggplot(data=xx, aes(x=demographic, y=mean,
            ymin=low, ymax=high, color=analysisType)) +
-    geom_errorbar(width=.2, position=position_dodge(width = 0.6)) +
+    geom_linerange(width=.2, linetype=2, position=position_dodge(width = 0.6)) +
     geom_point(position=position_dodge(width = 0.6)) + 
     ylab("Estimated number of species") +
     facet_grid( ~ sequences + clock) +
-    labs(x = "Molecular clocks and tree priors used") +
-    theme(legend.position="top", legend.title=element_blank()) +
-    scale_color_discrete(#breaks=c("mutli", "simple"),
+    labs(x = "Tree priors") +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "gray80", size=0.1),
+          panel.grid.minor = element_line(colour = "gray80", size=0.05)) +
+    scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
+
 
 
 ### starBEAST PPS

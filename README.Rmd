@@ -340,18 +340,19 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   species estimated by GMYC and it has nothing to do with phylogenetic
   uncertainty.
   > **Questions for next round of analyses**
-  * What kind of model of molecular evolution is needed? and how does it
-     influence the results. It seems to really influence mixing, which probably
-     influences branch length estimation and has consequences for the question
-     I'm interested in.
-     * simple (single GTR+G for all codon position)
-	 * intermediate (use what's suggested by PartitionFinder, but simplify to
-       not use GTR and replace with HKY+G)
-	 * intermediate (use SDR06 model)
-	 * complex keep using what's suggested by PartitionFinder.
-  * These analyses are pretty quick, so let's run one of each on a data that
-    didn't perform well (poor mixing) in previous set (`noDup_relaxed_coalexp`)
-    and see what happens.
+  >* What kind of model of molecular evolution is needed? and how does it
+  >   influence the results. It seems to really influence mixing, which probably
+  >   influences branch length estimation and has consequences for the question
+  >   I'm interested in.
+  >   * simple (single GTR+G for all codon position)
+  >	 * intermediate (use what's suggested by PartitionFinder, but simplify to
+  >     not use GTR and replace with HKY+G)
+  >  * intermediate (use SDR06 model)
+  >	 * complex keep using what's suggested by PartitionFinder.
+
+* These analyses are pretty quick, so let's run one of each on a data that
+  didn't perform well (poor mixing) in previous set (`noDup_relaxed_coalexp`)
+  and see what happens.
 
 # 20140512 -- BEAST with COI sequences -- models of molecular evolution tests
 
@@ -387,13 +388,20 @@ to use HKY+G for each of the first 2 codon positions, and HKY for the last one.
 
 # 20140513 -- BEAST with COI sequences
 
-* Regenerate the XML files from the phy files without including any partition
-  information as it seems that BEAST will estimate partition_treeLikelihood for
-  all partitions specified in the NEXUS file no matter what.
-* Use a single model of molecular evolution for the entire alignment.... see
-  above, waiting for results.
+## Methods
 
-  
+* Based on the results above, I'm going to use HKY+G on the first 2 codon
+  positions, and HKY on the third.
+* Re-using code from 20140428 to generate list of species in EP+WA+Gala clade,
+  constraining monophyly.
+* Used same priors as before:
+  - tMRCA for EP+WA+Gala: lognormal distribution mean (1.5), sd (0.75) and
+  offset (2.5)
+  - strict clock and lognormal relaxed clocks with lognormal priors set with
+    mean at -4 and SD at 1
+
+## Results
+* Nice mixing for all runs. Used these as final. 
 
 
 **TODO:**

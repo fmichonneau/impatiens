@@ -3,6 +3,8 @@
 \usepackage{authblk}
 \usepackage{tabularx}
 \usepackage{float}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
 
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
@@ -401,23 +403,107 @@ in Geneious \ref{}.
 
 \subsection{Putative species delineation with GMYC}
 
+% Justify why using COI sequences only for this.
+
 To delineate putative species based on molecular data, we fit the generalized
 mixed Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009a},
 \cite{Fujisawa2013}) to the COI sequence data. This approach attempts to detect
 transitions in the branching rate of an ultrametric tree corresponding to the
 expected increase in lineage accumulation resulting from the shift from
-speciation to intraspecific coalescent events. We fit the single-threshold
-(\cite{Pons2006}) GYMC model, as it was shown to perform as well as or better
-than the multiple-threshold model \cite{Fujisawa2013}. To determine the location
-of the threshold, the GMYC model is fit at different nodes along the tree, and
-the time that provides the best likelihood for the location of the switch is
-selected. Clusters of sequences found beyond this threshold are considered to
-represent different putative species. Singletons, unique sequences that the best
-fit GMYC model considered belonging to different putative species, were assigned
-to the nearest cluster. We used this conservative approach given that (1) these
-sequences were not very different from the closest cluster, (2) the multispecies
-coalescent used to test the species limits requires more than one individual for
-each putative species \cite{Heled2010}.
+speciation to intraspecific coalescent events. To determine the location of the
+threshold, the GMYC model is fit at different nodes along the tree, and the time
+that provides the best likelihood for the location of the switch is
+selected. Lineages found beyond this threshold are considered different species.
+
+Estimating the transition from speciation to intraspecific coalescent events
+requires an ultrametric tree. We used BEAST to obtain these trees as it provides
+a powerful statistical framework to interpret the chronological context of
+molecular variation \cite{Drummond2014}. Despite some investigation of the
+effects of priors on the number of species estimated by GMYC
+(\cite{Monaghan2009}, \cite{Fujisawa2013}), we here revisit the impact of
+specifying a strict or a log-normal relaxed clock, as well as the type of tree
+prior used (coalescent with constant population size \cite{Kingman1982},
+coalescent with exponentially growing population size \cite{Griffiths1994}, and
+Yule \cite{Yule1925}). The type of clock used will affect branch lengths,
+however, it is difficult to predict \textit{a priori} how the misspecification
+of this parameter will influence the results. Monaghan et
+al. \cite{Monaghan2009}, indicate that using a coalescent constant tree prior
+is a more conservative approach compared to a Yule prior as GMYC uses the
+coalescent as the null model to explain the branching pattern. Their results
+validated their predictions and the GMYC method detected more species on trees
+estimated with a Yule prior. However, these results might be influenced by the
+nature of the data, in particular by the amount of variation observed in the
+sequence data, and deserve further testing.
+
+Furthermore, to our knowledge no previous study has investigated the effect of
+retaining identical haplotypes in the analysis. In other studies, identical
+sequences were removed as they were thought to make the task of estimating the
+transition problematic \cite{Monaghan2009}, as the GMYC method cannot
+accommodate for the null branch lengths associated with identical sequences
+\cite{Fujisawa2013}. Contrary to other programs, BEAST does not assign zero edge
+length to the terminal branches for terminal sequences, and thus allows to
+retain them in the analysis. There are obvious theoretical advantages for
+retaining identical sequences, as BEAST assumes that the sequences represent a
+random sample of the population when estimating effective population
+sizes. Removing identical sequences will lead to spurious high levels of genetic
+diversity, in turn leading to overestimating population sizes
+\cite{Drummond2014}[p.98]. As population sizes directly influence the
+probability that lineages will coalesce, removing identical sequences will lead
+to longer branches in the trees, blurring the distinction between interspecific
+and intraspecific coalescent events. We can therefore predict that removing
+identical sequences of the analysis will lead to higher number of species
+detected by GMYC and higher uncertainty, both of which are undesirable for the
+purpose of the analysis.
+
+COI genealogies were estimated using BEAST 1.8.0 \cite{Drummond2012} and BEAGLE
+2.1 \cite{Ayres2012}. To determine the optimal partition scheme, we used
+PartitionFinder \cite{Lanfear2012} on the dataset with all sequences and the one
+with only the unique haplotypes. We performed a complete search using each codon
+position as a partition, and limiting the search to the JC, HKY and GTR models
+with or without a proportion of invariant sites and/or gamma-distributed rates
+of evolution (12 different models \textit{in toto}). Both datasets (all
+sequences, only unique haplotypes) favored to assign each codon position to a
+different partition. After inspecting mixing and convergence on test runs, we
+modified slightly the models suggested by PartitionFinder to use HKY+I+G, GTR+G
+and HKY for for each ones of the codon position respectively for the all
+dataset; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
+analyses, the base frequencies were estimated.
+
+We used a log-normal distribution as the prior for the mean rate of substitution
+for the log-normal relaxed clock and the strict clock, with a $log(\text{mean})$
+of $-4$ and a $log(\text{standard deviation})$ of $1$. We calibrated the COI
+genealogies using the closure of the isthmus of Panama. We constrained the age
+of the the node corresponding to the most recent common ancestor of the
+individuals found in the Galapagos archipelago, the coast of the Eastern Pacific
+and in the Caribbean using a log-normal prior with a $log(\text{mean})$ of
+$1.5$, a $log(\text{standard deviation})$ of $0.75$ and an offset of $2.5$.
+This distribution translates into a median age of divergence set at
+\Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years (MY)
+ago, (95\% confidence of $[$\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
+  meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}$]$).
+
+We set the MCMC chain lengths at $5.10 {7}$, sampling every $5,000$
+generations. All analyses were ran twice from independent starting points and
+were checked for convergence. From visual inspection of the values sampled by
+the chains with Tracer 1.6, we determined that a burnin of 10\% was sufficient
+for all runs. ESS values for all parameters were above 350 in each independent
+run, but both runs for each parameter combination were nonetheless combined.
+
+The trees sampled from the posterior were summarized with treeannotator using
+the common ancestor tree method \cite{Heled2013} as it provides an accurate
+estimate of the divergence times.
+
+
+We fit the single-threshold (\cite{Pons2006}) GYMC model, as it was shown to
+perform as well as or better than the multiple-threshold model
+\cite{Fujisawa2013}.  Clusters of sequences
+found beyond this threshold are considered to represent different putative
+species. Singletons, unique sequences that the best fit GMYC model considered
+belonging to different putative species, were assigned to the nearest
+cluster. We used this conservative approach given that (1) these sequences were
+not very different from the closest cluster, (2) the multispecies coalescent
+used to test the species limits requires more than one individual for each
+putative species \cite{Heled2010}.
 
 The GMYC model was fit onto a the COI lineage genealogy estimated using BEAST
 1.7.5. We reduced the dataset to only unique haplotypes ($n = 126$), as
@@ -575,7 +661,7 @@ stripes in the anterior ends, progressively becoming blotches towards posterior
 end, clearly marked salt-and-pepper coloration typically more prevalent towards
 posterior end. In some specimens (most common in juveniles), coloration
 uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
-tubules, rarely released, few in numbers, long, relatively wide ($\tilde$ 2mm in
+tubules, rarely released, few in numbers, long, relatively wide (about 2mm in
 diameter), white with a light blue tint.
 
 ESU3: 
@@ -605,6 +691,21 @@ differentiation seen in COI.
 
 <<gmyc-coi, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4>>=
 @ 
+
+For single:
+* most consistent estimates for strict clocks (with same estimated number of
+species when considering all haplotypes or unique haplotypes)
+* combination of unique haplotypes and relaxed clock lead to high uncertainty
+* yule leads to most conservative estimates (There is an interaction between
+tree prior and type of clock) 
+
+Single vs multi
+* CI don't overlap when using all haplotypes, but do when using only the unique
+haplotypes
+* multi higher than single (only one case where they are equal)
+* The estimate for multi is almost always (but one case) the top-value of the CI
+
+
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
