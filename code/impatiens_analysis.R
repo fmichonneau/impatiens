@@ -138,7 +138,7 @@ for (i in 1:length(gmycFactors)) {
     }
 }
 
-### ---- gmyc-coi ----
+### ---- gmyc-coi-results ----
 ### depends on previous chunk to generate the trees, but once they are there
 ###   no need to be run again
 ## library(splits)
@@ -158,44 +158,46 @@ for (i in 1:length(gmycFactors)) {
 ## save(gmycRes, file="data/gmycRes.RData")
 load("data/gmycRes.RData")
 
-xx <- lapply(gmycRes, function(x) {
-    tmpSimple <- x$simpleGmyc
+gmycSumm <- lapply(gmycRes, function(x) {
+    tmpSingle <- x$simpleGmyc
     tmpMulti <- x$multiGmyc
-    ciSimple <- range(tmpSimple$entity[tmpSimple$likelihood > (max(tmpSimple$likelihood) - 2)])
+    ciSingle <- range(tmpSingle$entity[tmpSingle$likelihood > (max(tmpSingle$likelihood) - 2)])
     ciMulti <- range(tmpMulti$entity[tmpMulti$likelihood > (max(tmpMulti$likelihood) - 2)])
     ## each element of the list returns a vector of length 3: mean, range
-    list(simpleMeanCI=c(tmpSimple$entity[which.max(tmpSimple$likelihood)], ciSimple),
+    list(singleMeanCI=c(tmpSingle$entity[which.max(tmpSingle$likelihood)], ciSingle),
          multiMeanCI=c(tmpMulti$entity[which.max(tmpMulti$likelihood)], ciMulti))
 })
-names(xx) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(xx))
-xx <- t(data.frame(xx))
-xx <- data.frame(xx)
-names(xx) <- c("mean", "low", "high")
-tt <- rownames(xx)
+names(gmycSumm) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycSumm))
+gmycSumm <- t(data.frame(gmycSumm))
+gmycSumm <- data.frame(gmycSumm)
+names(gmycSumm) <- c("mean", "low", "high")
+tt <- rownames(gmycSumm)
 tmpSM <- sapply(tt, function(x) unlist(strsplit(x, "\\."))[2])
 tmpSM <- gsub("MeanCI", "", tmpSM)
 tmpFac <- strsplit(gsub("\\..+$", "", tt), "_")
 tmpSeq <- sapply(tmpFac, function(x) x[1])
 tmpClo <- sapply(tmpFac, function(x) x[2])
 tmpDem <- sapply(tmpFac, function(x) x[3])
-xx <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
-            analysisType = tmpSM, xx)
-levels(xx$sequences)[levels(xx$sequences) == "allSeq"] <- "All haplotypes"
-levels(xx$sequences)[levels(xx$sequences) == "noDup"]  <- "Unique haplotypes"
-levels(xx$clock)[levels(xx$clock) == "strict"] <- "Strict clock"
-levels(xx$clock)[levels(xx$clock) == "relaxed"] <- "Relaxed clock"
+gmycSumm <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
+            analysisType = tmpSM, gmycSumm)
 
-ggplot(data=xx, aes(x=demographic, y=mean,
+### ---- gmyc-coi-plot ----
+levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All haplotypes"
+levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "noDup"]  <- "Unique haplotypes"
+levels(gmycSumm$clock)[levels(gmycSumm$clock) == "strict"] <- "Strict clock"
+levels(gmycSumm$clock)[levels(gmycSumm$clock) == "relaxed"] <- "Relaxed clock"
+ggplot(data=gmycSumm, aes(x=demographic, y=mean,
            ymin=low, ymax=high, color=analysisType)) +
     geom_linerange(width=.2, linetype=2, position=position_dodge(width = 0.6)) +
     geom_point(position=position_dodge(width = 0.6)) + 
     ylab("Estimated number of species") +
+    scale_y_continuous(breaks=seq(12,30,by=2)) +
     facet_grid( ~ sequences + clock) +
-    labs(x = "Tree priors") +
+    labs(x = "Tree priors") + 
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),
-          panel.grid.major = element_line(colour = "gray80", size=0.1),
-          panel.grid.minor = element_line(colour = "gray80", size=0.05)) +
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
     scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
 
