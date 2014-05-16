@@ -54,7 +54,7 @@ are efficient as genetic data can carry the signature of the historical
 processes that have shaped modern patterns. In particular, the expected level of
 genetic divergence between reproductively isolated populations is proportional
 to the amount of time since they shared a common ancestor
-\cite{Hey2010}. However, divergence in mitochondrial DNA alone is insufficient
+\cite{Hey2010-IMa2}. However, divergence in mitochondrial DNA alone is insufficient
 to conclude for reproductive isolation. Historical interruption of gene flow
 between populations might lead to genetic divergence, but without reproductive
 isolation, upon secondary contact, these populations will resume
@@ -141,9 +141,9 @@ and symmetrical tables and buttons. The ossicle assemblage of
 
 \textit{Holothuria impatiens} is a common, locally fairly abundant, species
 which can be found under rocks in shallow waters (in particular in lagoons and
-back-reef habitats) but has been recorded down to 158~m (\cite{Samyn2013}).
+back-reef habitats) but has been recorded down to 158~m (\cite{Samyn2014-Miriky}).
 Because of its ubiquituous distribution, it is one of the more studied species
-of holothuriid with studies on its reproduction \cite{Harriot1985}, its
+of holothuriid with studies on its reproduction \cite{Harriott1985}, its
 Cuvierian tubules \cite{Flammang2002}, \cite{Becker+Flammang2010}; its toxicity
 \cite{Bakus1974}; its feeding preferences \cite{Roberts1982}; the chemical
 composition \cite{Hampton1958}, statistical analysis \cite{Hampton1959},
@@ -234,7 +234,7 @@ For instance, the latest minimum sea level (120 to 135~m below present) was
 18,000 years ago. During this period, circulation between Pacific and Indian
 Oceans was significantly restricted, the Red Sea was most likely disconnected
 from the Indian Ocean, and the South China sea was land-locked
-(\cite{Veron1992}). Therefore, current distribution patterns reflect only
+(\cite{Veron1995}). Therefore, current distribution patterns reflect only
 partially the biogeographical context under which the diversification of modern
 reef-associated fauna has occurred.
 
@@ -406,7 +406,7 @@ in Geneious \ref{}.
 % Justify why using COI sequences only for this.
 
 To delineate putative species based on molecular data, we fit the generalized
-mixed Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009a},
+mixed Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009},
 \cite{Fujisawa2013}) to the COI sequence data. This approach attempts to detect
 transitions in the branching rate of an ultrametric tree corresponding to the
 expected increase in lineage accumulation resulting from the shift from
@@ -652,32 +652,52 @@ ESU3:
 
 \subsection{GMYC}
 
-The best fit GMYC model identified 13 clusters (confidence interval: 13-14) and
-3 singletons. Some of these putative species are restricted geographically to an
-oceanic bassin (Mediterranean, Caribbean, Eastern Pacific, Red Sea) or to an
-archipelago (Hawaii and Galapagos), while other ESUs are wide ranging and are
-found across the Indo-Pacific (ESU1, ESU2, and ESU3)
-(Fig~\ref{fig:impatiens-map-WA}).
-
-Most of these putative species have distinct color patterns, and the apparent
-variability seen in \textit{Holothuria impatiens} is correlated with the genetic
-differentiation seen in COI.
-
-<<gmyc-coi, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4>>=
+<<gmyc-coi-results, eval=TRUE, echo=FALSE>>=
 @ 
 
-For single:
-* most consistent estimates for strict clocks (with same estimated number of
-species when considering all haplotypes or unique haplotypes)
-* combination of unique haplotypes and relaxed clock lead to high uncertainty
-* yule leads to most conservative estimates (There is an interaction between
-tree prior and type of clock) 
+<<gmyc-coi-vars, eval=TRUE, echo=FALSE>>=
+minSingle <- min(subset(gmycSumm, analysisType == "single")$mean)
+maxSingle <- max(subset(gmycSumm, analysisType == "single")$mean)
+minMulti <- min(subset(gmycSumm, analysisType == "multi")$mean)
+maxMulti <- max(subset(gmycSumm, analysisType == "multi")$mean)
+stopifnot(all(subset(gmycSumm, analysisType == "single" &
+                 clock == "strict" & sequences == "allSeq")$mean == 16))
+stopifnot(all(subset(gmycSumm, analysisType == "single" &
+                 clock == "strict" & sequences == "noDup")$mean == 17))
+allSeqStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
+                               gmycSumm$clock == "strict" &
+                               gmycSumm$sequences == "allSeq", "mean"]
+noDupStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
+                              gmycSumm$clock == "strict" &
+                              gmycSumm$sequences == "noDup", "mean"]
+@ 
 
-Single vs multi
-* CI don't overlap when using all haplotypes, but do when using only the unique
-haplotypes
-* multi higher than single (only one case where they are equal)
-* The estimate for multi is almost always (but one case) the top-value of the CI
+The number of species estimated by the GMYC methods varied widely and ranged
+from \Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method, and
+from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
+(Fig~\ref{fig:gmyc-coi-plot}).
+
+<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.cap='Number of species estimated by single and multi-threshold GMYC method on COI phylogenies'>>=
+@ 
+
+sGMYC produced species estimates that were more conservative and with narrower
+CI than the mGMYC approach. The maximum-likelihood estimates for the sGMYC were
+in most cases at the lower limit of the CI, while the estimates from the mGMYC
+were at the upper limit of the CI. For the analyses performed on all the
+haplotypes, the CI for the estimated number of species using sGMYC and mGMYC did
+not overlap.
+
+On the genealogies estimated with a strict clock, sGMYC was less sensitive to
+the type of tree prior used, as the estimated number of species was identical
+for the three priors tested with \Sexpr{unique(allSeqStrictSingle)} and
+\Sexpr{unique(noDupStrictSingle)} estimated species for analyses on all
+haplotypes and on unique haplotypes respectively. The Yule prior produced equal
+or more conservative estimates of the number of species compared to the two
+types of coalescent priors.
+
+The estimated number of species with sGMYC was more conservative and less
+sensitive to the priors used when using all haplotypes compared to the analyses
+restricted on the unique haplotypes.
 
 
 
@@ -853,8 +873,12 @@ associated with geological features \cite{Keith2013}.
 
 CIPRES portal.
 UF HPC, HiPerGator.
+wesanderson
+knitr
+polymode + ESS
 
 \bibliographystyle{plos2009}
+
 \bibliography{impatiens_phylogeography}
 
 \section{Supplementary materials}
