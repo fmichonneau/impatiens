@@ -482,7 +482,7 @@ This distribution translates into a median age of divergence set at
 ago, (95\% confidence of $[$\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
   meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}$]$).
 
-We set the MCMC chain lengths at $5.10 {7}$, sampling every $5,000$
+We set the MCMC chain lengths at $5.10 {7}$, sampling every $5.10 {3}$
 generations. All analyses were ran twice from independent starting points and
 were checked for convergence. From visual inspection of the values sampled by
 the chains with Tracer 1.6, we determined that a burnin of 10\% was sufficient
@@ -491,38 +491,16 @@ run, but both runs for each parameter combination were nonetheless combined.
 
 The trees sampled from the posterior were summarized with treeannotator using
 the common ancestor tree method \cite{Heled2013} as it provides an accurate
-estimate of the divergence times.
+estimate of the divergence times from the trees sampled from the posterior.
 
+These trees were used to fit the single-threshold (\cite{Pons2006}) and the
+multi-threshold \cite{Monaghan2009} GYMC model using the R package splits 1.0-19
+\cite{Ezard2013}. We considered the number of ``entities'' returned by GMYC as
+the estimated number of species in our analyses. The confidence interval for the
+number of species corresponds to minimum and maximum number of species for
+threshold values found within 2 log-likelihood units of the threshold associated
+with the highest likelihood.
 
-We fit the single-threshold (\cite{Pons2006}) GYMC model, as it was shown to
-perform as well as or better than the multiple-threshold model
-\cite{Fujisawa2013}.  Clusters of sequences
-found beyond this threshold are considered to represent different putative
-species. Singletons, unique sequences that the best fit GMYC model considered
-belonging to different putative species, were assigned to the nearest
-cluster. We used this conservative approach given that (1) these sequences were
-not very different from the closest cluster, (2) the multispecies coalescent
-used to test the species limits requires more than one individual for each
-putative species \cite{Heled2010}.
-
-The GMYC model was fit onto a the COI lineage genealogy estimated using BEAST
-1.7.5. We reduced the dataset to only unique haplotypes ($n = 126$), as
-identical sequences can cause issues with the parameter estimation with GMYC
-\cite{Monaghan2009}. We used a strict molecular clock, specified a coalescent
-constant population size tree prior, a HKY+I+G model of molecular evolution, and
-ran the chains for $10^{8}$ generations. We used Tracer \cite{} to check that
-the chains reached stationarity and were mixing appropriately (all ESS values
-were above 100). We checked for convergence by repeating the analysis twice.
-
-% Monaghan 2009 says constant coalescent prior is more conservative than Yule
-% prior. Is it the case with my dataset?
-
-
-% Method in Pons+2006 and 
-% Examples: Volger+2008 (COTS paper), Marshall+2011 (cicadas in New Zealand);
-% Henrich+2010 (water beetles in Australia)
-% See: Esselstyn+2012 as it includes simulation study of statistical power of
-% this approach; Lohse2009 for a critic
 
 \subsection{Phylogeny and divergence time estimation}
 
@@ -667,10 +645,6 @@ diameter), white with a light blue tint.
 ESU3: 
 
 
-
-
-
-
 \subsection{Diversity}
 % how many clades
 % how many specimens per clades
@@ -764,6 +738,18 @@ the evidence strong.
 % patterns among ESUs
 
 \section{Discussion}
+
+\subsection{Species delineation using GMYC}
+
+
+% Method in Pons+2006 and 
+% Examples: Volger+2008 (COTS paper), Marshall+2011 (cicadas in New Zealand);
+% Henrich+2010 (water beetles in Australia)
+% See: Esselstyn+2012 as it includes simulation study of statistical power of
+% this approach; Lohse2009 for a critic
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Taxonomic consequences
 % impatiens should be elevated to sub-genus level
