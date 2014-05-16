@@ -178,8 +178,14 @@ tmpFac <- strsplit(gsub("\\..+$", "", tt), "_")
 tmpSeq <- sapply(tmpFac, function(x) x[1])
 tmpClo <- sapply(tmpFac, function(x) x[2])
 tmpDem <- sapply(tmpFac, function(x) x[3])
+gmycTrees <- lapply(gmycRes, function(x) x$simpleGmyc$tree)
+ageTrees <- lapply(gmycTrees, function(x) rep(max(branching.times(x)), 2))
+names(ageTrees) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(ageTrees))
 gmycSumm <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
-            analysisType = tmpSM, gmycSumm)
+            analysisType = tmpSM, gmycSumm, ageTree = unlist(ageTrees))
+
+## ggplot(data=gmycSumm, aes(x=ageTree, y=mean, colour=interaction(sequences, clock, demographic),
+##           shape=analysisType)) + geom_point()
 
 ### ---- gmyc-coi-plot ----
 levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All haplotypes"

@@ -435,6 +435,8 @@ estimated with a Yule prior. However, these results might be influenced by the
 nature of the data, in particular by the amount of variation observed in the
 sequence data, and deserve further testing.
 
+% Talavera2013 kept identical sequences
+
 Furthermore, to our knowledge no previous study has investigated the effect of
 retaining identical haplotypes in the analysis. In other studies, identical
 sequences were removed as they were thought to make the task of estimating the
@@ -677,7 +679,7 @@ from \Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method, and
 from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
 (Fig~\ref{fig:gmyc-coi-plot}).
 
-<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.cap='Number of species estimated by single and multi-threshold GMYC method on COI phylogenies'>>=
+<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies'>>=
 @ 
 
 sGMYC produced species estimates that were more conservative and with narrower
@@ -760,6 +762,20 @@ the evidence strong.
 \section{Discussion}
 
 \subsection{Species delineation using GMYC}
+
+Talavera et al \cite{Talavera2013} did not find notable differences with using
+different priors for the Bayesian reconstruction. While Monaghan et al
+\cite{Monaghan2009} found that GMYC was estimating a higher number of species
+when using a relaxed clock and a Yule prior, we found that in general the Yule
+prior was more conservative on our dataset. Talavera et al \cite{Talavera2013}
+similarly did not find that using all haplotypes or only the unique haplotypes
+affected the number of species estimated with the GMYC method. 
+
+% talk about time spent on phylogeny between coalescent and speciation
+% processes.
+
+% Effect of time/age of the phylogeny
+
 
 
 % Method in Pons+2006 and 
