@@ -50,6 +50,7 @@ data/.~lock*
 *.pdf
 *.R\#
 .\#*.*
+*~
 
 ## --- paths ---
 figures/
