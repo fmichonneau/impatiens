@@ -530,6 +530,23 @@ completely out of control. Fixing the mean values is not quite enough. Trying to
 run it again, this time fixing the substitution rate for p1 (16S+16Sc+ATP6_2) at
 1 and estimating all others.
 
+# 20140513 -- BEAST entire complex
+
+## Methods
+
+???
+
+## After 55 hours (73e7 + generations)
+Still terrible mixing. Parameters with very low ESS values associated with whole
+model (posterior, prior), shape of tree (TreeHeight, Yule model, birthrate),
+some mutation rates (p5, p8, p9) and the molecular clocks.
+
+# 20140515 -- BEAST entire complex
+
+Modifications:
+- reduce number of clocks from 3 to 1
+- remove partition 9 and merge with partition 8, making it a HKY+G
+
 
 - - - - - - - - - 
 
