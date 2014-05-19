@@ -654,10 +654,10 @@ ESU3:
 
 \subsection{GMYC}
 
-<<gmyc-coi-results, eval=TRUE, echo=FALSE>>=
+<<gmyc-coi-results, cache=TRUE, eval=TRUE, echo=FALSE>>=
 @ 
 
-<<gmyc-coi-vars, eval=TRUE, echo=FALSE>>=
+<<gmyc-coi-vars, eval=TRUE, echo=FALSE, cache=TRUE, dependson='gmyc-coi-results'>>=
 minSingle <- min(subset(gmycSumm, analysisType == "single")$mean)
 maxSingle <- max(subset(gmycSumm, analysisType == "single")$mean)
 minMulti <- min(subset(gmycSumm, analysisType == "multi")$mean)
@@ -708,7 +708,7 @@ restricted on the unique haplotypes.
 <<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
 
-<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs.">>=
+<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean">>=
 @ 
 
 <<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 1.">>=
@@ -784,6 +784,53 @@ affected the number of species estimated with the GMYC method.
 % See: Esselstyn+2012 as it includes simulation study of statistical power of
 % this approach; Lohse2009 for a critic
 
+\subsection{Patterns of genetic diversity and geographical distribution}
+
+% Bowen et al 2013 -- TREE -- multiple examples of species with no
+% differentiation across large geographic scales
+
+A striking pattern among the members of the \textit{H. impatiens} complex, is
+the differences in the geographical ranges among its members. Some species in
+the complex are restricted in their range to an archipelago (e.g., Hawaii or the
+Galapagos) while others can be found across the Indian and most of the Pacific
+Oceans with almost no genetic differentiation (e.g., ESU1, ESU2). The origins of
+these differences can stem from differences in demographics history. For
+instance, the low genetic diversity combined with the large range of ESU1
+suggest a recent rapid expansion of its range. This is corroborated by the XXX
+values from the *BEAST analyses.
+
+If for some species in the complex the range restriction is caused by
+geographical and oceanographic conditions limiting the export of propagules
+(e.g., Red Sea, Mediterranean), others have ranges that overlap with (e.g.,
+Wpac, ESU3, gracilis) or are included within (e.g. Hawaii) the range of a
+species with a wide distribution (ESU1). In these cases, dispersal limitation
+seems unlikely to restrict their ranges, and instead, adaptation to ecological
+conditions are more likely to limit their distribution. It is interesting to
+note that gracilis, Wpac, and ESU3 are all associated with continental
+areas. For instance, ESU3 is found in Madagascar and Tanzania but was not found
+in the oligotrophic areas of Mayotte or any of the Scattered islands sampled. It
+is however found in Palau and the Ryukyus but the former is known to be
+characterized with extensive eutrophic lagoons, and the latter is under the
+influence of upwellings. % *TODO* check these claims.
+
+restricted ranges with a distribution that overlaps with species having a broad
+range (e.g., Hawaii overlapping with ESU1). This suggests that
+
+However, differences in the ecology of these species must also play an important
+role. The ecological conditions found in the Hawaiian Gala
+
+\subsection{Geography of speciation}
+
+Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
+marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
+investigated patterns of speciation among grunts (\textit{Haemulon}) in the
+Caribbean and the Eastern Pacific that show closely related species occurring in
+sympatry. Authors in this study invoke the possible role of the sounds members
+of this genus produce in assortative mating.
+
+% one of the difference between marine and terrestrial speciation is that the
+% dissociation between geogrpahical isolation and absence of gene flow is
+% probably stronger in the sea.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -824,6 +871,14 @@ faunal breaks observed among species composition of reef-building corals are
 only poorly correlated with present-day conditions but are much more strongly
 associated with geological features \cite{Keith2013}.
 
+%% Role of small effective populations in speeding up speciation?
+
+%% From van Doorn et al 2009 "Once a mating preference for locally adapted
+%% partners has evolved, sexual selection reinforces assortative mating and
+%% lowers the fitness of of hybrids." How does density dependence in fecundation
+%% success interplays with/changes this statement?
+%% One can imagine that if particular genotype associated with high fitness in
+%% particular habitat, abundance is higher, 
 
 %% Speed of secondary sympatry
 % in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
