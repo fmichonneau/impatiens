@@ -87,10 +87,12 @@ iwp <- map_data("world2")
 tmpMap <- subset(impMapThin, consensusESU %in% c("WA", "EP", "Gala"))
 c1Map <- ggplot(impMapThin) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
-               position = position_dodge(width = 5), shape=15) +
+               position = position_dodge(width = 1.5), shape=15) +
     xlim(c(250,310)) + ylim(c(-25, 25)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
-    theme(panel.background = element_rect(fill = 'aliceblue'))
+    theme(legend.position="top", legend.title = element_blank(),
+          panel.background = element_rect(fill = 'aliceblue'),
+          panel.grid.major = element_line(colour = "white", size=0.1))
 c1Map
 
 ### ---- impatiens-map-group2 ----
@@ -98,10 +100,12 @@ c1Map
 tmpMap <- subset(impMapThin, consensusESU %in% c("tiger", "ESU2", "tigerRedSea"))
 c2Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
-               position = position_jitter(width = 5), shape=15) +
-    xlim(c(15,220)) + ylim(c(-25, 25)) +  ylab("Latitude") + xlab("Longitude") +
+               position = position_dodge(width=1.5), shape=15) +
+    xlim(c(25,220)) + ylim(c(-25, 25)) +  ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
-    theme(panel.background = element_rect(fill = 'aliceblue'))
+    theme(legend.position = "top", legend.title = element_blank(),
+          panel.background = element_rect(fill = 'aliceblue'),
+          panel.grid.major = element_line(colour = "white", size = 0.1))
 c2Map
 
 ### ---- impatiens-map-group1 ----
@@ -110,10 +114,12 @@ tmpMap <- subset(impMapThin, consensusESU %in% c("ESU1", "ESU3", "RedSea", "grac
                                                  "Hawaii", "ESU1-Hawaii", "Wpac"))
 c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
-               position = position_dodge(width = 2.5), shape=15) +
-    xlim(c(15,220)) + ylim(c(-27, 27)) + ylab("Latitude") + xlab("Longitude") +
+               position = position_dodge(width = 1.5), shape = 15) +
+    xlim(c(25,330)) + ylim(c(-27, 27)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
-    theme(panel.background = element_rect(fill = 'aliceblue'))
+    theme(legend.position = "top", legend.title = element_blank(),
+          panel.grid.major = element_line(colour = "white", size = 0.1),
+          panel.background = element_rect(fill = 'aliceblue'))
 c3Map
 
 ## pdf(paper = "USr", file = "impatiensMaps.pdf")
