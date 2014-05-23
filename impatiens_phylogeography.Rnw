@@ -776,18 +776,105 @@ affected the number of species estimated with the GMYC method.
 
 % Effect of time/age of the phylogeny
 
-
-
 % Method in Pons+2006 and 
 % Examples: Volger+2008 (COTS paper), Marshall+2011 (cicadas in New Zealand);
 % Henrich+2010 (water beetles in Australia)
 % See: Esselstyn+2012 as it includes simulation study of statistical power of
 % this approach; Lohse2009 for a critic
 
+\subsection{Using *BEAST and model selection for species delineation}
+
+%% From the BEAST book
+% It can happen that the species assignment is incorrect, which results in co-
+% alescent events higher up in the species tree than if the species assignment is
+% correct. As a result population size estimates will be unusually high. So,
+% relative high population size estimates may indicate incorrect assignments, but
+% it can also indicate the existence of a cryptic s
+
+
+
+% Low PP on some nodes, probably from using low number of loci (and duplicated
+% sequences). This low number of loci, is also not enough to obtain accurate
+% population estimates (see Harris+2013,10.1111/evo.12280).
+
+\subsection{Coloration, taxonomy, species identity}
+
+%% Coloration & taxonomy
+% This paper http://dx.doi.org/10.1016/j.ympev.2014.01.017
+% is an example of potential overspliting based on coloration or really recent
+% species not yet distinguishable genetically and/or morphologically.
+
+%% Taxonomic consequences
+% impatiens should be elevated to sub-genus level
+% no other Thymiosycia (except from gracilis) are in this group.
+
+%% Differences in ecology among the species
+% ESU1 not picky but lagoons
+% ESU2 
+% Wpac, gracilis and ESU3 continental (hence distribution)
+
+%% Diversification of the complex is really ~20 MY really fits with idea that
+%% most of the reef-associated fauna diversified with corals see citations
+%% within Williams et al 2011.
+
+%% Compared to other species (e.g., Cephalopholis argus see Gaither et al 2011;
+%% many other cukes), there is no Indian Ocean -- Pacific Ocean divide here.
+%% How do range distributions in impatiens can shed light on the debate on the
+%% origins behind the patterns of species distribution in the IWP?
+
+
+% Add something about how differences in colors among ESUs might be a result of
+% the same type of proteins than GRP.
+
+% Many cryptic species = change in patterns of biodiversity
+% - find examples of other species that show similar patterns indicative of small
+%   scale endemism
+% - potential to redefine hotspots
+% - 
+
+The ability for taxonomists to be able to recognize populations of
+reproductively isolated individuals as species requires differentiation at three
+levels: morphological, genetically
+
 \subsection{Patterns of genetic diversity and geographical distribution}
 
 % Bowen et al 2013 -- TREE -- multiple examples of species with no
 % differentiation across large geographic scales
+
+%% Geography of speciation
+% Do closely related species are close geographically or are they isolated? Is
+% there evidence for range contraction (sister species between distant parts of
+% the IWP)?
+
+% one of the difference between marine and terrestrial speciation is that the
+% dissociation between geogrpahical isolation and absence of gene flow is
+% probably stronger in the sea.
+
+%% New genomic methods will allow better characterization of demography of the
+%% species, and finer understanding of what happened in this complex.
+
+%% Possible scenarios:
+% - selection under uniform selection: different mutations are fixed under same
+% environment in populations evolving allopatry, alternate mutations cause
+% postzygotic isolation by DM incompatibilities (Sobel et al 2010)
+
+%% "Geographic ranges are the product of both ecological and historical factors"
+%% "Historical processes leading to allopatry will often give way to ecological
+%% processes as populations adapt to different habitats."
+%% (Sobel et al 2010)
+
+% Use of ecological niche models to see if there are differences in habitat
+% preference.
+
+% According to \cite{Renema2008}, the modern IWP fauna has its origin in the
+% Miocene. Generation of hotspots associated with tectonic events, so importance
+% of abiotic factors.
+
+% Therefore, as it appears that the majority of speciation events are
+% allopatric (\cite{Coyne2004}), recent changes in distribution and population
+% sizes must be prevalent in the \textit{H. impatiens} complex to explain current
+% distribution patterns. These changes have implications regarding the rapid
+% evolution of reprodutive isolation barriers and ecological adaptations.
 
 A striking pattern among the members of the \textit{H. impatiens} complex, is
 the differences in the geographical ranges among its members. Some species in
@@ -819,63 +906,6 @@ range (e.g., Hawaii overlapping with ESU1). This suggests that
 However, differences in the ecology of these species must also play an important
 role. The ecological conditions found in the Hawaiian Gala
 
-\subsection{Geography of speciation}
-
-Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
-marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
-investigated patterns of speciation among grunts (\textit{Haemulon}) in the
-Caribbean and the Eastern Pacific that show closely related species occurring in
-sympatry. Authors in this study invoke the possible role of the sounds members
-of this genus produce in assortative mating.
-
-% one of the difference between marine and terrestrial speciation is that the
-% dissociation between geogrpahical isolation and absence of gene flow is
-% probably stronger in the sea.
-
-%% New genomic methods will allow better characterization of demography of the
-%% species, and finer understanding of what happened in this complex.
-
-%% Possible scenarios:
-% - selection under uniform selection: different mutations are fixed under same
-% environment in populations evolving allopatry, alternate mutations cause
-% postzygotic isolation by DM incompatibilities (Sobel et al 2010)
-
-%% "Geographic ranges are the product of both ecological and historical factors"
-%% "Historical processes leading to allopatry will often give way to ecological
-%% processes as populations adapt to different habitats."
-%% (Sobel et al 2010)
-
-% Use of ecological niche models to see if there are differences in habitat preference.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Taxonomic consequences
-% impatiens should be elevated to sub-genus level
-% no other Thymiosycia (except from gracilis) are in this group.
-
-%% Differences in ecology among the species
-% ESU1 not picky but lagoons
-% ESU2 
-% Wpac, gracilis and ESU3 continental (hence distribution)
-
-%% Diversification of the complex is really ~20 MY really fits with idea that
-%% most of the reef-associated fauna diversified with corals see citations
-%% within Williams et al 2011.
-
-%% Compared to other species (e.g., Cephalopholis argus see Gaither et al 2011;
-%% many other cukes), there is no Indian Ocean -- Pacific Ocean divide here.
-%% How do range distributions in impatiens can shed light on the debate on the
-%% origins behind the patterns of species distribution in the IWP?
-
-%% Geography of speciation
-% Do closely related species are close geographically or are they isolated? Is
-% there evidence for range contraction (sister species between distant parts of
-% the IWP)?
-
-The ability for taxonomists to be able to recognize populations of
-reproductively isolated individuals as species requires differentiation at three
-levels: morphological, genetically
 
 One of the main questions when studying patterns of speciation is whether modern
 species distributions reflect their distributions at the time of speciation. For
@@ -887,6 +917,19 @@ faunal breaks observed among species composition of reef-building corals are
 only poorly correlated with present-day conditions but are much more strongly
 associated with geological features \cite{Keith2013}.
 
+
+Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
+marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
+investigated patterns of speciation among grunts (\textit{Haemulon}) in the
+Caribbean and the Eastern Pacific that show closely related species occurring in
+sympatry. Authors in this study invoke the possible role of the sounds members
+of this genus produce in assortative mating.
+
+
+
+
+\subsection{Rate of diversification, reproductive isolation}
+
 %% Role of small effective populations in speeding up speciation?
 
 %% From van Doorn et al 2009 "Once a mating preference for locally adapted
@@ -896,31 +939,16 @@ associated with geological features \cite{Keith2013}.
 %% One can imagine that if particular genotype associated with high fitness in
 %% particular habitat, abundance is higher, 
 
+%% Review papers on GRP to see if they are considered a Fisherian sexual
+%% selection trait
+
 %% Speed of secondary sympatry
 % in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
 
-%% Coloration & taxonomy
-% This paper http://dx.doi.org/10.1016/j.ympev.2014.01.017
-% is an example of potential overspliting based on coloration or really recent
-% species not yet distinguishable genetically and/or morphologically.
 
+% Look into \cite{Lessios1999} to see how the timing in Eucidaris compares to
+% the one H. impatiens
 
-
-%% From the BEAST book
-% It can happen that the species assignment is incorrect, which results in co-
-% alescent events higher up in the species tree than if the species assignment is
-% correct. As a result population size estimates will be unusually high. So,
-% relative high population size estimates may indicate incorrect assignments, but
-% it can also indicate the existence of a cryptic s
-
-%            OUTLINE          %
-%  %%%%%%%%%%%%%%%%%%%%%%%%%  %
-
-% Many cryptic species = change in patterns of biodiversity
-% - find examples of other species that show similar patterns indicative of small
-%   scale endemism
-% - potential to redefine hotspots
-% - 
 
 % Speed of speciation/secondary sympatry
 % - how they managed to accomplish that
@@ -928,35 +956,6 @@ associated with geological features \cite{Keith2013}.
 % - implication for identification of geographical boundaries in distribution
 % - role of pre- and post-zygotic barriers
 % - role of selection?
-
-
-%        end of outline       %
-%   %%%%%%%%%%%%%%%%%%%%%%%%  %
-
-% According to \cite{Renema2008}, the modern IWP fauna has its origin in the
-% Miocene. Generation of hotspots associated with tectonic events, so importance
-% of abiotic factors.
-
-% Look into \cite{Lessios1999} to see how the timing in Eucidaris compares to
-% the one H. impatiens
-
-% Therefore, as it appears that the majority of speciation events are
-% allopatric (\cite{Coyne2004}), recent changes in distribution and population
-% sizes must be prevalent in the \textit{H. impatiens} complex to explain current
-% distribution patterns. These changes have implications regarding the rapid
-% evolution of reprodutive isolation barriers and ecological adaptations.
-
-% Add something about how differences in colors among ESUs might be a result of
-% the same type of proteins than GRP.
-
-% Low PP on some nodes, probably from using low number of loci. This low number
-% of loci, is also not enough to obtain accurate population estimates (see
-% Harris+2013,10.1111/evo.12280).
-
-\section{Sexual selection}
-
-%% Review papers on GRP to see if they are considered a Fisherian sexual
-%% selection trait
 
 
 
