@@ -832,6 +832,22 @@ of this genus produce in assortative mating.
 % dissociation between geogrpahical isolation and absence of gene flow is
 % probably stronger in the sea.
 
+%% New genomic methods will allow better characterization of demography of the
+%% species, and finer understanding of what happened in this complex.
+
+%% Possible scenarios:
+% - selection under uniform selection: different mutations are fixed under same
+% environment in populations evolving allopatry, alternate mutations cause
+% postzygotic isolation by DM incompatibilities (Sobel et al 2010)
+
+%% "Geographic ranges are the product of both ecological and historical factors"
+%% "Historical processes leading to allopatry will often give way to ecological
+%% processes as populations adapt to different habitats."
+%% (Sobel et al 2010)
+
+% Use of ecological niche models to see if there are differences in habitat preference.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Taxonomic consequences
@@ -937,6 +953,10 @@ associated with geological features \cite{Keith2013}.
 % of loci, is also not enough to obtain accurate population estimates (see
 % Harris+2013,10.1111/evo.12280).
 
+\section{Sexual selection}
+
+%% Review papers on GRP to see if they are considered a Fisherian sexual
+%% selection trait
 
 
 
