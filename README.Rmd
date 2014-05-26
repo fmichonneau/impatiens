@@ -569,6 +569,11 @@ Will finish this analysis and use it for this version of the manuscript. Will ho
 - to do a second run
 - will try to use relaxed clock
 
+## After 168 hours (185e6 generations)
+- Looks good, all ESU above 200
+- downloaded it and trying to summarize it (haven't succeeded yet)
+- submitted `run2` limited number of generations to 150e6 and named file with prefix `20140526`.
+
 # 20140522 -- RAxML entire complex
 
 Trying to use RAxML to see if I get the same topology.
