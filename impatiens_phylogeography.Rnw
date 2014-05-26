@@ -1,10 +1,20 @@
 % -*- 
 \documentclass{article}
+
 \usepackage{authblk}
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage[margin=1in]{geometry}
+\usepackage[font=sf]{caption}
+
+\usepackage{fontspec}
+\setmainfont{Crimson Text}
+\setsansfont{SourceSansPro-Regular}
+
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\defaultfontfeatures{Mapping=tex-text}
 
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
@@ -22,8 +32,10 @@
 \begin{document}
 
 <<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
-opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', #dev="tikz",
+opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
+##knit_hooks$set(crop = hook_pdfcrop)
+options(tikzDefaultEngine = "xetex")
 read_chunk('code/impatiens_analysis.R')
 read_chunk('code/impatiens_map.R')
 @ 
@@ -729,7 +741,7 @@ the model that considers the Wpac and Hawaii putative species as not being
 reproductively isolated from ESU1 is only below the threshold needed to consider
 the evidence strong.
 
-<<starbeast-summary, fig.height=6, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
+<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
 @ 
 
 
@@ -789,9 +801,7 @@ affected the number of species estimated with the GMYC method.
 % alescent events higher up in the species tree than if the species assignment is
 % correct. As a result population size estimates will be unusually high. So,
 % relative high population size estimates may indicate incorrect assignments, but
-% it can also indicate the existence of a cryptic s
-
-
+% it can also indicate the existence of a cryptic species
 
 % Low PP on some nodes, probably from using low number of loci (and duplicated
 % sequences). This low number of loci, is also not enough to obtain accurate
@@ -822,6 +832,8 @@ affected the number of species estimated with the GMYC method.
 %% How do range distributions in impatiens can shed light on the debate on the
 %% origins behind the patterns of species distribution in the IWP?
 
+%% Talk about how IO morphs are different from Pacific even though there is no
+%% genetic differentiation.
 
 % Add something about how differences in colors among ESUs might be a result of
 % the same type of proteins than GRP.
@@ -876,6 +888,9 @@ levels: morphological, genetically
 % distribution patterns. These changes have implications regarding the rapid
 % evolution of reprodutive isolation barriers and ecological adaptations.
 
+% tiger and tigerRedSea example of disjoint species distribution see
+% Williams+2011. 
+
 A striking pattern among the members of the \textit{H. impatiens} complex, is
 the differences in the geographical ranges among its members. Some species in
 the complex are restricted in their range to an archipelago (e.g., Hawaii or the
@@ -906,7 +921,6 @@ range (e.g., Hawaii overlapping with ESU1). This suggests that
 However, differences in the ecology of these species must also play an important
 role. The ecological conditions found in the Hawaiian Gala
 
-
 One of the main questions when studying patterns of speciation is whether modern
 species distributions reflect their distributions at the time of speciation. For
 marine organisms, and in particular within the Indo-Pacific, this assumption is
@@ -917,7 +931,6 @@ faunal breaks observed among species composition of reef-building corals are
 only poorly correlated with present-day conditions but are much more strongly
 associated with geological features \cite{Keith2013}.
 
-
 Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
 marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
 investigated patterns of speciation among grunts (\textit{Haemulon}) in the
@@ -926,15 +939,50 @@ sympatry. Authors in this study invoke the possible role of the sounds members
 of this genus produce in assortative mating.
 
 
-
-
 \subsection{Rate of diversification, reproductive isolation}
 
-%% Role of small effective populations in speeding up speciation?
+%% Short review on how the rates of secondary sympatry is much faster in
+%% impatiens compared to other examples.
+% - in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
+% - Look into \cite{Lessios1999} to see how the timing in Eucidaris compares to
+% the one H. impatiens
+
+%% Traditionally 2 views:
+%% - small populations -- speed up divergence?
+%% - local adaptation -- role of ecology and interplay with selection on GRPs
+
+Two kinds of models have been proposed to explain divergence in marine 
+invertebrates in absence of clear geographical barriers: founder effect \cite{},
+and selection in response to local adaptation \cite{Bowen2013}. These two forces
+being non-mutually exclusive. Here, we argue that in either case, evolutionary
+and demographic forces interplay with selection on gamete recognition proteins
+to favor divergence.
+
+In the case of founder effects (parapatric speciation), where a small population
+establishes itself in the periphery (and therefore being connected with limited
+gene flow) from the ancestral population, the genetic diversity of these
+individuals will be limited. The success of the establishment of this peripheral
+population will depend on its density and its genetic make up that will allow
+for its local adaptation to ecological conditions in the new environment, and
+will ensure the compatibility of the genotypes for the gamete recognition
+proteins. In sea urchins, Levitan \& Ferrel have shown that at low density,
+males and females with identical genotypes for bindin, have higher reproductive
+success \cite{Levitan2006}. Therefore, if the pool of individuals that colonized
+the peripheral location harbors genotypes that are non-representative of the
+ancestral populations, and/or if the genotypes are in linkage-disequilibrium
+with genes being selected for in the new environment, GRPs will drive divergence
+between populations, leading to reproductive isolation.
+
+
+
+
+%% in any case, probably small effective population sizes due differences in
+%% reproductive success, 
+
 
 %% From van Doorn et al 2009 "Once a mating preference for locally adapted
 %% partners has evolved, sexual selection reinforces assortative mating and
-%% lowers the fitness of of hybrids." How does density dependence in fecundation
+%% lowers the fitness of hybrids." How does density dependence in fecundation
 %% success interplays with/changes this statement?
 %% One can imagine that if particular genotype associated with high fitness in
 %% particular habitat, abundance is higher, 
@@ -942,12 +990,10 @@ of this genus produce in assortative mating.
 %% Review papers on GRP to see if they are considered a Fisherian sexual
 %% selection trait
 
-%% Speed of secondary sympatry
-% in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
 
 
-% Look into \cite{Lessios1999} to see how the timing in Eucidaris compares to
-% the one H. impatiens
+
+
 
 
 % Speed of speciation/secondary sympatry
