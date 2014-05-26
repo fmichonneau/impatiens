@@ -115,7 +115,7 @@ tmpMap <- subset(impMapThin, consensusESU %in% c("ESU1", "ESU3", "RedSea", "grac
 c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
                position = position_dodge(width = 1.5), shape = 15) +
-    xlim(c(25,330)) + ylim(c(-27, 27)) + ylab("Latitude") + xlab("Longitude") +
+    xlim(c(30,220)) + ylim(c(-27, 27)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
     theme(legend.position = "top", legend.title = element_blank(),
           panel.grid.major = element_line(colour = "white", size = 0.1),
