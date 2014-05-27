@@ -147,7 +147,8 @@ three sections (and an additional one for early analyses that I didn't keep).
   - PHYLIP file for partitionfinder
   - NEXUS file for BEAST
   
-  ```r
+
+```r
   library(seqManagement)
   setwd("~/Documents/Impatiens/20140421.COI_partitionFinder")
   system("muscle -in 20130923-185350-COI.fas -out 20130923-185350-COI.afa")
@@ -161,7 +162,8 @@ three sections (and an additional one for early analyses that I didn't keep).
   m <- match(nm, impDB$Extract)
   tmpDB <- impDB[m, ]
   sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
-  ```
+```
+
 * According to partitionfinder best model is:
   - 1st codon position: HKY+I+G
   - 2nd codon position: GTR+G
@@ -221,7 +223,8 @@ three sections (and an additional one for early analyses that I didn't keep).
     BEAST 1.8.0)
   - to get the tips in the WA+EP+Gala clade:
   
-  ```r
+
+```r
   library(ape)
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
   impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
@@ -231,8 +234,9 @@ three sections (and an additional one for early analyses that I didn't keep).
   m <- match(nm, impDB$Extract)
   tmpDB <- impDB[m, ]
   sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
-  ```
-  - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
+```
+
+- Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
     WA+EP+Gala constrained as monophyletic in this analysis and not in the
     other!
 	
