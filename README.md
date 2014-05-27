@@ -208,14 +208,16 @@ three sections (and an additional one for early analyses that I didn't keep).
     `20140428.COI_noDup.phy`
   - create partition file for each codon position
   - converts to NEXUS using `alg2nex()`
-  
-  ```r
+
+
+```r
   library(seqManagement)  
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
   alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
             partition.file="20140428.COI_noDup.part")
-  ```
-  - then in this folder, generate all the BEAST input files (using
+```
+
+- then in this folder, generate all the BEAST input files (using
     BEAST 1.8.0)
   - to get the tips in the WA+EP+Gala clade:
   
