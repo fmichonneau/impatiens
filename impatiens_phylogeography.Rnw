@@ -8,13 +8,19 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[font=sf]{caption}
 
-\usepackage{fontspec}
-\setmainfont{Crimson Text}
-\setsansfont{SourceSansPro-Regular}
-
+% Latex special characters are rendered correctly with XeTeX
 \usepackage{xltxtra}
 \usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
+
+% Words are cut where needed
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=american]{english}
+
+% Use fancy fonts
+\usepackage{fontspec}
+\setmainfont{Crimson Text}
+\setsansfont{SourceSansPro-Regular}
 
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
@@ -36,6 +42,8 @@ opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
 ##knit_hooks$set(crop = hook_pdfcrop)
 options(tikzDefaultEngine = "xetex")
+options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
+            "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
 read_chunk('code/impatiens_analysis.R')
 read_chunk('code/impatiens_map.R')
 @ 
@@ -484,19 +492,19 @@ dataset; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
 analyses, the base frequencies were estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
-for the log-normal relaxed clock and the strict clock, with a $log(\text{mean})$
-of $-4$ and a $log(\text{standard deviation})$ of $1$. We calibrated the COI
+for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
+of -4 and a \textit{log}(standard deviation) of 1. We calibrated the COI
 genealogies using the closure of the isthmus of Panama. We constrained the age
-of the the node corresponding to the most recent common ancestor of the
-individuals found in the Galapagos archipelago, the coast of the Eastern Pacific
-and in the Caribbean using a log-normal prior with a $log(\text{mean})$ of
-$1.5$, a $log(\text{standard deviation})$ of $0.75$ and an offset of $2.5$.
-This distribution translates into a median age of divergence set at
-\Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years (MY)
-ago, (95\% confidence of $[$\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
-  meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}$]$).
+of the node corresponding to the most recent common ancestor of the individuals
+found in the Galapagos archipelago, the coast of the Eastern Pacific and in the
+Caribbean using a log-normal prior with a \textit{log}(mean) of 1.5, a
+\textit{log}(standard deviation) of 0.75 and an offset of 2.5. This distribution
+translates into a median age of divergence set at \Sexpr{round(qlnorm(0.5,
+  meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years (MY) ago, (95\% confidence
+of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5, sdlog=0.75) + 2.5,
+  2), collapse=", ")}]).
 
-We set the MCMC chain lengths at $5.10 {7}$, sampling every $5.10 {3}$
+We set the MCMC chain lengths at 5.10$^{7}$, sampling every 5.10$^{3}$
 generations. All analyses were ran twice from independent starting points and
 were checked for convergence. From visual inspection of the values sampled by
 the chains with Tracer 1.6, we determined that a burnin of 10\% was sufficient
