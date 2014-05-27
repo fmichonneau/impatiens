@@ -151,17 +151,17 @@ three sections (and an additional one for early analyses that I didn't keep).
   library(seqManagement)
   setwd("~/Documents/Impatiens/20140421.COI_partitionFinder")
   system("muscle -in 20130923-185350-COI.fas -out 20130923-185350-COI.afa")
-  fas2phy(file = "20130923-185350-COI.afa", toDrop = "S0213", overwrite = TRUE)
+  fas2phy(file="20130923-185350-COI.afa", toDrop="S0213", overwrite=TRUE)
   file.rename("20130923-185350-COI.phy", "20140421.COI.phy")
-  alg2nex(file = "20140421.COI.phy", format = "seq", interleaved = FALSE, partition.file = "20140421.COI_partitions.part")
+  alg2nex(file="20140421.COI.phy", format="seq", interleaved=FALSE,
+            partition.file="20140421.COI_partitions.part")
   ## get extraction numbers for EP+WA+Gala
-  alg <- ape::read.dna(file = "20140421.COI.phy", format = "seq")
+  alg <- ape::read.dna(file="20140421.COI.phy", format="seq")
   nm <- dimnames(alg)[[1]]
   m <- match(nm, impDB$Extract)
   tmpDB <- impDB[m, ]
   sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
   ```
-
 * According to partitionfinder best model is:
   - 1st codon position: HKY+I+G
   - 2nd codon position: GTR+G
@@ -210,12 +210,11 @@ three sections (and an additional one for early analyses that I didn't keep).
   - converts to NEXUS using `alg2nex()`
   
   ```r
-  library(seqManagement)
+  library(seqManagement)  
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-  alg2nex(file = "20140428.COI_noDup.phy", format = "seq", interleaved = FALSE, 
-      partition.file = "20140428.COI_noDup.part")
+  alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
+            partition.file="20140428.COI_noDup.part")
   ```
-
   - then in this folder, generate all the BEAST input files (using
     BEAST 1.8.0)
   - to get the tips in the WA+EP+Gala clade:
@@ -223,15 +222,14 @@ three sections (and an additional one for early analyses that I didn't keep).
   ```r
   library(ape)
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
-  impDB <- read.csv(file = "~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", 
-      stringsAsFactors = FALSE)
-  alg <- ape::read.dna(file = "20140428.COI_noDup.phy", format = "seq")
+  impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                      stringsAsFactors=FALSE)
+  alg <- ape::read.dna(file="20140428.COI_noDup.phy", format="seq")
   nm <- dimnames(alg)[[1]]
   m <- match(nm, impDB$Extract)
   tmpDB <- impDB[m, ]
   sort(subset(tmpDB, consensusESU %in% c("EP", "WA", "Gala"))$Extract)
   ```
-
   - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
     WA+EP+Gala constrained as monophyletic in this analysis and not in the
     other!
@@ -345,18 +343,19 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   species estimated by GMYC and it has nothing to do with phylogenetic
   uncertainty.
   > **Questions for next round of analyses**
-  * What kind of model of molecular evolution is needed? and how does it
-     influence the results. It seems to really influence mixing, which probably
-     influences branch length estimation and has consequences for the question
-     I'm interested in.
-     * simple (single GTR+G for all codon position)
-	 * intermediate (use what's suggested by PartitionFinder, but simplify to
-       not use GTR and replace with HKY+G)
-	 * intermediate (use SDR06 model)
-	 * complex keep using what's suggested by PartitionFinder.
-  * These analyses are pretty quick, so let's run one of each on a data that
-    didn't perform well (poor mixing) in previous set (`noDup_relaxed_coalexp`)
-    and see what happens.
+  >* What kind of model of molecular evolution is needed? and how does it
+  >   influence the results. It seems to really influence mixing, which probably
+  >   influences branch length estimation and has consequences for the question
+  >   I'm interested in.
+  >   * simple (single GTR+G for all codon position)
+  >	 * intermediate (use what's suggested by PartitionFinder, but simplify to
+  >     not use GTR and replace with HKY+G)
+  >  * intermediate (use SDR06 model)
+  >	 * complex keep using what's suggested by PartitionFinder.
+
+* These analyses are pretty quick, so let's run one of each on a data that
+  didn't perform well (poor mixing) in previous set (`noDup_relaxed_coalexp`)
+  and see what happens.
 
 # 20140512 -- BEAST with COI sequences -- models of molecular evolution tests
 
@@ -374,17 +373,38 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
   position, didn't check that my alignment actually conforms to these codon
   positions but should give an idea of it performs regarding mixing) model with
   GTR+G model.
+
+## Results
+
+The models using SDR06, 1 model per partition (with either empirical or
+estimated base frequencies) were showing signs of poor mixing on posterior and
+prior that seemed correlated with over-parametrization of the model. This
+however doesn't seem a problem (nice mixing, and convergence) for the run with a
+single GTR+G model or for the model with 3 partitions (HKY+G for positions 1 &
+2, but HKY for position 3). ESUs above 350 in these cases. 
  
+There are slight differences in the topologies and the posterior probabilities
+associated with the nodes, but nothing too crazy. However, some haplotypes with
+low support jump around quite a bit and depending on their positions, I see that
+they could influence the number of estimated ESUs with GMYC. For now, I'm going
+to use HKY+G for each of the first 2 codon positions, and HKY for the last one.
 
 # 20140513 -- BEAST with COI sequences
 
-* Regenerate the XML files from the phy files without including any partition
-  information as it seems that BEAST will estimate partition_treeLikelihood for
-  all partitions specified in the NEXUS file no matter what.
-* Use a single model of molecular evolution for the entire alignment.... see
-  above, waiting for results.
+## Methods
 
-  
+* Based on the results above, I'm going to use HKY+G on the first 2 codon
+  positions, and HKY on the third.
+* Re-using code from 20140428 to generate list of species in EP+WA+Gala clade,
+  constraining monophyly.
+* Used same priors as before:
+  - tMRCA for EP+WA+Gala: lognormal distribution mean (1.5), sd (0.75) and
+  offset (2.5)
+  - strict clock and lognormal relaxed clocks with lognormal priors set with
+    mean at -4 and SD at 1
+
+## Results
+* Nice mixing for all runs. Used these as final. 
 
 
 **TODO:**
@@ -513,6 +533,108 @@ completely out of control. Fixing the mean values is not quite enough. Trying to
 run it again, this time fixing the substitution rate for p1 (16S+16Sc+ATP6_2) at
 1 and estimating all others.
 
+# 20140513 -- BEAST entire complex
+
+## Methods
+
+??? (see `20140519`)
+
+## After 55 hours (73e6 + generations)
+Still terrible mixing. Parameters with very low ESS values associated with whole
+model (posterior, prior), shape of tree (TreeHeight, Yule model, birthrate),
+some mutation rates (p5, p8, p9) and the molecular clocks.
+
+# 20140515 -- BEAST entire complex
+
+## Modifications:
+- reduce number of clocks from 3 to 1
+- remove partition 9 and merge with partition 8, making it a HKY+G
+
+## After 48 hours -- (62e6 generations)
+
+Still issues with the mixing. Problems seem to be coming from relaxed clocks
+parameters, that in turn (or in parallel) affect the values for TreeHeight,
+YuleModel and birthRate. A few of the treeLikelihoods are also pretty low.
+
+# 20140519 -- BEAST entire complex
+
+## Modifications:
+- to test if the issue with the clock is caused by too much heterogeneity in the
+  rates that can't be accommodated by a single clock, use 3 strict clocks
+  - one for mtDNA
+  - one for protein coding nuc
+  - one for rDNA
+- removed outgroup (S0213), suggested in BEAST book.
+
+## After 70 hours (74e6 generations)
+Overall looks pretty good. Low/correlated ESS values for mutation rate on partition 8 and clock rate for rDNA.
+Will finish this analysis and use it for this version of the manuscript. Will however need:
+- to do a second run
+- will try to use relaxed clock
+
+## After 168 hours (185e6 generations)
+- Looks good, all ESU above 200
+- downloaded it and trying to summarize it (haven't succeeded yet)
+- submitted `run2` limited number of generations to 150e6 and named file with
+  prefix `20140526`.
+
+## Summary of methods
+
+### Partitions used
+
+ Partition | Loci               | Model
+ ----------|--------------------|-------
+ p1        | 16S, 16Sc, ATP6\_2 | GTR+G
+ p3        | ATP6\_1, COI\_1    | HKY+G+I
+ p4        | ATP6\_3, c0775     | HKY+G
+ p5        | c0036              | GTR+G
+ p6        | COI\_2, H3a\_2     | HKY+G
+ p8        | H3a\_1, ITS, LSU   | HKY
+ H3a_3     | H3a\_3             | HKY+G
+
+### Clocks used
+
+* 3 strict clocks
+- mitochondrial markers
+- protein coding nuclear markers
+- rDNA nuclear markers
+
+### Priors
+
+* Yule model
+* Exponential priors on all strict clock rates
+* Uniform prior set at 5 MYA for divergence of WA+Gala+E species group
+
+## Tree generation
+
+There were too many trees in the output and it crashed `treeannotator`. I had to
+use `logcombiner` to reduce the number of trees using a larger burnin (30%).
+
+I re-used a previous command and removed more of the trees when using
+`treeannotator` as the option `-burnin 10` was already in there.
+
+```{bash}
+./logcombiner -log ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll.trees \
+  -o ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll_sub.trees -b 30
+./treeannotator -heights ca -burnin 10 ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll_sub.trees \
+  ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTree.nex
+```
+
+
+# 20140522 -- RAxML entire complex
+
+Trying to use RAxML to see if I get the same topology.
+
+## Methods
+- data file: 20130924 (from all_impatiens, partition finder)
+- use partition full partition scheme proposed by partitionFinder (but using GTR+G for all)
+`raxmlHPC-HYBRID -s infile -n result -m GTRGAMMA -x 12345 -N 500 -q part -p 12345 -f a`
+- set time limit for the job to 5 hours as it uses 64 CPUs...
+
+## Results
+- looks fine.
+- seems that I get lower support than with Bayesian (might be caused by difference in how BS works)
+- from memory slight differences in topology (where the Mediterranean falls for example)
 
 - - - - - - - - - 
 

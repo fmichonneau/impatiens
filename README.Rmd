@@ -534,7 +534,7 @@ run it again, this time fixing the substitution rate for p1 (16S+16Sc+ATP6_2) at
 
 ## Methods
 
-???
+??? (see `20140519`)
 
 ## After 55 hours (73e6 + generations)
 Still terrible mixing. Parameters with very low ESS values associated with whole
@@ -572,7 +572,51 @@ Will finish this analysis and use it for this version of the manuscript. Will ho
 ## After 168 hours (185e6 generations)
 - Looks good, all ESU above 200
 - downloaded it and trying to summarize it (haven't succeeded yet)
-- submitted `run2` limited number of generations to 150e6 and named file with prefix `20140526`.
+- submitted `run2` limited number of generations to 150e6 and named file with
+  prefix `20140526`.
+
+## Summary of methods
+
+### Partitions used
+
+ Partition | Loci               | Model
+ ----------|--------------------|-------
+ p1        | 16S, 16Sc, ATP6\_2 | GTR+G
+ p3        | ATP6\_1, COI\_1    | HKY+G+I
+ p4        | ATP6\_3, c0775     | HKY+G
+ p5        | c0036              | GTR+G
+ p6        | COI\_2, H3a\_2     | HKY+G
+ p8        | H3a\_1, ITS, LSU   | HKY
+ H3a_3     | H3a\_3             | HKY+G
+
+### Clocks used
+
+* 3 strict clocks
+- mitochondrial markers
+- protein coding nuclear markers
+- rDNA nuclear markers
+
+### Priors
+
+* Yule model
+* Exponential priors on all strict clock rates
+* Uniform prior set at 5 MYA for divergence of WA+Gala+E species group
+
+## Tree generation
+
+There were too many trees in the output and it crashed `treeannotator`. I had to
+use `logcombiner` to reduce the number of trees using a larger burnin (30%).
+
+I re-used a previous command and removed more of the trees when using
+`treeannotator` as the option `-burnin 10` was already in there.
+
+```{bash}
+./logcombiner -log ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll.trees \
+  -o ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll_sub.trees -b 30
+./treeannotator -heights ca -burnin 10 ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll_sub.trees \
+  ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTree.nex
+```
+
 
 # 20140522 -- RAxML entire complex
 
