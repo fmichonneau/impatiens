@@ -535,8 +535,8 @@ minimum length of a block of 5 (-b4=5) and all gap positions can be selected
 (-b5=a).
 
 We estimated the phylogenetic relationships and the timing of the divergence
-among the different lineages of \textit{Holothuria impatiens} using BEAST v2.0.2
-\cite{}. We used the closure of the isthmus of Panama to calibrate our
+among the different lineages of \textit{Holothuria impatiens} using BEAST v2.1.2
+\cite{Bouckaert2014}. We used the closure of the isthmus of Panama to calibrate our
 phylogeny. However, given that the sister ESU to the West Atlantic ESU is found
 in the Galapagos and not in the Eastern Pacific, we used a log-normal prior
 distribution on the stem node of these ESUs with a mean of 1.5 and a standard
