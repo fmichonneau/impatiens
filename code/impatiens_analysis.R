@@ -6,7 +6,7 @@ library(seqManagement)
 library(wesanderson)
 library(ggplot2)
 source("~/R-scripts/fasToPhase.R")
-source("~/R-scripts/extToLbl.R")
+source("code/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
 impExt <- impDB$Extract[nzchar(impDB$Extract)]
 stopifnot(ncol(impDB) > 1)
@@ -15,28 +15,59 @@ stopifnot(ncol(impDB) > 1)
 
 ### full impatiens Tree
 ### ---- impatiens-tree ----
-impTree <- read.tree(file="data/allImpatiens.phy")
-impTree <- drop.tip(impTree, "S0213") # remove outgroup
-impTree <- drop.tip(impTree, "N0057") # remove this one, as only H3a and messes up monophyly, NEED TO REDO analysis!
-impTree <- drop.tip(impTree, "G0108") # remove this one, as only mtData and messes up monophyly, NEED TO REDO analysis!
+library(ape)
+source("code/getPosteriors.R")
+source("code/extToLbl.R")
+impTree <- read.beast(file="data/20140519.impTree.nex")
 impTree <- ladderize(impTree)
-posTips <- treeDepth(impTree) #max(branching.(impTree))
+posTips <- max(branching.times(impTree))
 impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
 esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
              "Gala", "EP", "Hawaii", "Wpac", "RedSea")
-##esuCol <- hcl(h=seq(0, 360, length=length(esuList)), c=100, l=50)
-esuCol <- c("#FE0835", "#A50026","#D73027","#F46D43","#FDAE61","#FEE090","#FFFFBF","#E0F3F8","#ABD9E9","#74ADD1","#4575B4","#313695")
-impTree$root.edge <- 8 - treeDepth(impTree)
-impNodLbl <- as.numeric(impTree$node.label)
-impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
+##esuCol <- hcl(h=seq(0, 360, length=length(esuList)), c=sample(c(50, 100), size=length(esuList), replace=TRUE), l=50)
+##esuCol <- c("#FE0835", "#A50026","#D73027","#F46D43","#FDAE61","#FEE090","#FFFFBF","#E0F3F8","#ABD9E9","#74ADD1","#4575B4","#313695")
+esuCol <- c(
+"#25162E",
+"#4F261D",
+"#7D4954",
+"#D6E4DB",
+"#8FA6C4",
+"#9E8498",
+"#3C366A",
+"#B7565A",
+"#D0AD87",
+"#EED780",
+"#B7CF64",
+"#6F8042",
+"#576266")
+
+esuCol <- c("#51574a", "#447c69", "#74c493", "#8e8c6d", "#e4bf80", "#e9d78e", "#e2975d",
+            "#f19670", "#e16552", "#c94a53", "#be5168", "#a34974", "#993767", "#65387d",
+            "#4e2472", "#9163b6", "#e279a3", "#e0598b", "#7c9fb0", "#5698c4", "#9abf8e")
+
+
+#impTree$root.edge <- 8 - treeDepth(impTree)
+impNodLbl <- as.numeric(impTree$posterior)
+#impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
 impNodLblCol <- rep(NULL, length(impNodLbl))
 impNodLblCol[impNodLbl == 1] <- "black"
-impNodLblCol[impNodLbl >= .975 & impNodLbl < 1] <- "red"
-impNodLblCol[impNodLbl >= .90 & impNodLbl < .975] <- "orange"
-plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,10))
-nodelabels(text=rep("", length(impNodLblCol)), frame="circ", col=impNodLblCol, bg=impNodLblCol, fg=impNodLblCol, cex=.3)
+impNodLblCol[impNodLbl >= .99 & impNodLbl < 1] <- "red"
+impNodLblCol[impNodLbl >= .90 & impNodLbl < .99] <- "orange"
+
+impNodLblTxt <- rep("", length(impNodLblCol))
+impAllNds <- 1:length(impNodLbl)
+impKeepNds <- impAllNds[!is.na(impNodLblCol)]
+
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE)#, x.lim=c(0,10))
+nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
+               frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
+               bg=impNodLblCol[!is.na(impNodLblCol)],
+               fg=impNodLblCol[!is.na(impNodLblCol)],
+               cex=.3)
+
 barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
-                cex.plot=.3, extra.space=.5, text.offset=1.02, seg.col=esuCol)
+                cex.plot=.3, extra.space=.5, text.offset=1.02,
+                seg.col=rev(esuCol))
 axis(side=1, at=0:8, labels=paste("-", 8:0, sep=""))
 legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", "$0.975 \\leq PP < 1$", "$ 0.9 \\leq PP < 0.975$"))
 
