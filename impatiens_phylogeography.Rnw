@@ -528,32 +528,38 @@ with the highest likelihood.
 
 % Talk about how to deal with ambiguities
 
-Sequences obtained for each marker were aligned using MUSCLE \ref{} with the
+Sequences obtained for each marker were aligned using MUSCLE \cite{} with the
 default settings. All markers led to unambiguous alignments except ITS for which
 we used Gblocks \ref{} to remove parts that were difficult to align using a
 minimum length of a block of 5 (-b4=5) and all gap positions can be selected
-(-b5=a).
+(-b5=a). We used the resulting alignment to estimate the phylogenetic
+relationships and the timing of the divergence among the different lineages of
+\textit{Holothuria impatiens} using RAxML 8.0.1 \cite{} and BEAST 2.1.2
+\cite{Bouckaert2014}.
 
-We estimated the phylogenetic relationships and the timing of the divergence
-among the different lineages of \textit{Holothuria impatiens} using BEAST v2.1.2
-\cite{Bouckaert2014}. We used the closure of the isthmus of Panama to calibrate our
-phylogeny. However, given that the sister ESU to the West Atlantic ESU is found
-in the Galapagos and not in the Eastern Pacific, we used a log-normal prior
-distribution on the stem node of these ESUs with a mean of 1.5 and a standard
-deviation of 1 which corresponds to a mean of 4.482 My (0.865 -- 23.22 My 95\%
-confidence interval) in real space.
+To determine the optimal partition scheme and models of molecular evolution, we
+analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
+data blocks such that the three codon position for ATP6, COI, H3a, c0036 and
+c0775, and each of 16S, ITS and LSU were individual partitions. We used the
+greedy algorithm, with linked branch lengths, no user tree, and models of
+molecular evolution available by default in BEAST (JC69, HKY, GTR, without or
+with proportion of invariant sites and/or Gamma distributed rates across
+sites). We selected the best-fit models and partition schemes based on the
+Bayesian Information Criterion. The best fit model had 9 partitions.
+
+For the BEAST analysis, following some initial testing runs, we modified
+slightly the partition scheme to improve mixing of the chains (supplementary
+Table \ref{tab:sm-partitions}). We used the closure of the isthmus of Panama to
+calibrate our phylogeny, and fixed the time of divergence for the individuals of
+the Eastern Pacific (including Galapagos) and the Caribbean to 5 MY. It is gener
+However, given that the sister ESU to the West Atlantic
+ESU is found in the Galapagos and not in the Eastern Pacific, we used a
+log-normal prior distribution on the stem node of these ESUs with a mean of 1.5
+and a standard deviation of 1 which corresponds to a mean of 4.482 My (0.865 --
+23.22 My 95\% confidence interval) in real space.
 
 We used PartitionFinder \cite{} to determine the best-fit partition scheme and
-model of molecular of evolution for our dataset. We defined the data blocks such
-that the three codon position for ATP6, COI, H3a, c0036 and c0775, and each of
-16S, ITS and LSU were individual partitions. We used the greedy algorithm, with
-linked branch lengths, no user tree, and models of molecular evolution available
-by default in BEAST (JC69, HKY, GTR, without or with proportion of invariant
-sites and/or Gamma distributed rates across sites). We selected the best-fit
-models and partition schemes based on the Bayesian Information Criterion. The
-best fit model had 9 partitions. After some initial test runs in BEAST, we
-modified slightly the model of molecular evolution to improve mixing of the
-MCMC, and reduced to the number of partitions to see Table \ref{tabPartitions}.
+model of molecular of evolution for our dataset. 
 
 The analysis was run using independent strict molecular clock for each
 locus. The tree prior was set to a Yule process and a random starting tree. The
