@@ -456,6 +456,7 @@ exactly identical.
   anything, I'll restart the previous analysis for another week.
 
 ## 20140424 entire complex
+
 ### Methods
 * I might be setting myself up for failure but...
 * In site model:
@@ -593,7 +594,7 @@ Will finish this analysis and use it for this version of the manuscript. Will ho
  p5        | c0036              | GTR+G
  p6        | COI\_2, H3a\_2     | HKY+G
  p8        | H3a\_1, ITS, LSU   | HKY
- H3a_3     | H3a\_3             | HKY+G
+ H3a_3     | H3a\_3, COI\_3     | HKY+G
 
 ### Clocks used
 
@@ -622,7 +623,6 @@ I re-used a previous command and removed more of the trees when using
 ./treeannotator -heights ca -burnin 10 ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTreeAll_sub.trees \
   ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTree.nex
 ```
-
 
 # 20140522 -- RAxML entire complex
 
