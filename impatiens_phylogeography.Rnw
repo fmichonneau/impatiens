@@ -486,10 +486,10 @@ with or without a proportion of invariant sites and/or gamma-distributed rates
 of evolution (12 different models \textit{in toto}). Both datasets (all
 sequences, only unique haplotypes) favored to assign each codon position to a
 different partition. After inspecting mixing and convergence on test runs, we
-modified slightly the models suggested by PartitionFinder to use HKY+I+G, GTR+G
+modified slightly the models suggested by PartitionFinder to use: HKY+I+G, GTR+G
 and HKY for for each ones of the codon position respectively for the all
 dataset; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
-analyses, the base frequencies were estimated.
+analyses, base frequencies were estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
 for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
@@ -499,10 +499,10 @@ of the node corresponding to the most recent common ancestor of the individuals
 found in the Galapagos archipelago, the coast of the Eastern Pacific and in the
 Caribbean using a log-normal prior with a \textit{log}(mean) of 1.5, a
 \textit{log}(standard deviation) of 0.75 and an offset of 2.5. This distribution
-translates into a median age of divergence set at \Sexpr{round(qlnorm(0.5,
+translates into a mean age of divergence set at \Sexpr{round(qlnorm(0.5,
   meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years (MY) ago, (95\% confidence
-of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5, sdlog=0.75) + 2.5,
-  2), collapse=", ")}]).
+interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5,
+  sdlog=0.75) + 2.5, 2), collapse=", ")}]).
 
 We set the MCMC chain lengths at 5.10$^{7}$, sampling every 5.10$^{3}$
 generations. All analyses were ran twice from independent starting points and
@@ -526,6 +526,9 @@ with the highest likelihood.
 
 \subsection{Phylogeny and divergence time estimation}
 
+<<median-tmrca-WAgroup, eval=TRUE, echo=FALSE, cache=TRUE, dependson='init-phylo'>>=
+@ 
+
 % Talk about how to deal with ambiguities
 
 Sequences obtained for each marker were aligned using MUSCLE \cite{} with the
@@ -535,7 +538,7 @@ minimum length of a block of 5 (-b4=5) and all gap positions can be selected
 (-b5=a). We used the resulting alignment to estimate the phylogenetic
 relationships and the timing of the divergence among the different lineages of
 \textit{Holothuria impatiens} using RAxML 8.0.1 \cite{} and BEAST 2.1.2
-\cite{Bouckaert2014}.
+\cite{Bouckaert2014} (using BEAGLE 2.1.2 \cite{})
 
 To determine the optimal partition scheme and models of molecular evolution, we
 analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
@@ -543,7 +546,7 @@ data blocks such that the three codon position for ATP6, COI, H3a, c0036 and
 c0775, and each of 16S, ITS and LSU were individual partitions. We used the
 greedy algorithm, with linked branch lengths, no user tree, and models of
 molecular evolution available by default in BEAST (JC69, HKY, GTR, without or
-with proportion of invariant sites and/or Gamma distributed rates across
+with a proportion of invariant sites and/or Gamma distributed rates across
 sites). We selected the best-fit models and partition schemes based on the
 Bayesian Information Criterion. The best fit model had 9 partitions.
 
@@ -551,26 +554,36 @@ For the BEAST analysis, following some initial testing runs, we modified
 slightly the partition scheme to improve mixing of the chains (supplementary
 Table \ref{tab:sm-partitions}). We used the closure of the isthmus of Panama to
 calibrate our phylogeny, and fixed the time of divergence for the individuals of
-the Eastern Pacific (including Galapagos) and the Caribbean to 5 MY. It is gener
-However, given that the sister ESU to the West Atlantic
-ESU is found in the Galapagos and not in the Eastern Pacific, we used a
-log-normal prior distribution on the stem node of these ESUs with a mean of 1.5
-and a standard deviation of 1 which corresponds to a mean of 4.482 My (0.865 --
-23.22 My 95\% confidence interval) in real space.
+the Eastern Pacific (including Galapagos) and the Caribbean to 5 MY. The isthmus
+of Panama was completely closed about 3 MY ago but most species were probably
+isolated earlier \cite{Lessios2008}. We chose a conservative estimate to account
+for the fact that the sister species lineages found across the isthmus are the
+lineages found in the Galapagos and the Caribbean (the coastal Eastern Pacific
+lineage is sister to the one found in the Galapagos,
+Figure~\ref{impatiens-tree}), suggesting that the divergence might have been
+preceded the closure of the isthmus. Additionally, the estimated age of this
+node across the COI genealogies used for the GMYC analyses, varied between
+\Sexpr{round(min(meanTmrca), 2)} and \Sexpr{round(max(meanTmrca), 2)} MY
+(estimated from the mean on the posterior distributions, prior
+\Sexpr{round(exp(1.5 + (.75^2)/2) + 2.5, 2)} MY; median ranged between
+\Sexpr{round(min(medianTmrca), 2)} and \Sexpr{round(max(medianTmrca), 2)} MY,
+prior \Sexpr{qlnorm(.5, meanlog=1.5, sdlog=.75) + 2.5} MY).
 
-We used PartitionFinder \cite{} to determine the best-fit partition scheme and
-model of molecular of evolution for our dataset. 
+We used three independent strict molecular clocks (one for each of mitochondrial
+markers, protein-coding nuclear markers, nuclear ribosomal markers)
+\cite{Hasegawa1985}. The tree prior was set to a Yule process, and a random
+starting tree. The Markov chains were run for $150.10^6$ generations (and
+sampled every $5.10^3$ generations). The analysis was repeated twice from
+independent starting points.
 
-The analysis was run using independent strict molecular clock for each
-locus. The tree prior was set to a Yule process and a random starting tree. The
-Markov Chains were run for $1.58 . 10^8$ generations. The analysis was repeated
-twice.
+% We checked the operator file to ensure appropriate acceptance rates while
+% sampling the posterior. %% no ops file in BEAST2?
 
-We used Tracer \cite{} to check that the MCMC chains had reach stationarity and
-that the two independent runs were consistent. We ensured that enough of the posterior
-distributions for each parameter was sampled by checking that the ESS values for
-all parameters were above 200. After removing a 10\% burnin for each independent
-run, the trees sampled were combined.
+We used Tracer 1.6 to check that the MCMC chains had reached stationarity and
+that the two independent runs were consistent. We ensured that enough of the
+posterior distributions for each parameter was sampled by checking that the ESS
+values for all parameters were above 200 (with a 10\% burnin) for each
+independent run, the trees sampled were combined.
 
 
 \subsection{Test of species limits with *BEAST}
@@ -619,7 +632,6 @@ by Baele et al. \cite{Baele2012} with chain lengths of $10^{6}$, path steps of
 distribution. However, given the differences observed in the marginal likelihood
 estimations between the independent runs, we ran the analysis again with chain
 lengths of $3.10^{6}$.
-
 
 \begin{table}
   \centering
