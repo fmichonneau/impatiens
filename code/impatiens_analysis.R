@@ -1,7 +1,8 @@
 
 ### ---- init-phylo ----
 setwd("~/Documents/Impatiens/impatiens_phylogeography/")
-impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
+impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                  stringsAsFactors=FALSE)
 library(seqManagement)
 library(wesanderson)
 library(ggplot2)
@@ -11,7 +12,13 @@ source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
 impExt <- impDB$Extract[nzchar(impDB$Extract)]
 stopifnot(ncol(impDB) > 1)
 
-
+## Other common variables
+gmycFactors <- expand.grid(c("strict", "relaxed"),
+                           c("yule", "coalexp", "coalcst"))
+gmycFactors <- apply(gmycFactors, 1, paste0, collapse="_")
+gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors),
+                 paste0("20140514.noDup_", gmycFactors))
+pathResults <- "~/Documents/Impatiens"
 
 ### full impatiens Tree
 ### ---- impatiens-tree ----
@@ -19,6 +26,26 @@ library(ape)
 source("code/getPosteriors.R")
 source("code/extToLbl.R")
 impTree <- read.beast(file="data/20140519.impTree.nex")
+if( !file.exists("data/20140519.impTree-beast.phy") )
+    write.tree(impTree, file="data/20140519.impTree-beast.phy")
+if (! file.exists("data/RAxML_bootstrap_nooutgroup.phy")) {
+    allRaxmlBS <- read.tree(file="data/RAxML_bootstrap.result")
+    noOutgroup <- lapply(allRaxmlBS, function(tr) drop.tip(tr, "S0213"))
+    class(noOutgroup) <- "multiPhylo"
+    write.tree(noOutgroup, file="data/RAxML_bootstrap_nooutgroup.phy")
+}
+if (length(list.files(pattern="annotateBEASTtree$", path="data/")) != 3) {
+    rxmlCmd <- paste("~/Software/RAxML-8.0.1/./raxmlHPC-PTHREADS-SSE3 -m GTRGAMMA",
+                     "-p 12345 -f b -t data/20140519.impTree-beast.phy",
+                     "-z data/RAxML_bootstrap_nooutgroup.phy -T8 -n annotateBEASTtree")
+    system(rxmlCmd)
+    system("mv *.annotateBEASTtree data/")
+}
+## noOutgroup <- read.tree(file="data/RAxML_bootstrap_nooutgroup.phy")
+## ppNoOutGroup <- prop.part(noOutgroup)
+## pcNoOutGroup <- prop.clades(impTree, part=ppNoOutGroup)
+## save(pcNoOutGroup, file="data/pcNoOutGroup.RData")
+load("data/pcNoOutGroup.RData")
 impTree <- ladderize(impTree)
 posTips <- max(branching.times(impTree))
 impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
@@ -143,14 +170,9 @@ add.scale.bar()
 
 ### GMYC analyses
 ### ---- generate-gmyc-trees ----
-gmycFactors <- expand.grid(c("strict", "relaxed"),
-                           c("yule", "coalexp", "coalcst"))
-gmycFactors <- apply(gmycFactors, 1, paste0, collapse="_")
-gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors),
-                 paste0("20140514.noDup_", gmycFactors))
+## pathResults, gmycFactors are defined in init-phylo
 treeannotatorCmd <-
     c("~/Software/BEASTv1.8.0/bin/./treeannotator -heights ca -burnin 1000")
-pathResults <- "~/Documents/Impatiens"
 inFile <- file.path(pathResults, gmycFactors, paste0(gmycFactors, ".trees"))
 outFile <- file.path(pathResults, gmycFactors, paste0(gmycFactors, ".tre.nex"))
 ## can't parallize this, too much RAM needed.
@@ -239,7 +261,31 @@ ggplot(data=gmycSumm, aes(x=demographic, y=mean,
     scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
 
+### ---- median-tmrca-WAgroup ----
+## Get mean and median for node corresponding to MRCA for all
+##  individuals found on each side of isthmus of Panama as estimated
+##  with various parameters used to test GMYC.  Prior on this node is
+##  log normal prior with a log(mean) of 1.5, a log(standard
+##  deviation) of 0.75 and an offset of 2.5. This distribution
+##  translates into a median age of divergence set at 6.98 millions
+##  years (MY) ago, (95% confidence of [3.53, 21.99])
 
+## logFiles <- file.path(pathResults, gmycFactors, paste(gmycFactors, ".log", sep=""))
+## stopifnot(all(file.exists(logFiles)))
+## resTmrca <- lapply(logFiles, function(logF) {
+##     tmpDt <- read.table(logF, header=TRUE, colClasses="numeric")
+##     stopifnot(nrow(tmpDt) == 10001)
+##     colid <- grep("tmrca", names(tmpDt))
+##     stopifnot(length(colid) == 1)
+##     rg <- 1001:nrow(tmpDt)
+##     list(mean=mean(tmpDt[rg, colid]),
+##          median=median(tmpDt[rg, colid]))
+## })
+## names(resTmrca) <- logFiles
+## save(resTmrca, file="data/resTmrca.RData")
+load(file="data/resTmrca.RData")
+meanTmrca <- sapply(resTmrca, function(x) x$mean)
+medianTmrca <- sapply(resTmrca, function(x) x$median)
 
 ### starBEAST PPS
 ### ---- starbeast-pps ----
