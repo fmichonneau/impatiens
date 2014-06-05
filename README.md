@@ -459,6 +459,7 @@ exactly identical.
   anything, I'll restart the previous analysis for another week.
 
 ## 20140424 entire complex
+
 ### Methods
 * I might be setting myself up for failure but...
 * In site model:
@@ -596,7 +597,7 @@ Will finish this analysis and use it for this version of the manuscript. Will ho
  p5        | c0036              | GTR+G
  p6        | COI\_2, H3a\_2     | HKY+G
  p8        | H3a\_1, ITS, LSU   | HKY
- H3a_3     | H3a\_3             | HKY+G
+ H3a_3     | H3a\_3, COI\_3     | HKY+G
 
 ### Clocks used
 
@@ -626,6 +627,11 @@ I re-used a previous command and removed more of the trees when using
   ~/Documents/Impatiens/20140519.allImpatiens/20140519.impTree.nex
 ```
 
+## Results
+
+Tree looks good. 2nd run give similar values for all parameters. Still need to
+generate tree. Tree from run1 temporarily used in manuscript. See `20140605` for
+follow up.
 
 # 20140522 -- RAxML entire complex
 
@@ -641,6 +647,22 @@ Trying to use RAxML to see if I get the same topology.
 - looks fine.
 - seems that I get lower support than with Bayesian (might be caused by difference in how BS works)
 - from memory slight differences in topology (where the Mediterranean falls for example)
+
+# 20140605 -- BEAST full complex
+
+## Rationale
+
+To test effect of using strict clock on analysis, redoing the analysis using
+relaxed clocks for the 3 clocks.
+
+## Methods
+
+- Keeping the subst rate for 16S fixed at 1, letting the other rates being
+estimated relatively (as for `20140519`).
+- Priors for clocks all set as exponentional distributions with mean at 1.0.
+- set run length at 185e6 generations.
+
+
 
 - - - - - - - - - 
 
