@@ -81,6 +81,8 @@ isolation, upon secondary contact, these populations will resume
 inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
 \cite{} can mask reproductive isolation.
 
+% use framework put together for NAEC/Evolution for introduction
+
 % include something on how importance of rate of secondary sympatry for building
 % up local diversity, and confusion about sympatry + genetic differentiation in
 % case of no clear barriers and possibility for rapid changes in population
@@ -546,8 +548,8 @@ data blocks such that the three codon position for ATP6, COI, H3a, c0036 and
 c0775, and each of 16S, ITS and LSU were individual partitions. We used the
 greedy algorithm, with linked branch lengths, no user tree, and models of
 molecular evolution available by default in BEAST (JC69, HKY, GTR, without or
-with a proportion of invariant sites and/or Gamma distributed rates across
-sites). We selected the best-fit models and partition schemes based on the
+with a proportion of invariant sites [+I] and/or Gamma distributed rates across
+sites [+G]). We selected the best-fit models and partition schemes based on the
 Bayesian Information Criterion. The best fit model had 9 partitions.
 
 For the BEAST analysis, following some initial testing runs, we modified
@@ -572,24 +574,27 @@ prior \Sexpr{qlnorm(.5, meanlog=1.5, sdlog=.75) + 2.5} MY).
 We used three independent strict molecular clocks (one for each of mitochondrial
 markers, protein-coding nuclear markers, nuclear ribosomal markers)
 \cite{Hasegawa1985}. The tree prior was set to a Yule process, and a random
-starting tree. The Markov chains were run for $150.10^6$ generations (and
+starting tree. The Markov chains were run for $185.10^6$ generations (and
 sampled every $5.10^3$ generations). The analysis was repeated twice from
 independent starting points.
 
 % We checked the operator file to ensure appropriate acceptance rates while
 % sampling the posterior. %% no ops file in BEAST2?
 
-We used Tracer 1.6 to check that the MCMC chains had reached stationarity and
-that the two independent runs were consistent. We ensured that enough of the
-posterior distributions for each parameter was sampled by checking that the ESS
-values for all parameters were above 200 (with a 10\% burnin) for each
-independent run, the trees sampled were combined.
-
+We used Tracer 1.6 to check that the MCMC chains had reached stationarity, that
+mixing was adequate, and that the two independent runs were consistent. We
+ensured that a representative sample of the posterior distributions was sampled
+for each independent runs, by checking that the ESS values for all parameters
+were above 200. The samples from the posterior distribution from both runs were
+combined using locombiner after removing a 20\% burnin, resulting in 29601
+states sampled. The ESS values obtained by combining the runs were all above
+440. We summarized the trees sampled with treeannotator using the common ancestor
+tree method \cite{Heled2013}.
 
 \subsection{Test of species limits with *BEAST}
 
 Given the shallow genetic divergence observed among some of the ESUs detected by
-GYMC and the lack of morphological differentiation among them. We attempted to
+GYMC and the lack of morphological differentiation among them, we attempted to
 compare species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
 Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
 methods \cite{Baele2012}.
@@ -660,6 +665,7 @@ omitting the mitochondrial markers.
 \section{Results}
 
 \subsection{Sequence analysis}
+
 For the datasets used in xxx analysis, the COI alignment was xxx bp long and
 included xxx variable sites, of which xxx were phylogenetic informative. 
 
@@ -739,7 +745,7 @@ The estimated number of species with sGMYC was more conservative and less
 sensitive to the priors used when using all haplotypes compared to the analyses
 restricted on the unique haplotypes.
 
-
+% discuss identity of species delineated.
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
