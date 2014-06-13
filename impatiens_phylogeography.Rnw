@@ -521,7 +521,7 @@ These trees were used to fit the single-threshold (\cite{Pons2006}) and the
 multi-threshold \cite{Monaghan2009} GYMC model using the R package splits 1.0-19
 \cite{Ezard2013}. We considered the number of ``entities'' returned by GMYC as
 the estimated number of species in our analyses. The confidence interval for the
-number of species corresponds to minimum and maximum number of species for
+number of species corresponds to the minimum and maximum numbers of species for
 threshold values found within 2 log-likelihood units of the threshold associated
 with the highest likelihood.
 
@@ -554,22 +554,27 @@ Bayesian Information Criterion. The best fit model had 9 partitions.
 
 For the BEAST analysis, following some initial testing runs, we modified
 slightly the partition scheme to improve mixing of the chains (supplementary
-Table \ref{tab:sm-partitions}). We used the closure of the isthmus of Panama to
-calibrate our phylogeny, and fixed the time of divergence for the individuals of
-the Eastern Pacific (including Galapagos) and the Caribbean to 5 MY. The isthmus
-of Panama was completely closed about 3 MY ago but most species were probably
-isolated earlier \cite{Lessios2008}. We chose a conservative estimate to account
-for the fact that the sister species lineages found across the isthmus are the
-lineages found in the Galapagos and the Caribbean (the coastal Eastern Pacific
-lineage is sister to the one found in the Galapagos,
-Figure~\ref{impatiens-tree}), suggesting that the divergence might have been
-preceded the closure of the isthmus. Additionally, the estimated age of this
-node across the COI genealogies used for the GMYC analyses, varied between
-\Sexpr{round(min(meanTmrca), 2)} and \Sexpr{round(max(meanTmrca), 2)} MY
-(estimated from the mean on the posterior distributions, prior
-\Sexpr{round(exp(1.5 + (.75^2)/2) + 2.5, 2)} MY; median ranged between
-\Sexpr{round(min(medianTmrca), 2)} and \Sexpr{round(max(medianTmrca), 2)} MY,
-prior \Sexpr{qlnorm(.5, meanlog=1.5, sdlog=.75) + 2.5} MY).
+Table \ref{tab:sm-partitions}).
+
+As no fossils are known for the Holothuriidae, we used the closure of the
+isthmus of Panama to calibrate our phylogeny, and fixed the time of divergence
+for the individuals of the Eastern Pacific (including Galapagos) and the
+Caribbean to 5 MY. The isthmus of Panama was completely closed about 3 MY ago
+but most species were probably isolated earlier \cite{Lessios2008}. We chose a
+conservative estimate to account for the fact that the sister species lineages
+found across the isthmus are the lineages found in the Galapagos and the
+Caribbean (the coastal Eastern Pacific lineage is sister to the one found in the
+Galapagos, Figure~\ref{impatiens-tree}), suggesting that the divergence might
+have been preceded the closure of the isthmus.
+
+
+% Additionally, the estimated age of this node across the COI genealogies used for
+% the GMYC analyses, varied between \Sexpr{round(min(meanTmrca), 2)} and
+% \Sexpr{round(max(meanTmrca), 2)} MY (estimated from the mean on the posterior
+% distributions, prior \Sexpr{round(exp(1.5 + (.75^2)/2) + 2.5, 2)} MY; median
+% ranged between \Sexpr{round(min(medianTmrca), 2)} and
+% \Sexpr{round(max(medianTmrca), 2)} MY, prior
+% \Sexpr{qlnorm(.5, meanlog=1.5, sdlog=.75) + 2.5} MY).
 
 We used three independent strict molecular clocks (one for each of mitochondrial
 markers, protein-coding nuclear markers, nuclear ribosomal markers)
@@ -620,47 +625,55 @@ apart reliably based on morphology alone.
 
 We investigated whether *BEAST favored models where all or some of the following
 ESUs were considered distinct species: WPac, Hawaii and RedSea or actually could
-not be distinguished from ESU1 (Table \ref{tab:delineationModels}). We used
-ESU3 and gracilis as outgroups. In these analyses, we selected individuals for
-which we had at least one mitochondrial marker and one nuclear marker. We used
-data from the following markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and H3a;
-and the same approach as for the phylogeny of the entire complex, using Gblocks
-to remove ambiguous parts of the alignment in ITS, PartitionFinder to find the
-most appropriate partition scheme and models of molecular evolution. We unlinked
-clocks for all markers, used strict molecular clocks, fixing the COI clock at
-1.85\%/My \cite{Lessios2008} while estimating the rate of the others. We ran the
-analysis for $5.10^{8}$ generations and repeated it twice for each group.
+not be distinguished from ESU1 (Table \ref{tab:delineationModels}). We used ESU3
+and gracilis as outgroups, and to allow the estimation of the topology when all
+individuals for the species tested where attributed to ESU1. In these analyses,
+we selected individuals for which we had at least one mitochondrial marker and
+one nuclear marker. We used data from the following markers: 16S, COI, ATP6,
+c0036, c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of
+the entire complex, using Gblocks to remove ambiguous parts of the alignment in
+ITS, PartitionFinder to find the most appropriate partition scheme and models of
+molecular evolution. We unlinked clocks for all markers, used strict molecular
+clocks, fixing the COI clock at 1.85\%/My \cite{Lessios2008} while estimating
+the rate of the others. We ran the analysis for $50.10^{6}$ generations and
+repeated it at least twice for each group.
 
 For the estimation of the marginal likelihoods, we used the settings recommended
-by Baele et al. \cite{Baele2012} with chain lengths of $10^{6}$, path steps of
-100, and sampling along evenly spaced quantiles of a $Beta(0.3, 1)$
-distribution. However, given the differences observed in the marginal likelihood
-estimations between the independent runs, we ran the analysis again with chain
-lengths of $3.10^{6}$.
+by Baele et al. \cite{Baele2012} with path steps of 100, and sampling along
+evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
+chain lengths to $3.10^{6}$. If for any runs, the absolute difference between
+the marginal likelihoods estimated with the stepping stone and the path sampling
+methods was higher than 1, we interpreted this difference as a failure of the
+estimate to converge. We therefore discarded the results and ran the analysis
+again.
+
+The difference in likelihood between t
 
 \begin{table}
   \centering
   \caption{Species groupings used in models of species delineation.}
   \begin{tabular}{ l l l }
     \hline
-    Model & Number of species & ESUs attributed to ESU1 \\
+    Model                     & Number of species & ESUs attributed to ESU1 \\
     \hline 
-    M1    &     2             &  WPac, Hawaii, RedSea   \\
-    M2    &     3             &  WPac, RedSea           \\
-    M3    &     3             &  WPac, Hawaii           \\
-    M4    &     4             &  WPac                   \\
-    M5    &     4             &  Hawaii                 \\
-    M6    &     4             &  RedSea                 \\
-    M7    &     5             &  --                     \\
+    M1 (noWpacHawaiiRedSea)   &     2             &  WPac, Hawaii, RedSea   \\
+    M2 (noWpacRedSea)         &     3             &  WPac, RedSea           \\
+    M3 (noWpacHawaii)         &     3             &  WPac, Hawaii           \\
+    M4 (noWpac)               &     4             &  WPac                   \\
+    M5 (noHawaii)             &     4             &  Hawaii                 \\
+    M6 (noRedSea)             &     4             &  RedSea                 \\
+    M7 (allESU1)              &     5             &  --                     \\
     \hline
   \end{tabular}
   \label{tab:delineationModels}
 \end{table}
 
-To confirm that the differentiation in COI which delineate the putative species
-using GMYC does not drive the marginal likelihood calculations, and therefore
-the model of species delineation favored by *BEAST, we repeated the analyses
-omitting the mitochondrial markers.
+To confirm that the differentiation in COI which delineates the putative species
+using GMYC does not drive differences in marginal likelihoods between the
+different models tested with *BEAST, we repeated the analyses omitting COI (for
+the models M4, M5, M6 and M7). Furthermore, to assess more generally the
+contribution of the nuclear data to the results, we repeated the analyses by
+attributing randomly the nuclear data.
 
 \section{Results}
 
@@ -669,15 +682,24 @@ omitting the mitochondrial markers.
 For the datasets used in xxx analysis, the COI alignment was xxx bp long and
 included xxx variable sites, of which xxx were phylogenetic informative. 
 
+<<loci-characteristics-data, cache=TRUE, echo=FALSE, warning=FALSE>>=
+
+@
+
+<<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
+
+@ 
+
 \subsection{Species based on morphology}
 
-Members of the impatiens group are usually characterized by having two main
-colors, a darker one and a lighter one, that vary in their hues across species
-and across individuals. The dark color is typically brown but varies in
-lightness and can take a red or purple tint. The lighter color is typically gray
-but varies in lightness from light brown to yellow or even white. The
-light-colored areas, are also typically harboring a ``salt-and-pepper'' pattern
-with small spots of a darker coloration on the light background.
+Members of the impatiens group are usually characterized by having a body wall
+dominated by a dark color and a lighter one. Both are considerably variable
+across species and across individuals. The dark color is typically brown but
+varies in lightness and can take a red or purple tint. The lighter color is
+typically gray but varies in lightness from light brown to yellow or even
+white. The light-colored areas, are also typically harboring a
+``salt-and-pepper'' pattern with small spots of a darker coloration on the light
+background.
 
 ESU2: Easily recognizable because of (1) yellow tentacles and tube feet, (2)
 round tubercles, (3) light gray/purplish background with white areas, and dark
@@ -685,8 +707,8 @@ stripes in the anterior ends, progressively becoming blotches towards posterior
 end, clearly marked salt-and-pepper coloration typically more prevalent towards
 posterior end. In some specimens (most common in juveniles), coloration
 uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
-tubules, rarely released, few in numbers, long, relatively wide (about 2mm in
-diameter), white with a light blue tint.
+tubules, rarely released, long, relatively wide (about 2mm in diameter), white
+with a light blue tint.
 
 ESU3: 
 
@@ -751,6 +773,30 @@ restricted on the unique haplotypes.
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
 <<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
 @
+
+The topologies obtained with BEAST and RAxML analyses were very similar
+(Figure~\ref{fig:impatiens-tree} and Supplementary Material~\ref{}), and the
+clades identified were found for all the loci analyzed (Supplementary
+Material~\ref{}).
+
+The topologies were highly supported at least up to the node corresponding to
+the most recent common ancestors of the species delineated with the most
+conservative result of the GMYC method. 
+
+The \textit{impatiens} complex comprises two clades that diverged
+approximately 10 MYA (Figure~\ref{fig:impatiens-tree}). Clade I has the widest
+geographic distribution and is found in the Mediterranean Sea, the Caribbean
+basin, the Eastern-Pacific and across the Indo-West Pacific, including the Red
+Sea. Clade II is restricted to the Indo-West Pacific (including the Red Sea).
+
+The phylogeny also highlights that several speciation events in the complex were
+concurrent throughout the diversification history of the complex (e.g., the first
+speciation event in each clade about 9.5 MYA).
+
+The youngest pair of sister species delineated by GMYC are estimated to have
+diverged 1.8 MYA. The three delineated species that diverged the most recently
+(ESU1, WPac and Hawaii) have overlapping distributions
+(Figure~\ref{fig:impatiens-map-group2}).
 
 <<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean">>=
 @ 
