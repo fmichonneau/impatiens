@@ -20,6 +20,61 @@ gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors),
                  paste0("20140514.noDup_", gmycFactors))
 pathResults <- "~/Documents/Impatiens"
 
+
+### ---- loci-characteristics-data ----
+library(seqManagement)
+library(pegas)
+library(phyloch)
+library(xtable)
+
+locFiles <- cutAlignment(algfile="data/20130923.impatiens.phy",
+                         partfile="data/20130923.partition-raxml-perlocus",
+                         formatin="sequential", format="sequential")
+
+tmpDir <- tempdir()
+dir.create(file.path(tmpDir, "data"))
+lociChar <- sapply(locFiles, function(fnm) {
+    fnmo <- paste(fnm, "_nodup", sep="")
+    tmpfnm <- file.path(tmpDir, fnm)
+    removeEmptySeqs(fnm, output=tmpfnm, formatin="sequential", formatout="sequential", gap="?")
+    convertGaps(tmpfnm, overwrite=TRUE, formatin="sequential")
+    algChar <- read.dna(file=tmpfnm, format="sequential", as.character=TRUE)
+    alg <- read.dna(file=tmpfnm, format="sequential")
+    lSeqNonAlign <- apply(algChar, 1, function(x) {
+        seq <- paste(as.character(x), collapse="", sep="")
+        length(gregexpr("[actgACTG]", seq)[[1]])
+    })
+    nSeq <- nrow(alg)               # number of individuals sequenced
+    nUniq <- nrow(haplotype(alg))   # number of haplotypes/unique sequences
+    lSeq <- ncol(alg)               # length of the aligned sequence
+    rglSeq <- range(lSeqNonAlign)   # range of raw sequence length
+    nSeg <- length(seg.sites(alg))  # number of segregating/variable sites
+    nPis <- pis(alg)                # number of parsimony informative sites
+    c(nSeq, nUniq, paste(lSeq, "(", rglSeq[2], ")", sep=""), nSeg, nPis)
+})
+
+### ---- loci-characteristics-table ---- 
+lociChar <- as.matrix(lociChar)
+
+locNm <- gsub(".+_(.+)\\.phy", "\\1", colnames(lociChar))
+colnames(lociChar) <- locNm
+
+rownames(lociChar) <- c("$N$",
+                        "$K$",
+                        "$bp$",
+                        "$S$", "$S_{i}$")
+
+print(xtable(lociChar,
+             caption=c("Characteristics of the loci used for the phylogenetic analyses. $N$: number of individuals sequenced, $K$: number of haplotypes, $bp$: length of the aligned (and unaligned) sequences, $S$: number of segregating sites, $S_{i}$: number of parsimony informative sites.", # long
+                 "Loci characteristics")), # short
+             caption.placement="top",
+      sanitize.text.function = function(x){x})
+
+
+
+### ---- impatiens-tree-stats -----
+impTree <- read.nexus(file="../20140519.allImpatiens/allimpatiens_strict.tree.nex")
+
 ### full impatiens Tree
 ### ---- impatiens-tree ----
 library(ape)
