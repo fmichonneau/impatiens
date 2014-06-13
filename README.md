@@ -533,6 +533,13 @@ identical, and the second option (specifying 8 instances) was a little faster
 (towards the end getting 1h13m/M samples against 1h30m/M samples; total time 552
 seconds against 459 seconds). Didn't keep the results.
 
+```
+[note added on 2014-06-07 -- a message from Andrew Rambaut on BEAST mailing list
+suggests that for best performance it's best to leave -threads unspecified (or
+to use -threads -1) which lets BEAST decides the size of thread pool depending
+on the dataset (typically it's set to be equal the number of partitions).]
+```
+
 ### Results after a week
 
 Terrible mixing. Values are all over the place with mutation rate values
@@ -633,6 +640,47 @@ Tree looks good. 2nd run give similar values for all parameters. Still need to
 generate tree. Tree from run1 temporarily used in manuscript. See `20140605` for
 follow up.
 
+## Results (combining with 2nd run)
+
+### Step 1 -- removing extra log
+
+Because the first run was not constrained in term of number of generation,
+truncating file to 185e6 generations to match length of second run.
+
+```{bash}
+grep -n 185000000 20140519.allImpatiens.log 
+mv 20140519.allImpatiens.log 20140519.allImpatiens_full.log
+head -18842 20140519.allImpatiens_full.log > 20140519.allImpatiens.log
+grep -n 185000000 20140519.impTreeAll.trees 
+head -18925 20140519.impTreeAll.trees > 20140519.impTree_185e6.trees
+echo "END;" >> 20140519.impTree_185e6.trees
+```
+
+### Step 2 -- combining the logs
+
+Just bought more RAM, no need to be as conservative with the burnin!
+
+```{bash}
+./logcombiner -log ~/Documents/Impatiens/20140519.allImpatiens/run1/20140519.allImpatiens.log -b 20 \
+  -log ~/Documents/Impatiens/20140519.allImpatiens/run2/20140519.allImpatiens.log -b 20\
+  -o ~/Documents/Impatiens/20140519.allImpatiens/combined_burnin20.log
+```
+
+All good, all ESS very high (lowest 440), most are above 1000.
+
+### Step 3 -- combining the trees
+
+I had to do a 20% burnin on the final tree because of memory issues...
+
+```{bash}
+./logcombiner -log ~/Documents/Impatiens/20140519.allImpatiens/run1/20140519.impTree_185e6.trees -b 20 \
+  -log ~/Documents/Impatiens/20140519.allImpatiens/run2/20140519.impTreeAll.trees -b 20 \
+  -o ~/Documents/Impatiens/20140519.allImpatiens/combined_burnin20.trees.nex
+./treeannotator -heights ca -burnin 20 \
+  ~/Documents/Impatiens/20140519.allImpatiens/combined_burnin20.trees.nex \
+  ~/Documents/Impatiens/20140519.allImpatiens/allimpatiens_strict.tree.nex
+```
+
 # 20140522 -- RAxML entire complex
 
 Trying to use RAxML to see if I get the same topology.
@@ -662,6 +710,16 @@ estimated relatively (as for `20140519`).
 - Priors for clocks all set as exponentional distributions with mean at 1.0.
 - set run length at 185e6 generations.
 
+## Results
+
+Poor overall mixing mostly driven by poor mixing on the clocks.
+
+# 20140612 -- BEAST full complex
+
+## Rationale
+
+Reducing the number of clocks to see the impact on mixing. First, use strict
+clock on rDNA but keep the other two as log-normal.
 
 
 - - - - - - - - - 

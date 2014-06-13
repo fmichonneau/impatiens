@@ -707,6 +707,16 @@ estimated relatively (as for `20140519`).
 - Priors for clocks all set as exponentional distributions with mean at 1.0.
 - set run length at 185e6 generations.
 
+## Results
+
+Poor overall mixing mostly driven by poor mixing on the clocks.
+
+# 20140612 -- BEAST full complex
+
+## Rationale
+
+Reducing the number of clocks to see the impact on mixing. First, use strict
+clock on rDNA but keep the other two as log-normal.
 
 
 - - - - - - - - - 
