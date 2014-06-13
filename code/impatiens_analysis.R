@@ -32,12 +32,12 @@ locFiles <- cutAlignment(algfile="data/20130923.impatiens.phy",
                          formatin="sequential", format="sequential")
 
 tmpDir <- tempdir()
-dir.create(file.path(tmpDir, "data"))
+dir.create(file.path(tmpDir, "data"), recursive=TRUE)
+
 lociChar <- sapply(locFiles, function(fnm) {
-    fnmo <- paste(fnm, "_nodup", sep="")
     tmpfnm <- file.path(tmpDir, fnm)
-    removeEmptySeqs(fnm, output=tmpfnm, formatin="sequential", formatout="sequential", gap="?")
-    convertGaps(tmpfnm, overwrite=TRUE, formatin="sequential")
+    convertGaps(fnm, output=tmpfnm, formatin="sequential", colw=10000)
+    removeEmptySeqs(tmpfnm, formatin="sequential", formatout="sequential", gap="-", overwrite=TRUE, colw=10000)
     algChar <- read.dna(file=tmpfnm, format="sequential", as.character=TRUE)
     alg <- read.dna(file=tmpfnm, format="sequential")
     lSeqNonAlign <- apply(algChar, 1, function(x) {
@@ -65,12 +65,62 @@ rownames(lociChar) <- c("$N$",
                         "$S$", "$S_{i}$")
 
 print(xtable(lociChar,
-             caption=c("Characteristics of the loci used for the phylogenetic analyses. $N$: number of individuals sequenced, $K$: number of haplotypes, $bp$: length of the aligned (and unaligned) sequences, $S$: number of segregating sites, $S_{i}$: number of parsimony informative sites.", # long
-                 "Loci characteristics")), # short
+             caption=c(paste("Characteristics of the loci used for the",
+                 "phylogenetic analyses. $N$: number of individuals sequenced,",
+                 "$K$: number of haplotypes, $bp$: length of the aligned (and",
+                 "unaligned) sequences, $S$: number of segregating sites,",
+                 "$S_{i}$: number of parsimony informative sites."), # long
+                 "Loci characteristics"),
+             label="tab:loci-characteristics"), # short
              caption.placement="top",
-      sanitize.text.function = function(x){x})
+      sanitize.text.function = function(x) {x} )
 
+### ---- loci-coverage ----
+locCov <- sapply(locFiles, function(fnm) {
+    tmpfnm <- file.path(tmpDir, fnm)
+    convertGaps(fnm, output=tmpfnm, formatin="sequential", colw=10000)
+    removeEmptySeqs(tmpfnm, formatin="sequential", formatout="sequential", gap="-", overwrite=TRUE, colw=10000)
+    alg <- read.dna(file=tmpfnm, format="sequential")
+    dimnames(alg)[[1]]
+})
+names(locCov) <- gsub(".+_(.+)\\.phy", "\\1", names(locCov))
 
+locWhich <- mapply(function(x, y) cbind(x, rep(y, length(x))), locCov, names(locCov))
+locWhich <- do.call("rbind", locWhich)
+
+locWhich <- data.frame(locWhich, stringsAsFactors=FALSE)
+names(locWhich) <- c("Extract", "Locus")
+
+locPos <- data.frame("Locus" = unique(locWhich$Locus)[c(1,5,2,3,4,6,7,8)],
+                     "begin" = 1:length(unique(locWhich$Locus)),
+                     "end"   = 1:length(unique(locWhich$Locus))+1)
+
+locWhich <- merge(locWhich, locPos)
+
+tmpDB <- impDB[, c("Extract", "consensusESU")]
+tmpDB <- tmpDB[nzchar(tmpDB$Extract), ]
+tmpDB$Extract <- sapply(tmpDB$Extract, function(x) unlist(strsplit(x, ","))[1])
+
+locWhich <- merge(locWhich, tmpDB)
+
+locRank <- data.frame(table(locWhich$Extract))
+names(locRank) <- c("Extract", "nLoci")
+locRank$Rank <- rank(locRank$nLoci, ties.method="random")
+
+locWhich <- merge(locWhich, locRank)
+
+ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
+                            y=Rank, yend=Rank, colour=consensusESU),
+                        lineend="round",
+                        size=I(1.1)) +
+    scale_x_continuous(breaks=1:length(unique(locWhich$Locus))+0.5, labels=locPos$Locus) +
+    scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
+    theme(legend.position=c(.75,.22),
+          panel.background=element_blank(),
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          axis.ticks=element_blank()) 
+ 
 
 ### ---- impatiens-tree-stats -----
 impTree <- read.nexus(file="../20140519.allImpatiens/allimpatiens_strict.tree.nex")
@@ -129,7 +179,7 @@ esuCol <- c("#51574a", "#447c69", "#74c493", "#8e8c6d", "#e4bf80", "#e9d78e", "#
 
 
 #impTree$root.edge <- 8 - treeDepth(impTree)
-impNodLbl <- as.numeric(impTree$posterior)
+
 #impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
 impNodLblCol <- rep(NULL, length(impNodLbl))
 impNodLblCol[impNodLbl == 1] <- "black"
