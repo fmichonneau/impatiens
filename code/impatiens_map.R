@@ -84,9 +84,9 @@ iwp <- map_data("world2")
 
 ### ---- impatiens-map-WA ----
 ## 1. WA + EP + Gala
-tmpMap <- subset(impMapThin, consensusESU %in% c("WA", "EP", "Gala"))
-c1Map <- ggplot(impMapThin) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
-    geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
+tmpMap <- subset(impMap, consensusESU %in% c("WA", "EP", "Gala"))
+c1Map <- ggplot(impMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+    geom_point(aes(x = Long.recenter, y = Lat, colour = consensusESU), data = tmpMap,
                position = position_dodge(width = 1.5), shape=15) +
     xlim(c(250,310)) + ylim(c(-25, 25)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
@@ -106,6 +106,7 @@ c2Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50"
     theme(legend.position = "top", legend.title = element_blank(),
           panel.background = element_rect(fill = 'aliceblue'),
           panel.grid.major = element_line(colour = "white", size = 0.1))
+
 c2Map
 
 ### ---- impatiens-map-group1 ----
@@ -120,6 +121,7 @@ c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50"
     theme(legend.position = "top", legend.title = element_blank(),
           panel.grid.major = element_line(colour = "white", size = 0.1),
           panel.background = element_rect(fill = 'aliceblue'))
+
 c3Map
 
 ## pdf(paper = "USr", file = "impatiensMaps.pdf")
