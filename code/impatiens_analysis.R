@@ -6,6 +6,7 @@ impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impa
 library(seqManagement)
 library(wesanderson)
 library(ggplot2)
+library(ape)
 source("~/R-scripts/fasToPhase.R")
 source("code/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
@@ -50,32 +51,54 @@ lociChar <- sapply(locFiles, function(fnm) {
     rglSeq <- range(lSeqNonAlign)   # range of raw sequence length
     nSeg <- length(seg.sites(alg))  # number of segregating/variable sites
     nPis <- pis(alg)                # number of parsimony informative sites
-    c(nSeq, nUniq, paste(lSeq, "(", rglSeq[2], ")", sep=""), nSeg, nPis)
+    c(nSeq, nUniq, lSeq, rglSeq[2], nSeg, nPis)
 })
 
-### ---- loci-characteristics-table ---- 
 lociChar <- as.matrix(lociChar)
 
 locNm <- gsub(".+_(.+)\\.phy", "\\1", colnames(lociChar))
 colnames(lociChar) <- locNm
+rownames(lociChar) <- c("Nind",
+                        "K",
+                        "bp_alg",
+                        "bp_unalg",
+                        "S", "S_i")
 
-rownames(lociChar) <- c("$N$",
+### ---- loci-characteristics-table ----
+
+lociCharTable <- lociChar
+lociCharTable["bp_alg", ] <- paste(lociCharTable["bp_alg", ], " (", lociCharTable["bp_unalg", ], ")", sep="")
+lociCharTable <- lociCharTable[- match("bp_unalg", rownames(lociCharTable)), ]
+
+rownames(lociCharTable) <- c("$N$",
                         "$K$",
-                        "$bp$",
-                        "$S$", "$S_{i}$")
+                        "bp",
+                        "$S$",
+                        "$S_{i}$")
 
-print(xtable(lociChar,
-             caption=c(paste("Characteristics of the loci used for the",
-                 "phylogenetic analyses. $N$: number of individuals sequenced,",
-                 "$K$: number of haplotypes, $bp$: length of the aligned (and",
-                 "unaligned) sequences, $S$: number of segregating sites,",
-                 "$S_{i}$: number of parsimony informative sites."), # long
-                 "Loci characteristics"),
-             label="tab:loci-characteristics"), # short
-             caption.placement="top",
-      sanitize.text.function = function(x) {x} )
+lociCharTable <- lociCharTable[, c("16S", "COI", "ATP6", "c0036", "c0775", "H3a", "ITS", "LSU")]
 
-### ---- loci-coverage ----
+locTable <- print(xtable(lociCharTable,
+                         caption=c(paste("Characteristics of the loci used for the",
+                             "phylogenetic analyses. $N$: number of individuals sequenced,",
+                             "$K$: number of haplotypes, bp: length of the aligned (and",
+                             "unaligned) sequences, $S$: number of segregating sites,",
+                             "$S_{i}$: number of parsimony informative sites.",
+                             "The statistics given for ITS are for the ones used in the",
+                             "analysis (i.e., after using Gblock)."), # long
+                             "Loci characteristics"),
+                         label="tab:loci-characteristics"), # short
+                  caption.placement="top",
+                  sanitize.text.function = function(x) {x},
+                  print.results=FALSE)
+
+multiColStr <- paste("\\1 \\& \\\\multicolumn{3}{c}{mtDNA}",
+                    "\\\\multicolumn{5}{c}{nucDNA} \\\\\\\\ \\\n",
+                    "\\\\cline{2-4} \\\\cline{5-9}", sep="")
+
+cat(gsub("(}\\\n)(\\s+\\\\\\hline)", multiColStr, locTable))
+
+### ---- loci-coverage-data ----
 locCov <- sapply(locFiles, function(fnm) {
     tmpfnm <- file.path(tmpDir, fnm)
     convertGaps(fnm, output=tmpfnm, formatin="sequential", colw=10000)
@@ -109,10 +132,18 @@ locRank$Rank <- rank(locRank$nLoci, ties.method="random")
 
 locWhich <- merge(locWhich, locRank)
 
+hasMt <- locWhich[locWhich$Locus %in% c("16S", "COI", "ATP6"), ]
+
+hasMtNuc <- locWhich[locWhich$Extract %in% hasmt$Extract &
+                     locWhich$Locus %in% c("c0036", "c0775", "ITS", "LSU", "H3a"), ]
+
+
+### ---- loci-coverage-plot ----
+## TODO -- modify to show realized locus lengths
 ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
                             y=Rank, yend=Rank, colour=consensusESU),
                         lineend="round",
-                        size=I(1.1)) +
+                        size=I(1.5)) +
     scale_x_continuous(breaks=1:length(unique(locWhich$Locus))+0.5, labels=locPos$Locus) +
     scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
     theme(legend.position=c(.75,.22),
@@ -272,8 +303,20 @@ barMonophyletic(1:max(tipData(grpImp)), grpLbl, as(grpImp, "phylo"), cex.plot=.5
                 include.tip.label=TRUE)
 add.scale.bar()
 
-
 ### GMYC analyses
+### ---- gmyc-target-tree    ----
+library(XML)
+xmlBeastGetTaxa <- function(file) {
+    doc <- xmlTreeParse(file, getDTD=FALSE)
+    r <- xmlRoot(doc)
+    unname(sapply(xmlChildren(r[["taxa"]]), function(x) xmlGetAttr(x, "id")))
+}
+targetTreeFull <- read.nexus(file="~/Documents/Impatiens/20140519.allImpatiens/allimpatiens_strict.tree.nex")
+labelsCoi <- xmlBeastGetTaxa(file="~/Documents/Impatiens/20140422.allSeq_relaxed_yule/20140422.allSeq_relaxed_yule.xml")
+targetTreeLblAll <- targetTreeFull$tip.label
+targetTree <- drop.tip(targetTreeFull, targetTreeLblAll[! targetTreeLblAll %in% labelsCoi])
+write.tree(targetTree, file="data/20140616.impatiens_targetTree.tre")
+
 ### ---- generate-gmyc-trees ----
 ## pathResults, gmycFactors are defined in init-phylo
 treeannotatorCmd <-
@@ -294,6 +337,29 @@ for (i in 1:length(gmycFactors)) {
     }
     else {
         message(inFile[i], " doesn't exist.")
+    }
+}
+
+treeannotatorCmdWithTarget <- paste(
+    c("~/Software/BEASTv1.8.0/bin/./treeannotator -heights ca -burnin 1000",
+      "-target ~/Documents/Impatiens/impatiens_phylogeography/data/20140616.impatiens_targetTree.tre"),
+    collapse=" ")
+inFile <- file.path(pathResults, gmycFactors, paste0(gmycFactors, ".trees"))
+outFileTarget <- file.path(pathResults, gmycFactors, paste0(gmycFactors, "_withTarget.tre.nex"))
+## can't parallize this, too much RAM needed.
+## foreach (i = 1:length(gmycFactors)) %dopar% {
+for (i in 1:length(gmycFactors)) {
+    if (file.exists(inFile[i])) {
+        tmpCmd <- paste(treeannotatorCmdWithTarget, inFile[i], outFileTarget[i])
+        if (! file.exists(outFileTarget[i])) {
+            system(tmpCmd)
+        }
+        else {
+            message(outFileTarget[i], " already exists.")
+        }
+    }
+    else {
+        message(inFileTarget[i], " doesn't exist.")
     }
 }
 
@@ -322,29 +388,32 @@ gmycSumm <- lapply(gmycRes, function(x) {
     tmpMulti <- x$multiGmyc
     ciSingle <- range(tmpSingle$entity[tmpSingle$likelihood > (max(tmpSingle$likelihood) - 2)])
     ciMulti <- range(tmpMulti$entity[tmpMulti$likelihood > (max(tmpMulti$likelihood) - 2)])
-    ## each element of the list returns a vector of length 3: mean, range
-    list(singleMeanCI=c(tmpSingle$entity[which.max(tmpSingle$likelihood)], ciSingle),
-         multiMeanCI=c(tmpMulti$entity[which.max(tmpMulti$likelihood)], ciMulti))
+    timeSingle <- tmpSingle$threshold.time[which.max(tmpSingle$likelihood)]
+    ## each element of the list returns a vector of length 4: mean, range, threshold time (not implemented
+    ##   for the multi-threshold)
+    list(singleMeanCITime=c(tmpSingle$entity[which.max(tmpSingle$likelihood)], ciSingle, timeSingle),
+         multiMeanCITime=c(tmpMulti$entity[which.max(tmpMulti$likelihood)], ciMulti, NA))
 })
 names(gmycSumm) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycSumm))
 gmycSumm <- t(data.frame(gmycSumm))
 gmycSumm <- data.frame(gmycSumm)
-names(gmycSumm) <- c("mean", "low", "high")
+names(gmycSumm) <- c("mean", "low", "high", "threshold.time")
 tt <- rownames(gmycSumm)
 tmpSM <- sapply(tt, function(x) unlist(strsplit(x, "\\."))[2])
-tmpSM <- gsub("MeanCI", "", tmpSM)
+tmpSM <- gsub("MeanCITime", "", tmpSM)
 tmpFac <- strsplit(gsub("\\..+$", "", tt), "_")
 tmpSeq <- sapply(tmpFac, function(x) x[1])
 tmpClo <- sapply(tmpFac, function(x) x[2])
 tmpDem <- sapply(tmpFac, function(x) x[3])
 gmycTrees <- lapply(gmycRes, function(x) x$simpleGmyc$tree)
 ageTrees <- lapply(gmycTrees, function(x) rep(max(branching.times(x)), 2))
+timeSingle <- lapply(gmycRes, function(x) x$simpleGmyc$threshold.time[which.max(x$simpleGmyc$likelihood)])
 names(ageTrees) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(ageTrees))
 gmycSumm <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
             analysisType = tmpSM, gmycSumm, ageTree = unlist(ageTrees))
 
-## ggplot(data=gmycSumm, aes(x=ageTree, y=mean, colour=interaction(sequences, clock, demographic),
-##           shape=analysisType)) + geom_point()
+ ## ggplot(data=gmycSumm, aes(x=ageTree, y=mean, colour=interaction(sequences, clock, demographic),
+ ##           shape=analysisType)) + geom_point()
 
 ### ---- gmyc-coi-plot ----
 levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All haplotypes"
@@ -365,6 +434,24 @@ ggplot(data=gmycSumm, aes(x=demographic, y=mean,
           panel.grid.minor = element_line(NA)) +
     scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
+
+### ---- gmyc-tree-plot ----
+## find the tree with the most conservative estimate
+nspecies <- sapply(gmycRes, function(x) {
+    tmpSingle <- x$simpleGmyc
+    tmpSingle$entity[which.max(tmpSingle$likelihood)]
+})
+resKeep <- gmycRes[[which.min(whichKeep)]]$simpleGmyc
+stopifnot(identical(class(resKeep), "gmyc"))
+keepTree <- resKeep$tree
+## Get threshold
+keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+## Find edge length for edge leading to node associate with threshold
+##   so we can draw line in the middle of the edge
+keepEdgeWhich <- names(branching.times(keepTree)[which(branching.times(keepTree) == -keepThreshold)])
+keepEdgeLength <- keepTree$edge.length[which(keepTree$edge[, 2] == as.integer(keepEdgeWhich))]
+plot(ladderize(keepTree), cex=.5)
+abline(v=max(branching.times(keepTree))+keepThreshold-(keepEdgeLength/2), col="red", lwd=2)
 
 ### ---- median-tmrca-WAgroup ----
 ## Get mean and median for node corresponding to MRCA for all
