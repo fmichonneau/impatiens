@@ -88,6 +88,9 @@ inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
 % case of no clear barriers and possibility for rapid changes in population
 % sizes, geographical ranges
 
+% present geographic distribution, only data available to investigate patterns
+% of speciation when no fossils exist
+
 Based on the precept that species are defined on the criterion of reproductive
 isolation, three processes operating at different rates are interacting during
 speciation: (1) acquisition of reproductive isolation, (2) morphological
@@ -677,49 +680,47 @@ attributing randomly the nuclear data.
 
 \section{Results}
 
-\subsection{Sequence analysis}
-
-For the datasets used in xxx analysis, the COI alignment was xxx bp long and
-included xxx variable sites, of which xxx were phylogenetic informative. 
+\subsection{Sequence data}
 
 <<loci-characteristics-data, cache=TRUE, echo=FALSE, warning=FALSE>>=
 
 @
 
+The complete sequence data set was \Sexpr{sum(lociChar["bp_alg",
+  ])}~bp (with \Sexpr{sum(lociChar["bp_alg", c("16S", "COI",
+  "ATP6")])}~bp from mitochondrial genome, and
+\Sexpr{sum(lociChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
+  "LSU")])}~bp from the nuclear genome,
+Table~\ref{tab:loci-characteristics}). Of the
+\Sexpr{sum(lociChar["S_i",])} parsimony-informative sites,
+\Sexpr{round(sum(lociChar["S_i", c("16S", "COI",
+  "ATP6")])/sum(lociChar["S_i",])*100, 0)}\% were coming from the
+mitochondrial loci (Table~\ref{tab:loci-characteristics}).
+
 <<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
 
 @ 
 
-<<loci-coverage, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=9.75, out.width='10cm', fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
+<<loci-coverage-data, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE>>=
+
+@
+
+We obtained sequence data from \Sexpr{length(unique(locWhich[,
+  "Extract"]))} individuals covering the entire known geographical
+range of \textit{Holothuria impatiens}. All of these individuals were
+sequenced for at least one mitochondrial locus, and
+\Sexpr{round(length(unique(hasMtNuc[,
+  "Extract"]))/length(unique(locWhich[, "Extract"]))*100, 0)}\% were
+sequenced for at least 1 nuclear locus and
+\Sexpr{round(sum(table(hasMtNuc[, "Extract"]) >=
+  2)/length(unique(locWhich[, "Extract"])) *100, 0) }\% for 2 or more
+(Fig.~\ref{fig:loci-coverage-plot}).
+
+<<loci-coverage-plot, cache=TRUE, dependson='loci-coverage-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=9.75, out.width='10cm', fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
 
 @ 
 
-\subsection{Species based on morphology}
-
-Members of the impatiens group are usually characterized by having a body wall
-dominated by a dark color and a lighter one. Both are considerably variable
-across species and across individuals. The dark color is typically brown but
-varies in lightness and can take a red or purple tint. The lighter color is
-typically gray but varies in lightness from light brown to yellow or even
-white. The light-colored areas, are also typically harboring a
-``salt-and-pepper'' pattern with small spots of a darker coloration on the light
-background.
-
-ESU2: Easily recognizable because of (1) yellow tentacles and tube feet, (2)
-round tubercles, (3) light gray/purplish background with white areas, and dark
-stripes in the anterior ends, progressively becoming blotches towards posterior
-end, clearly marked salt-and-pepper coloration typically more prevalent towards
-posterior end. In some specimens (most common in juveniles), coloration
-uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
-tubules, rarely released, long, relatively wide (about 2mm in diameter), white
-with a light blue tint.
-
-ESU3: 
-
-
-\subsection{Diversity}
-% how many clades
-% how many specimens per clades
+% Here comment on results based on RAxML runs on individual loci.
 
 
 \subsection{GMYC}
@@ -752,12 +753,13 @@ from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
 <<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies'>>=
 @ 
 
-sGMYC produced species estimates that were more conservative and with narrower
-CI than the mGMYC approach. The maximum-likelihood estimates for the sGMYC were
-in most cases at the lower limit of the CI, while the estimates from the mGMYC
-were at the upper limit of the CI. For the analyses performed on all the
-haplotypes, the CI for the estimated number of species using sGMYC and mGMYC did
-not overlap.
+sGMYC produced species estimates that were more conservative and with
+narrower confidence intervals (CI) than the mGMYC approach. The
+maximum-likelihood estimates for the sGMYC were in most cases at the
+lower limit of the CI, while the estimates from the mGMYC were at the
+upper limit of the CI. For the analyses performed on all the
+haplotypes, the CI for the estimated number of species using sGMYC and
+mGMYC did not overlap.
 
 On the genealogies estimated with a strict clock, sGMYC was less sensitive to
 the type of tree prior used, as the estimated number of species was identical
@@ -767,11 +769,35 @@ haplotypes and on unique haplotypes respectively. The Yule prior produced equal
 or more conservative estimates of the number of species compared to the two
 types of coalescent priors.
 
-The estimated number of species with sGMYC was more conservative and less
-sensitive to the priors used when using all haplotypes compared to the analyses
-restricted on the unique haplotypes.
+With sGMYC, the estimated number of species was more conservative and
+less sensitive to the priors used to reconstruct the genealogy when
+all haplotypes were considered.
 
 % discuss identity of species delineated.
+
+\subsection{Species based on morphology}
+
+Members of the impatiens group are usually characterized by having a body wall
+dominated by a dark color and a lighter one. Both are considerably variable
+across species and across individuals. The dark color is typically brown but
+varies in lightness and can take a red or purple tint. The lighter color is
+typically gray but varies in lightness from light brown to yellow or even
+white. The light-colored areas, are also typically harboring a
+``salt-and-pepper'' pattern with small spots of a darker coloration on the light
+background.
+
+ESU2: Easily recognizable because of (1) yellow tentacles and tube feet, (2)
+round tubercles, (3) light gray/purplish background with white areas, and dark
+stripes in the anterior ends, progressively becoming blotches towards posterior
+end, clearly marked salt-and-pepper coloration typically more prevalent towards
+posterior end. In some specimens (most common in juveniles), coloration
+uniformly dark purple, or black, with only tube feet appearing yellow. Cuvierian
+tubules, rarely released, long, relatively wide (about 2mm in diameter), white
+with a light blue tint.
+
+ESU3: 
+
+
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
@@ -779,7 +805,7 @@ restricted on the unique haplotypes.
 @
 
 The topologies obtained with BEAST and RAxML analyses were very similar
-(Figure~\ref{fig:impatiens-tree} and Supplementary Material~\ref{}), and the
+(Fig.~\ref{fig:impatiens-tree} and Supplementary Material~\ref{}), and the
 clades identified were found for all the loci analyzed (Supplementary
 Material~\ref{}).
 
@@ -788,7 +814,7 @@ the most recent common ancestors of the species delineated with the most
 conservative result of the GMYC method. 
 
 The \textit{impatiens} complex comprises two clades that diverged
-approximately 10 MYA (Figure~\ref{fig:impatiens-tree}). Clade I has the widest
+approximately 10 MYA (Fig.~\ref{fig:impatiens-tree}). Clade I has the widest
 geographic distribution and is found in the Mediterranean Sea, the Caribbean
 basin, the Eastern-Pacific and across the Indo-West Pacific, including the Red
 Sea. Clade II is restricted to the Indo-West Pacific (including the Red Sea).
@@ -801,6 +827,9 @@ The youngest pair of sister species delineated by GMYC are estimated to have
 diverged 1.8 MYA. The three delineated species that diverged the most recently
 (ESU1, WPac and Hawaii) have overlapping distributions
 (Figure~\ref{fig:impatiens-map-group2}).
+
+%% Look into Hernandez-Molina2014 for timing of fluctuation/closures to compare
+%% with phylogeny.
 
 <<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean">>=
 @ 
@@ -852,6 +881,11 @@ the evidence strong.
 % between these 2 hypotheses?
 % to identify biogeographic regions, see if there are consistent phylogeographic
 % patterns among ESUs
+
+\subsection{Diversity}
+% how many clades
+% how many specimens per clades
+
 
 \section{Discussion}
 
@@ -973,6 +1007,10 @@ levels: morphological, genetically
 % tiger and tigerRedSea example of disjoint species distribution see
 % Williams+2011. 
 
+% relationship between reproductive isolation and genetic
+% differentiation for sympatry and allopatric species (review
+% Rabosky&Matute PNAS).
+
 A striking pattern among the members of the \textit{H. impatiens} complex, is
 the differences in the geographical ranges among its members. Some species in
 the complex are restricted in their range to an archipelago (e.g., Hawaii or the
@@ -1028,6 +1066,13 @@ of this genus produce in assortative mating.
 % - in Quenouille+2011, fish take at least 4 MYa to reach secondary sympatry
 % - Look into \cite{Lessios1999} to see how the timing in Eucidaris compares to
 % the one H. impatiens
+
+%% Knowlton 2000 says that for alpheids, all species are older than
+%% closure of isthmus of Panama (except for some fish, and snails
+%% [examples given are however, from continental setting])
+%% - see Puritz to see what they say exactly about timing of speciation.
+%% - \cite{Williams2011e} in Lunella, "sympatric species occur only along coastlines,
+%%   while species occuring in island arrays occur in allopatry".
 
 %% Traditionally 2 views:
 %% - small populations -- speed up divergence?
@@ -1085,6 +1130,9 @@ between populations, leading to reproductive isolation.
 % - role of pre- and post-zygotic barriers
 % - role of selection?
 
+\section{Conclusions}
+
+% museum collections need to be future proof
 
 
 \section{Acknowledgments}
