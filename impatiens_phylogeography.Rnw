@@ -22,6 +22,9 @@
 \setmainfont{Crimson Text}
 \setsansfont{SourceSansPro-Regular}
 
+% tables
+\usepackage{multirow}
+
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
 
@@ -355,6 +358,9 @@ tropical Indian and Pacific Oceans.
 
 \subsection{DNA extraction and amplification}
 
+<<number-ambiguities, echo=FALSE, cache=TRUE>>=
+@ 
+
 DNA was extracted using either Invitrogen\texttrademark\ DNAZol\textregistered\
 or Omega Bio-Tek\texttrademark\ E.Z.N.A\textregistered\ Mollusc DNA kit following
 manufacturer recommendations. DNA was most often extracted from tentacles,
@@ -364,18 +370,19 @@ extractions were performed on tissue sampled in the field.
 In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
 nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775. ATP6
 primers have been developed in this study based on sequences available for this
-gene in GenBank. c0036 and c0775 are markers have been developed from a 454 run
+gene in GenBank. c0036 and c0775 are anonymous markers developed from a 454 run
 on genomic DNA from \textit{H. edulis}, and additional details will be provided
 in a future study (\cite{MichonneauInPrep}). c0036 is a portion of the gene
-encoding for an histone H3-like centromeric protein A-like, while c0775 is a
-portion of the gene encoding for the protein SFI1 based on annotations of the
-sea urchin \textit{Strongylocentrotus purpuratus} genome.
+encoding for an histone H3-like centromeric protein A-like (locus XP\_003723879),
+while c0775 is a portion of the gene encoding for the protein SFI1 based on
+annotations of the sea urchin \textit{Strongylocentrotus purpuratus} genome
+(locus XP\_792620).
 
 Primers and PCR conditions used are provided in
 Table~\ref{tab:pcrConditions}. Because of the length of ITS1-5.8S-ITS2, we used
 the sequencing primer fm-5.8S-f. The primers fm-ITS-f is the reverse complement
-sequence of the primer 18S-1708R (\ref{}) and fm-ITS-r is the reverse complement
-of LSUFW1 (\ref{}).
+sequence of the primer 18S-1708R (WN-1708R in \ref{Lacey2005}) and fm-ITS-r is
+the reverse complement of LSUFW1 (LSU D1,D2 fw1: 56-74 in \ref{Sonnenberg2007}).
 
 We conducted PCR in 25$\mu$L reactions using either 15.4$\mu$L of water,
 2.5$\mu$L of Sigma-Alrich \textregistered 10X PCR buffer, 2.5$\mu$L of dNTP,
@@ -386,28 +393,42 @@ recommendations.
 
 Sequencing of PCR products was performed by the Interdisciplinary Center for
 Biotechnology Research at the University of Florida. Chromatrograms were edited
-in Geneious \ref{}.
+using Geneious \ref{Geneious558}.
+
+Overall, \Sexpr{nAmbTotal} positions (\Sexpr{round(nAmbPositions/dim(fullAlg)[2],
+  1)*100}\% of the alignment length, and \Sexpr{round(nAmbTotal/totalNucl,
+  4)*100}\% of the total number of nucleotides) contained heterozygous
+positions. We kept the IUPAC in the alignment which are considered as missing
+data by all the software used in this study.
 
 \begin{table}
   \caption{Primers and PCR conditions for the markers used in this study.}
-\begin{tabular}{ l p{6cm} l l p{1.3cm}}
+\begin{tabular}{ l l p{6cm} l l l}
   \hline
-  Marker & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\ \hline
-  COI    & COIceF ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC \newline
-           COIceR TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & 42 & 40 & \cite{Hoareau2010} \\
-  16S    & 16SAR CGC CTG TTT ATC AAA AAC AT \newline 
-           16SBR GCC GGT CTG AAC TCA GAT CAC GT & 52 & 35 & \cite{Arndt1996} \\
-  ATP6   & ATP6f GGA CAA TTT TCC CCA GAC CT \newline 
-           ATP6r GGT GAA GAG GGT GTT GAT GG & 42 & 40 & this study \\
-  28S    & LSUFW1 AGC GGA GGA AAA GAA ACT A \newline 
-           LSUREV2 ACG ATC GAT TTG CAC GTC AG & 42 & 40 & \cite{} \\
-  ITS1-5.8S-ITS2 & fm-ITS-f AGG TGA ACC TGC AGA TGG ATC A \newline 
-                   fm-5.8S-f CGT CGA TGA AGA ACG CAG YW \newline 
-                   fm-ITS-r TAG TTT CTT TTC CTC CGC T & 45 & 40 & This study, \cite{}, \cite{} \\
-  c0036  & c0036f TAA CGA CGG ATC TCA CGG AG \newline 
-           c0036r AAT AAT GCT GGC GTG ACG TC & 42 & 45 & This study \\
-  c0775  & c0775f GCT CTT CGT TCA ATT TAT CTC GC \newline
-           c0775r GGG ATG CAG TTT GTC GAG TG & 42 & 40 &This study \\
+  Marker & Primer & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\
+  \hline
+  % COI --- 
+  COI &  COIceF  & ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC & 42 & 40 & \multirow{2}{*}{\cite{Hoareau2010}} \\
+       & COIceR  & TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & & & \\
+  % 16S ---
+  16S & 16SAR & CGC CTG TTT ATC AAA AAC AT & 52 & 35 & \multirow{2}{*}{\cite{Arndt1996}} \\
+      & 16SBR & GCC GGT CTG AAC TCA GAT CAC GT & & & \\
+  % ATP6 ---
+  ATP6 & ATP6f   & GGA CAA TTT TCC CCA GAC CT & 42 & 40 & \multirow{2}{*}{This study} \\
+       & ATP6r   & GGT GAA GAG GGT GTT GAT GG & & & \\
+  % 28S ---
+  28S  & LSUFW1  & AGC GGA GGA AAA GAA ACT A &  42 & 40 & \multirow{2}{*}{\cite{Sonnenberg2007}} \\
+       & LSUREV2 & ACG ATC GAT TTG CAC GTC AG & & & \\
+  % ITS ---
+  ITS1-5.8S-ITS2 & fm-ITS-f  & AGG TGA ACC TGC AGA TGG ATC A & 45 & 40 & \multirow{2}{*}{This study, \cite{Lacey2005,Sonnenberg2007}} \\
+                  & fm-5.8S-f & CGT CGA TGA AGA ACG CAG YW & & & \\
+                  & fm-ITS-r  & TAG TTT CTT TTC CTC CGC T  & & & \\
+  % c0036 ---
+  c0036 & c0036f & TAA CGA CGG ATC TCA CGG AG & 42 & 45 & \multirow{2}{*}{This study} \\
+        & c0036r & AAT AAT GCT GGC GTG ACG TC & & & \\
+  % c0775 ---
+  c0775 & c0775f & GCT CTT CGT TCA ATT TAT CTC GC & 42 & 40 & \multirow{2}{*}{This study} \\
+        & c0775r & GGG ATG CAG TTT GTC GAG TG & & & \\
   \hline
 \end{tabular}
 \label{tab:pcrConditions}
@@ -547,19 +568,19 @@ different lineages of \textit{Holothuria impatiens} using RAxML 8.0.1
 
 To determine the optimal partition scheme and models of molecular evolution, we
 analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
-data blocks such that the three codon position for ATP6, COI, H3a, c0036 and
-c0775, and each of 16S, ITS and LSU were individual partitions. We used the
-greedy algorithm, with linked branch lengths, no user tree, and models of
-molecular evolution available by default in BEAST (JC69, HKY, GTR, without or
-with a proportion of invariant sites [+I] and/or Gamma distributed rates across
-sites [+G]). We selected the best-fit models and partition schemes based on the
+data blocks such that the three codon position for ATP6, COI, H3a, and each of
+16S, c0036, c0775, ITS and LSU were individual partitions. We used the greedy
+algorithm, with linked branch lengths, no user tree, and models of molecular
+evolution available by default in BEAST (JC69, HKY, GTR, without or with a
+proportion of invariant sites [+I] and/or Gamma distributed rates across sites
+[+G]). We selected the best-fit models and partition schemes based on the
 Bayesian Information Criterion. The best fit model had 9 partitions.
 
 For the BEAST analysis, following some initial testing runs, we modified
 slightly the partition scheme to improve mixing of the chains (supplementary
 Table \ref{tab:sm-partitions}).
 
-As no fossils are known for the Holothuriidae, we used the closure of the
+As no fossils are known in \textit{Holothuria}, we used the closure of the
 isthmus of Panama to calibrate our phylogeny, and fixed the time of divergence
 for the individuals of the Eastern Pacific (including Galapagos) and the
 Caribbean to 5 MY. The isthmus of Panama was completely closed about 3 MY ago
@@ -1155,11 +1176,14 @@ polymode + ESS
 
 \begin{table}
   \centering
+  \caption{The subscript number corresponds to the to the codon position in the
+    alignment. The "real" codon position is offset by 2 for COI, H3a and ATP6
+    (i.e., $COI_1$ is 3rd codon position)}
   \begin{tabular} { l l l }
     1      & $GTR+I+G$    & $16S, ATP6_2$ \\
     2      & $HKY+I+G$    & $ATP6_1, COI_1$\\ 
-    3      & $HKY+I+G$    & $ATP6_3, c0775_1, c0775_2, c0775_3$\\ 
-    4      & $GTR+I+G$    & $c0036_1, c0036_2, c0036_3$\\ 
+    3      & $HKY+I+G$    & $ATP6_3, c0775$\\ 
+    4      & $GTR+I+G$    & $c0036$\\ 
     5      & $GTR+I+G$    & $COI_2, H3a_2$ \\
     6      & $HKY+I$      & $COI_3$\\ 
     7      & $HKY$        & $H3a_1, LSU$ \\ 
