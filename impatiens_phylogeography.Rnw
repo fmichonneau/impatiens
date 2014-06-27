@@ -307,27 +307,31 @@ used to reconstruct the phylogeny.
 
 \subsection{Approach}
 
-To estimate the extant of the diversity in the \textit{Holothuria impatiens}
-complex, we first assessed differentiation observed in COI to make sense of the
-poorly understood morphological variation that is seen in the \textit{Holothuria
-  impatiens} complex. To this end, we delineated species within the complex
-using the general mixed Yule-coalescent (GMYC) model on an ultrametric tree
-obtained using Bayesian inference with BEAST \cite{Drummond2012}.
+The goal of this study is to identify cryptic species in the complex
+\textit{Holothuria impatiens}, and to understand the temporal and spatial
+dynamics of its diversification.
 
-To investigate the history of diversification and the affinities among the
-cryptic species within the \textit{H. impatiens} complex, we built a
+We use a combination of complementary methods of species delineation following
+modifications of the approaches by \cite{Leache2010,Satler2013}. First, we used
+the Generalized Mixed Yule Coalescent method (GMYC) to identify putative species
+\cite{Pons2006,Monaghan2009}. We then used independent lines of evidence
+(morphology, ecology and geographic information) to assess the validity of the
+lineages identified with GMYC. In the event that no line of evidence could
+separate the lineages identified with GMYC, we used model comparison in *BEAST
+\cite{Heled2010,Baele2012} to assign species limits appropriately.
+
+We use this approach as the complex includes both deeply divergent lineages that
+can readily be distinguished based on morphological characters, and recent
+radiations that are morphologically indistinguishable. The multispecies
+coalescent offers a statistical framework that provides an objective assessment
+of species limits \cite{Fujita2012a}, even when no other morphological,
+ecological or geographical information allows to identify independent
+evolutionary lineages. Our study shows these methods can be added to the lines
+of evidence typically used in integrative taxonomy.
+
+Additionally, to investigate the history of diversification and the affinities
+among the cryptic species within the \textit{H. impatiens} complex, we built a
 multi-locus, time-calibrated phylogeny.
-
-Based on the putative species estimated by the genetic-based methods, we
-investigated patterns of variation in the live appearance, ossicle shape,
-habitat and geographical range to determine whether these additional lines of
-evidence were concordant with the genetic data.
-
-In some cases, genetic-based methods distinguished putative species that were
-only slightly differentiated and could not be teased apart with other lines of
-evidence. Therefore, we compared the marginal likelihoods of competing models of
-species delineation using the multispecies coalescent in a Bayesian framework as
-implemented in *BEAST \cite{Heled2010}.
 
 \subsection{Sampling}
 
