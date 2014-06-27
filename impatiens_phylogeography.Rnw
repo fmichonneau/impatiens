@@ -74,10 +74,10 @@ are efficient as genetic data can carry the signature of the historical
 processes that have shaped modern patterns. In particular, the expected level of
 genetic divergence between reproductively isolated populations is proportional
 to the amount of time since they shared a common ancestor
-\cite{Hey2010-IMa2}. However, divergence in mitochondrial DNA alone is insufficient
-to conclude for reproductive isolation. Historical interruption of gene flow
-between populations might lead to genetic divergence, but without reproductive
-isolation, upon secondary contact, these populations will resume
+\cite{Hey2010-IMa2}. However, divergence in mitochondrial DNA alone is
+insufficient to conclude for reproductive isolation. Historical interruption of
+gene flow between populations might lead to genetic divergence, but without
+reproductive isolation, upon secondary contact, these populations will resume
 inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
 \cite{} can mask reproductive isolation.
 
@@ -87,9 +87,6 @@ inter-breeding. Conversely, introgression \cite{} and incomplete lineage sorting
 % up local diversity, and confusion about sympatry + genetic differentiation in
 % case of no clear barriers and possibility for rapid changes in population
 % sizes, geographical ranges
-
-% present geographic distribution, only data available to investigate patterns
-% of speciation when no fossils exist
 
 Based on the precept that species are defined on the criterion of reproductive
 isolation, three processes operating at different rates are interacting during
@@ -113,13 +110,13 @@ understood. We therefore only have access to morphological and genetic
 information for which the differentiation is a by-product of reproductive
 isolation that do not guarantee to be effective in discriminating
 species. Integrative taxonomy has been proposed to integrate these multiple
-lines of evidence ... 
+lines of evidence ...
 
 The failure to distinguish reproductively isolated species can stem from either
 the choice of an inappropriate set of characters to distinguish species
 otherwise morphologically variable, or from the absence of variation in
 morphology but differentiation in other traits (e.g., ecology, chemical cues)
-allows them to remain reproductively isolated 
+allows them to remain reproductively isolated
 
 For morphological characters to be appropriate to distinguish between
 populations of reproductively isolated individuals, they require to evolve at a
@@ -129,7 +126,7 @@ selection usually meet these criteria. When species use visual clues to identify
 their mates, taxonomists can use the same characters to discrimminate between
 these populations of reproductively isolated individuals. However, in situations
 where mate recognition does not involve visual clues (e.g., chemical
-communication, sperm/egg recognition proteins), 
+communication, sperm/egg recognition proteins),
 
 Most marine invertebrate taxonomy results from the study of dry or preserved
 specimens. With these methods, many delicate morphological characters and very
@@ -438,10 +435,10 @@ To delineate putative species based on molecular data, we fit the generalized
 mixed Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009},
 \cite{Fujisawa2013}) to the COI sequence data. This approach attempts to detect
 transitions in the branching rate of an ultrametric tree corresponding to the
-expected increase in lineage accumulation resulting from the shift from
-speciation to intraspecific coalescent events. To determine the location of the
-threshold, the GMYC model is fit at different nodes along the tree, and the time
-that provides the best likelihood for the location of the switch is
+expected increase in lineage accumulation resulting from the shift between
+speciation and population-level coalescent events. To determine the location of
+the threshold, the GMYC model is fit at different nodes along the tree, and the
+time that provides the best likelihood for the location of the switch is
 selected. Lineages found beyond this threshold are considered different species.
 
 Estimating the transition from speciation to intraspecific coalescent events
@@ -449,32 +446,30 @@ requires an ultrametric tree. We used BEAST to obtain these trees as it provides
 a powerful statistical framework to interpret the chronological context of
 molecular variation \cite{Drummond2014}. Despite some investigation of the
 effects of priors on the number of species estimated by GMYC
-(\cite{Monaghan2009}, \cite{Fujisawa2013}), we here revisit the impact of
-specifying a strict or a log-normal relaxed clock, as well as the type of tree
-prior used (coalescent with constant population size \cite{Kingman1982},
-coalescent with exponentially growing population size \cite{Griffiths1994}, and
-Yule \cite{Yule1925}). The type of clock used will affect branch lengths,
-however, it is difficult to predict \textit{a priori} how the misspecification
-of this parameter will influence the results. Monaghan et
-al. \cite{Monaghan2009}, indicate that using a coalescent constant tree prior
-is a more conservative approach compared to a Yule prior as GMYC uses the
+(\cite{Monaghan2009}, \cite{Fujisawa2013}, \cite{Talavera2013}), we here revisit
+the impact of specifying a strict or a log-normal relaxed clock, as well as the
+type of tree prior used (coalescent with constant population size
+\cite{Kingman1982}, coalescent with exponentially growing population size
+\cite{Griffiths1994}, and Yule \cite{Yule1925}). The type of clock used will
+affect branch lengths, however, it is difficult to predict \textit{a priori} how
+the misspecification of this parameter will influence the results. Monaghan et
+al. \cite{Monaghan2009} indicate that using a coalescent constant tree prior is
+a more conservative approach compared to a Yule prior, as GMYC uses the
 coalescent as the null model to explain the branching pattern. Their results
 validated their predictions and the GMYC method detected more species on trees
 estimated with a Yule prior. However, these results might be influenced by the
 nature of the data, in particular by the amount of variation observed in the
 sequence data, and deserve further testing.
 
-% Talavera2013 kept identical sequences
-
-Furthermore, to our knowledge no previous study has investigated the effect of
-retaining identical haplotypes in the analysis. In other studies, identical
-sequences were removed as they were thought to make the task of estimating the
-transition problematic \cite{Monaghan2009}, as the GMYC method cannot
-accommodate for the null branch lengths associated with identical sequences
-\cite{Fujisawa2013}. Contrary to other programs, BEAST does not assign zero edge
-length to the terminal branches for terminal sequences, and thus allows to
-retain them in the analysis. There are obvious theoretical advantages for
-retaining identical sequences, as BEAST assumes that the sequences represent a
+Furthermore, to our knowledge few studies have investigated the effect of
+retaining identical haplotypes in the analysis (but see \cite{Talavera2013}). In
+other studies, identical sequences were removed as they were thought to make the
+task of estimating the transition problematic \cite{Monaghan2009}, as the GMYC
+method cannot accommodate for the null branch lengths associated with identical
+sequences \cite{Fujisawa2013}. Contrary to other programs, BEAST does not assign
+zero edge length to the terminal branches for terminal sequences, and thus
+allows to retain them in the analysis. There are obvious theoretical advantages
+for retaining identical sequences: BEAST assumes that the sequences represent a
 random sample of the population when estimating effective population
 sizes. Removing identical sequences will lead to spurious high levels of genetic
 diversity, in turn leading to overestimating population sizes
@@ -496,8 +491,8 @@ of evolution (12 different models \textit{in toto}). Both datasets (all
 sequences, only unique haplotypes) favored to assign each codon position to a
 different partition. After inspecting mixing and convergence on test runs, we
 modified slightly the models suggested by PartitionFinder to use: HKY+I+G, GTR+G
-and HKY for for each ones of the codon position respectively for the all
-dataset; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
+and HKY for for each codon position respectively for dataset including all
+sequences; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
 analyses, base frequencies were estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
@@ -521,7 +516,7 @@ for all runs. ESS values for all parameters were above 350 in each independent
 run, but both runs for each parameter combination were nonetheless combined.
 
 The trees sampled from the posterior were summarized with treeannotator using
-the common ancestor tree method \cite{Heled2013} as it provides an accurate
+the common ancestor tree method \cite{Heled2013} as it provides a more accurate
 estimate of the divergence times from the trees sampled from the posterior.
 
 These trees were used to fit the single-threshold (\cite{Pons2006}) and the
@@ -901,7 +896,11 @@ different priors for the Bayesian reconstruction. While Monaghan et al
 when using a relaxed clock and a Yule prior, we found that in general the Yule
 prior was more conservative on our dataset. Talavera et al \cite{Talavera2013}
 similarly did not find that using all haplotypes or only the unique haplotypes
-affected the number of species estimated with the GMYC method. 
+affected the number of species estimated with the GMYC method.
+
+GMYC is suitable for obtaining a rough estimate of the number of species among a
+sample, but if used in systematics study to delineate species, care needs to be
+taken to use the appropriate priors for the particular type of dataset.
 
 % talk about time spent on phylogeny between coalescent and speciation
 % processes.
