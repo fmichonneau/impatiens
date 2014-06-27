@@ -535,14 +535,15 @@ with the highest likelihood.
 
 % Talk about how to deal with ambiguities
 
-Sequences obtained for each marker were aligned using MUSCLE \cite{} with the
-default settings. All markers led to unambiguous alignments except ITS for which
-we used Gblocks \ref{} to remove parts that were difficult to align using a
-minimum length of a block of 5 (-b4=5) and all gap positions can be selected
-(-b5=a). We used the resulting alignment to estimate the phylogenetic
-relationships and the timing of the divergence among the different lineages of
-\textit{Holothuria impatiens} using RAxML 8.0.1 \cite{} and BEAST 2.1.2
-\cite{Bouckaert2014} (using BEAGLE 2.1.2 \cite{})
+Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
+with the default settings. All markers led to unambiguous alignments except ITS
+for which we used Gblocks \ref{Castresana2000} to remove parts that were
+difficult to align using a minimum length of a block of 5 (-b4=5) and all gap
+positions can be selected (-b5=a). We used the resulting alignment to estimate
+the phylogenetic relationships and the timing of the divergence among the
+different lineages of \textit{Holothuria impatiens} using RAxML 8.0.1
+\cite{Stamatakis2014} and BEAST 2.1.2 \cite{Bouckaert2014} (using BEAGLE 2.1.2
+\cite{Ayres2012}).
 
 To determine the optimal partition scheme and models of molecular evolution, we
 analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
