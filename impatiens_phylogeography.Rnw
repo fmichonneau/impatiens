@@ -413,6 +413,8 @@ data by all the software used in this study.
   % 16S ---
   16S & 16SAR & CGC CTG TTT ATC AAA AAC AT & 52 & 35 & \multirow{2}{*}{\cite{Arndt1996}} \\
       & 16SBR & GCC GGT CTG AAC TCA GAT CAC GT & & & \\
+  % 16Sc ---
+  %% TODO 
   % ATP6 ---
   ATP6 & ATP6f   & GGA CAA TTT TCC CCA GAC CT & 42 & 40 & \multirow{2}{*}{This study} \\
        & ATP6r   & GGT GAA GAG GGT GTT GAT GG & & & \\
@@ -465,15 +467,15 @@ selected. Lineages found beyond this threshold are considered different species.
 Estimating the transition from speciation to intraspecific coalescent events
 requires an ultrametric tree. We used BEAST to obtain these trees as it provides
 a powerful statistical framework to interpret the chronological context of
-molecular variation \cite{Drummond2014}. Despite some investigation of the
+molecular variation \cite{Drummond2014}. Despite some investigations of the
 effects of priors on the number of species estimated by GMYC
-(\cite{Monaghan2009}, \cite{Fujisawa2013}, \cite{Talavera2013}), we here revisit
-the impact of specifying a strict or a log-normal relaxed clock, as well as the
-type of tree prior used (coalescent with constant population size
-\cite{Kingman1982}, coalescent with exponentially growing population size
-\cite{Griffiths1994}, and Yule \cite{Yule1925}). The type of clock used will
-affect branch lengths, however, it is difficult to predict \textit{a priori} how
-the misspecification of this parameter will influence the results. Monaghan et
+(\cite{Monaghan2009, Fujisawa2013, Talavera2013}), we here revisit the impact of
+specifying a strict or a log-normal relaxed clock, as well as the type of tree
+prior used (coalescent with constant population size \cite{Kingman1982},
+coalescent with exponentially growing population size \cite{Griffiths1994}, and
+Yule \cite{Yule1925}). The type of clock used will affect branch lengths,
+however, it is difficult to predict \textit{a priori} how the misspecification
+of this parameter will influence the results. Monaghan et
 al. \cite{Monaghan2009} indicate that using a coalescent constant tree prior is
 a more conservative approach compared to a Yule prior, as GMYC uses the
 coalescent as the null model to explain the branching pattern. Their results
@@ -502,19 +504,21 @@ identical sequences of the analysis will lead to higher number of species
 detected by GMYC and higher uncertainty, both of which are undesirable for the
 purpose of the analysis.
 
-COI genealogies were estimated using BEAST 1.8.0 \cite{Drummond2012} and BEAGLE
-2.1 \cite{Ayres2012}. To determine the optimal partition scheme, we used
-PartitionFinder \cite{Lanfear2012} on the dataset with all sequences and the one
-with only the unique haplotypes. We performed a complete search using each codon
-position as a partition, and limiting the search to the JC, HKY and GTR models
-with or without a proportion of invariant sites and/or gamma-distributed rates
-of evolution (12 different models \textit{in toto}). Both datasets (all
-sequences, only unique haplotypes) favored to assign each codon position to a
-different partition. After inspecting mixing and convergence on test runs, we
-modified slightly the models suggested by PartitionFinder to use: HKY+I+G, GTR+G
-and HKY for for each codon position respectively for dataset including all
-sequences; and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all
-analyses, base frequencies were estimated.
+We performed the GMYC analyses using only COI sequences as we want to compare
+the performance of this method with the results of the complete analysis. COI
+genealogies were estimated using BEAST 1.8.0 \cite{Drummond2012} and BEAGLE 2.1
+\cite{Ayres2012}. To determine the optimal partition scheme, we used
+PartitionFinder \cite{Lanfear2012} on the dataset including all sequences and
+the dataset including the haplotypes. We performed a complete search using each
+codon position as a partition, and limiting the search to the JC, HKY and GTR
+models with or without a proportion of invariant sites and/or gamma-distributed
+rates of evolution (12 different models \textit{in toto}). Both datasets (all
+sequences, only haplotypes) favored to assign each codon position to a different
+partition. After inspecting mixing and convergence on test runs, we modified
+slightly the models suggested by PartitionFinder to use: HKY+I+G, GTR+G and HKY
+for for each codon position respectively for dataset including all sequences;
+and HKY+G, HKY+G and HKY for analyses on unique haplotypes. In all analyses,
+base frequencies were estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
 for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
@@ -553,8 +557,6 @@ with the highest likelihood.
 
 <<median-tmrca-WAgroup, eval=TRUE, echo=FALSE, cache=TRUE, dependson='init-phylo'>>=
 @ 
-
-% Talk about how to deal with ambiguities
 
 Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
 with the default settings. All markers led to unambiguous alignments except ITS
@@ -623,10 +625,10 @@ tree method \cite{Heled2013}.
 \subsection{Test of species limits with *BEAST}
 
 Given the shallow genetic divergence observed among some of the ESUs detected by
-GYMC and the lack of morphological differentiation among them, we attempted to
-compare species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
-Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
-methods \cite{Baele2012}.
+GYMC and the lack of morphological differentiation among them, we compared
+species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using Bayes
+Factors evaluated by the stepping-stone (SS) and the path sampling (PS) methods
+\cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus dataset by incorporating the
 multi-species coalescent in a Bayesian framework to account for intraspecies
@@ -668,10 +670,8 @@ evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
 chain lengths to $3.10^{6}$. If for any runs, the absolute difference between
 the marginal likelihoods estimated with the stepping stone and the path sampling
 methods was higher than 1, we interpreted this difference as a failure of the
-estimate to converge. We therefore discarded the results and ran the analysis
-again.
-
-The difference in likelihood between t
+estimate to converge. We therefore discarded the results and repeated the
+analysis until the difference in likelihood was lower than 1.
 
 \begin{table}
   \centering
@@ -695,9 +695,11 @@ The difference in likelihood between t
 To confirm that the differentiation in COI which delineates the putative species
 using GMYC does not drive differences in marginal likelihoods between the
 different models tested with *BEAST, we repeated the analyses omitting COI (for
-the models M4, M5, M6 and M7). Furthermore, to assess more generally the
-contribution of the nuclear data to the results, we repeated the analyses by
-attributing randomly the nuclear data.
+the models M4, M5, M6 and M7).
+
+% TODO -- Furthermore, to assess more generally the contribution of the nuclear
+% data to the results, we repeated the analyses by attributing randomly the
+% nuclear data.
 
 \section{Results}
 
@@ -779,7 +781,7 @@ narrower confidence intervals (CI) than the mGMYC approach. The
 maximum-likelihood estimates for the sGMYC were in most cases at the
 lower limit of the CI, while the estimates from the mGMYC were at the
 upper limit of the CI. For the analyses performed on all the
-haplotypes, the CI for the estimated number of species using sGMYC and
+sequences, the CI for the estimated number of species using sGMYC and
 mGMYC did not overlap.
 
 On the genealogies estimated with a strict clock, sGMYC was less sensitive to
@@ -912,17 +914,59 @@ the evidence strong.
 
 \subsection{Species delineation using GMYC}
 
-Talavera et al \cite{Talavera2013} did not find notable differences with using
-different priors for the Bayesian reconstruction. While Monaghan et al
-\cite{Monaghan2009} found that GMYC was estimating a higher number of species
-when using a relaxed clock and a Yule prior, we found that in general the Yule
-prior was more conservative on our dataset. Talavera et al \cite{Talavera2013}
-similarly did not find that using all haplotypes or only the unique haplotypes
-affected the number of species estimated with the GMYC method.
+Despite being widely used to delineate species, the sensitivity of the GMYC
+method to the factors affecting the shape of the tree used have not been
+investigated thoroughly. Tree shape can be affected by biological factors or by
+the type of analysis used to build the tree. Simulated data have been used to
+test the influence of diversification rates, effective population sizes, and
+migration rates on GMYC accuracy and precision \cite{Papadopoulou2008,
+  Esseltyn2012}. Some of the effects of the methodological choices have been
+evaluated by the authors of the method \cite{Pons2006, Monaghan2009,
+  Fujisawa2013} and by others \cite{Talavera2013}, but the conclusions might be
+difficult to generalize depending on the nature of the dataset. Here, we showed
+that keeping all COI sequences, using a relaxed molecular clock and a Yule tree
+prior, led to the most realistic number of delineated species.
+
+This combination of priors led to overestimating the number of species when it
+was tested by the authors of the method \cite{Monaghan2009}. On the other hand,
+Talavera et al \cite{Talavera2013} did not find any notable differences using
+trees estimated with different sets of priors. Our dataset differs from these
+studies by including a younger radiation (here: less than 10 Ma,
+\cite{Monaghan2009}: 4 insect orders; \cite{Talavera2013} 5 Lepidoptera
+families), less species (here: 14; \cite{Monaghan2009} about 370;
+\cite{Talavera2013} 176), and more individuals per species (here: about 14
+ind/species; \cite{Monaghan2009}: about 3 ind/species; \cite{Talavera2013} about
+7 ind/species).
+
+% Esseltyn+2012 also used both all sequences & only unique, but didn't provide
+% the differences in results
+
+Talavera et al \cite{Talavera2013} did not find that using all haplotypes or
+only the unique haplotypes affected the number of species estimated with the
+GMYC method. Here, we found that removing the duplicated sequences overestimated
+the number of species and decreased the precision of the estimates. Keeping
+identical sequences in the analysis, overestimates the effective population size
+parameters that BEAST uses. In turns, these overestimated sizes spuriously
+increase the time to coalescence for the lineages, making the estimation of the
+inflection point between species- and population-level coalescent events earlier
+in the tree and more difficult, leading to overestimation in the number of
+putative species and the decrease in accuracy.
+
+GMYC was developed with the intent of automating the estimation of the number of
+species from large-scale single-locus sampling efforts. In this context, a
+reasonable amount of inaccuracy or imprecision from the true number of species
+might be acceptable. The advantages of the method, namely providing a rapid and
+objective assessment of the number of species, outweigh the possible deviations
+from the true value. However, in the context of a taxonomic study where the goal
+is to identify clearly species limits among a few hundred individuals, 
+should be used in the method
 
 GMYC is suitable for obtaining a rough estimate of the number of species among a
 sample, but if used in systematics study to delineate species, care needs to be
-taken to use the appropriate priors for the particular type of dataset.
+taken to use the appropriate priors for the particular type of
+dataset. Additionally, for this type of studies, additional lines of evidence
+need to be used to validate the putative species delineated by GMYC (this study,
+\cite{Marshall2011a, Esseltyn2012}).
 
 % talk about time spent on phylogeny between coalescent and speciation
 % processes.
