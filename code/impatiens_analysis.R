@@ -65,7 +65,6 @@ rownames(lociChar) <- c("Nind",
                         "S", "S_i")
 
 ### ---- loci-characteristics-table ----
-
 lociCharTable <- lociChar
 lociCharTable["bp_alg", ] <- paste(lociCharTable["bp_alg", ], " (", lociCharTable["bp_unalg", ], ")", sep="")
 lociCharTable <- lociCharTable[- match("bp_unalg", rownames(lociCharTable)), ]
@@ -139,7 +138,6 @@ hasMtNuc <- locWhich[locWhich$Extract %in% hasmt$Extract &
 
 
 ### ---- loci-coverage-plot ----
-## TODO -- modify to show realized locus lengths
 ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
                             y=Rank, yend=Rank, colour=consensusESU),
                         lineend="round",
@@ -151,7 +149,28 @@ ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
           panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
           axis.ticks=element_blank()) 
- 
+
+### ---- number-ambiguities ----
+library(seqManagement)
+ambc0036 <- checkAmbiguity(file="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/20130923-185350-c0036.afa",
+                           quiet=T)
+ambc0775 <- checkAmbiguity(file="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/20130923-185350-c0775.afa",
+                           quiet=T)
+ambH3a <- checkAmbiguity(file="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/20130923-185350-H3a.afa",
+                           quiet=T)
+ambITS <- checkAmbiguity(file="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/20130923-185350-ITS.afa",
+                           quiet=T)
+ambLSU <- checkAmbiguity(file="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/20130923-185350-LSU.afa",
+                           quiet=T)
+fullAlg <- read.dna(file="data/20130923.impatiens.phy", as.character=TRUE)
+nAmbc0036 <- length(unique(unlist(ambc0036)))
+nAmbc0775 <- length(unique(unlist(ambc0775)))
+nAmbH3a <- length(unique(unlist(ambH3a)))
+nAmbITS <- length(unique(unlist(ambITS)))
+nAmbLSU <- length(unique(unlist(ambLSU)))
+nAmbPositions <- nAmbc0036 + nAmbc0775 + nAmbH3a + nAmbITS + nAmbLSU
+nAmbTotal <- length(c(unlist(ambc0036), unlist(ambc0775), unlist(ambH3a), unlist(ambITS), unlist(ambLSU)))
+totalNucl <- sum(fullAlg %in% c("a", "c", "t", "g")) 
 
 ### ---- impatiens-tree-stats -----
 impTree <- read.nexus(file="../20140519.allImpatiens/allimpatiens_strict.tree.nex")
@@ -317,6 +336,22 @@ targetTreeLblAll <- targetTreeFull$tip.label
 targetTree <- drop.tip(targetTreeFull, targetTreeLblAll[! targetTreeLblAll %in% labelsCoi])
 write.tree(targetTree, file="data/20140616.impatiens_targetTree.tre")
 
+### ---- gmyc-allmt-analyses ----
+##  dir.create("~/Documents/Impatiens/20140627.impatiens_allMt")
+## concatenateAlignments(pattern="20130923-.*(16Sc?|COI|ATP6)\\.afa$",
+##                       path="~/Documents/Impatiens/000.impatiens_datafiles/a000.currentFiles/",
+##                       output="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt.phy",
+##                       partition="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt.part",
+##                       partition.format="nexus",
+##                       format="seq", colw=1000, colsep="")
+## mtImp <- read.dna(file="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt.phy",
+##                   format="seq")
+mtImp <- mtImp[-match("S0213", dimnames(mtImp)[[1]]), ]
+write.dna(mtImp, file="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt_noS0213.phy",
+          format="seq", colw=10000, colsep="")
+alg2nex(file="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt_noS0213.phy",
+        partition.file="~/Documents/Impatiens/20140627.impatiens_allMt/20140627.impatiens_allMt.part")
+
 ### ---- generate-gmyc-trees ----
 ## pathResults, gmycFactors are defined in init-phylo
 treeannotatorCmd <-
@@ -416,7 +451,7 @@ gmycSumm <- cbind(sequences = tmpSeq, clock = tmpClo, demographic = tmpDem,
  ##           shape=analysisType)) + geom_point()
 
 ### ---- gmyc-coi-plot ----
-levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All haplotypes"
+levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All Sequences"
 levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "noDup"]  <- "Unique haplotypes"
 levels(gmycSumm$clock)[levels(gmycSumm$clock) == "strict"] <- "Strict clock"
 levels(gmycSumm$clock)[levels(gmycSumm$clock) == "relaxed"] <- "Relaxed clock"
@@ -579,19 +614,34 @@ optim.trees.interactive()
 ## xtabs(~ ESU + marker, data=impSum, subset=value)
 
 ### haplotype networks
-## library(pegas)
-## impHaplo <- subset(impDB, molecularESU %in% c("ESU1"))$Extract
-## impHaplo <- impHaplo[nzchar(impHaplo)]
-## impCOI <- mergeSeq(impHaplo, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
-##                    markers="COI")
-## file.copy("/tmp/seq/20121016-114036-COI.afa", "20121016-COI.afa")
-## impCOI <- read.dna(file="20121016-COI.afa", format="fasta")
+ library(pegas)
+esu1HaploData <- subset(impDB, consensusESU %in% c("ESU1"))$Extract
+esu1HaploData <- esu1HaploData[nzchar(esu1HaploData)]
+esu1HaploData <- gsub(",.+$", "", esu1HaploData)
+
+esu2HaploData <- subset(impDB, consensusESU %in% c("ESU2"))$Extract
+esu2HaploData <- esu2HaploData[nzchar(esu2HaploData)]
+esu2HaploData <- gsub(",.+$", "", esu2HaploData)
+
+impCOI <- read.dna(file="data/20130923.impatiens_COI.phy", format="seq")
+
+esu1Seq <- impCOI[match(esu1HaploData, dimnames(impCOI)[[1]]), ]
+esu1ToRm <- which(sapply(esu1Seq, function(x) any(is.na(base.freq(x)))))
+esu1Seq <- esu1Seq[-esu1ToRm, ]
+
+esu2Seq <- impCOI[match(esu2HaploData, dimnames(impCOI)[[1]]), ]
+esu2ToRm <- which(sapply(esu2Seq, function(x) any(is.na(base.freq(x)))))
+esu2Seq <- esu2Seq[-esu2ToRm, ]
 
 
-## h <- haplotype(impCOI[-1, ])
-## net <- haploNet(h)
-## plot(net, size = attr(net, "freq"), scale.ratio = 4, cex = 0.6, labels=F)
+esu1Haplotypes <- haplotype(esu1Seq)
+esu1HaploNet <- haploNet(esu1Haplotypes)
+plot(esu1HaploNet, size=attr(esu1HaploNet, "freq"), bg=ziss, scale.ratio=20, cex=.6)
 
+
+esu2Haplotypes <- haplotype(esu2Seq)
+esu2HaploNet <- haploNet(esu2Haplotypes)
+plot(esu2HaploNet, size=attr(esu2HaploNet, "freq"))
 
 ### test GMYC
 ## library(splits)
