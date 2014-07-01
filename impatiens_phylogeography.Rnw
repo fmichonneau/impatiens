@@ -277,6 +277,16 @@ connected (\cite{Voris2000}); (2) one of the two lineages was lost because of
 local extinction or selective sweep; (3) the species recently expanded their
 ranges and colonized one of the bassin very recently.
 
+One of the main questions when studying patterns of speciation is whether modern
+species distributions reflect their distributions at the time of speciation. For
+marine organisms, and in particular within the Indo-Pacific, this assumption is
+particularly difficult to hold as (1) current barriers for dispersal are few in
+numbers; (2) the dispersal ability of most marine invertebrates is high; (3) the
+current landscape of the Indo-Pacific is relatively recent. For instance, the
+faunal breaks observed among species composition of reef-building corals are
+only poorly correlated with present-day conditions but are much more strongly
+associated with geological features \cite{Keith2013}.
+
 In this study, we use comprehensive sampling in the complex \textit{Holothuria
   impatiens} covering its entire known geographic range, to investigate species
 distribution and patterns of speciation. Specifically, we aim to:
@@ -1035,18 +1045,21 @@ levels: morphological, genetically
 
 \subsection{Patterns of genetic diversity and geographical distribution}
 
+% : RedSea and TigerRedSea (the timing of these two events were concurrent (95\%
+% HPD for the for the former 1.3-2.0~Ma, and 1.1-1.7~Ma for the latter)
+
 Despite that the species included in this complex diverged relatively recently,
-a large diversity of processes seem to best explain their current geographical
-distributions.
+the sizes of their geographical ranges vary considerably, and a diversity of
+processes seem to best explain their present distributions.
 
 Physical barriers to gene flow have isolated populations leading to speciation
-events for WA, Mediterranean, and the two species found in the Red Sea: RedSea
-and TigerRedSea (the timing of these two events were concurrent (95\% HPD for
-the for the former 1.3-2.0~Ma, and 1.1-1.7~Ma for the latter). However, for the
-other species, the causes of population divergence are less obvious.
+events for WA, Mediterranean, and the two species found in the Red Sea. However,
+for the other species, the causes of population divergence are less obvious, and
+the current distributions are unlikely to reflect species ranges at the time of
+speciation. 
 
 In clade II, the widespread ESU2 is sister to two species found at the periphery
-of its range: Tiger occurs in Micronesia and Hawaiian archipelago, and
+of its range: Tiger occurs in Micronesia and the Hawaiian archipelago, and
 TigerRedSea is restricted to the Red Sea. Tiger and TigerRedSea have diverged
 recently, and the current distribution for these species could be explained
 either by range contraction of a widespread species with relictual allopatric
@@ -1054,20 +1067,37 @@ populations in the Red Sea and the Western Pacific, or a founder event from one
 area to the other.
 
 In clade I, the widespread ESU1 is sympatric with several of its closely related
-species: ESU3, gracilis, Wpac and Hawaii are all included within the
-geographical range of ESU1. This pattern could be explained by sympatric
-speciation or allopatric/peripatric speciation that is masked by the recent
-range expansion of ESU1. We tend to favor this hypothesis as the genetic
+lineages: ESU3, gracilis, Wpac and Hawaii. This pattern could be explained by
+sympatric speciation or allopatric/peripatric speciation that is masked by the
+recent range expansion of ESU1. We favor this hypothesis as the genetic
 diversity of ESU1 is low (61 individuals sequenced, 18 haplotypes, the 3 most
-common haplotypes found in 40 individuals). Additionally, on archipelagoes
-(Marquesas) and other isolated areas (Oman) characterized by high levels of
-endemicity associated with selection along strong ecological gradients are
-characterized by having the most widespread haplotype indicating recent
-colonization.
+common haplotypes found in 40 individuals). The pattern of a widespread species
+being a terminal branch in a clade suggests that this species was the source of
+peripheral species \cite{Malay2010,Bowen2013}. Additionally, isolated areas
+characterized by peculiar ecological conditions (e.g., Marquesas, Oman), and
+associated with strong selective pressures leading to high levels of endemism,
+harbor the most widespread haplotype suggesting recent colonization of these
+areas.
+
+Differentiation along ecological gradients has nonetheless played a role in the
+diversification of this complex. For instance, tiger is only found in the
+oligotrophic shallow waters of Micronesia and Hawaii, while ESU3 and gracilis
+are associated with continental areas. For instance, ESU3 is found in Madagascar
+and Tanzania but was not found in the oligotrophic islands of Mayotte or the
+Scattered islands sampled. It is however found in Palau and the Ryukyus but the
+former is known to be characterized with extensive eutrophic lagoons, and the
+latter is under the influence of upwellings.
+% *TODO* check these claims.
+
+Peripheral speciation has been 
 
 
-Species with restricted geographical ranges (Wpac, gracilis) are instead found
-to co-occur with species with large geographical ranges.
+Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
+marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
+investigated patterns of speciation among grunts (\textit{Haemulon}) in the
+Caribbean and the Eastern Pacific that show closely related species occurring in
+sympatry. Authors in this study invoke the possible role of the sounds members
+of this genus produce in assortative mating.
 
 % Interestingly, except for species found in the Galapagos and Hawaii, the IWP
 % species in the \textit{H. impatiens} complex are wideranging and no species is
@@ -1075,22 +1105,6 @@ to co-occur with species with large geographical ranges.
 % levels of endemicity (Hawaii, Marquesas, Mascarene Islands,
 % e.g. \cite{Malay2010}).
 
-
-
-
-For the IWP species, a combination of allopatric/peripatric speciation followed
-by range expansion explains the observed species distributions.
-
-
-Among the species identified in the \textit{Holothuria impatiens} complex, three
-are distributed widely across both Pacific and Indian oceans (ESU1, ESU2, ESU3),
-four are contained within an ocean basin (Mediterranean, RedSea, TigerRedSea,
-WA), two to an archipelago (Galapagos, Hawaii) and one to a continental margin
-(EP). The other species (gracilis, Wpac, tiger) occur in the Western Pacific.
-
-
-to to Speciation in the \textit{Holothuria
-  impatiens} complex result mostly from allopatric events, as sister
 
 % Bowen et al 2013 -- TREE -- multiple examples of species with no
 % differentiation across large geographic scales
@@ -1137,52 +1151,6 @@ to to Speciation in the \textit{Holothuria
 % differentiation for sympatry and allopatric species (review
 % Rabosky&Matute PNAS).
 
-A striking pattern among the members of the \textit{H. impatiens} complex, is
-the differences in the geographical ranges among its members. Some species in
-the complex are restricted in their range to an archipelago (e.g., Hawaii or the
-Galapagos) while others can be found across the Indian and most of the Pacific
-Oceans with almost no genetic differentiation (e.g., ESU1, ESU2). The origins of
-these differences can stem from differences in demographics history. For
-instance, the low genetic diversity combined with the large range of ESU1
-suggest a recent rapid expansion of its range. This is corroborated by the XXX
-values from the *BEAST analyses.
-
-If for some species in the complex the range restriction is caused by
-geographical and oceanographic conditions limiting the export of propagules
-(e.g., Red Sea, Mediterranean), others have ranges that overlap with (e.g.,
-Wpac, ESU3, gracilis) or are included within (e.g. Hawaii) the range of a
-species with a wide distribution (ESU1). In these cases, dispersal limitation
-seems unlikely to restrict their ranges, and instead, adaptation to ecological
-conditions are more likely to limit their distribution. It is interesting to
-note that gracilis, Wpac, and ESU3 are all associated with continental
-areas. For instance, ESU3 is found in Madagascar and Tanzania but was not found
-in the oligotrophic areas of Mayotte or any of the Scattered islands sampled. It
-is however found in Palau and the Ryukyus but the former is known to be
-characterized with extensive eutrophic lagoons, and the latter is under the
-influence of upwellings. % *TODO* check these claims.
-
-restricted ranges with a distribution that overlaps with species having a broad
-range (e.g., Hawaii overlapping with ESU1). This suggests that
-
-However, differences in the ecology of these species must also play an important
-role. The ecological conditions found in the Hawaiian Gala
-
-One of the main questions when studying patterns of speciation is whether modern
-species distributions reflect their distributions at the time of speciation. For
-marine organisms, and in particular within the Indo-Pacific, this assumption is
-particularly difficult to hold as (1) current barriers for dispersal are few in
-numbers; (2) the dispersal ability of most marine invertebrates is high; (3) the
-current landscape of the Indo-Pacific is relatively recent. For instance, the
-faunal breaks observed among species composition of reef-building corals are
-only poorly correlated with present-day conditions but are much more strongly
-associated with geological features \cite{Keith2013}.
-
-Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
-marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
-investigated patterns of speciation among grunts (\textit{Haemulon}) in the
-Caribbean and the Eastern Pacific that show closely related species occurring in
-sympatry. Authors in this study invoke the possible role of the sounds members
-of this genus produce in assortative mating.
 
 
 \subsection{Rate of diversification, reproductive isolation}
