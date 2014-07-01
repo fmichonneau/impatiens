@@ -1062,32 +1062,55 @@ In clade II, the widespread ESU2 is sister to two species found at the periphery
 of its range: Tiger occurs in Micronesia and the Hawaiian archipelago, and
 TigerRedSea is restricted to the Red Sea. Tiger and TigerRedSea have diverged
 recently, and the current distribution for these species could be explained
-either by range contraction of a widespread species with relictual allopatric
-populations in the Red Sea and the Western Pacific, or a founder event from one
-area to the other.
+either by range contraction of an ancestral widespread species with relictual
+allopatric populations in the Red Sea and the Western Pacific, or a founder
+event from one area to the other.
+% relictual common?
+% founder more likely?
 
 In clade I, the widespread ESU1 is sympatric with several of its closely related
 lineages: ESU3, gracilis, Wpac and Hawaii. This pattern could be explained by
 sympatric speciation or allopatric/peripatric speciation that is masked by the
-recent range expansion of ESU1. We favor this hypothesis as the genetic
+recent range expansion of ESU1. We favor this hypothesis given that (1) the
+widespread species (ESU1) forms a terminal clade in this radiation; (2) the
+pattern of genetic diversity indicates a recent expansion. The pattern of a
+widespread species being a terminal branch in a clade suggests that this species
+was the source of peripheral species \cite{Malay2010}. Additionally, the genetic
 diversity of ESU1 is low (61 individuals sequenced, 18 haplotypes, the 3 most
-common haplotypes found in 40 individuals). The pattern of a widespread species
-being a terminal branch in a clade suggests that this species was the source of
-peripheral species \cite{Malay2010,Bowen2013}. Additionally, isolated areas
+common haplotypes found in 40 individuals). Furthermore, isolated areas
 characterized by peculiar ecological conditions (e.g., Marquesas, Oman), and
 associated with strong selective pressures leading to high levels of endemism,
 harbor the most widespread haplotype suggesting recent colonization of these
 areas.
 
-Differentiation along ecological gradients has nonetheless played a role in the
-diversification of this complex. For instance, tiger is only found in the
+Differentiation along ecological gradients has nonetheless also played a role in
+the diversification of this complex. For instance, tiger is only found in the
 oligotrophic shallow waters of Micronesia and Hawaii, while ESU3 and gracilis
 are associated with continental areas. For instance, ESU3 is found in Madagascar
-and Tanzania but was not found in the oligotrophic islands of Mayotte or the
-Scattered islands sampled. It is however found in Palau and the Ryukyus but the
-former is known to be characterized with extensive eutrophic lagoons, and the
-latter is under the influence of upwellings.
-% *TODO* check these claims.
+and Tanzania but was not found in Mayotte or the Scattered islands sampled. The
+endemic lineages found in Hawaii and the Galapagos are likely not the results of
+dispersal limitation but instead the result of habitat preference to these
+ecologically distinct archipelagoes. As for any ecological trait, it is
+difficult to untangle how speciation and selection for habitat specificity have
+interplayed during the diversification of this complex
+\cite{Schluter2001}. Habitat preference could be the cause of speciation
+(divergent selection on habitat preference drove reproductive isolation, i.e.,
+ecological speciation \textit{sensu} \cite{Rundle2005}); or it can be the
+consequence of character displacement induced by interspecific competition. In
+the latter, reproductive isolation was initiated by other factors (e.g.,
+geographical isolation with or without selection on other traits) and
+reinforcement on habitat specificity may contribute to the completion of
+speciation. In any case, the range of preferences exhibited by the species in
+this complex allow for niche partitioning and the co-existence of multiple
+lineages in sympatry.
+
+The restriction of marine invertebrates to "oceanic" and "continental" habitats
+has been documented for a range of organisms (e.g., land snails
+\cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006, Williams2011},
+hermit crabs \cite{Malay2010}), and a variety of biotic and abiotic factors may
+explain this pattern. The limited knowledge of the biology of sea cucumbers
+hinders our ability to evaluate the possible relative contribution of these
+factors. However, it is noteworthy to remark that
 
 Peripheral speciation has been 
 
