@@ -1133,24 +1133,33 @@ temporal dynamics of diversification in some species of \textit{Holothuria
   impatiens} is similar to what is observed for species occurring in continental
 settings.
 
-In the case of closely related but reproductively isolated lineages, the strict
-allopatry observed suggests that species fail to establish themselves in another
-species' range. In most cases, dispersal limitation alone is insufficient to
-explain this pattern. Enough individuals need to colonize to overcome Allee
-effects, and resource partitioning or availability need to be sufficient to
-allow species coexistence \cite{Meyer2005}. What do species of the
-\textit{H. impatiens} do differently that all allow them to colonize the range
-of closely related species? More specifically, what does allow ESU1 to behave
-like a species of a continental setting? One hypothesis to explain the
-difference between oceanic and continental taxa is related to their
-demographic. Along coastlines, the number of individuals from incipient species
-interacting is much higher. These interactions manifest for resource competition
-leading to strong divergent selection for resource partitioning, in turn these
-selective pressures speed up the speciation process through
-reinforcement. Additionally, in sea urchins, high population densities lead to
-conditions that favor divergent selection in gamete recognition proteins (GRP),
-a mechanism that would allow reproductive isolation to evolve rapidly
-\cite{Levitan2006a}.
+What do species of the \textit{H. impatiens} do differently that all allow them
+to colonize the range of closely related species? More specifically, what does
+allow ESU1 to behave like a species of a continental setting?  In the case of
+closely related but reproductively isolated lineages, the strict allopatry
+observed suggests that species fail to establish themselves in another species'
+range. In most cases, dispersal limitation alone is insufficient to explain this
+pattern. Enough individuals need to colonize to overcome Allee effects, and
+resource partitioning or availability need to be sufficient to allow species
+coexistence \cite{Meyer2005}. Along coastlines, the number of individuals from
+incipient species interacting is much higher than in oceanic setting allowing
+reproductive isolation to complete more rapidly. These interactions manifest for
+resource competition leading to strong divergent selection for resource
+partitioning, in turn these selective pressures speed up the speciation process
+through reinforcement. Additionally, in sea urchins, high population densities
+lead to conditions that favor divergent selection in gamete recognition proteins
+(GRP), a mechanism that would allow reproductive isolation to evolve rapidly
+\cite{Levitan2006a}. Even if \textit{H. impatiens} produce lots of long-lived
+larvae, given the geographical isolation of the Hawaiian archipelago, it is
+difficult to envision that this kind of inter-specific competition will drive
+the reproductive isolation between ESU1 and Hawaii. We instead hypothesize that
+a founder event accompanied with biological traits maintaining low effective
+population sizes and changes in environmental conditions have interplayed to
+allow for (1) rapid reproductive isolation; (2) recent range expansion leading to
+secondary sympatry for ESU1.
+
+
+
 
 
 
