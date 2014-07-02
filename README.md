@@ -721,6 +721,53 @@ Poor overall mixing mostly driven by poor mixing on the clocks.
 Reducing the number of clocks to see the impact on mixing. First, use strict
 clock on rDNA but keep the other two as log-normal.
 
+## Results
+
+Still terrible mixing/over-parametrization.
+
+# 20140618 -- BEAST on full complex -- gene tree estimation
+
+## Rationale
+
+To try Brownie and to compare with RAxML analyses on each locus, setting up
+BEAST run to get 1 tree per locus (1 tree for mtDNA, 1 tree for each nuclear
+locus).
+
+## Method
+
+* Re-imported NEXUS file into beauti. Used `20130923.impatiens_nooutgroup.nex`.
+* Remove LSU by hand (not enough sequence data to use with Brownie -- could have
+	been useful to compare with RAxML though...)
+* Site models:
+  - by themselves: 16S, c0036, c0775, ITS
+  - per codon position: H3a, COI, ATP6
+  - All set to GTR+GAMMA (to allow comparison with RAxML)
+  - all use empirical base frequencies
+  - all substitution rate set to estimate except 16S (set to 1).
+* Clock models:
+  - mt\_clock
+  - nuc\_clock
+* All default priors except for nuc_clock rate set as exponential [1,0].
+* MCMC length set to 100e6, logs every 1e5.
+
+## Result
+
+Something really wrong is going on. Run didn't go through, stopped before
+specified length for MCMC.
+
+mtTree obtained looks ok, other ones seem weird.
+
+Redoing this with RAxML.
+
+# 20140702 -- RAxML on each gene tree
+
+## Method
+
+* used script in `code/impatiens_dataprep.R` to prepare alignments/partitions
+* edited partition manually to split codon positions for H3a, ATP6 and COI
+* wrote script to call RAxML on each alignemnt on HiPerGator
+* using rapid bootstrap+ML search (`-f a -x`)
+
 
 - - - - - - - - - 
 

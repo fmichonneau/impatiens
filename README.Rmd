@@ -747,6 +747,23 @@ locus).
 * All default priors except for nuc_clock rate set as exponential [1,0].
 * MCMC length set to 100e6, logs every 1e5.
 
+## Result
+
+Something really wrong is going on. Run didn't go through, stopped before
+specified length for MCMC.
+
+mtTree obtained looks ok, other ones seem weird.
+
+Redoing this with RAxML.
+
+# 20140702 -- RAxML on each gene tree
+
+## Method
+
+* used script in `code/impatiens_dataprep.R` to prepare alignments/partitions
+* edited partition manually to split codon positions for H3a, ATP6 and COI
+* wrote script to call RAxML on each alignemnt on HiPerGator
+* using rapid bootstrap+ML search (`-f a -x`)
 
 
 - - - - - - - - - 
