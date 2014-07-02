@@ -1108,9 +1108,37 @@ The restriction of marine invertebrates to "oceanic" and "continental" habitats
 has been documented for a range of organisms (e.g., land snails
 \cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006, Williams2011},
 hermit crabs \cite{Malay2010}), and a variety of biotic and abiotic factors may
-explain this pattern. The limited knowledge of the biology of sea cucumbers
-hinders our ability to evaluate the possible relative contribution of these
-factors. However, it is noteworthy to remark that
+explain this pattern (reviewed in \cite{Malay2010}). Interestingly, clades
+associated with continental habitats are characterized by much faster rates of
+secondary sympatry than species associated with insular habitats in both
+vertebrates (e.g., \cite{Taylor2005,Rocha2013}), and invertebrates (e.g.,
+\cite{Meyer2005,Malay2010,Williams2011}). As a result, groups of closely related
+species show strict allopatric distribution in oceanic setting (e.g., as in
+\cite{Meyer2005}) but occur in sympatry along continental margins (e.g.,
+\cite{Williams2011}). Differences in rates of secondary sympatry vary across
+taxa but are faster in continental settings than in oceanic settings. For
+instance, in the Labridae \textit{Anampes} sympatric sister species in
+continental setting diverged 600 ka ago, while most closely related sympatric
+species in oceanic setting shared a common ancestor more than 10 Ma ago. In the
+turbinid \textit{Lunella}, none of the 7 lineages inhabiting oceanic islands
+that have diverged more than 15 Ma occur in sympatry while sister species found
+along the coastline of Oman have diverged 5 Ma ago \cite{Williams2011}. Here we
+observe a different pattern with closely related species occurring in sympatry
+even though they diverged recently (less than 1 Ma for ESU1 and Hawaii; and
+about 1.5 Ma for ESU1 and Wpac). This pattern indicates that the species have
+been able to evolve reproductive isolation in a short amount of time, and
+contrasts with the pattern typically observed for oceanic settings, where
+secondary sympatry takes a long time to occur.
+
+
+
+
+% typically oceanic islands remain with 1 species/takes a long time for
+% secondary sympatry
+% - mechanisms that allow that?
+% - tie also that rapid secondary sympatry is associated with continental
+% margins
+
 
 Peripheral speciation has been 
 
