@@ -1112,11 +1112,11 @@ explain this pattern (reviewed in \cite{Malay2010}). Interestingly, clades
 associated with continental habitats are characterized by much faster rates of
 secondary sympatry than species associated with insular habitats in both
 vertebrates (e.g., \cite{Taylor2005,Rocha2013}), and invertebrates (e.g.,
-\cite{Meyer2005,Malay2010,Williams2011}). As a result, groups of closely related
-species show strict allopatric distribution in oceanic setting (e.g., as in
+\cite{Meyer2005,Malay2010,Williams2011}). As a result, closely related species
+show strict allopatric distribution in oceanic setting (e.g., as in
 \cite{Meyer2005}) but occur in sympatry along continental margins (e.g.,
 \cite{Williams2011}). Differences in rates of secondary sympatry vary across
-taxa but are faster in continental settings than in oceanic settings. For
+taxa but are faster in continental settings compared to oceanic settings. For
 instance, in the Labridae \textit{Anampes} sympatric sister species in
 continental setting diverged 600 ka ago, while most closely related sympatric
 species in oceanic setting shared a common ancestor more than 10 Ma ago. In the
@@ -1128,7 +1128,39 @@ even though they diverged recently (less than 1 Ma for ESU1 and Hawaii; and
 about 1.5 Ma for ESU1 and Wpac). This pattern indicates that the species have
 been able to evolve reproductive isolation in a short amount of time, and
 contrasts with the pattern typically observed for oceanic settings, where
-secondary sympatry takes a long time to occur.
+secondary sympatry takes a long time to occur. Instead, it seems that the
+temporal dynamics of diversification in some species of \textit{Holothuria
+  impatiens} is similar to what is observed for species occurring in continental
+settings.
+
+In the case of closely related but reproductively isolated lineages, the strict
+allopatry observed suggests that species fail to establish themselves in another
+species' range. In most cases, dispersal limitation alone is insufficient to
+explain this pattern. Enough individuals need to colonize to overcome Allee
+effects, and resource partitioning or availability need to be sufficient to
+allow species coexistence \cite{Meyer2005}. What do species of the
+\textit{H. impatiens} do differently that all allow them to colonize the range
+of closely related species? More specifically, what does allow ESU1 to behave
+like a species of a continental setting? One hypothesis to explain the
+difference between oceanic and continental taxa is related to their
+demographic. Along coastlines, the number of individuals from incipient species
+interacting is much higher. These interactions manifest for resource competition
+leading to strong divergent selection for resource partitioning, in turn these
+selective pressures speed up the speciation process through
+reinforcement. Additionally, in sea urchins, high population densities lead to
+conditions that favor divergent selection in gamete recognition proteins (GRP),
+a mechanism that would allow reproductive isolation to evolve rapidly
+\cite{Levitan2006a}.
+
+
+
+% Factors contributing to small populations sizes:
+% - variation in reproductive success
+% - local populations going extinct because of sea level fluctuations
+% - boom-and-bust dynamic
+
+
+% possibly easier to detect because faster to achieve reciprocal monophyly.
 
 
 
