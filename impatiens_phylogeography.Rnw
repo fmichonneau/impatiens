@@ -1122,67 +1122,85 @@ continental setting diverged 600 ka ago, while most closely related sympatric
 species in oceanic setting shared a common ancestor more than 10 Ma ago. In the
 turbinid \textit{Lunella}, none of the 7 lineages inhabiting oceanic islands
 that have diverged more than 15 Ma occur in sympatry while sister species found
-along the coastline of Oman have diverged 5 Ma ago \cite{Williams2011}. Here we
-observe a different pattern with closely related species occurring in sympatry
-even though they diverged recently (less than 1 Ma for ESU1 and Hawaii; and
-about 1.5 Ma for ESU1 and Wpac). This pattern indicates that the species have
-been able to evolve reproductive isolation in a short amount of time, and
-contrasts with the pattern typically observed for oceanic settings, where
-secondary sympatry takes a long time to occur. Instead, it seems that the
-temporal dynamics of diversification in some species of \textit{Holothuria
-  impatiens} is similar to what is observed for species occurring in continental
-settings.
+along the coastline of Oman have diverged 5 Ma ago \cite{Williams2011}. Along
+coastlines, the number of individuals from incipient species interacting is much
+higher than in oceanic setting allowing reproductive isolation to complete more
+rapidly. These interactions manifest for resource competition leading to strong
+divergent selection for resource partitioning, in turn these selective pressures
+speed up the speciation process through reinforcement. Additionally, in sea
+urchins, high population densities lead to conditions that favor divergent
+selection in gamete recognition proteins (GRP), a mechanism that would allow
+reproductive isolation to evolve rapidly \cite{Levitan2006a}.
 
-What do species of the \textit{H. impatiens} do differently that all allow them
-to colonize the range of closely related species? More specifically, what does
-allow ESU1 to behave like a species of a continental setting?  In the case of
-closely related but reproductively isolated lineages, the strict allopatry
-observed suggests that species fail to establish themselves in another species'
-range. In most cases, dispersal limitation alone is insufficient to explain this
-pattern. Enough individuals need to colonize to overcome Allee effects, and
-resource partitioning or availability need to be sufficient to allow species
-coexistence \cite{Meyer2005}. Along coastlines, the number of individuals from
-incipient species interacting is much higher than in oceanic setting allowing
-reproductive isolation to complete more rapidly. These interactions manifest for
-resource competition leading to strong divergent selection for resource
-partitioning, in turn these selective pressures speed up the speciation process
-through reinforcement. Additionally, in sea urchins, high population densities
-lead to conditions that favor divergent selection in gamete recognition proteins
-(GRP), a mechanism that would allow reproductive isolation to evolve rapidly
-\cite{Levitan2006a}. Even if \textit{H. impatiens} produce lots of long-lived
+Here we observe a different pattern with closely related species occurring in
+sympatry even though they diverged recently (less than 1 Ma for ESU1 and Hawaii;
+and about 1.5 Ma for ESU1 and Wpac). This pattern indicates that the species
+have been able to evolve reproductive isolation rapidly, and contrasts with the
+pattern typically observed for oceanic settings, where secondary sympatry is
+slow to occur. Instead, it seems that the temporal dynamics of diversification
+in some species of \textit{Holothuria impatiens} is similar to what is observed
+for species occurring in continental settings. What do species of the
+\textit{H. impatiens} do differently that allow them to colonize the range of
+closely related species, or in other words, what does allow ESU1 to behave like
+a species of a continental setting? The co-occurrence of these related species
+has both an ecological and an evolutionary component. Ecologically, they need to
+have evolved enough ecological differentiation to not outcompete each
+other. Evolutionarily, they need to have completed reproductive isolation in a
+short amount of time. The ecological aspect is difficult to evaluate as little
+is known about the biology of these species and differences in habitat or
+feeding preference might allow coexistence. Investigating whether the ecology of
+ESU1 differs in places where it occurs by itself compared to where it coexists
+with its closely related species deserves more attention. Additionally, this
+data could be used to evaluate whether reinforcement associated with diverging
+selection along ecological dimensions could have contributed to the completion
+of reproductive isolation.
+
+In any case, ESU1, Hawaii and Wpac are, to our knowledge, the fastest documented
+example of speciation for a broadcast spawner invertebrate in an oceanic
+setting. The fastest known speciation for marine invertebrates is a supposed
+case of peripatric speciation where two species of sea stars off the East coast
+of Australia underwent a drastic life history switch (from gonochoric broadcast
+spawning to hermaphroditic selfing brooder) that led to reproductive isolation
+about 10,000 years ago \cite{Puritz2012}. These two species are allopatric
+(separated by a few hundred kilometers) and have small geographical ranges.
+
+We hypothesize that Wpac and Hawaii are the consequences of peripatric
+speciation events where a combination of selection to local environmental
+conditions and low effective population sizes have led to rapid reproductive
+isolation. Adaptation to local environmental conditions for Wpac and Hawaii is
+suggested by their restricted geographical ranges. Small effective population
+sizes are suggested by the low levels of heterozygoty observed for these species
+as well as the reciprocal monophyly observed for all species at the majority of
+the loci. Additionally, echinoderms, as other marine organisms, have
+life-history characteristics that make them prone to low effective population
+sizes: strong bias in reproductive success, size-dependent fecundity
+\cite{Gonzales2008a}. Additionally, echinoderms are renown to experience drastic
+population sizes fluctuations \cite{Uthicke2009} which contributes further to
+reduce effective population sizes. If low effective population sizes might limit
+a species adaptive potential, the low genetic diversity will facilitate the
+fixation of alleles that might contribute to reproductive isolation. In general,
+we think that improving our knowledge of effective population sizes will help
+refine our understanding of the speciation process. 
+
+% use migrate to estimate theta?
+
+
+these successful colonization In the case of closely related but reproductively
+isolated lineages, the strict allopatry observed suggests that species fail to
+establish themselves in another species' range. In most cases, dispersal
+limitation alone is insufficient to explain this pattern. Enough individuals
+need to colonize to overcome Allee effects, and resource partitioning or
+availability need to be sufficient to allow species coexistence
+\cite{Meyer2005}.  Even if \textit{H. impatiens} produce lots of long-lived
 larvae, given the geographical isolation of the Hawaiian archipelago, it is
 difficult to envision that this kind of inter-specific competition will drive
 the reproductive isolation between ESU1 and Hawaii. We instead hypothesize that
 a founder event accompanied with biological traits maintaining low effective
 population sizes and changes in environmental conditions have interplayed to
-allow for (1) rapid reproductive isolation; (2) recent range expansion leading to
-secondary sympatry for ESU1.
-
-
-
-
-
-
-% Factors contributing to small populations sizes:
-% - variation in reproductive success
-% - local populations going extinct because of sea level fluctuations
-% - boom-and-bust dynamic
-
+allow for (1) rapid reproductive isolation; (2) recent range expansion leading
+to secondary sympatry for ESU1.
 
 % possibly easier to detect because faster to achieve reciprocal monophyly.
-
-
-
-
-% typically oceanic islands remain with 1 species/takes a long time for
-% secondary sympatry
-% - mechanisms that allow that?
-% - tie also that rapid secondary sympatry is associated with continental
-% margins
-
-
-Peripheral speciation has been 
-
 
 Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
 marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
