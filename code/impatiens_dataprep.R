@@ -98,6 +98,54 @@ concatenateAlignments(pattern="(c0036|c0775|H3a|ITS|LSU).+afa$",
 alg2nex(file="~/Documents/Impatiens/20130929.impatiens_sampling/20130929.impatiens_noNuc_allESU1.phy",
         partition.file="/tmp/partitionnuc")
 
+### 20140702 -- raxml on individual loci
+
+### all mt
+concatenateAlignments(pattern="_(COI|ATP6|16S)\\.phy$", path="data", input.format="seq",
+                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
+                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.part",
+                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
+removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
+
+
+### all nuc
+concatenateAlignments(pattern="_(c0036|c0775|H3a|ITS|LSU)\\.phy$", path="data", input.format="seq",
+                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
+                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.part",
+                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
+removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
+
+### c0036
+removeEmptySeqs(file="data/20130923.impatiens_c0036.phy",
+                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0036.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
+
+### c0775
+removeEmptySeqs(file="data/20130923.impatiens_c0775.phy",
+                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0775.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?", drop="S0213")
+
+## H3a
+removeEmptySeqs(file="data/20130923.impatiens_H3a.phy",
+                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
+h3aAlg <- read.dna(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+                   format="seq")
+write.dna(h3aAlg[- match("S0213", dimnames(h3aAlg)[[1]]), ],
+          file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+          format="seq", colsep="", colw=10000)
+
+## rDNA
+concatenateAlignments(pattern="_(ITS|LSU)\\.phy$", path="data", input.format="seq",
+                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
+                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.part",
+                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
+removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
+                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
+
+
 ## fasToPhase("/tmp/seq/20130929-172701-c0036.afa")
 ## fasToPhase("/tmp/seq/20130929-172701-c0775.afa")
 ## fasToPhase("/tmp/seq/20130929-172701-ITS.afa")
