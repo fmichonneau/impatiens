@@ -48,7 +48,7 @@ gmycEdges <- function(gmycOut) {
         tips <- names(gmGrp)[gmGrp == x]
         if (length(tips) > 1) {
             anc <- MRCA(tr4, tips)
-            desc <- descendants(tr4, anc, "all")
+            desc <- phylobase::descendants(tr4, anc, "all")
             getEdge(tr4, desc)
         }
         else 
