@@ -21,6 +21,33 @@ gmycFactors <- c(paste0("20140422.allSeq_", gmycFactors),
                  paste0("20140514.noDup_", gmycFactors))
 pathResults <- "~/Documents/Impatiens"
 
+## colors
+impPal <- c(
+    "#89B151", # tenenbaum bright green = Medit
+    "#AF420A", # life aquatic dark orange = ESU3_Deep
+    "#FD6467", # grand budapest hotel pink = ESU3_PNG
+    "#01abe9", # life aquatic bright blue = ESU1
+    "#1b346c", # life aquatic dark blue = ESU3
+    "#f54b1a", # life aquatic bright orange = gracilis
+    "#e5c39e", # life aquatic tan = Hawaii
+    "#c3ced0", # life aquatic light blue = RedSea
+    "#EBCC2A", # life aquatic yellow = Wpac
+    "#446455", # tenenbaum dark green = Gala
+    "#4CBDD5", # darjeeling light blue = WA
+    "#FF0000", # darjeeling red = tigerRedSea
+    "#F8B0BB", # pink = tiger
+    "#B6F9B1", # another green = ESU1_Lizard
+    "#FFF196", # mr fox yellow = EP
+    "#392C4B" # rushmore purple = ESU2
+    #"#020202"  # not quite black
+    )
+names(impPal) <- c("Medit", "ESU3_Deep", "ESU3_PNG", "ESU1", "ESU3", "gracilis",
+                   "Hawaii", "RedSea", "Wpac", "Gala", "WA", "tigerRedSea", "tiger",
+                   "ESU1_Lizard", "EP", "ESU2")
+
+## image(1:length(impPal), 1, as.matrix(1:length(impPal)), col=impPal, xlab="impPal",
+##        ylab="", xaxt="n", yaxt="n", bty="n")
+
 
 ### ---- loci-characteristics-data ----
 library(seqManagement)
@@ -206,26 +233,7 @@ posTips <- max(branching.times(impTree))
 impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
 esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
              "Gala", "EP", "Hawaii", "Wpac", "RedSea")
-##esuCol <- hcl(h=seq(0, 360, length=length(esuList)), c=sample(c(50, 100), size=length(esuList), replace=TRUE), l=50)
-##esuCol <- c("#FE0835", "#A50026","#D73027","#F46D43","#FDAE61","#FEE090","#FFFFBF","#E0F3F8","#ABD9E9","#74ADD1","#4575B4","#313695")
-esuCol <- c(
-"#25162E",
-"#4F261D",
-"#7D4954",
-"#D6E4DB",
-"#8FA6C4",
-"#9E8498",
-"#3C366A",
-"#B7565A",
-"#D0AD87",
-"#EED780",
-"#B7CF64",
-"#6F8042",
-"#576266")
 
-esuCol <- c("#51574a", "#447c69", "#74c493", "#8e8c6d", "#e4bf80", "#e9d78e", "#e2975d",
-            "#f19670", "#e16552", "#c94a53", "#be5168", "#a34974", "#993767", "#65387d",
-            "#4e2472", "#9163b6", "#e279a3", "#e0598b", "#7c9fb0", "#5698c4", "#9abf8e")
 
 
 #impTree$root.edge <- 8 - treeDepth(impTree)
@@ -240,7 +248,7 @@ impNodLblTxt <- rep("", length(impNodLblCol))
 impAllNds <- 1:length(impNodLbl)
 impKeepNds <- impAllNds[!is.na(impNodLblCol)]
 
-plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE)#, x.lim=c(0,10))
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,15), no.margin=TRUE)
 nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
                frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
                bg=impNodLblCol[!is.na(impNodLblCol)],
@@ -250,7 +258,7 @@ nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
 barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
                 cex.plot=.3, extra.space=.5, text.offset=1.02,
                 seg.col=rev(esuCol))
-axis(side=1, at=0:8, labels=paste("-", 8:0, sep=""))
+axis(side=1, at=0:8, labels=paste("-", 8:0, sep="")) 
 legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", "$0.975 \\leq PP < 1$", "$ 0.9 \\leq PP < 0.975$"))
 
 
@@ -470,23 +478,70 @@ ggplot(data=gmycSumm, aes(x=demographic, y=mean,
     scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
 
-### ---- gmyc-tree-plot ----
+### ---- gmyc-tree-plot-prep ----
 ## find the tree with the most conservative estimate
+load("data/gmycRes.RData")
+source("code/gmycGroups.R")
+library(ape)
+library(phylobase)
 nspecies <- sapply(gmycRes, function(x) {
     tmpSingle <- x$simpleGmyc
     tmpSingle$entity[which.max(tmpSingle$likelihood)]
 })
-resKeep <- gmycRes[[which.min(whichKeep)]]$simpleGmyc
-stopifnot(identical(class(resKeep), "gmyc"))
-keepTree <- resKeep$tree
-## Get threshold
-keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
-## Find edge length for edge leading to node associate with threshold
-##   so we can draw line in the middle of the edge
-keepEdgeWhich <- names(branching.times(keepTree)[which(branching.times(keepTree) == -keepThreshold)])
-keepEdgeLength <- keepTree$edge.length[which(keepTree$edge[, 2] == as.integer(keepEdgeWhich))]
-plot(ladderize(keepTree), cex=.5)
-abline(v=max(branching.times(keepTree))+keepThreshold-(keepEdgeLength/2), col="red", lwd=2)
+nmTrees <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycRes))
+nmTrees <- gsub("^allSeq_", "", nmTrees)
+nmTrees <- gsub("relaxed_", "Relaxed Clock, ", nmTrees)
+nmTrees <- gsub("strict_", "Strict Clock, ", nmTrees)
+nmTrees <- gsub("yule$", "Yule", nmTrees)
+nmTrees <- gsub("coalexp", "Coalescent (Exponential growth)", nmTrees)
+nmTrees <- gsub("coalcst", "Coalescent (Constant)", nmTrees)
+
+gmEd <- lapply(gmycRes[1:6], function(x) gmycEdges(x$simpleGmyc))
+gmGrp <- lapply(gmycRes[1:6], function(x) gmycGroups(x$simpleGmyc))
+
+### ---- gmyc-tree-plot ---- 
+par(mfrow=c(3, 2))
+for (i in 1:6) {
+    resKeep <- gmycRes[[i]]$simpleGmyc
+    stopifnot(identical(class(resKeep), "gmyc"))
+    keepTree <- resKeep$tree
+    ## Get threshold
+    keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+    ## Find edge length for edge leading to node associate with threshold
+    ##   so we can draw line in the middle of the edge
+    keepBrTimes <- sort(branching.times(keepTree))
+    keepWhichEdge <- which(keepBrTimes == -keepThreshold)
+    ## We place the threshold line between where the thershold point is and
+    ##  the following (in branching order) node in the tree
+    thresLine <- max(branching.times(keepTree)) - 
+        mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
+    plotTree <- ladderize(keepTree)
+    colEdges <- rep("black", nrow(plotTree$edge))
+    edgesToChange <- gmycMatchEdges(gmEd[[i]], plotTree)
+    nSpp <- length(edgesToChange)
+    if (nSpp == 14) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
+                             "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
+                             "Wpac")]
+    }
+    else if (nSpp == 16) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
+                             "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
+                             "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
+                             "tigerRedSea")]
+    }
+    else stop("Houston, we have a problem.")
+    for (j in 1:nSpp) {
+        colEdges[edgesToChange[[j]]] <- colToUse[j]
+    }
+    plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
+         x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
+         edge.color=colEdges, edge.width=0.5)
+    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-2, cex=.8)
+    segments(x0=thresLine, x1=thresLine, y0=20,
+             y1=Ntip(keepTree), col="red", lwd=2, lty=2)
+}
+
 
 ### ---- median-tmrca-WAgroup ----
 ## Get mean and median for node corresponding to MRCA for all
