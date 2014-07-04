@@ -765,6 +765,15 @@ Redoing this with RAxML.
 * wrote script to call RAxML on each alignemnt on HiPerGator
 * using rapid bootstrap+ML search (`-f a -x`)
 
+## Results
+
+* took about 15 hours to complete
+* redoing it without outgroup, has long S0213 branch could lead to suboptimal
+  likelihood results
+* all results discarded
+* resubmitting with same prefix
+
+
 
 - - - - - - - - - 
 

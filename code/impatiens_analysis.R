@@ -7,6 +7,7 @@ library(seqManagement)
 library(wesanderson)
 library(ggplot2)
 library(ape)
+source("code/gmycGroups.R")
 source("~/R-scripts/fasToPhase.R")
 source("code/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
@@ -118,7 +119,7 @@ locTable <- print(xtable(lociCharTable,
                   sanitize.text.function = function(x) {x},
                   print.results=FALSE)
 
-multiColStr <- paste("\\1 \\& \\\\multicolumn{3}{c}{mtDNA}",
+multiColStr <- paste("\\1 \\& \\\\multicolumn{3}{c}{mtDNA} \\& ",
                     "\\\\multicolumn{5}{c}{nucDNA} \\\\\\\\ \\\n",
                     "\\\\cline{2-4} \\\\cline{5-9}", sep="")
 
@@ -290,14 +291,6 @@ mtext(side=1, at=colMeans(noCOIbpss), line=0, text=as.character(noCOIlbls),
       las=2, adj=0)
 abline(h=-5, lty=2)
 text(noCOIbpss[1:2], noCOIbpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
-## noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
-## noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
-## noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
-## noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
-## noMtlbls <- unique(noMtSBeast$groupings); 
-## noMtbpss <- barplot(noMtbpssMat, ylab="Difference in log-marginal likelihoods",
-##                     beside=T, main="Stepping-stone sampling", ylim=c(-5,5))
-## mtext(side=1, at=colMeans(noMtbpss), line=0, text=noMtlbls, las=2, adj=0)
 
 
 ### ---- sm-starbeast-summary ----
@@ -310,6 +303,15 @@ abline(h=-5, lty=2)
 ## noMtbpps <- barplot(noMtbppsMat, ylab="Difference in log-marginal likelihoods",
 ##                     beside=T, main="Path sampling", ylim=c(-5,5))
 ## mtext(side=1, at=colMeans(noMtbpps), line=0, text=noMtlbls, las=2, adj=0)
+## noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
+## noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
+## noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
+## noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
+## noMtlbls <- unique(noMtSBeast$groupings); 
+## noMtbpss <- barplot(noMtbpssMat, ylab="Difference in log-marginal likelihoods",
+##                     beside=T, main="Stepping-stone sampling", ylim=c(-5,5))
+## mtext(side=1, at=colMeans(noMtbpss), line=0, text=noMtlbls, las=2, adj=0)
+
 
 ### NJ analyses
 ### ---- nj-coi ----
@@ -481,9 +483,6 @@ ggplot(data=gmycSumm, aes(x=demographic, y=mean,
 ### ---- gmyc-tree-plot-prep ----
 ## find the tree with the most conservative estimate
 load("data/gmycRes.RData")
-source("code/gmycGroups.R")
-library(ape)
-library(phylobase)
 nspecies <- sapply(gmycRes, function(x) {
     tmpSingle <- x$simpleGmyc
     tmpSingle$entity[which.max(tmpSingle$likelihood)]
@@ -534,11 +533,12 @@ for (i in 1:6) {
     for (j in 1:nSpp) {
         colEdges[edgesToChange[[j]]] <- colToUse[j]
     }
+    par(mai= c(1, 0, 0, 0))
     plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
          x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
          edge.color=colEdges, edge.width=0.5)
-    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-2, cex=.8)
-    segments(x0=thresLine, x1=thresLine, y0=20,
+    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
+    segments(x0=thresLine, x1=thresLine, y0=10,
              y1=Ntip(keepTree), col="red", lwd=2, lty=2)
 }
 
