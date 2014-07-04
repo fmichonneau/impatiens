@@ -218,7 +218,7 @@ across large geographic areas (e.g, circum-tropical species) has changed our
 understanding of how biodiversity is distributed in the sea, with isolated
 oceanic bassins and archipelagoes exhibiting much higher endemism rates than
 previously thought (e.g., %find references for Caribbean, Red Sea, Medit
-\cite{Meyer2005a}). If unraveling diversity among geographically isolated
+\cite{Meyer2005-evolution}). If unraveling diversity among geographically isolated
 populations affects estimates of global diversity, unraveling diversity among
 sympatric populations affects not only local estimates of diversity, but also
 challenges our understanding of the processes generating biodiversity.
@@ -418,28 +418,28 @@ data by all the software used in this study.
   Marker & Primer & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\
   \hline
   % COI --- 
-  COI &  COIceF  & ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC & 42 & 40 & \multirow{2}{*}{\cite{Hoareau2010}} \\
+  COI &  COIceF  & ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC & 42 & 40 & \cite{Hoareau2010} \\
        & COIceR  & TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & & & \\
   % 16S ---
-  16S & 16SAR & CGC CTG TTT ATC AAA AAC AT & 52 & 35 & \multirow{2}{*}{\cite{Arndt1996}} \\
+  16S & 16SAR & CGC CTG TTT ATC AAA AAC AT & 52 & 35 & \cite{Arndt1996} \\
       & 16SBR & GCC GGT CTG AAC TCA GAT CAC GT & & & \\
   % 16Sc ---
   %% TODO 
   % ATP6 ---
-  ATP6 & ATP6f   & GGA CAA TTT TCC CCA GAC CT & 42 & 40 & \multirow{2}{*}{This study} \\
+  ATP6 & ATP6f   & GGA CAA TTT TCC CCA GAC CT & 42 & 40 & This study \\
        & ATP6r   & GGT GAA GAG GGT GTT GAT GG & & & \\
   % 28S ---
-  28S  & LSUFW1  & AGC GGA GGA AAA GAA ACT A &  42 & 40 & \multirow{2}{*}{\cite{Sonnenberg2007}} \\
+  28S  & LSUFW1  & AGC GGA GGA AAA GAA ACT A &  42 & 40 & \cite{Sonnenberg2007} \\
        & LSUREV2 & ACG ATC GAT TTG CAC GTC AG & & & \\
   % ITS ---
-  ITS1-5.8S-ITS2 & fm-ITS-f  & AGG TGA ACC TGC AGA TGG ATC A & 45 & 40 & \multirow{2}{*}{This study, \cite{Lacey2005,Sonnenberg2007}} \\
+  ITS1-5.8S-ITS2 & fm-ITS-f  & AGG TGA ACC TGC AGA TGG ATC A & 45 & 40 & This study, \cite{Lacey2005,Sonnenberg2007} \\
                   & fm-5.8S-f & CGT CGA TGA AGA ACG CAG YW & & & \\
                   & fm-ITS-r  & TAG TTT CTT TTC CTC CGC T  & & & \\
   % c0036 ---
-  c0036 & c0036f & TAA CGA CGG ATC TCA CGG AG & 42 & 45 & \multirow{2}{*}{This study} \\
+  c0036 & c0036f & TAA CGA CGG ATC TCA CGG AG & 42 & 45 & This study \\
         & c0036r & AAT AAT GCT GGC GTG ACG TC & & & \\
   % c0775 ---
-  c0775 & c0775f & GCT CTT CGT TCA ATT TAT CTC GC & 42 & 40 & \multirow{2}{*}{This study} \\
+  c0775 & c0775f & GCT CTT CGT TCA ATT TAT CTC GC & 42 & 40 & This study \\
         & c0775r & GGG ATG CAG TTT GTC GAG TG & & & \\
   \hline
 \end{tabular}
@@ -930,7 +930,7 @@ investigated thoroughly. Tree shape can be affected by biological factors or by
 the type of analysis used to build the tree. Simulated data have been used to
 test the influence of diversification rates, effective population sizes, and
 migration rates on GMYC accuracy and precision \cite{Papadopoulou2008,
-  Esseltyn2012}. Some of the effects of the methodological choices have been
+  Esselstyn2012}. Some of the effects of the methodological choices have been
 evaluated by the authors of the method \cite{Pons2006, Monaghan2009,
   Fujisawa2013} and by others \cite{Talavera2013}, but the conclusions might be
 difficult to generalize depending on the nature of the dataset. Here, we showed
@@ -976,7 +976,7 @@ sample, but if used in systematics study to delineate species, care needs to be
 taken to use the appropriate priors for the particular type of
 dataset. Additionally, for this type of studies, additional lines of evidence
 need to be used to validate the putative species delineated by GMYC (this study,
-\cite{Marshall2011a, Esseltyn2012}).
+\cite{Marshall2011a, Esselstyn2012}).
 
 % talk about time spent on phylogeny between coalescent and speciation
 % processes.
@@ -1106,15 +1106,15 @@ lineages in sympatry.
 
 The restriction of marine invertebrates to "oceanic" and "continental" habitats
 has been documented for a range of organisms (e.g., land snails
-\cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006, Williams2011},
+\cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006b, Williams2011},
 hermit crabs \cite{Malay2010}), and a variety of biotic and abiotic factors may
 explain this pattern (reviewed in \cite{Malay2010}). Interestingly, clades
 associated with continental habitats are characterized by much faster rates of
 secondary sympatry than species associated with insular habitats in both
-vertebrates (e.g., \cite{Taylor2005,Rocha2013}), and invertebrates (e.g.,
-\cite{Meyer2005,Malay2010,Williams2011}). As a result, closely related species
+vertebrates (e.g., \cite{Taylor2005,Hodge2012}), and invertebrates (e.g.,
+\cite{Meyer2005-evolution,Malay2010,Williams2011}). As a result, closely related species
 show strict allopatric distribution in oceanic setting (e.g., as in
-\cite{Meyer2005}) but occur in sympatry along continental margins (e.g.,
+\cite{Meyer2005-evolution}) but occur in sympatry along continental margins (e.g.,
 \cite{Williams2011}). Differences in rates of secondary sympatry vary across
 taxa but are faster in continental settings compared to oceanic settings. For
 instance, in the Labridae \textit{Anampes} sympatric sister species in
@@ -1130,7 +1130,7 @@ divergent selection for resource partitioning, in turn these selective pressures
 speed up the speciation process through reinforcement. Additionally, in sea
 urchins, high population densities lead to conditions that favor divergent
 selection in gamete recognition proteins (GRP), a mechanism that would allow
-reproductive isolation to evolve rapidly \cite{Levitan2006a}.
+reproductive isolation to evolve rapidly \cite{Levitan2006}.
 
 Here we observe a different pattern with closely related species occurring in
 sympatry even though they diverged recently (less than 1 Ma for ESU1 and Hawaii;
@@ -1174,7 +1174,7 @@ as well as the reciprocal monophyly observed for all species at the majority of
 the loci. Additionally, echinoderms, as other marine organisms, have
 life-history characteristics that make them prone to low effective population
 sizes: strong bias in reproductive success, size-dependent fecundity
-\cite{Gonzales2008a}. Additionally, echinoderms are renown to experience drastic
+\cite{Gonzalez2008a}. Additionally, echinoderms are renown to experience drastic
 population sizes fluctuations \cite{Uthicke2009} which contributes further to
 reduce effective population sizes. If low effective population sizes might limit
 a species adaptive potential, the low genetic diversity will facilitate the
@@ -1191,7 +1191,7 @@ establish themselves in another species' range. In most cases, dispersal
 limitation alone is insufficient to explain this pattern. Enough individuals
 need to colonize to overcome Allee effects, and resource partitioning or
 availability need to be sufficient to allow species coexistence
-\cite{Meyer2005}.  Even if \textit{H. impatiens} produce lots of long-lived
+\cite{Meyer2005-evolution}.  Even if \textit{H. impatiens} produce lots of long-lived
 larvae, given the geographical isolation of the Hawaiian archipelago, it is
 difficult to envision that this kind of inter-specific competition will drive
 the reproductive isolation between ESU1 and Hawaii. We instead hypothesize that
@@ -1349,11 +1349,11 @@ polymode + ESS
 
 \bibliographystyle{plos2009}
 
-\bibliography{impatiens_phylogeography}
+\bibliography{impatiens_phylogeography_nourl}
 
 \section{Supplementary materials}
 
-\begin{table}
+\begin{table}[h]
   \centering
   \caption{The subscript number corresponds to the to the codon position in the
     alignment. The "real" codon position is offset by 2 for COI, H3a and ATP6
@@ -1375,6 +1375,11 @@ polymode + ESS
 <<sm-starbeast-summary, dependson='starbeast-summary', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
 @ 
 
+<<gmyc-tree-plot-prep, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='hide', message=FALSE, warning=FALSE>>=
+@
+
+<<gmyc-tree-plot, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
+@ 
 
 %% Notes about the biology of the species
 %% - EP: discharge Cuv tubules \cite{Bakus1974}, ``relatively very active''
