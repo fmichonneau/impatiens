@@ -19,7 +19,7 @@
 
 % Use fancy fonts
 \usepackage{fontspec}
-\setmainfont{Crimson Text}
+\setmainfont[Ligatures=TeX]{Crimson Text}
 \setsansfont{SourceSansPro-Regular}
 
 % tables
@@ -65,18 +65,18 @@ read_chunk('code/impatiens_map.R')
   of diversity and speciation. However, for many organisms with simple and
   variable morphological traits, the characters traditionally used by
   taxonomists to identify species might lead to a considerable under
-  appreciation of their diversity. Recent advances in molecular-based
+  appreciation of their diversity. Recent advances in molecular-data based
   computational methods have considerably improved our ability to identify and
   test species limits. Here, we use an integrative approach to delineate species
-  in a complex of sea cucumbers. We show that \textit{Holothuria impatiens}, a
-  common, shallow-water species, occurring across the Indo-Pacific, the Western
-  Atlantic and the Mediterranean Sea, targeted locally by fisheries, is a
-  complex of at least 14 species. We use a three step approach. (1) We used the
-  Generalized Mixed Yule Coalescent (GMYC) model to identify putative species
-  without \textit{a priori} hypotheses. In the process, we also show that the
-  number of putative species estimated with GMYC can be affected considerably by
-  the priors used to build the input tree. (2) We assessed based on
-  morphological and distributional information, the most relevant
+  in a complex of sea cucumbers. We used a three-step approach to show that
+  ``\textit{Holothuria impatiens}'', a common, shallow-water species, occurring
+  across the Indo-Pacific, the Western Atlantic and the Mediterranean Sea,
+  targeted locally by fisheries, is a complex of at least 14 species. (1) We
+  used the Generalized Mixed Yule Coalescent (GMYC) model to identify putative
+  species without \textit{a priori} hypotheses. In the process, we also show
+  that the number of putative species estimated with GMYC can be affected
+  considerably by the priors used to build the input tree. (2) We assessed based
+  on morphological and distributional information, the most relevant
   hypothesis. This approach allowed us to identify unambiguously 9 species that
   can be identified based on live coloration and geographical
   distribution. However, some of the lineages consistently assigned to belong to
