@@ -8,6 +8,7 @@ library(wesanderson)
 library(ggplot2)
 library(ape)
 source("code/gmycGroups.R")
+source("code/multiplot.R")
 source("~/R-scripts/fasToPhase.R")
 source("code/extToLbl.R")
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
@@ -39,7 +40,7 @@ impPal <- c(
     "#F8B0BB", # pink = tiger
     "#B6F9B1", # another green = ESU1_Lizard
     "#FFF196", # mr fox yellow = EP
-    "#392C4B" # rushmore purple = ESU2
+    "#8061AD" # rushmore purple = ESU2
     #"#020202"  # not quite black
     )
 names(impPal) <- c("Medit", "ESU3_Deep", "ESU3_PNG", "ESU1", "ESU3", "gracilis",
@@ -269,49 +270,101 @@ sbeastOrig <- read.csv(file="data/starbeastResults.csv")
 sbeast <- sbeastOrig[, c("groupings", "runs", "chainLength", "dataIncluded",
                          "PS_logLik", "SS_logLik")]
 sbeast <- sbeast[grep("[0-9]$", sbeast$runs), ] # runs with X at the ends are not meant to be included
-wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all")
-bppsMat <- matrix(wMtSB[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -8]
-bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
-bpssMat <- matrix(wMtSB[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -8]
-bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
-lbls <- unique(wMtSB$groupings); lbls <- lbls[-length(lbls)]
-noCOISB <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI")
-noCOIbpssMat <- matrix(noCOISB[, c("SS_logLik")], nrow=2)
-noCOIbpssMat <- noCOIbpssMat - max(noCOIbpssMat[, 1])
-noCOIlbls <- unique(noCOISB$groupings)
-par(mfrow=c(1, 2))
-bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
-                beside=T, main="With COI", ylim=c(-50, 5))
-mtext(side=1, at=colMeans(bpss), line=0, text=as.character(lbls), las=2, adj=0)
-text(bpss[1:2], bpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
-abline(h=-5, lty=2)
-noCOIbpss <- barplot(noCOIbpssMat, beside=T, main="Without COI",
-                     ylim=c(-50, 5))
-mtext(side=1, at=colMeans(noCOIbpss), line=0, text=as.character(noCOIlbls),
-      las=2, adj=0)
-abline(h=-5, lty=2)
-text(noCOIbpss[1:2], noCOIbpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
+
+## wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all")
+## bppsMat <- matrix(wMtSB[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -ncol(bppsMat)]
+## bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
+## bpssMat <- matrix(wMtSB[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -ncol(bpssMat)]
+## bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
+## lbls <- unique(wMtSB$groupings); lbls <- lbls[-length(lbls)]
+## noCOISB <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI")
+## noCOIbpssMat <- matrix(noCOISB[, c("SS_logLik")], nrow=2)
+## noCOIbpssMat <- noCOIbpssMat - max(noCOIbpssMat[, 1])
+## noCOIlbls <- unique(noCOISB$groupings)
+
+## par(mfrow=c(1, 2))
+## bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
+##                 beside=T, main="With COI", ylim=c(-50, 5))
+## mtext(side=1, at=colMeans(bpss), line=0, text=as.character(lbls), las=2, adj=0)
+## text(bpss[1:2], bpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
+## abline(h=-5, lty=2)
+## noCOIbpss <- barplot(noCOIbpssMat, beside=T, main="Without COI",
+##                      ylim=c(-50, 5))
+## mtext(side=1, at=colMeans(noCOIbpss), line=0, text=as.character(noCOIlbls),
+##       las=2, adj=0)
+## abline(h=-5, lty=2)
+## text(noCOIbpss[1:2], noCOIbpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
+
+sbCol <- wes.palette(5, "Zissou")[c(1, 5)]
+
+sbSummAll <- subset(sbeast, chainLength == "long" & dataIncluded == "all" & groupings != "random")
+meanESU1SS <- mean(subset(sbSummAll, groupings == "allESU1")$SS_logLik)
+meanESU1PS <- mean(subset(sbSummAll, groupings == "allESU1")$PS_logLik) 
+sbSummAll$stdSS <- sbSummAll$SS_logLik - meanESU1SS
+sbSummAll$stdPS <- sbSummAll$PS_logLik - meanESU1PS
+sbSummAll$dataIncluded <- "All data"
+sbSummNoCOI <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI" & groupings != "random")
+meanESU1SSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$SS_logLik)
+meanESU1PSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$PS_logLik) 
+sbSummNoCOI$stdSS <- sbSummNoCOI$SS_logLik - meanESU1SSnoCOI
+sbSummNoCOI$stdPS <- sbSummNoCOI$PS_logLik - meanESU1SSnoCOI
+sbSummNoCOI$dataIncluded <- "No COI"
+
+sbAllPlotSS <- ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    labs(y="Difference in Marginal log-Likelihood", x="Models") +
+    facet_grid( ~ dataIncluded)
+
+
+sbNoCoiPlotSS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    labs(y="", x="Models") +
+    facet_grid(~ dataIncluded)
+
+
+multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
 
 
 ### ---- sm-starbeast-summary ----
-bpps <- barplot(bppsMat, ylab="Difference in log-marginal likelihoods",
-                beside=T, #main="Path sampling",
-                ylim=c(-50, 0))
-mtext(side=1, at=colMeans(bpps), line=0, text=as.character(lbls), las=2, adj=0)
-text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
-abline(h=-5, lty=2)
-## noMtbpps <- barplot(noMtbppsMat, ylab="Difference in log-marginal likelihoods",
-##                     beside=T, main="Path sampling", ylim=c(-5,5))
-## mtext(side=1, at=colMeans(noMtbpps), line=0, text=noMtlbls, las=2, adj=0)
-## noMtbppsMat <- matrix(noMtSBeast[, c("PS_logLik")], nrow=2); 
-## noMtbppsMat <- noMtbppsMat - min(noMtbppsMat[, 1])
-## noMtbpssMat <- matrix(noMtSBeast[, c("SS_logLik")], nrow=2); 
-## noMtbpssMat <- noMtbpssMat - min(noMtbpssMat[, 1])
-## noMtlbls <- unique(noMtSBeast$groupings); 
-## noMtbpss <- barplot(noMtbpssMat, ylab="Difference in log-marginal likelihoods",
-##                     beside=T, main="Stepping-stone sampling", ylim=c(-5,5))
-## mtext(side=1, at=colMeans(noMtbpss), line=0, text=noMtlbls, las=2, adj=0)
+## bpps <- barplot(bppsMat, ylab="Difference in log-marginal likelihoods",
+##                 beside=T, #main="Path sampling",
+##                 ylim=c(-50, 0))
+## mtext(side=1, at=colMeans(bpps), line=0, text=as.character(lbls), las=2, adj=0)
+## text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
+## abline(h=-5, lty=2)
 
+sbAllPlotPS <- ggplot(sbSummAll, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    labs(y="Difference in Marginal log-Likelihood", x="Models") +
+    facet_grid( ~ dataIncluded)        
+
+sbNoCoiPlotPS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    labs(y="", x="Models") +
+    facet_grid(~ dataIncluded)
+
+multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
+                    
 
 ### NJ analyses
 ### ---- nj-coi ----
