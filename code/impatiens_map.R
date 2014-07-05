@@ -84,51 +84,47 @@ iwp <- map_data("world2")
 
 ### ---- impatiens-map-WA ----
 ## 1. WA + EP + Gala
+c1Pal <- impPal[c("WA", "EP", "Gala")]
 tmpMap <- subset(impMap, consensusESU %in% c("WA", "EP", "Gala"))
-c1Map <- ggplot(impMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+ggplot(impMap) + annotation_map(iwp, fill = "gray40", colour = "gray40") +
     geom_point(aes(x = Long.recenter, y = Lat, colour = consensusESU), data = tmpMap,
-               position = position_dodge(width = 1.5), shape=15) +
+               position = position_dodge(width = 1.5), shape=16, size=3) +
+    scale_colour_manual(values=c1Pal) + 
     xlim(c(250,310)) + ylim(c(-25, 25)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
     theme(legend.position="top", legend.title = element_blank(),
           panel.background = element_rect(fill = 'aliceblue'),
           panel.grid.major = element_line(colour = "white", size=0.1))
-c1Map
 
 ### ---- impatiens-map-group2 ----
 ## 2. tiger + ESU2 + redSeaTiger
+c2Pal <- impPal[c("tiger", "ESU2", "tigerRedSea")]
 tmpMap <- subset(impMapThin, consensusESU %in% c("tiger", "ESU2", "tigerRedSea"))
-c2Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+
+ggplot(tmpMap) + annotation_map(iwp, fill = "gray40", colour = "gray40") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
-               position = position_dodge(width=1.5), shape=15) +
+               position = position_dodge(width=1.5), shape=16, size=3) +
+    scale_colour_manual(values=c2Pal) + 
     xlim(c(25,220)) + ylim(c(-25, 25)) +  ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
     theme(legend.position = "top", legend.title = element_blank(),
           panel.background = element_rect(fill = 'aliceblue'),
           panel.grid.major = element_line(colour = "white", size = 0.1))
 
-c2Map
-
 ### ---- impatiens-map-group1 ----
 ## 3. ESU3 + RedSea + Gracilis + Hawaii + WPac + ESU1
-library(wesanderson)
-zis <- wes.palette(5, name="Zissou")
-#zis <- c(zis[1:4], "#BBBBBB", zis[5])
-zis2 <- c("#01abe9", "#1b346c", "#f54b1a", "#e5c39e", "#c3ced0", zis[3])
-
+c3Pal <- impPal[c("ESU1", "ESU3", "RedSea", "gracilis", "Hawaii", "Wpac")]
 tmpMap <- subset(impMapThin, consensusESU %in% c("ESU1", "ESU3", "RedSea", "gracilis",
-                                                 "Hawaii", "ESU1-Hawaii", "Wpac"))
-c3Map <- ggplot(tmpMap) + annotation_map(iwp, fill = "gray50", colour = "gray50") +
+                                                 "Hawaii", "Wpac"))
+ggplot(tmpMap) + annotation_map(iwp, fill = "gray40", colour = "gray40") +
     geom_point(aes(x = Long2.recenter, y = Lat2, colour = consensusESU), data = tmpMap,
                position = position_jitter(width = 1, height = 1), shape = 16, size=3) +
-    scale_colour_manual(values=zis2) +
+    scale_colour_manual(values=c3Pal) +
     xlim(c(30,220)) + ylim(c(-27, 29)) + ylab("Latitude") + xlab("Longitude") +
     coord_map(projection = "mercator", orientation = c(90, 160, 0)) +
     theme(legend.position = "top", legend.title = element_blank(),
           panel.grid.major = element_line(colour = "white", size = 0.1),
           panel.background = element_rect(fill = 'aliceblue'))
-
-c3Map
 
 ## pdf(paper = "USr", file = "impatiensMaps.pdf")
 ## print(gMap)

@@ -3,7 +3,7 @@ all: impatiens_phylogeography.aux impatiens_phylogeography.tex
 	xelatex  -interaction=nonstopmode "\input" impatiens_phylogeography.tex
 	make clean-partial
 
-impatiens_phylogeography.tex: impatiens_phylogeography.Rnw
+impatiens_phylogeography.tex: impatiens_phylogeography.Rnw code/impatiens_analysis.R code/impatiens_map.R
 	Rscript -e "library(knitr); knit('impatiens_phylogeography.Rnw')"
 
 impatiens_phylogeography_nourl.bib: impatiens_phylogeography.tex impatiens_phylogeography.bib ~/Library/impatiens_phylogeography.bib
