@@ -1000,59 +1000,76 @@ putative species delineated \cite{Marshall2011a, Esselstyn2012}.
 % sequences). This low number of loci, is also not enough to obtain accurate
 % population estimates (see Harris+2013,10.1111/evo.12280).
 
-\subsection{Coloration, taxonomy, species identity}
+\subsection{Coloration, species limits and polymorphism}
 
-Despite that some of the members of the \textit{H. impatiens} group differ
-strikingly in their coloration, previous taxonomists, who have mostly focused on
-the shape of their ossicles have missed to recognized the many species that are
-part of this complex. Coloration is increasingly being recognized as a useful
-taxonomic character for marine invertebrate as skeletal elements alone have
-proved to be insufficient to discriminate among closely related species
-\cite{Knowlton1993, Malay2010}.
+Before the confirmation by molecular methods that differences in coloration were
+relevant to differentiate closely related species, marine invertebrate
+taxonomists have been reluctant to consider them \cite{Knowlton1993}. If
+coloration variation within ``\textit{H. impatiens}'' has been noticed by
+previous workers, and some unusual color morphs were described as sub-species by
+Clark \cite{Clark1921,Clark1938}, the focus on ossicle shape to distinguish sea
+cucumber species has led to an underestimation of the diversity in this
+group. Additionally, since several species in the complex co-occur across the
+Indo-Pacific, and often live in the same micro-habitat (under rocks in
+back-reefs), it was difficult for taxonomists to recognize that
+\textit{H. impatiens} was a complex.
 
-The purpose of coloration in sea cucumbers has not been explored but the fact
-that the species can be distinguished based on their color patterns indicate
-that natural selection may play a role in its evolution. Given that these
-species occupy cryptic habitats and do not have image forming eyes, the tight
-association between coloration and species identity would require further
-attention.
+The purpose of coloration in sea cucumbers has not been explored but since
+species can be distinguished based on their color patterns, natural selection
+may play a role in its evolution. In many groups, closely related species can be
+differentiated based on color patterns \cite{}. Color patterns have been
+documented to be diagnostic of species limits in Crustaceans \cite{Malay2010},
+Nemertean \cite{Knowlton1993}, fish \cite{McMillan1999}; and are used in mate
+recognition (\cite{McMillan1999, Detton2007, Baldwin2012}. Given that sea
+cucumbers inhabit cryptic habitats and do not possess image-forming eyes, the
+tight association between coloration and species identity the mechanisms
+maintaining this relationship need to investigated.
 
-It is also noteworthy that in this group, the rate of evolution in color pattern
-is very variable. The typical \textit{H. impatiens} color pattern is found
-across many species of the complex and vary little between ESU1 and Medit, the
-furthest apart of the tree, most species show alternate color patterns in some
-parts of their range which vary in their commonness. Interestingly, these
-alternate color patterns are similar (chocolate brown background with
-yellow/white tubercles) across species. We have no indication that these
-individuals differ genetically but additional genetic data (microsatellites,
-SNPs) could reveal that they represent distinct evolutionary
+Within ``\textit{H. impatiens}'', the rate of color pattern evolution is
+variable. While some species harbor slight variations of the typical color
+pattern characterizing the complex, others deviate from it and are
+polymorphic. For instance, ESU2 has two color morphs: a common color pattern
+that occur throughout the range of the species, and one restricted to the
+Western Indian Ocean (Nosy B\'{e}, Madagascar and R\'{e}union Island). Both
+gracilis (alternate morph in the southern part of the Great Barrier Reef) and
+ESU1 (alternate morph found in Lizard Island, Australia; Hawaii; and Guam) are
+also polymorphic.  Interestingly, these alternate color morphs are similar for
+the three species (uniform chocolate brown background with white tubercles), and
+could result from allelic polymorphism shared across species in genes involved
+in the pigmentation pathways (as in albinism or melanism), or from convergent
+selection. These two hypotheses are not mutually exclusive. Furthermore, since
+coloration seems indicative of species limits, these alternate color morphs
+could also represent additional cryptic lineages.
+
+Even though, there is no genetic differentiation in the markers used in this
+study to distinguish individuals exhibiting these alternate color patterns,
+studies in fish indicate that color differentiation between incipient species
+might precede any genetic signal (e.g.,
+\cite{McMillan1999,Gaither2014}). However, additional genetic data
+(microsatellites, SNPs) could reveal that they represent distinct evolutionary
 lineages. % TODO -- add pictures...
 
+% Add something about how differences in colors among ESUs might be a result of
+% the same type of proteins than GRP.
 
-%% Coloration & taxonomy
-% This paper http://dx.doi.org/10.1016/j.ympev.2014.01.017
-% is an example of potential overspliting based on coloration or really recent
-% species not yet distinguishable genetically and/or morphologically.
+The \textit{H. impatiens} complex belongs to the subgenus \textit{Thymiosycia}
+of which it is the type species. However, other than \textit{H. gracilis}, no
+other species currently included in this subgenus shows any affinity with the
+\textit{H. impatiens}. The subgenus \textit{Thymiosycia} therefore needs to be
+redefined to only include the species of the \textit{H. impatiens}
+complex. Based on species descriptions alone, there is no name that could be
+applied to the species in the complex, and all will need to be described
+formally. 
 
-%% Taxonomic consequences
-% impatiens should be elevated to sub-genus level
-% no other Thymiosycia (except from gracilis) are in this group.
 
-%% Differences in ecology among the species
-% ESU1 not picky but lagoons
-% ESU2 
-% Wpac, gracilis and ESU3 continental (hence distribution)
+
+
+
 
 %% Diversification of the complex is really ~20 MY really fits with idea that
 %% most of the reef-associated fauna diversified with corals see citations
 %% within Williams et al 2011.
 
-
-%% Talk about how IO morphs are different from Pacific even though there is no
-%% genetic differentiation.
-
-% Add something about how differences in colors among ESUs might be a result of
-% the same type of proteins than GRP.
 
 % Many cryptic species = change in patterns of biodiversity
 % - find examples of other species that show similar patterns indicative of small
@@ -1063,14 +1080,6 @@ lineages. % TODO -- add pictures...
 % information about their biology gathered on the supposition it's a single
 % species throughout its range
 
-
-% one of the reason, H impatiens has not been recognized as a species complex
-% earlier, is due to the fact that some ESUs are widespread and others are
-% overlapping. 
-
-The ability for taxonomists to be able to recognize populations of
-reproductively isolated individuals as species requires differentiation at three
-levels: morphological, genetically
 
 \subsection{Patterns of genetic diversity and geographical distribution}
 
