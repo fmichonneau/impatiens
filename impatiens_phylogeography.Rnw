@@ -1052,16 +1052,20 @@ lineages. % TODO -- add pictures...
 % Add something about how differences in colors among ESUs might be a result of
 % the same type of proteins than GRP.
 
+\subsection{Taxonomic consequences}
+
 The \textit{H. impatiens} complex belongs to the subgenus \textit{Thymiosycia}
 of which it is the type species. However, other than \textit{H. gracilis}, no
 other species currently included in this subgenus shows any affinity with the
-\textit{H. impatiens}. The subgenus \textit{Thymiosycia} therefore needs to be
-redefined to only include the species of the \textit{H. impatiens}
+``\textit{H. impatiens}'' complex. The subgenus \textit{Thymiosycia} therefore
+needs to be redefined to only include the species of the \textit{H. impatiens}
 complex. Based on species descriptions alone, there is no name that could be
 applied to the species in the complex, and all will need to be described
-formally. 
+formally.
 
-
+As the type locality for \textit{H. impatiens} is the Northern Red Sea, based on
+the original description and the drawing accompanying it, and our results, this
+species is actually restricted to the Red Sea (RedSea in our study).
 
 
 
