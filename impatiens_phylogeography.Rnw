@@ -461,7 +461,7 @@ data by all the software used in this study.
   28S  & LSUFW1  & AGC GGA GGA AAA GAA ACT A &  42 & 40 & \cite{Sonnenberg2007} \\
        & LSUREV2 & ACG ATC GAT TTG CAC GTC AG & & & \\
   % ITS ---
-  ITS1-5.8S-ITS2 & fm-ITS-f  & AGG TGA ACC TGC AGA TGG ATC A & 45 & 40 & This study, \cite{Lacey2005,Sonnenberg2007} \\
+  ITS1-5.8S-ITS2  & fm-ITS-f  & AGG TGA ACC TGC AGA TGG ATC A & 45 & 40 & This study, \cite{Lacey2005,Sonnenberg2007} \\
                   & fm-5.8S-f & CGT CGA TGA AGA ACG CAG YW & & & \\
                   & fm-ITS-r  & TAG TTT CTT TTC CTC CGC T  & & & \\
   % c0036 ---
@@ -567,7 +567,7 @@ found in the Galapagos archipelago, the coast of the Eastern Pacific and in the
 Caribbean using a log-normal prior with a \textit{log}(mean) of 1.5, a
 \textit{log}(standard deviation) of 0.75 and an offset of 2.5. This distribution
 translates into a mean age of divergence set at \Sexpr{round(qlnorm(0.5,
-  meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years (MY) ago, (95\% confidence
+  meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago (Ma), (95\% confidence
 interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5,
   sdlog=0.75) + 2.5, 2), collapse=", ")}]).
 
@@ -623,7 +623,7 @@ Table \ref{tab:sm-partitions}).
 As no fossils are known in \textit{Holothuria}, we used the closure of the
 isthmus of Panama to calibrate our phylogeny, and fixed the time of divergence
 for the individuals of the Eastern Pacific (including Galapagos) and the
-Caribbean to 5 MY. The isthmus of Panama was completely closed about 3 MY ago
+Caribbean to 5 Ma. The isthmus of Panama was completely closed about 3 Ma
 but most species were probably isolated earlier \cite{Lessios2008}. We chose a
 conservative estimate to account for the fact that the sister species lineages
 found across the isthmus are the lineages found in the Galapagos and the
@@ -700,9 +700,9 @@ the same approach as for the phylogeny of the entire complex, using Gblocks to
 remove ambiguous parts of the alignment in ITS, PartitionFinder to find the most
 appropriate partition scheme and models of molecular evolution. We unlinked
 clocks for all markers, used strict molecular clocks, fixing the COI clock at
-1.85\%/My \cite{Lessios2008} while estimating the rate of the others. We ran the
-analysis for $50.10^{6}$ generations and repeated it at least twice for each
-group.
+1.85\%/million years \cite{Lessios2008} while estimating the rate of the
+others. We ran the analysis for $50.10^{6}$ generations and repeated it at least
+twice for each group.
 
 For the estimation of the marginal likelihoods, we used the settings recommended
 by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
@@ -858,7 +858,7 @@ used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
-<<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in My.">>=
+<<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in million years.">>=
 @
 
 The topologies obtained with BEAST and RAxML analyses were very similar
@@ -871,17 +871,17 @@ the most recent common ancestors of the species delineated with the most
 conservative result of the GMYC method. 
 
 The \textit{H. impatiens} complex comprises two clades that diverged
-approximately 10 MYA (Fig.~\ref{fig:impatiens-tree}). Clade I has the widest
+approximately 10 Ma (Fig.~\ref{fig:impatiens-tree}). Clade I has the widest
 geographic distribution and is found in the Mediterranean Sea, the Caribbean
 basin, the Eastern-Pacific and across the Indo-West Pacific, including the Red
 Sea. Clade II is restricted to the Indo-West Pacific (including the Red Sea).
 
 The phylogeny also highlights that several speciation events in the complex were
 concurrent throughout the diversification history of the complex (e.g., the first
-speciation event in each clade about 9.5 MYA).
+speciation event in each clade about 9.5 Ma).
 
 The youngest pair of sister species delineated by GMYC are estimated to have
-diverged 1.8 MYA. The three delineated species that diverged the most recently
+diverged 1.8 Ma. The three delineated species that diverged the most recently
 (ESU1, WPac and Hawaii) have overlapping distributions
 (Figure~\ref{fig:impatiens-map-group2}).
 
@@ -1055,19 +1055,23 @@ lineages. % TODO -- add pictures...
 \subsection{Taxonomic consequences}
 
 The \textit{H. impatiens} complex belongs to the subgenus \textit{Thymiosycia}
-of which it is the type species. However, other than \textit{H. gracilis}, no
+of which it is the type species. However, except for \textit{H. gracilis}, no
 other species currently included in this subgenus shows any affinity with the
 ``\textit{H. impatiens}'' complex. The subgenus \textit{Thymiosycia} therefore
 needs to be redefined to only include the species of the \textit{H. impatiens}
-complex. Based on species descriptions alone, there is no name that could be
-applied to the species in the complex, and all will need to be described
-formally.
+complex. Based on species descriptions, no name can be applied to the species in
+the complex, and all will need to be described formally.
 
 As the type locality for \textit{H. impatiens} is the Northern Red Sea, based on
-the original description and the drawing accompanying it, and our results, this
-species is actually restricted to the Red Sea (RedSea in our study).
+its description and the drawing accompanying it, our results indicate that this
+species (RedSea here) is actually restricted to the Red Sea.
 
-
+As a consequence, all the studies on the biology of ``\textit{H. impatiens}''
+were in most cases based on one or more species of the complex. In some cases
+the identity of these species can be guessed as the locality is indicated and
+only one species is known from there, but in other cases it cannot since the
+locality is missing (e.g., \cite{Hampton1958,Hampton1959}) or several species
+are known from the area (e.g., \cite{Roberts1982,Cutress1996}).
 
 
 %% Diversification of the complex is really ~20 MY really fits with idea that
@@ -1081,121 +1085,145 @@ species is actually restricted to the Red Sea (RedSea in our study).
 % - potential to redefine hotspots
 % - 
 
-% information about their biology gathered on the supposition it's a single
-% species throughout its range
-
-
-\subsection{Patterns of genetic diversity and geographical distribution}
+\subsection{Geographical distributions and ecology}
 
 % : RedSea and TigerRedSea (the timing of these two events were concurrent (95\%
 % HPD for the for the former 1.3-2.0~Ma, and 1.1-1.7~Ma for the latter)
 
-Despite that the species included in this complex diverged relatively recently,
-the sizes of their geographical ranges vary considerably, and a diversity of
-processes seem to best explain their present distributions.
+<<imptree-stats, echo=FALSE>>=
+whichRoot <- which.max(impTree$height)
+hpdRootAge <- paste(round(impTree$'height_95%_HPD_MIN'[whichRoot], 1), "-",
+                    round(impTree$'height_95%_HPD_MAX'[whichRoot], 1), sep="")
+whichMedit <- which(impTree$edge[ancestor(impTree4, MRCA(impTree4, c("X0002", "N0014")))
 
-Physical barriers to gene flow have isolated populations leading to speciation
-events for WA, Mediterranean, and the two species found in the Red Sea. However,
-for the other species, the causes of population divergence are less obvious, and
-the current distributions are unlikely to reflect species ranges at the time of
-speciation. 
+@ 
 
-In clade II, the widespread ESU2 is sister to two species found at the periphery
-of its range: Tiger occurs in Micronesia and the Hawaiian archipelago, and
-TigerRedSea is restricted to the Red Sea. Tiger and TigerRedSea have diverged
-recently, and the current distribution for these species could be explained
-either by range contraction of an ancestral widespread species with relictual
-allopatric populations in the Red Sea and the Western Pacific, or a founder
-event from one area to the other.
-% relictual common?
-% founder more likely?
+Despite the recent age of this complex (\Sexpr{hpdRootAge} My, 95\% HPD of root
+age), the geographical ranges of the species vary considerably, and a diversity
+of processes seem to best explain their present distributions.
 
-In clade I, the widespread ESU1 is sympatric with several of its closely related
-lineages: ESU3, gracilis, Wpac and Hawaii. This pattern could be explained by
-sympatric speciation or allopatric/peripatric speciation that is masked by the
-recent range expansion of ESU1. We favor this hypothesis given that (1) the
-widespread species (ESU1) forms a terminal clade in this radiation; (2) the
-pattern of genetic diversity indicates a recent expansion. The pattern of a
+The limited geographical ranges and their confinement to enclosed oceanic basins
+indicate that physical barriers to gene flow have isolated populations leading
+to speciation events for \texttt{WA}, \texttt{Medit}, and the two species found
+in the Red Sea. The close phylogenetic relationship of \texttt{WA} with
+\texttt{EP} and \texttt{Gala} indicates that the closure of the isthmus of
+Panama led to the reproductive isolation of \texttt{WA}. The estimated ages of
+the \texttt{Medit}, and the two Red Sea species are older (8.4-10.5 My, 1.1-1.7
+My and 3.2-4.1 My respectively) than the last salinity crises characterizing
+these seas (\textit{c.} 5 My for the Mediterranean \cite{Hernandez-Molina2014}
+and potentially as early as \textit{c.} 19,000 years ago for the Red Sea). This
+suggests these species might have invaded these habitats recently and found
+refugia near these basins \cite{DiBattista2013}. It is also interesting to note
+that the age of divergence of the two species from the Red Sea do not coincide
+suggesting that different events were responsible for the geographic isolation
+of these populations.
+
+For the other species, with widespread ranges, the causes of population
+divergence are less obvious, and the current distributions are unlikely to
+reflect species distributions at the time of speciation. In clade II, the
+widespread ESU2 is sister to two species found at the periphery of its range:
+\texttt{tiger} occurs in Micronesia and the Hawaiian archipelago, and
+\texttt{tigerRedSea} is restricted to the Red Sea. \texttt{tiger} and
+\texttt{tigerRedSea} have diverged recently, and the current distribution for
+these species could be explained either by range contraction of an ancestral
+widespread species with relictual populations in the Red Sea and the Western
+Pacific, or a founder event from one area to the other. A similar pattern is
+observed in the complex \textit{Calcinus latens} \cite{Malay2010}, indicating
+that this pattern most likely results from range contraction induced by
+geological events. % other examples would be nice here...
+
+In clade I, the widespread \texttt{ESU1} is sympatric with several of its
+closely related lineages: \texttt{ESU3}, \texttt{gracilis}, \texttt{Wpac} and
+\texttt{Hawaii}. This pattern could be explained by sympatric speciation or
+allopatric/peripatric speciation that is masked by the recent range expansion of
+\texttt{ESU1}. We favor this hypothesis since the widespread species
+(\texttt{ESU}) forms a terminal clade in this radiation, and the pattern of
+genetic diversity are concordant with a recent expansion. The pattern of a
 widespread species being a terminal branch in a clade suggests that this species
-was the source of peripheral species \cite{Malay2010}. Additionally, the genetic
-diversity of ESU1 is low (61 individuals sequenced, 18 haplotypes, the 3 most
-common haplotypes found in 40 individuals). Furthermore, isolated areas
-characterized by peculiar ecological conditions (e.g., Marquesas, Oman), and
-associated with strong selective pressures leading to high levels of endemism,
-harbor the most widespread haplotype suggesting recent colonization of these
-areas.
+was the source of the peripheral species \cite{Malay2010}. Additionally, the
+genetic diversity of \texttt{ESU1} is low: among the 61 individuals sequenced,
+we found a total of 18 haplotypes, but the 3 most common occurred in 40
+individuals. Finally, isolated areas characterized by peculiar ecological
+conditions (e.g., Marquesas, Oman), and associated with strong selective
+pressures leading to high levels of endemism, harbor the most widespread
+haplotype suggesting recent colonization of these areas.
 
 Differentiation along ecological gradients has nonetheless also played a role in
-the diversification of this complex. For instance, tiger is only found in the
-oligotrophic shallow waters of Micronesia and Hawaii, while ESU3 and gracilis
-are associated with continental areas. For instance, ESU3 is found in Madagascar
-and Tanzania but was not found in Mayotte or the Scattered islands sampled. The
-endemic lineages found in Hawaii and the Galapagos are likely not the results of
+the diversification of this complex. For instance, \texttt{tiger} is only found
+in the oligotrophic shallow waters of Micronesia and Hawaii, while \texttt{ESU3}
+and \texttt{gracilis} are associated with continental areas. For instance,
+\texttt{ESU3} which is found in Madagascar and Tanzania and in the Western
+Pacific, does not occur in Mayotte or the Scattered islands. The endemic
+lineages found in Hawaii and the Galapagos are likely not the results of
 dispersal limitation but instead the result of habitat preference to these
 ecologically distinct archipelagoes. As for any ecological trait, it is
 difficult to untangle how speciation and selection for habitat specificity have
 interplayed during the diversification of this complex
-\cite{Schluter2001}. Habitat preference could be the cause of speciation
-(divergent selection on habitat preference drove reproductive isolation, i.e.,
-ecological speciation \textit{sensu} \cite{Rundle2005}); or it can be the
-consequence of character displacement induced by interspecific competition. In
-the latter, reproductive isolation was initiated by other factors (e.g.,
-geographical isolation with or without selection on other traits) and
-reinforcement on habitat specificity may contribute to the completion of
-speciation. In any case, the range of preferences exhibited by the species in
-this complex allow for niche partitioning and the co-existence of multiple
+\cite{Schluter2001}. Habitat preference could have caused of an ecological
+speciation event (\textit{sensu} \cite{Rundle2005}: divergent selection on
+habitat preference drove reproductive isolation); or it can be the consequence
+of character displacement induced by interspecific competition. In the latter,
+reproductive isolation was initiated by other factors (e.g., geographical
+isolation with or without selection on other traits) and reinforcement on
+habitat specificity may have contributed to the completion of speciation. In any
+case, it is likely that the range of preferences exhibited by the species in
+this complex allows for niche partitioning, and the co-existence of multiple
 lineages in sympatry.
 
-The restriction of marine invertebrates to "oceanic" and "continental" habitats
-has been documented for a range of organisms (e.g., land snails
+\subsection{Rates of secondary sympatry}
+
+The restriction of marine invertebrates to ``oceanic'' and ``continental''
+habitats has been documented for a range of organisms (e.g., land snails
 \cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006b, Williams2011},
 hermit crabs \cite{Malay2010}), and a variety of biotic and abiotic factors may
 explain this pattern (reviewed in \cite{Malay2010}). Interestingly, clades
 associated with continental habitats are characterized by much faster rates of
 secondary sympatry than species associated with insular habitats in both
 vertebrates (e.g., \cite{Taylor2005,Hodge2012}), and invertebrates (e.g.,
-\cite{Meyer2005-evolution,Malay2010,Williams2011}). As a result, closely related species
-show strict allopatric distribution in oceanic setting (e.g., as in
-\cite{Meyer2005-evolution}) but occur in sympatry along continental margins (e.g.,
-\cite{Williams2011}). Differences in rates of secondary sympatry vary across
-taxa but are faster in continental settings compared to oceanic settings. For
-instance, in the Labridae \textit{Anampes} sympatric sister species in
-continental setting diverged 600 ka ago, while most closely related sympatric
-species in oceanic setting shared a common ancestor more than 10 Ma ago. In the
-turbinid \textit{Lunella}, none of the 7 lineages inhabiting oceanic islands
-that have diverged more than 15 Ma occur in sympatry while sister species found
-along the coastline of Oman have diverged 5 Ma ago \cite{Williams2011}. Along
-coastlines, the number of individuals from incipient species interacting is much
-higher than in oceanic setting allowing reproductive isolation to complete more
-rapidly. These interactions manifest for resource competition leading to strong
-divergent selection for resource partitioning, in turn these selective pressures
-speed up the speciation process through reinforcement. Additionally, in sea
-urchins, high population densities lead to conditions that favor divergent
-selection in gamete recognition proteins (GRP), a mechanism that would allow
-reproductive isolation to evolve rapidly \cite{Levitan2006}.
+\cite{Meyer2005-evolution,Malay2010,Williams2011}). As a result, closely related
+species show strict allopatric distributions in oceanic setting (e.g., as in
+\cite{Meyer2005-evolution}) but occur in sympatry along continental margins
+(e.g., \cite{Williams2011}). Differences in rates of secondary sympatry vary
+across taxa but are faster in continental settings. For instance, in the
+Labridae \textit{Anampes} sympatric sister species in continental setting
+diverged 600 ka ago, while the most closely related sympatric species in oceanic
+setting shared a common ancestor more than 10 Ma ago. In the turbinid
+\textit{Lunella}, none of the 7 lineages inhabiting oceanic islands that have
+diverged more than 15 Ma occur in sympatry while sister species found along the
+coastline of Oman have diverged 5 Ma \cite{Williams2011}.
 
 Here we observe a different pattern with closely related species occurring in
-sympatry even though they diverged recently (less than 1 Ma for ESU1 and Hawaii;
-and about 1.5 Ma for ESU1 and Wpac). This pattern indicates that the species
-have been able to evolve reproductive isolation rapidly, and contrasts with the
-pattern typically observed for oceanic settings, where secondary sympatry is
-slow to occur. Instead, it seems that the temporal dynamics of diversification
-in some species of \textit{Holothuria impatiens} is similar to what is observed
-for species occurring in continental settings. What do species of the
-\textit{H. impatiens} do differently that allow them to colonize the range of
-closely related species, or in other words, what does allow ESU1 to behave like
-a species of a continental setting? The co-occurrence of these related species
-has both an ecological and an evolutionary component. Ecologically, they need to
-have evolved enough ecological differentiation to not outcompete each
-other. Evolutionarily, they need to have completed reproductive isolation in a
-short amount of time. The ecological aspect is difficult to evaluate as little
-is known about the biology of these species and differences in habitat or
-feeding preference might allow coexistence. Investigating whether the ecology of
-ESU1 differs in places where it occurs by itself compared to where it coexists
-with its closely related species deserves more attention. Additionally, this
-data could be used to evaluate whether reinforcement associated with diverging
-selection along ecological dimensions could have contributed to the completion
-of reproductive isolation.
+sympatry even though they diverged recently (less than 1 Ma for \texttt{ESU1}
+and \texttt{Hawaii}; and about 1.5 Ma for \texttt{ESU1} and \texttt{Wpac}). This
+pattern indicates that the species have been able to evolve reproductive
+isolation rapidly, and contrasts with the pattern typically observed in oceanic
+settings.
+
+Instead, the temporal dynamics of diversification in some species of
+the ``\textit{Holothuria impatiens}'' complex is similar to what is observed for
+species occurring in continental settings.
+
+
+
+The ecological aspect is difficult to evaluate as little is known about the
+biology of these species and differences in habitat or feeding preference might
+allow coexistence. Investigating whether the ecology of \texttt{ESU1} differs in
+places where it occurs by itself compared to where it coexists with its closely
+related species could be used to evaluate whether reinforcement associated with
+diverging selection along ecological dimensions could have contributed to the
+completion of reproductive isolation.
+
+Along coastlines, the number of individuals from incipient species interacting
+is much higher than in oceanic setting allowing reproductive isolation to
+complete more rapidly. These interactions manifest for resource competition
+leading to strong divergent selection for resource partitioning, in turn these
+selective pressures speed up the speciation process through
+reinforcement. Additionally, in sea urchins, high population densities lead to
+conditions that favor divergent selection in gamete recognition proteins (GRP),
+a mechanism that would allow reproductive isolation to evolve rapidly
+\cite{Levitan2006}.
+
+
 
 In any case, ESU1, Hawaii and Wpac are, to our knowledge, the fastest documented
 example of speciation for a broadcast spawner invertebrate in an oceanic
@@ -1322,8 +1350,6 @@ of this genus produce in assortative mating.
 %% closure of isthmus of Panama (except for some fish, and snails
 %% [examples given are however, from continental setting])
 %% - see Puritz to see what they say exactly about timing of speciation.
-%% - \cite{Williams2011e} in Lunella, "sympatric species occur only along coastlines,
-%%   while species occuring in island arrays occur in allopatry".
 
 %% Traditionally 2 views:
 %% - small populations -- speed up divergence?
