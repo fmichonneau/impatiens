@@ -1,5 +1,5 @@
 % -*- 
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage{authblk}
 \usepackage{tabularx}
@@ -200,15 +200,16 @@ speciation: (1) acquisition of reproductive isolation, (2) morphological
 differentiation, (3) genetic differentiation. In many cases, these three
 processes can be independent making species delineation challenging. For
 instance, broadcast spawning marine invertebrates for which reproductive
-cohesion is maintained behaviorally (e.g., spawning aggregations cukes?,
-lobsters? \cite{}, spawning based on environmental clues corals? \cite{}) and
-biochemically (e.g., gamete recognition proteins \cite{}), selection on these
-traits is unlikely to drive morphological differentiation among closely related
-species \cite{Knowlton1993}. Similarly, barcoding markers evolve typically
-neutrally and the time taken for them to show enough differentiation to be
-recognized as different species will depend on effective population sizes or DNA
-repair mechanisms (in absence of introgression) that will also be independent of
-the species identity.
+cohesion is maintained behaviorally
+%(e.g., spawning aggregations cukes?,
+%lobsters? \cite{}, spawning based on environmental clues corals? \cite{})
+and biochemically (e.g., gamete recognition proteins \cite{Hellberg2000}),
+selection on these traits is unlikely to drive morphological differentiation
+among closely related species \cite{Knowlton1993}. Similarly, barcoding markers
+evolve typically neutrally and the time taken for them to show enough
+differentiation to be recognized as different species will depend on effective
+population sizes or DNA repair mechanisms (in absence of introgression) that
+will also be independent of the species identity.
 
 The failure to distinguish reproductively isolated species can stem from either
 the choice of an inappropriate set of characters to distinguish species
@@ -858,12 +859,6 @@ the threshold needed to consider the evidence strong ($BF=\Sexpr{BFHawaii}$,
 comparison with the model with an additional species (oversplitting) indicated a
 poorer fit to the data (\Sexpr{BFsplit}).
 
-
-\subsection{Diversity}
-% how many clades
-% how many specimens per clades
-
-
 \section{Discussion}
 
 \subsection{Species delineation using GMYC}
@@ -926,7 +921,7 @@ among a few hundred individuals, the factors affecting tree shape need to be
 considered, and additional lines of evidence need to be included to validate the
 putative species delineated \cite{Marshall2011a, Esselstyn2012}.
 
-\subsection{Using *BEAST and model selection for species delineation}
+% \subsection{Using *BEAST and model selection for species delineation}
 
 %% From the BEAST book
 % It can happen that the species assignment is incorrect, which results in co-
@@ -1274,24 +1269,24 @@ completion of reproductive isolation.
 %% - local adaptation -- role of ecology and interplay with selection on GRPs
 
 
-In the case of founder effects (parapatric speciation), where a small population
-establishes itself in the periphery (and therefore being connected with limited
-gene flow) from the ancestral population, the genetic diversity of these
-individuals will be limited. The success of the establishment of this peripheral
-population will depend on its density and its genetic make up that will allow
-for its local adaptation to ecological conditions in the new environment, and
-will ensure the compatibility of the genotypes for the gamete recognition
-proteins. In sea urchins, Levitan \& Ferrel have shown that at low density,
-males and females with identical genotypes for bindin, have higher reproductive
-success \cite{Levitan2006}. Therefore, if the pool of individuals that colonized
-the peripheral location harbors genotypes that are non-representative of the
-ancestral populations, and/or if the genotypes are in linkage-disequilibrium
-with genes being selected for in the new environment, GRPs will drive divergence
-between populations, leading to reproductive isolation.
+% In the case of founder effects (parapatric speciation), where a small population
+% establishes itself in the periphery (and therefore being connected with limited
+% gene flow) from the ancestral population, the genetic diversity of these
+% individuals will be limited. The success of the establishment of this peripheral
+% population will depend on its density and its genetic make up that will allow
+% for its local adaptation to ecological conditions in the new environment, and
+% will ensure the compatibility of the genotypes for the gamete recognition
+% proteins. In sea urchins, Levitan \& Ferrel have shown that at low density,
+% males and females with identical genotypes for bindin, have higher reproductive
+% success \cite{Levitan2006}. Therefore, if the pool of individuals that colonized
+% the peripheral location harbors genotypes that are non-representative of the
+% ancestral populations, and/or if the genotypes are in linkage-disequilibrium
+% with genes being selected for in the new environment, GRPs will drive divergence
+% between populations, leading to reproductive isolation.
 
 
 
-%% From van Doorn et al 2009 "Once a mating preference for locally adapted
+%% From Doorn et al 2009 "Once a mating preference for locally adapted
 %% partners has evolved, sexual selection reinforces assortative mating and
 %% lowers the fitness of hybrids." How does density dependence in fecundation
 %% success interplays with/changes this statement?
@@ -1311,7 +1306,7 @@ between populations, leading to reproductive isolation.
 % - role of pre- and post-zygotic barriers
 % - role of selection?
 
-\section{Conclusions}
+%\section{Conclusions}
 
 % museum collections need to be future proof
 

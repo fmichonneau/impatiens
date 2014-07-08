@@ -257,17 +257,20 @@ impNodLblTxt <- rep("", length(impNodLblCol))
 impAllNds <- 1:length(impNodLbl)
 impKeepNds <- impAllNds[!is.na(impNodLblCol)]
 
-plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,12), no.margin=TRUE)
+par(mai=c(1,0,0,0))
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,12))
 nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
                frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
                bg=impNodLblCol[!is.na(impNodLblCol)],
                ##fg=impNodLblCol[!is.na(impNodLblCol)],
                cex=.3)
 barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
-                cex.plot=.3, extra.space=.5, text.offset=1.02,
+                cex.plot=.3, extra.space=.1, text.offset=1.02,
                 seg.col=impPal[esuList])
-axis(side=1, at=0:8, labels=paste("-", 8:0, sep="")) 
-legend(x=0, y=50, pch=16, col="black", legend=c("$PP = \\geq 0.99$"))
+abline(v=max(branching.times(impTree)) - c(1:4, 6:10), lty=1, col="gray70")
+abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
+axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
+legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
 
 
 ### StarBeast summary results (marginal likelihood summaries)
@@ -319,9 +322,9 @@ sbSummNoCOI$dataIncluded <- "No COI"
 BFHawaii <- round(2 * mean(subset(sbSummAll, groupings == "noHawaii")$stdPS), 1)
 BFWpac <- round(2 * mean(subset(sbSummAll, groupings == "noWpac")$stdPS), 1)
 BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdPS), 1)
-BFsplit <- round(2 * mean(subset(sbSummAll, groupings == "allESU1_split")$stdPS), 1)
+BFsplit  <- round(2 * mean(subset(sbSummAll, groupings == "allESU1split")$stdPS), 1)
 
-sbAllPlotSS <- ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
+ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
     stat_summary(fun.y = mean, geom="line", colour=sbCol[2], size=3) +
     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
@@ -332,18 +335,18 @@ sbAllPlotSS <- ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(positio
     facet_grid( ~ dataIncluded)
 
 
-sbNoCoiPlotSS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
-    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
-    theme(legend.position="top", legend.title=element_blank(),
-          panel.background = element_rect(fill = "gray95"),
-          panel.grid.major = element_line(colour = "white", size=0.1),
-          panel.grid.minor = element_line(NA)) +
-    labs(y="", x="Models") +
-    facet_grid(~ dataIncluded)
+## sbNoCoiPlotSS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
+##     stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+##     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+##     theme(legend.position="top", legend.title=element_blank(),
+##           panel.background = element_rect(fill = "gray95"),
+##           panel.grid.major = element_line(colour = "white", size=0.1),
+##           panel.grid.minor = element_line(NA)) +
+##     labs(y="", x="Models") +
+##     facet_grid(~ dataIncluded)
 
 
-multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
+#multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
 
 
 ### ---- sm-starbeast-summary ----
@@ -354,11 +357,10 @@ multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
 ## text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
 ## abline(h=-5, lty=2)
 
-sbAllPlotPS <-
 
-    ggplot(sbSummAll, aes(x=groupings, y=stdPS, ymin=0, ymax=stdPS)) +
-    geom_point(aes(x=groupings, y=stdPS), colour=sbCol[1], size=5) +
-    stat_summary(fun.ymax = mean, geom="linerange", colour=sbCol[2], size=3) +
+ggplot(sbSummAll, aes(x=groupings, y=stdPS)) + #, ymin=0, ymax=stdPS)) +
+    geom_point(aes(x=groupings, y=stdPS), colour=sbCol[1], size=1) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),
@@ -367,17 +369,17 @@ sbAllPlotPS <-
     labs(y="Difference in Marginal log-Likelihood", x="Models") +
     facet_grid( ~ dataIncluded)        
 
-sbNoCoiPlotPS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
-    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
-    theme(legend.position="top", legend.title=element_blank(),
-          panel.background = element_rect(fill = "gray95"),
-          panel.grid.major = element_line(colour = "white", size=0.1),
-          panel.grid.minor = element_line(NA)) +
-    labs(y="", x="Models") +
-    facet_grid(~ dataIncluded)
+## sbNoCoiPlotPS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
+##     stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+##     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+##     theme(legend.position="top", legend.title=element_blank(),
+##           panel.background = element_rect(fill = "gray95"),
+##           panel.grid.major = element_line(colour = "white", size=0.1),
+##           panel.grid.minor = element_line(NA)) +
+##     labs(y="", x="Models") +
+##     facet_grid(~ dataIncluded)
 
-multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
+## multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
                     
 
 ### NJ analyses
