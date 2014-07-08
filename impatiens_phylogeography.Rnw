@@ -282,19 +282,9 @@ contributed to the failure to identify the species limits in this complex.
 
 % Allopatry without clear geographic barriers (Diadema setosum, Lessios 2001)
 
-% how to include peripatric speciation?
-% say something about how these 2 models are not mutually exclusive
-
 % use these bayesian methods and test for adequacy of multispecies coalescent
 % justified because wide ranging species with no clear geographical barriers to
 % their range.
-
-% Two kinds of models have been proposed to explain divergence in marine 
-% invertebrates in absence of clear geographical barriers: founder effect \cite{},
-% and selection in response to local adaptation \cite{Bowen2013}. These two forces
-% being non-mutually exclusive. Here, we argue that in either case, evolutionary
-% and demographic forces interplay with selection on gamete recognition proteins
-% to favor divergence.
 
 
 \section{Methods}
@@ -1043,8 +1033,6 @@ are known from the area (e.g., \cite{Roberts1982,Cutress1996}).
 whichRoot <- which.max(impTree$height)
 hpdRootAge <- paste(round(impTree$'height_95%_HPD_MIN'[whichRoot], 1), "-",
                     round(impTree$'height_95%_HPD_MAX'[whichRoot], 1), sep="")
-whichMedit <- which(impTree$edge[ancestor(impTree4, MRCA(impTree4, c("X0002", "N0014")))
-
 @ 
 
 Despite the recent age of this complex (\Sexpr{hpdRootAge} My, 95\% HPD of root
