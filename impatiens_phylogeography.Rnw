@@ -342,6 +342,14 @@ used to reconstruct the phylogeny.
 % justified because wide ranging species with no clear geographical barriers to
 % their range.
 
+% Two kinds of models have been proposed to explain divergence in marine 
+% invertebrates in absence of clear geographical barriers: founder effect \cite{},
+% and selection in response to local adaptation \cite{Bowen2013}. These two forces
+% being non-mutually exclusive. Here, we argue that in either case, evolutionary
+% and demographic forces interplay with selection on gamete recognition proteins
+% to favor divergence.
+
+
 \section{Methods}
 
 \subsection{Approach}
@@ -981,12 +989,6 @@ among a few hundred individuals, the factors affecting tree shape need to be
 considered, and additional lines of evidence need to be included to validate the
 putative species delineated \cite{Marshall2011a, Esselstyn2012}.
 
-% Method in Pons+2006 and 
-% Examples: Volger+2008 (COTS paper), Marshall+2011 (cicadas in New Zealand);
-% Henrich+2010 (water beetles in Australia)
-% See: Esselstyn+2012 as it includes simulation study of statistical power of
-% this approach; Lohse2009 for a critic
-
 \subsection{Using *BEAST and model selection for species delineation}
 
 %% From the BEAST book
@@ -1196,14 +1198,70 @@ Here we observe a different pattern with closely related species occurring in
 sympatry even though they diverged recently (less than 1 Ma for \texttt{ESU1}
 and \texttt{Hawaii}; and about 1.5 Ma for \texttt{ESU1} and \texttt{Wpac}). This
 pattern indicates that the species have been able to evolve reproductive
-isolation rapidly, and contrasts with the pattern typically observed in oceanic
-settings.
-
-Instead, the temporal dynamics of diversification in some species of
-the ``\textit{Holothuria impatiens}'' complex is similar to what is observed for
+isolation rapidly, and differ enough ecologically to allow for co-existence. In
+other words, the temporal dynamics of diversification in some species of the
+``\textit{Holothuria impatiens}'' complex is similar to what is observed for
 species occurring in continental settings.
 
+Hellberg \cite{Hellberg1998} proposed that climate fluctuations isolate
+populations temporarily leading to speciation (transient allopatry), and as
+climatic conditions change, species shift their ranges. In continental settings,
+these shifts will lead to species coexistence as their distributions are
+constrained by the one dimensionality of the coastline. In insular conditions,
+however, these shifts in species distributions could be accompanied with the
+colonization of new islands and species could remain allopatric. Another
+difference is that in the continental setting the environmental conditions will
+vary continuously along the coast. Therefore, if species are adapted to
+different temperatures, the temperature gradient along the coast will allow
+species to overlap. However, in an insular setting, the absence of available
+habitat between the islands restricts the distribution of the species. This
+hypothesis could explain why most species remain allopatric for long periods of
+time and are restricted to archipelagos (as observed for \texttt{Hawaii} and
+\texttt{Gala}): rare migrants across islands fail to colonize as local
+adaptation to environmental conditions render them maladapted to new islands.
 
+% TODO -- need drawing for hypothesis here
+
+Gamete recognition proteins play an important role in driving reproductive
+isolation in sea urchins \cite{Lessios2011} and gastropods
+\cite{Hellberg2000}. In sea urchins, high population densities lead to
+conditions that favor diversifying and divergent selection on these proteins to
+limit polyspermy \cite{Levitan2006}. Since more individuals from incipient
+species interact along coastlines --interactions between islands being typically
+limited to rare dispersal events-- reproductive isolation is expected to
+complete more rapidly in continental settings. Gamete recognition proteins have
+not yet been identified in sea cucumbers but bindin is known from sea urchins
+\cite{Lessios2011} and sea stars \cite{Patino2009} which indicates that it is
+most likely present in sea cucumbers.
+
+% TODO -- another drawing here
+
+We hypothesize that \texttt{Wpac} and \texttt{Hawaii} are the consequences of
+peripatric speciation events where a combination of selection to local
+environmental conditions and low effective population sizes have led to rapid
+reproductive isolation. Adaptation to local environmental conditions for Wpac
+and Hawaii is suggested by their restricted geographical ranges. Small effective
+population sizes are suggested by the low levels of heterozygoty observed for
+these species as well as the reciprocal monophyly observed for all species at
+the majority of the loci. Additionally, echinoderms, as other marine organisms,
+have life-history characteristics that make them prone to low effective
+population sizes: strong bias in reproductive success, size-dependent fecundity
+\cite{Gonzalez2008a}. Additionally, echinoderms are renown to experience drastic
+population sizes fluctuations \cite{Uthicke2009} which contributes further to
+reduce effective population sizes. If low effective population sizes might limit
+a species adaptive potential, the low genetic diversity will facilitate the
+fixation of alleles that might contribute to rapid acquisition of reproductive
+isolation.
+
+In any case, \texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} are, to our
+knowledge, the fastest documented example of speciation for a broadcast spawner
+invertebrate in an oceanic setting. The fastest known speciation for marine
+invertebrates is a supposed case of peripatric speciation where two species of
+sea stars off the East coast of Australia underwent a drastic life history
+switch (from gonochoric broadcast spawning to hermaphroditic selfing brooder)
+that led to reproductive isolation about 10,000 years ago
+\cite{Puritz2012}. These two species are allopatric (separated by a few hundred
+kilometers) and have small geographical ranges.
 
 The ecological aspect is difficult to evaluate as little is known about the
 biology of these species and differences in habitat or feeding preference might
@@ -1213,77 +1271,15 @@ related species could be used to evaluate whether reinforcement associated with
 diverging selection along ecological dimensions could have contributed to the
 completion of reproductive isolation.
 
-Along coastlines, the number of individuals from incipient species interacting
-is much higher than in oceanic setting allowing reproductive isolation to
-complete more rapidly. These interactions manifest for resource competition
-leading to strong divergent selection for resource partitioning, in turn these
-selective pressures speed up the speciation process through
-reinforcement. Additionally, in sea urchins, high population densities lead to
-conditions that favor divergent selection in gamete recognition proteins (GRP),
-a mechanism that would allow reproductive isolation to evolve rapidly
-\cite{Levitan2006}.
-
-
-
-In any case, ESU1, Hawaii and Wpac are, to our knowledge, the fastest documented
-example of speciation for a broadcast spawner invertebrate in an oceanic
-setting. The fastest known speciation for marine invertebrates is a supposed
-case of peripatric speciation where two species of sea stars off the East coast
-of Australia underwent a drastic life history switch (from gonochoric broadcast
-spawning to hermaphroditic selfing brooder) that led to reproductive isolation
-about 10,000 years ago \cite{Puritz2012}. These two species are allopatric
-(separated by a few hundred kilometers) and have small geographical ranges.
-
-We hypothesize that Wpac and Hawaii are the consequences of peripatric
-speciation events where a combination of selection to local environmental
-conditions and low effective population sizes have led to rapid reproductive
-isolation. Adaptation to local environmental conditions for Wpac and Hawaii is
-suggested by their restricted geographical ranges. Small effective population
-sizes are suggested by the low levels of heterozygoty observed for these species
-as well as the reciprocal monophyly observed for all species at the majority of
-the loci. Additionally, echinoderms, as other marine organisms, have
-life-history characteristics that make them prone to low effective population
-sizes: strong bias in reproductive success, size-dependent fecundity
-\cite{Gonzalez2008a}. Additionally, echinoderms are renown to experience drastic
-population sizes fluctuations \cite{Uthicke2009} which contributes further to
-reduce effective population sizes. If low effective population sizes might limit
-a species adaptive potential, the low genetic diversity will facilitate the
-fixation of alleles that might contribute to reproductive isolation. In general,
-we think that improving our knowledge of effective population sizes will help
-refine our understanding of the speciation process. 
-
-% use migrate to estimate theta?
-
-
-these successful colonization In the case of closely related but reproductively
-isolated lineages, the strict allopatry observed suggests that species fail to
-establish themselves in another species' range. In most cases, dispersal
-limitation alone is insufficient to explain this pattern. Enough individuals
-need to colonize to overcome Allee effects, and resource partitioning or
-availability need to be sufficient to allow species coexistence
-\cite{Meyer2005-evolution}.  Even if \textit{H. impatiens} produce lots of long-lived
-larvae, given the geographical isolation of the Hawaiian archipelago, it is
-difficult to envision that this kind of inter-specific competition will drive
-the reproductive isolation between ESU1 and Hawaii. We instead hypothesize that
-a founder event accompanied with biological traits maintaining low effective
-population sizes and changes in environmental conditions have interplayed to
-allow for (1) rapid reproductive isolation; (2) recent range expansion leading
-to secondary sympatry for ESU1.
-
 % possibly easier to detect because faster to achieve reciprocal monophyly.
 
-Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
-marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
-investigated patterns of speciation among grunts (\textit{Haemulon}) in the
-Caribbean and the Eastern Pacific that show closely related species occurring in
-sympatry. Authors in this study invoke the possible role of the sounds members
-of this genus produce in assortative mating.
+% Bowen et al \cite{Bowen2013} suggest that sympatric speciation is possible among
+% marine organisms. In particular, they cite Rocha \cite{Rocha2008} that
+% investigated patterns of speciation among grunts (\textit{Haemulon}) in the
+% Caribbean and the Eastern Pacific that show closely related species occurring in
+% sympatry. Authors in this study invoke the possible role of the sounds members
+% of this genus produce in assortative mating.
 
-% Interestingly, except for species found in the Galapagos and Hawaii, the IWP
-% species in the \textit{H. impatiens} complex are wideranging and no species is
-% limited to archipelagoes that are otherwise typically characterized by high
-% levels of endemicity (Hawaii, Marquesas, Mascarene Islands,
-% e.g. \cite{Malay2010}).
 
 %% Compared to other species (e.g., Cephalopholis argus see Gaither et al 2011;
 %% many other cukes), there is no Indian Ocean -- Pacific Ocean divide here.
@@ -1295,10 +1291,6 @@ of this genus produce in assortative mating.
 % differentiation across large geographic scales
 
 %% Geography of speciation
-% Do closely related species are close geographically or are they isolated? Is
-% there evidence for range contraction (sister species between distant parts of
-% the IWP)?
-
 % one of the difference between marine and terrestrial speciation is that the
 % dissociation between geogrpahical isolation and absence of gene flow is
 % probably stronger in the sea.
@@ -1316,9 +1308,6 @@ of this genus produce in assortative mating.
 %% processes as populations adapt to different habitats."
 %% (Sobel et al 2010)
 
-% Use of ecological niche models to see if there are differences in habitat
-% preference.
-
 % According to \cite{Renema2008}, the modern IWP fauna has its origin in the
 % Miocene. Generation of hotspots associated with tectonic events, so importance
 % of abiotic factors.
@@ -1329,16 +1318,10 @@ of this genus produce in assortative mating.
 % distribution patterns. These changes have implications regarding the rapid
 % evolution of reprodutive isolation barriers and ecological adaptations.
 
-% tiger and tigerRedSea example of disjoint species distribution see
-% Williams+2011. 
-
 % relationship between reproductive isolation and genetic
 % differentiation for sympatry and allopatric species (review
 % Rabosky&Matute PNAS).
 
-
-
-\subsection{Rate of diversification, reproductive isolation}
 
 %% Short review on how the rates of secondary sympatry is much faster in
 %% impatiens compared to other examples.
@@ -1355,12 +1338,6 @@ of this genus produce in assortative mating.
 %% - small populations -- speed up divergence?
 %% - local adaptation -- role of ecology and interplay with selection on GRPs
 
-Two kinds of models have been proposed to explain divergence in marine 
-invertebrates in absence of clear geographical barriers: founder effect \cite{},
-and selection in response to local adaptation \cite{Bowen2013}. These two forces
-being non-mutually exclusive. Here, we argue that in either case, evolutionary
-and demographic forces interplay with selection on gamete recognition proteins
-to favor divergence.
 
 In the case of founder effects (parapatric speciation), where a small population
 establishes itself in the periphery (and therefore being connected with limited
@@ -1379,11 +1356,6 @@ between populations, leading to reproductive isolation.
 
 
 
-
-%% in any case, probably small effective population sizes due differences in
-%% reproductive success, 
-
-
 %% From van Doorn et al 2009 "Once a mating preference for locally adapted
 %% partners has evolved, sexual selection reinforces assortative mating and
 %% lowers the fitness of hybrids." How does density dependence in fecundation
@@ -1393,9 +1365,6 @@ between populations, leading to reproductive isolation.
 
 %% Review papers on GRP to see if they are considered a Fisherian sexual
 %% selection trait
-
-
-
 
 
 
@@ -1412,13 +1381,13 @@ between populations, leading to reproductive isolation.
 % museum collections need to be future proof
 
 
-\section{Acknowledgments}
+% \section{Acknowledgments}
 
-CIPRES portal.
-UF HPC, HiPerGator.
-wesanderson
-knitr
-polymode + ESS
+% CIPRES portal.
+% UF HPC, HiPerGator.
+% wesanderson
+% knitr
+% polymode + ESS
 
 \bibliographystyle{plos2009}
 
@@ -1486,3 +1455,8 @@ polymode + ESS
 % for details)
 
 % look into \phi_{ST}, Fu's F, Tajima's D (reading the Arlequin manual)
+
+% If ecological differences between these incipient species evolve through
+% competition upon secondary sympatry to allow for coexistence, one would expect
+% species in continental settings to differ ecologically more than species
+% occurring in insular setting.
