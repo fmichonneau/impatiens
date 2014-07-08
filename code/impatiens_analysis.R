@@ -7,13 +7,29 @@ library(seqManagement)
 library(wesanderson)
 library(ggplot2)
 library(ape)
+library(phylobase)
+
+## external scripts (need to be moved)
+source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
+source("~/R-scripts/fasToPhase.R")
+
+## scripts
 source("code/gmycGroups.R")
 source("code/multiplot.R")
-source("~/R-scripts/fasToPhase.R")
 source("code/extToLbl.R")
-source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
+source("code/getPosteriors.R")
+
+## quick check on data
 impExt <- impDB$Extract[nzchar(impDB$Extract)]
 stopifnot(ncol(impDB) > 1)
+
+## beast tree
+## TODO -- change path
+impTree <- read.beast(file="../20140519.allImpatiens/allimpatiens_strict.tree.nex")
+impTree4 <- as(impTree, "phylo4")
+
+## DNA alignment for all data
+impAlg <- ape::read.dna(file="data/20130923.impatiens.phy", format="seq")
 
 ## Other common variables
 gmycFactors <- expand.grid(c("strict", "relaxed"),
@@ -201,15 +217,10 @@ nAmbPositions <- nAmbc0036 + nAmbc0775 + nAmbH3a + nAmbITS + nAmbLSU
 nAmbTotal <- length(c(unlist(ambc0036), unlist(ambc0775), unlist(ambH3a), unlist(ambITS), unlist(ambLSU)))
 totalNucl <- sum(fullAlg %in% c("a", "c", "t", "g")) 
 
-### ---- impatiens-tree-stats -----
-impTree <- read.nexus(file="../20140519.allImpatiens/allimpatiens_strict.tree.nex")
-
 ### full impatiens Tree
 ### ---- impatiens-tree ----
 library(ape)
-source("code/getPosteriors.R")
 source("code/extToLbl.R")
-impTree <- read.beast(file="data/20140519.impTree.nex")
 if( !file.exists("data/20140519.impTree-beast.phy") )
     write.tree(impTree, file="data/20140519.impTree-beast.phy")
 if (! file.exists("data/RAxML_bootstrap_nooutgroup.phy")) {
@@ -236,32 +247,27 @@ impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extrac
 esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
              "Gala", "EP", "Hawaii", "Wpac", "RedSea")
 
-
-
-#impTree$root.edge <- 8 - treeDepth(impTree)
-
-#impNodLbl[impNodLbl > 1] <- 0.001 # fix little glitch in format conversion, small BEAST posteriors are expressed in scientific notations and only the part before the E is converted which leads to posterior > 1. All are converted to small values .001
+impNodLbl <- impTree$posterior
 impNodLblCol <- rep(NULL, length(impNodLbl))
-impNodLblCol[impNodLbl == 1] <- "black"
-impNodLblCol[impNodLbl >= .99 & impNodLbl < 1] <- "red"
-impNodLblCol[impNodLbl >= .90 & impNodLbl < .99] <- "orange"
+impNodLblCol[impNodLbl >= .99] <- "black"
+##impNodLblCol[impNodLbl >= .99 & impNodLbl < 1] <- "red"
+##impNodLblCol[impNodLbl >= .90 & impNodLbl < .99] <- "orange"
 
 impNodLblTxt <- rep("", length(impNodLblCol))
 impAllNds <- 1:length(impNodLbl)
 impKeepNds <- impAllNds[!is.na(impNodLblCol)]
 
-plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,15), no.margin=TRUE)
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,12), no.margin=TRUE)
 nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
                frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
                bg=impNodLblCol[!is.na(impNodLblCol)],
-               fg=impNodLblCol[!is.na(impNodLblCol)],
+               ##fg=impNodLblCol[!is.na(impNodLblCol)],
                cex=.3)
-
 barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
                 cex.plot=.3, extra.space=.5, text.offset=1.02,
-                seg.col=rev(esuCol))
+                seg.col=impPal[esuList])
 axis(side=1, at=0:8, labels=paste("-", 8:0, sep="")) 
-legend(x=0, y=50, pch=16, col=c("black", "red", "orange"), legend=c("$PP = 1$", "$0.975 \\leq PP < 1$", "$ 0.9 \\leq PP < 0.975$"))
+legend(x=0, y=50, pch=16, col="black", legend=c("$PP = \\geq 0.99$"))
 
 
 ### StarBeast summary results (marginal likelihood summaries)
@@ -310,8 +316,13 @@ sbSummNoCOI$stdSS <- sbSummNoCOI$SS_logLik - meanESU1SSnoCOI
 sbSummNoCOI$stdPS <- sbSummNoCOI$PS_logLik - meanESU1SSnoCOI
 sbSummNoCOI$dataIncluded <- "No COI"
 
+BFHawaii <- round(2 * mean(subset(sbSummAll, groupings == "noHawaii")$stdPS), 1)
+BFWpac <- round(2 * mean(subset(sbSummAll, groupings == "noWpac")$stdPS), 1)
+BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdPS), 1)
+BFsplit <- round(2 * mean(subset(sbSummAll, groupings == "allESU1_split")$stdPS), 1)
+
 sbAllPlotSS <- ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+    stat_summary(fun.y = mean, geom="line", colour=sbCol[2], size=3) +
     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),
@@ -343,8 +354,11 @@ multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
 ## text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
 ## abline(h=-5, lty=2)
 
-sbAllPlotPS <- ggplot(sbSummAll, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
+sbAllPlotPS <-
+
+    ggplot(sbSummAll, aes(x=groupings, y=stdPS, ymin=0, ymax=stdPS)) +
+    geom_point(aes(x=groupings, y=stdPS), colour=sbCol[1], size=5) +
+    stat_summary(fun.ymax = mean, geom="linerange", colour=sbCol[2], size=3) +
     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),
