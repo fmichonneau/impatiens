@@ -2,6 +2,9 @@
 impatiens_phylogeography.tex
 impatiens_phylogeography.pdf
 
+## --- XCF files ---
+*.xcf
+
 ## --- LaTeX ignore files --- 
 *.acn
 *.acr

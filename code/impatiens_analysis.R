@@ -125,8 +125,8 @@ lociCharTable <- lociCharTable[, c("16S", "COI", "ATP6", "c0036", "c0775", "H3a"
 locTable <- print(xtable(lociCharTable,
                          caption=c(paste("Characteristics of the loci used for the",
                              "phylogenetic analyses. $N$: number of individuals sequenced,",
-                             "$K$: number of haplotypes, bp: length of the aligned (and",
-                             "unaligned) sequences, $S$: number of segregating sites,",
+                             "$K$: number of unique sequences, bp: length of the aligned",
+                             "(unaligned) sequences, $S$: number of segregating sites,",
                              "$S_{i}$: number of parsimony informative sites.",
                              "The statistics given for ITS are for the ones used in the",
                              "analysis (i.e., after using Gblock)."), # long
@@ -325,7 +325,7 @@ BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdPS), 1)
 BFsplit  <- round(2 * mean(subset(sbSummAll, groupings == "allESU1split")$stdPS), 1)
 
 ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="line", colour=sbCol[2], size=3) +
+    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),

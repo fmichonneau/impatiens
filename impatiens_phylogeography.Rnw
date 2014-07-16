@@ -242,21 +242,36 @@ these species co-occur and can share the same habitat, has
 contributed to the failure to recognize this diversity, and differentiate
 species in this complex.
 
-Through broad sampling across the entire known geographic range of this complex,
-we aim to:
-\begin{itemize}
-  \item differentiate species and assess species limits;
-  \item determine morphological characters that can be used to distinguish species;
-  \item reconstruct the history of diversification to understand how the
-    diversity and distribution of came about.
-\end{itemize}
+The goal of this study is to identify cryptic species in the
+``\textit{Holothuria impatiens}'', and to understand the temporal and spatial
+dynamics of its diversification. To this end, we sampled the entire known
+geographic range of this complex, and assembled a multi-locus dataset. 
 
-We compare patterns of species distribution with a time-calibrated phylogeny,
-and test species limits in a subset of the species that are not morphologically
-differentiated using the multispecies coalescent
-\cite{Heled2010,Rannala2003}. We also investigate how the general mixed Yule
-coalescent model of species delineation performs with our data set, and how
-sensitive this method is to the parameters used to reconstruct the phylogeny.
+To identify species limits in the complex, we used a combination of
+complementary methods of species delineation following modifications of the
+approaches by \cite{Leache2010,Grummer2013,Satler2013}. First, we used the
+Generalized Mixed Yule Coalescent method (GMYC) to delineate putative species
+\cite{Pons2006,Monaghan2009}. We then used independent lines of evidence
+(morphology, ecology and geographic information) to assess the validity of the
+lineages identified with GMYC. When no other line of evidence could separate the
+lineages identified with GMYC, we used model comparison in *BEAST
+\cite{Heled2010,Baele2012} to validate species limits. We used this approach as
+the complex includes both deeply divergent lineages that can be readily
+distinguished with morphological characters, and recent species radiations that
+appear to be morphologically indistinguishable. The multispecies coalescent
+offers a statistical framework that provides an objective assessment of species
+limits \cite{Fujita2012a}, even when no other morphological, ecological or
+geographical information allows to identify independent evolutionary
+lineages. Our study shows that these methods can be added to the lines of
+evidence typically used in integrative taxonomy, and provide a powerful tool for
+evaluating species limits in rapidly evolving groups with limited morphological
+and genetic differentiation.
+
+To investigate the evolutionary history and diversification of species within
+the ``\textit{H. impatiens}'' complex, we built a multi-locus, time-calibrated
+phylogeny.
+% need to add more details here
+
 
 % TODO -- needs to include the morphological characters/traits that allow to
 % distinguish species
@@ -303,56 +318,28 @@ sensitive this method is to the parameters used to reconstruct the phylogeny.
 
 \section{Methods}
 
-\subsection{Approach}
-
-The goal of this study is to identify cryptic species in the complex
-\textit{Holothuria impatiens}, and to understand the temporal and spatial
-dynamics of its diversification.
-
-We use a combination of complementary methods of species delineation following
-modifications of the approaches by \cite{Leache2010,Satler2013}. First, we used
-the Generalized Mixed Yule Coalescent method (GMYC) to identify putative species
-\cite{Pons2006,Monaghan2009}. We then used independent lines of evidence
-(morphology, ecology and geographic information) to assess the validity of the
-lineages identified with GMYC. In the event that no line of evidence could
-separate the lineages identified with GMYC, we used model comparison in *BEAST
-\cite{Heled2010,Baele2012} to assign species limits appropriately.
-
-We use this approach as the complex includes both deeply divergent lineages that
-can readily be distinguished based on morphological characters, and recent
-radiations that are morphologically indistinguishable. The multispecies
-coalescent offers a statistical framework that provides an objective assessment
-of species limits \cite{Fujita2012a}, even when no other morphological,
-ecological or geographical information allows to identify independent
-evolutionary lineages. Our study shows these methods can be added to the lines
-of evidence typically used in integrative taxonomy.
-
-Additionally, to investigate the history of diversification and the affinities
-among the cryptic species within the \textit{H. impatiens} complex, we built a
-multi-locus, time-calibrated phylogeny.
-
 \subsection{Sampling}
-
-Specimens used for this study are housed in the Invertebrate Zoology collections
-of the Florida Museum of Natural History (FLMNH) at the University of Florida,
-Gainesville, FL, USA. A few additional tissue samples with voucher hosted in
-other institutions or with no voucher were obtained through collaborators
-(Table~\ref{tab:voucherInfo} for details).
 
 Specimens were collected at low tide, on snorkel, on SCUBA or by dredging. Most
 specimens were photographed while alive \textit{in situ} or in the lab,
 anesthetized in a 1:1 solution of sea water and 7.5\% solution of magnesium
-chloride hexahydrate, before fixation in 75\% ethanol. When possible tentacles
+chloride hexahydrate, then preserved in 75\% ethanol. When possible tentacles
 were clipped, immediately put in 95-99\% ethanol, and later used for DNA
 extractions. These tissues are stored in the Genetic Resources Respository of
 the FLMNH.
 
-We examined \Sexpr{nrow(impDB)} morphologically and \Sexpr{nrow(impAlg)} were
-used for molecular analyses. These specimens were collected across the entire
-known range of \textit{H. impatiens}: Mediterranean Sea, Carribean Sea, Red Sea,
-tropical Indian and Pacific Oceans.
+Specimens were deposited in the Invertebrate Zoology collections of the Florida
+Museum of Natural History, University of Florida (UF), Gainesville, FL, USA,
+while tissue samples are stored in the Genetic Resources Repository of the
+museum. A few additional tissue samples were taken from vouchers housed at other
+institutions or were obtained through collaborators without vouchers being
+retained (Table~\ref{tab:voucherInfo} for details).
 
-% TODO: make specimen table
+We examined \Sexpr{nrow(impDB)} specimens morphologically and \Sexpr{nrow(impAlg)} were
+used for molecular analyses. These specimens were collected across the entire
+known range of \textit{H. impatiens}: Mediterranean Sea, Caribbean Sea, Red Sea,
+tropical Indian and Pacific Oceans (Table~\ref{tab:voucherInfo}).
+
 
 \subsection{DNA extraction and amplification}
 
@@ -366,21 +353,25 @@ sometimes from gonads, longitudinal muscles or body wall. When possible, the
 extractions were performed on tissue sampled in the field.
 
 In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
-nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775. ATP6
-primers have been developed in this study based on sequences available for this
-gene in GenBank. c0036 and c0775 are anonymous markers developed from a 454 run
-on genomic DNA from \textit{H. edulis}, and additional details will be provided
-in a future study (\cite{MichonneauInPrep}). c0036 is a portion of the gene
-encoding for an histone H3-like centromeric protein A-like (locus XP\_003723879),
-while c0775 is a portion of the gene encoding for the protein SFI1 based on
-annotations of the sea urchin \textit{Strongylocentrotus purpuratus} genome
-(locus XP\_792620).
+nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775
+\ref{tab:pcrConditions}. ATP6 primers were developed in this study based on
+sequences available for this gene in GenBank. c0036 and c0775 are anonymous
+markers developed from a 454 run on genomic DNA from \textit{H. edulis}, and
+additional details will be provided in a future study
+(\cite{MichonneauInPrep}). Briefly, these loci were identified using blastx on
+the contigs obtained from the 454 run against the predicted proteins for the sea
+urchin \textit{Strongylocentrotus purpuratus} genome. c0036 matches a portion of
+the gene encoding for an histone H3-like centromeric protein A-like (locus
+XP\_003723879), with an e-value of 2.10$^{-43}$. c0775 matches a portion of the
+gene encoding for the protein SFI1 (locus XP\_792620), with an e-value of
+3.10$^{-16}$.
 
 Primers and PCR conditions used are provided in
 Table~\ref{tab:pcrConditions}. Because of the length of ITS1-5.8S-ITS2, we used
-the sequencing primer fm-5.8S-f. The primers fm-ITS-f is the reverse complement
-sequence of the primer 18S-1708R (WN-1708R in \ref{Lacey2005}) and fm-ITS-r is
-the reverse complement of LSUFW1 (LSU D1,D2 fw1: 56-74 in \ref{Sonnenberg2007}).
+the additional sequencing primer fm-5.8S-f. The primers fm-ITS-f is the reverse
+complement sequence of the primer 18S-1708R (WN-1708R in \cite{Lacey2005}) and
+fm-ITS-r is the reverse complement of LSUFW1 (LSU D1,D2 fw1: 56-74 in
+\cite{Sonnenberg2007}).
 
 We conducted PCR in 25$\mu$L reactions using either 15.4$\mu$L of water,
 2.5$\mu$L of Sigma-Alrich \textregistered 10X PCR buffer, 2.5$\mu$L of dNTP,
@@ -391,13 +382,15 @@ recommendations.
 
 Sequencing of PCR products was performed by the Interdisciplinary Center for
 Biotechnology Research at the University of Florida. Chromatrograms were edited
-using Geneious \ref{Geneious558}.
+using Geneious \cite{Geneious558}.
 
-Overall, \Sexpr{nAmbTotal} positions (\Sexpr{round(nAmbPositions/dim(fullAlg)[2],
-  1)*100}\% of the alignment length, and \Sexpr{round(nAmbTotal/totalNucl,
-  4)*100}\% of the total number of nucleotides) contained heterozygous
-positions. We kept the IUPAC in the alignment which are considered as missing
-data by all the software used in this study.
+Overall, \Sexpr{nAmbTotal} positions
+(\Sexpr{round(nAmbPositions/dim(fullAlg)[2], 4)*100}\% of the alignment length,
+and \Sexpr{round(nAmbTotal/totalNucl, 4)*100}\% of the total number of
+nucleotides) contained heterozygous positions. We used the International Union
+of Pure and Applied Chemistry (IUPAC) nomenclature codes for these positions in
+the alignment, which are considered as missing data by all the software used in
+this study.
 
 \begin{table}
   \caption{Primers and PCR conditions for the markers used in this study.}
@@ -451,13 +444,13 @@ data by all the software used in this study.
 \subsection{Putative species delineation with GMYC}
 
 To delineate putative species based on molecular data, we fit the generalized
-mixed Yule coalescent (GMYC) model (\cite{Pons2006}, \cite{Monaghan2009},
-\cite{Fujisawa2013}) to the COI sequence data. This approach attempts to detect
-transitions in the branching rate of an ultrametric tree corresponding to the
-expected increase in lineage accumulation resulting from the shift between
-speciation and population-level coalescent events. To determine the location of
-the threshold, the GMYC model is fit at different nodes along the tree, and the
-time that provides the best likelihood for the location of the switch is
+mixed Yule coalescent (GMYC) model (\cite{Pons2006,Monaghan2009,Fujisawa2013})
+to the COI sequence data. This approach attempts to detect transitions in the
+branching rate of an ultrametric tree corresponding to the expected increase in
+lineage accumulation resulting from the shift between speciation and
+population-level coalescent events. To determine the location of the threshold,
+the GMYC model is fit at different nodes along the tree, and the one that
+provides the best likelihood for the location of the switch is
 selected. Lineages found beyond this threshold are considered different species.
 
 Estimating the transition from speciation to intraspecific coalescent events
@@ -473,7 +466,7 @@ Yule \cite{Yule1925}). The type of clock used will affect branch lengths,
 however, it is difficult to predict \textit{a priori} how the misspecification
 of this parameter will influence the results. Monaghan et
 al \cite{Monaghan2009} indicate that using a coalescent constant tree prior is
-a more conservative approach compared to a Yule prior, as GMYC uses the
+a more conservative approach compared to using a Yule prior, as GMYC uses the
 coalescent as the null model to explain the branching pattern. Their results
 validated their predictions and the GMYC method detected more species on trees
 estimated with a Yule prior. However, these results might be influenced by the
@@ -487,12 +480,12 @@ task of estimating the transition problematic \cite{Monaghan2009}, as the GMYC
 method cannot accommodate for the null branch lengths associated with identical
 sequences \cite{Fujisawa2013}. Contrary to other programs, BEAST does not assign
 zero edge length to terminal branches for identical sequences, and thus allows
-to retain them in the analysis. There are obvious theoretical advantages for
+retaining them in the analysis. There are obvious theoretical advantages for
 retaining identical sequences: BEAST assumes that the sequences represent a
 random sample of the population when estimating effective population
-sizes. Removing identical sequences will lead to spurious high levels of genetic
-diversity, in turn leading to overestimating population sizes
-\cite{Drummond2014}[p.98]. As population sizes directly influence the
+sizes. Removing identical sequences will lead to spuriously high levels of
+genetic diversity, in turn leading to overestimating population sizes
+\cite[p.98]{Drummond2014}. As population sizes directly influence the
 probability that lineages will coalesce, removing identical sequences will lead
 to longer branches in the trees, blurring the distinction between interspecific
 and intraspecific coalescent events. We can therefore predict that removing
@@ -510,12 +503,13 @@ the dataset including the haplotypes. We performed a complete search using each
 codon position as a partition, and limiting the search to the JC, HKY and GTR
 models with or without a proportion of invariant sites and/or gamma-distributed
 rates of evolution (12 different models \textit{in toto}). Both datasets (all
-sequences, only haplotypes) favored to assign each codon position to a different
-partition. After inspecting mixing and convergence on test runs, we modified
-slightly the models suggested by PartitionFinder to use: HKY+I+G, GTR+G and HKY
-for each codon position respectively for the dataset including all sequences;
-and HKY+G, HKY+G and HKY for the analyses on unique haplotypes. In all analyses,
-base frequencies were estimated.
+sequences, only haplotypes) favored to assign each codon position to independent
+partitions. The partition scheme selected by PartitionFinder led to poor mixing
+due to over-parametrization in initial test runs. We modified slightly the
+partition scheme to use: HKY+I+G, GTR+G and HKY for each codon position
+respectively for the dataset including all sequences; and HKY+G, HKY+G and HKY
+for the analyses on unique haplotypes. In all analyses, base frequencies were
+estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
 for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
@@ -538,8 +532,9 @@ for all runs. ESS values for all parameters were above 350 in each independent
 run, and runs for each parameter combination were combined.
 
 The trees sampled from the posterior were summarized with treeannotator using
-the common ancestor tree method as it provides a more accurate estimate of the
-divergence times from the trees sampled from the posterior \cite{Heled2013} .
+the common ancestor tree method, as this method provides a more accurate
+estimate of the divergence times from the trees sampled from the posterior
+compared to the other methods available in treeannotator \cite{Heled2013}.
 
 These trees were used to fit the single-threshold (\cite{Pons2006}) and the
 multi-threshold \cite{Monaghan2009} GYMC model using the R package splits 1.0-19
@@ -558,12 +553,12 @@ with the highest likelihood.
 Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
 with the default settings. All markers led to unambiguous alignments except for
 ITS. For this locus, we used Gblocks \ref{Castresana2000} to remove parts that
-were difficult to align using a minimum length of a block of 5 (-b4=5) and all
-gap positions can be selected (-b5=a). We used the resulting alignment to
-estimate the phylogenetic relationships and the timing of the divergence among
-the different lineages of \textit{Holothuria impatiens} using RAxML 8.0.1
-\cite{Stamatakis2014} and BEAST 2.1.2 \cite{Bouckaert2014} (using BEAGLE 2.1.2
-\cite{Ayres2012}).
+were difficult to align using a minimum length of a block of 5 (\texttt{-b4=5}),
+and the option ``all gap positions can be selected'' (\texttt{-b5=a}). We used
+the resulting alignment to estimate the phylogenetic relationships and the
+timing of the divergence among the different lineages of \textit{Holothuria
+  impatiens} using RAxML 8.0.1 \cite{Stamatakis2014} and BEAST 2.1.2
+\cite{Bouckaert2014} (using BEAGLE 2.1.2 \cite{Ayres2012}).
 
 To determine the optimal partition scheme and models of molecular evolution, we
 analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
@@ -576,9 +571,11 @@ proportion of invariant sites [+I] and/or Gamma distributed rates across sites
 Bayesian Information Criterion. The best fit model had 9 partitions.
 
 For the BEAST analysis, following some initial testing runs, we modified
-slightly the partition scheme to improve mixing of the chains (supplementary
+slightly the partition scheme to improve mixing of the chains as the partition
+scheme selected by PartitionFinder led to over-parametrization (supplementary
 Table \ref{tab:sm-partitions}).
 
+% need to re-word this paragraph
 As no fossils are known in \textit{Holothuria}, we used the closure of the
 isthmus of Panama to calibrate our phylogeny, and fixed the time of divergence
 for the individuals of the Eastern Pacific (including Galapagos) and the
@@ -621,16 +618,16 @@ tree method \cite{Heled2013}.
 
 \subsection{Test of species limits with *BEAST}
 
-Given the shallow genetic divergence observed among some of the ESUs detected by
-GYMC and the lack of morphological differentiation among them, we compared
-species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using Bayes
-Factors evaluated by the stepping-stone (SS) and the path sampling (PS) methods
-\cite{Baele2012}.
+Given the shallow genetic divergence observed among some of the putative species
+detected by GYMC and the lack of morphological differentiation among them, we
+compared species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
+Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
+methods \cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus dataset using the
 multi-species coalescent in a Bayesian framework to account for intraspecies
 polymorphism and incomplete lineage sorting. This method assumes reproductive
-isolation (absence of gene flow) among species and requires to assign
+isolation (absence of gene flow) among species and requires the assignment of
 individuals to species \textit{a priori}.
 
 Bayes Factors (BF) provides a powerful framework for model selection by
@@ -647,21 +644,21 @@ detect the signature of reproductive isolation among individuals assigned to
 different putative species by GMYC but that cannot be teased apart based on
 morphology.
 
-To this end, we investigated whether *BEAST favored models where all or some of
-the following ESUs were considered distinct species: WPac, Hawaii and RedSea or
-actually could not be distinguished from ESU1 (Table
-\ref{tab:delineationModels}). We included ESU3 and gracilis in our analysis to
-allow the estimation of the topology when all individuals for the species tested
-where attributed to ESU1. In these analyses, we selected individuals for which
-we had at least one mitochondrial marker and one nuclear marker. We used data
-from the following markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and H3a; and
-the same approach as for the phylogeny of the entire complex, using Gblocks to
-remove ambiguous parts of the alignment in ITS, PartitionFinder to find the most
-appropriate partition scheme and models of molecular evolution. We unlinked
-clocks for all markers, used strict molecular clocks, fixing the COI clock at
-1.85\%/million years \cite{Lessios2008} while estimating the rate of the
-others. We ran the analysis for $50.10^{6}$ generations and repeated it at least
-twice for each group.
+We investigated whether *BEAST favored models where all or some of the following
+ESUs were considered distinct species: WPac, Hawaii and RedSea or actually could
+not be distinguished from ESU1 (Table \ref{tab:delineationModels}). We included
+ESU3 and gracilis in our analysis to allow the estimation of the topology when
+all individuals for the species tested where attributed to ESU1. In these
+analyses, we selected individuals for which we had at least one mitochondrial
+marker and one nuclear marker. We used data from the following markers: 16S,
+COI, ATP6, c0036, c0775, ITS, LSU and H3a; and the same approach as for the
+phylogeny of the entire complex, using Gblocks to remove ambiguous parts of the
+alignment in ITS, PartitionFinder to find the most appropriate partition scheme
+and models of molecular evolution. We unlinked clocks for all markers, used
+strict molecular clocks, fixing the COI clock at 1.85\%/million years
+% Why did you use an urchin clock when you have an internal one?
+\cite{Lessios2008} while estimating the rate of the others. We ran the analysis
+for $50.10^{6}$ generations and repeated it at least twice for each group.
 
 For the estimation of the marginal likelihoods, we used the settings recommended
 by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
@@ -708,16 +705,14 @@ M4, M5, M6 and M7).
 <<loci-characteristics-data, cache=TRUE, echo=FALSE, warning=FALSE>>=
 @
 
-The complete sequence data set was \Sexpr{sum(lociChar["bp_alg",
-  ])}~bp (with \Sexpr{sum(lociChar["bp_alg", c("16S", "COI",
-  "ATP6")])}~bp from mitochondrial genome, and
-\Sexpr{sum(lociChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
+The complete sequence data set was \Sexpr{sum(lociChar["bp_alg", ])}~bp (with
+\Sexpr{sum(lociChar["bp_alg", c("16S", "COI", "ATP6")])}~bp from mitochondrial
+genome, and \Sexpr{sum(lociChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
   "LSU")])}~bp from the nuclear genome,
-Table~\ref{tab:loci-characteristics}). Of the
-\Sexpr{sum(lociChar["S_i",])} parsimony-informative sites,
-\Sexpr{round(sum(lociChar["S_i", c("16S", "COI",
-  "ATP6")])/sum(lociChar["S_i",])*100, 0)}\% were coming from the
-mitochondrial loci (Table~\ref{tab:loci-characteristics}).
+Table~\ref{tab:loci-characteristics}). Of the \Sexpr{sum(lociChar["S_i",])}
+parsimony-informative sites, \Sexpr{round(sum(lociChar["S_i", c("16S", "COI",
+  "ATP6")])/sum(lociChar["S_i",])*100, 0)}\% were from the mitochondrial loci
+(Table~\ref{tab:loci-characteristics}).
 
 <<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
 
@@ -814,6 +809,30 @@ least nine species (Figure~\ref{fig:impatiens-images}).
 
 The size and shape of the ossicles do not differ in this group and cannot be
 used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
+
+\begin{figure}
+{\centering
+\includegraphics[width=6.5in]{manual-figures/figure-group1}
+}
+\caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
+  complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
+  UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
+  E. RedSea, Djibouti, UF12070; F. Wpac, Majuro Marshall Islands, UF6771;
+  G. Hawaii, French Fregate Shoal, Hawaiian archipelago, UF6243.}
+}
+\end{figure}
+
+\begin{figure}
+{\centering
+\includegraphics[width=6.5in]{manual-figures/figure-group2}
+\caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
+  complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287; B. ESU2, Guam, UF6729;
+  C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa, Japan, UF11012;
+  E. gracilis, Lizard Island, Australia, UF8288; F. tigerRedSea, Djibouti,
+  UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
+  Nosy B\'{e}, Madagascar, UF7469.}
+\end{figure}
+
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.

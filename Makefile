@@ -15,7 +15,6 @@ impatiens_phylogeography.aux: impatiens_phylogeography.tex impatiens_phylogeogra
 	bibtex impatiens_phylogeography.aux
 
 clean-partial:
-	-rm impatiens_phylogeography.tex
 	-rm *.bbl
 	-rm *.blg
 	-rm *.aux
@@ -24,3 +23,4 @@ clean-partial:
 
 clean: clean-partial
 	-rm *.pdf
+	-rm impatiens_phylogeography.tex
