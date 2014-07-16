@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#PBS -N impatiens_beast
+#PBS -o impbeast.out
+#PBS -e impbeast.err
+#PBS -m ae
+
+#PBS -M francois.michonneau@gmail.com
+#PBS -l nodes=1:ppn=8
+#PBS -l pmem=1500mb
+#PBS -r n
+#PBS -l walltime=168:00:00
+
+module load beast/2.1.2
+
+cd $PBS_O_WORKDIR
+
+beast -overwrite -beagle_SSE -beagle_instances 8 -beagle_scaling dynamic 20140618.allImpatiens_perLocus.xml
+echo Done
+
+

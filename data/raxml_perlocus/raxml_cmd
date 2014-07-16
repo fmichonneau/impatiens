@@ -1,0 +1,7 @@
+#!/bin/sh
+raxmlHPC-PTHREADS-SSE3 -s 20140702.mtloci.phy -n mtloci -m GTRGAMMA -x 10101 -N 500 -q 20140702.mtloci.part -p 12345 -f a -T7
+raxmlHPC-PTHREADS-SSE3 -s 20140702.nucloci.phy -n nucloci -m GTRGAMMA -x 10101 -N 500 -q 20140702.nucloci.part -p 12345 -f a -T7
+raxmlHPC-PTHREADS-SSE3 -s 20140702.rDNA.phy -n rDNA -m GTRGAMMA -x 10101 -N 500 -p 12345 -f a -T7
+raxmlHPC-PTHREADS-SSE3 -s 20140702.c0036.phy -n c0036 -m GTRGAMMA -x 10101 -N 500 -p 12345 -f a -T7
+raxmlHPC-PTHREADS-SSE3 -s 20140702.c0775.phy -n c0775 -m GTRGAMMA -x 10101 -N 500 -p 12345 -f a -T7
+raxmlHPC-PTHREADS-SSE3 -s 20140702.H3a.phy -n H3a -m GTRGAMMA -x 10101 -N 500 -p 12345 -f a -T7
