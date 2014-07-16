@@ -4,7 +4,6 @@ setwd("~/Documents/Impatiens/impatiens_phylogeography/")
 impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
                   stringsAsFactors=FALSE)
 library(seqManagement)
-library(wesanderson)
 library(ggplot2)
 library(ape)
 library(phylobase)
@@ -250,10 +249,7 @@ esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit"
 impNodLbl <- impTree$posterior
 impNodLblCol <- rep(NULL, length(impNodLbl))
 impNodLblCol[impNodLbl >= .99] <- "black"
-##impNodLblCol[impNodLbl >= .99 & impNodLbl < 1] <- "red"
-##impNodLblCol[impNodLbl >= .90 & impNodLbl < .99] <- "orange"
 
-impNodLblTxt <- rep("", length(impNodLblCol))
 impAllNds <- 1:length(impNodLbl)
 impKeepNds <- impAllNds[!is.na(impNodLblCol)]
 
@@ -272,6 +268,37 @@ abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
 axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
 legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
 
+
+### Per locus trees
+### ---- per-locus-trees ----
+loci <- c("c0036", "c0775", "H3a", "mtDNA", "rDNA")
+raxFiles <- file.path("data/raxml_perlocus", paste0("RAxML_bipartitions.", loci))
+stopifnot(all(sapply(raxFiles, file.exists)))
+uniqExt <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
+
+par(mai=c(0,0,.5,0))
+layout(matrix(c(4,1,2,4,3,5), 2, 3, byrow=TRUE))
+for (i in 1:length(raxFiles)) {
+    raxmlTr <- read.tree(file=raxFiles[i])
+    raxmlCol <- impDB[match(raxmlTr$tip.label, uniqExt), "consensusESU"]
+    raxmlCol <- impPal[raxmlCol]
+    
+    plotTr <- ladderize(raxmlTr)
+    plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)
+    
+    ndCol <- character(length(plotTr$node.label))
+    ndCol[as.numeric(plotTr$node.label) >= 80] <- "black"
+    ndAll <- 1:length(ndCol)
+    ndKeep <- ndAll[nzchar(ndCol)]
+    plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.6)
+    nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ")
+    add.scale.bar()
+    if (i == 4) {
+        textLgd <- c("Medit", "WA", "Gala", "EP", "ESU2", "tiger", "tigerRedSea", "ESU3", "gracilis",
+                     "RedSea", "ESU1", "Wpac", "Hawaii")
+        legend(x=0, y=55, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
+    }
+}
 
 ### StarBeast summary results (marginal likelihood summaries)
 ### ---- starbeast-summary ----
