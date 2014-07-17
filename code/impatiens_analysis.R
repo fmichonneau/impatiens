@@ -268,6 +268,32 @@ abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
 axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
 legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
 
+### RAxML tree
+### ---- raxml-tree ----
+raxmlImpTr <- read.tree(file="data/raxml_fullcomplex/RAxML_bipartitions.result",)
+raxmlImpTr <- drop.tip(root(raxmlImpTr, "S0213"), "S0213")
+raxmlImpTr <- ladderize(raxmlImpTr)
+
+raxmlImpTr <- extToLbl(raxmlImpTr, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
+             "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+
+ndCol <- character(length(raxmlImpTr$node.label))
+ndCol[as.numeric(raxmlImpTr$node.label) >= 90] <- "black"
+ndCol[as.numeric(raxmlImpTr$node.label) >= 80 &
+      as.numeric(raxmlImpTr$node.label) < 90] <- "red"
+ndAll <- 1:length(ndCol)
+ndKeep <- ndAll[nzchar(ndCol)]
+
+par(mai=c(0,0,0,0))
+plot(raxmlImpTr, cex=.6, show.tip.label=FALSE, x.lim=c(0,.245))
+barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""),
+                raxmlImpTr, cex.text=.4, cex.plot=.3, extra.space=.155,
+                text.offset=1.02, seg.col=impPal[esuList])
+nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(raxmlImpTr),
+           bg=ndCol[nzchar(ndCol)], frame="circ", cex=.275)
+add.scale.bar()
+
 
 ### Per locus trees
 ### ---- per-locus-trees ----
@@ -281,22 +307,21 @@ layout(matrix(c(4,1,2,4,3,5), 2, 3, byrow=TRUE))
 for (i in 1:length(raxFiles)) {
     raxmlTr <- read.tree(file=raxFiles[i])
     raxmlCol <- impDB[match(raxmlTr$tip.label, uniqExt), "consensusESU"]
-    raxmlCol <- impPal[raxmlCol]
-    
+    raxmlCol <- impPal[raxmlCol]    
     plotTr <- ladderize(raxmlTr)
-    plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)
-    
+    plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)    
     ndCol <- character(length(plotTr$node.label))
     ndCol[as.numeric(plotTr$node.label) >= 80] <- "black"
     ndAll <- 1:length(ndCol)
     ndKeep <- ndAll[nzchar(ndCol)]
-    plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.6)
-    nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ")
+    plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.5)
+    nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ",
+               cex=.3)
     add.scale.bar()
     if (i == 4) {
         textLgd <- c("Medit", "WA", "Gala", "EP", "ESU2", "tiger", "tigerRedSea", "ESU3", "gracilis",
                      "RedSea", "ESU1", "Wpac", "Hawaii")
-        legend(x=0, y=55, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
+        legend(x=0, y=70, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
     }
 }
 

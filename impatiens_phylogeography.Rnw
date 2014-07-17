@@ -811,26 +811,34 @@ The size and shape of the ossicles do not differ in this group and cannot be
 used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
 
 \begin{figure}
-{\centering
-\includegraphics[width=6.5in]{manual-figures/figure-group1}
-}
-\caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
-  complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
-  UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
-  E. RedSea, Djibouti, UF12070; F. Wpac, Majuro Marshall Islands, UF6771;
-  G. Hawaii, French Fregate Shoal, Hawaiian archipelago, UF6243.}
+  {\centering
+    \includegraphics[width=6.5in]{manual-figures/figure-group1}
+    \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
+      complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
+      UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
+      E. RedSea, Djibouti, UF12070; F. Wpac, Majuro Marshall Islands, UF6771;
+      G. Hawaii, French Fregate Shoal, Hawaiian archipelago, UF6243.}
 }
 \end{figure}
 
 \begin{figure}
-{\centering
-\includegraphics[width=6.5in]{manual-figures/figure-group2}
-\caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
-  complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287; B. ESU2, Guam, UF6729;
-  C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa, Japan, UF11012;
-  E. gracilis, Lizard Island, Australia, UF8288; F. tigerRedSea, Djibouti,
-  UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
-  Nosy B\'{e}, Madagascar, UF7469.}
+  {\centering
+    \includegraphics[width=6.5in]{manual-figures/figure-group2}
+    \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
+      complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287; B. ESU2, Guam, UF6729;
+      C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa, Japan, UF11012;
+      E. gracilis, Lizard Island, Australia, UF8288; F. tigerRedSea, Djibouti,
+      UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
+      Nosy B\'{e}, Madagascar, UF7469.}
+  }
+\end{figure}
+
+\begin{figure}
+  {\centering
+    \includegraphics[width=6.5in]{manual-figures/figure-group3}
+    \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
+      complex. A. WA, St Martin, UF11790; B. EP, Panama (no Voucher).}
+}
 \end{figure}
 
 
@@ -1375,6 +1383,10 @@ completion of reproductive isolation.
   \end{tabular}
 \end{table}
 
+%% raxml tree
+<<raxml-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values \\seq 90, red circles bootstrap values \\seq 80. Colored vertical bars represent consensus ESUs.'>>=
+
+@ 
 
 %% locus trees
 
