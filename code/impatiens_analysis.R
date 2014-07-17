@@ -188,6 +188,7 @@ ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
                         size=I(1.5)) +
     scale_x_continuous(breaks=1:length(unique(locWhich$Locus))+0.5, labels=locPos$Locus) +
     scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
+    scale_colour_manual(values=impPal) +
     theme(legend.position=c(.75,.22),
           panel.background=element_blank(),
           panel.grid.major=element_blank(),
@@ -215,6 +216,7 @@ nAmbLSU <- length(unique(unlist(ambLSU)))
 nAmbPositions <- nAmbc0036 + nAmbc0775 + nAmbH3a + nAmbITS + nAmbLSU
 nAmbTotal <- length(c(unlist(ambc0036), unlist(ambc0775), unlist(ambH3a), unlist(ambITS), unlist(ambLSU)))
 totalNucl <- sum(fullAlg %in% c("a", "c", "t", "g")) 
+
 
 ### full impatiens Tree
 ### ---- impatiens-tree ----
