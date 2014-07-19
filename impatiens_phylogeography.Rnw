@@ -97,133 +97,103 @@ read_chunk('code/impatiens_map.R')
 Despite challenges with definitions, species constitute the biological units
 used to assess patterns of diversity, identify regions of conservation concern
 and manage exploited resources \cite{Pimm2014}. For many taxonomic groups,
-species limits are misunderstood and the level of undescribed diversity debated
-making global estimates of diversity poorly constrained,
+species limits are misunderstood and the level of undescribed diversity debated,
+making global estimates of diversity poorly constrained
 \cite{Appeltans2012,Costello2013}. DNA-based species delineation methods have
 become increasingly popular as they provide an inexpensive and efficient way to
 identify species and resolve complexes. These methods are efficient as genetic
-data carry the signature of the historical processes experienced by species. In
-particular, the expected level of genetic divergence between reproductively
-isolated populations is proportional to the amount of time since they shared a
-common ancestor \cite{Hey2010-IMa2}. % lacks transition sentence here
-The recent development of coalescent-based methods using multi-locus datasets
-has overcome some of the shortcomings of single-locus analyses that were unable
-to distinguish between some processes that lead to the same patterns.
+data carry the signature of the historical processes experienced by species. New
+coalescent-based methods using multi-locus datasets have overcome some of the
+shortcomings of single-locus analyses that were unable to distinguish between
+different processes leading to identical patterns (e.g., incomplete lineage
+sorting and introgression), and do not depend on arbitrary threshold of genetic
+divergence. Not only do these methods account for the stochastic process
+associated with the independent sorting of genealogies along the species tree,
+but they use it to estimate the species tree and the demographic history of the
+species \cite{Fujita2012a}. Additionally, these methods provide a statistical
+framework to test alternate species delineation hypotheses when other lines of
+evidence are equivocal \cite{Baele2012}.
 
+Molecular methods have revealed that many species, thought to be
+well-understood, are complexes of cryptic species. In many cases, these
+``pseudo-cryptic'' species differ morphologically but in traits not
+traditionally considered, or in traits not available to taxonomists because of
+the preservation methods or the lack of information about the natural history of
+the species \cite{Knowlton1993}. For instance, differences in coloration
+\cite{Malay2010}, depth \cite{Prada-missing}, mating signals \cite{}, were not
+considered as indicative of species limits before cryptic lineages were
+uncovered by molecular data. In these cases, the single-locus approach provided
+a way to infer species limits using the evolutionary significant unit (ESU)
+concept \cite{Moritz1994} that defines species-level units based on reciprocal
+monophyly in at least one marker (typically mtDNA), and at least another
+defining attribute (morphology, distribution, reciprocal monophyly in another
+trait).
 
-%% GP: How do you determine the age of a fauna?  Do you mean assemblages,
-%% communities, species or complexes?  Why does that lead to the two
-%% consequences listed?  Do you need selection for this age?  How does age lead
-%% to interpretations about distributions and barriers?
-Molecular methods have revealed that many species complexes that were thought to
-be well-understood are complexes of cryptic species. In particular, species
-thought to be widespread are often complexes of divergent lineages with
-restricted geographical ranges (e.g., \cite{Brown2007,Meyer2005-evolution},
-...). Among marine organisms, these findings are changing our understanding of
-speciation in the sea \cite{Mayr1954}. Since most marine invertebrates have a
-highly dispersive larval stage, and the oceans in general and the Indo-Pacific
-in particular lack clear geographical barriers to dispersal, opportunities for
-allopatric speciation seem limited. Yet, while many closely related species have
-non-overlapping distributions suggesting that allopatric speciation is
-prevalent, overlap among sister species distributions is common. Recent
-geological and molecular evidence suggests that most of the modern reef fauna is
-recent (Miocene) \cite{Renema2008}, leading to the realization that (1)
-selection (along environmental gradients, sexual selection, host specificity)
-may play an important role in reproductive isolation (reviewed in
-\cite{Bowen2013}); (2) important changes in species ranges and distributions
-have obscurred the barriers responsible for the initiation of reproductive
-isolation.
+If this approach has allowed to unravel high levels of unrecognized diversity,
+when other defining traits to infer reproductive isolation are lacking, the
+patterns of genetic differentiation have remained difficult to interpret
+objectively. Many species rely on chemical recognition systems to maintain
+species integrity (e.g., mate recognition, habitat specificity)
+\cite{Knowlton1993}. Not only these systems are poorly characterized or
+difficult to investigate in the context of a taxonomic study, they also rarely
+translate into morphological differences. In this context, defining traits that
+correlate with genetic clusters identified from single-locus data sets are
+scarce, forming ``true cryptic'' species complexes.
 
-Inferring the mode of speciation from current distributions can be misleading
-because species distributions are dynamic and are especially influenced by
-large-scale environmental changes. Glacio-eustatic sea level fluctuations have
-had an important impact on shallow marine habitats because 100+~m amplitude
-exceeds the depth range of most littoral species, and they recurred with
-\char`~10$^4$-10$^5$ year periodicity during the late Tertiary and
-Quarternary. These fluctuations have led to important habitat modifications and
-changes in oceanic current patterns with consequences in connectivity,
-population sizes and species ranges. These changes have made species
-distributions in the Pacific highly dynamic (\cite{Paulay1990}) and are, in most
-cases, too recent compared to the time frame needed for speciation.
-% However, speciation can be very rapid, e.g., Asterinid from NSW Byrne2012
-For instance, the latest minimum sea level (120 to 135~m below present) was
-18,000 years ago. During this period, circulation between Pacific and Indian
-Oceans was significantly restricted, the Red Sea was most likely disconnected
-from the Indian Ocean, and the South China Sea was nearly land-locked
-(\cite{Veron1995}). Therefore, current distribution patterns  only
-partially reflect the biogeographical context under which the modern
-reef-associated fauna diversified. This is illustrated by the observation that
-modern faunal breaks in the reef fauna are only poorly correlated with
-present-day conditions, but are strongly associated with geological features
-\cite{Keith2013,Pellissier2014}.
+%%% rewrite this paragraph
+%% cryptic lineages paint a more complex picture of speciation than strict
+%% allopatry with potential role of selection to account for rapid secondary
+%% sympatry as well as changes in species distribution through time.
+% Among marine organisms, these findings are changing our understanding of
+% speciation in the sea \cite{Mayr1954}. Since most marine invertebrates have a
+% highly dispersive larval stage, and the oceans in general, and the Indo-Pacific
+% in particular, lack clear geographical barriers to dispersal, opportunities for
+% allopatric speciation seem limited. Yet, while many closely related species have
+% non-overlapping distributions suggesting that allopatric speciation is
+% prevalent, overlap in the distribution of sister species is common. These
+% observations have led to the realization that (1) selection (along environmental
+% gradients, sexual selection, host specificity) may play an important role in
+% reproductive isolation (reviewed in \cite{Bowen2013}); (2) important changes in
+% species ranges and distributions have obscurred the barriers responsible for the
+% initiation of reproductive isolation.
 
-The consequences of sea level fluctuations on the populations can be apparent in
-the present genetic diversity and structuring. For instance, during low sea
-stands the connectivity between the Indian and Pacific oceans was reduced,
-providing repeated opportunities for population divergence between these ocean
-basins. While some species show substantial divergence in their mitochondrial
-DNA (e.g., xxxxxx), many others (including the most widespread form of
-\textit{Holothuria impatiens}) show little genetic structuring across this
-area. Such lack of pattern can be the result of (1) maintained connectivity
-during these low sea stands, as both oceans were still connected
-(\cite{Voris2000}); (2) one of the two lineages was lost because of local
-extinction or selective sweep; (3) the species recently expanded its ranges
-and colonized one of the basin recently.
-
-% GP: [You need to set the stage for the speciation-aspect of the chapter here –
-% so what are you doing, why, and how will it address the problems you are
-% discussing?  The introduction should focus on those aspects of the problem
-% that you address in the study.]
-
-Taxonomic studies of most marine invertebrates have traditionally relied on preserved
-specimens. Preservation can render delicate morphological characters hard or
-impossible to see, and are frequently lost or fade with time. Hard parts are
-easily preserved and their form is generally not impacted by preservation, so
-taxonomists often favor them to differentiate species. For instance, in sea
-cucumbers, species-level taxonomy has almost entirely relied on the shape of
-ossicles, microscopic calcareous secretions found in many tissues, because
-ossicles show substantial diversity and variability, whilst variation in the
-simple anatomy of these animals is limited at lower taxonomic levels. Even with
-ossicles, until recent decades, workers have tended to focus only on those found
-in the body wall, ignoring ossicles in internal structures, and have paid little
-attention to intraspecific variation, typically illustrating the ossicle
-assemblage of a single individual.
-
-% who were the first authors to illustrate ossicles?
+In this study, using a combination of morphological, genetic and ecological
+data, we show that ``\textit{Holothuria impatiens}'' represents a complex of at
+least 13 species, including both ``pseudo-cryptic'' and ``true cryptic''
+species: some of these species can be distinguished relatively easily from their
+live appearance, others can only be identified genetically.
+% And we use this radiation to investigate spatial and temporal patterns of
+% diversification in the complex
 
 Forssk\r{a}l described \textit{Fistularia impatiens} from collections he made in
 Suez, Egypt \cite{Forsskal1775}. His description is limited, but indicates that
-the body wall is gray with dark spot and well-developed, lightly colored
-tubercles are present. The drawing accompanying the description corroborates
-these observations. Since then, the species has been attributed to
-\textit{Holothuria}, the most diverse genus of the Holothuriidae that is
-typically reef-associated. The range of \textit{H. impatiens} has been extended,
-and today is recognized as the most widespread species in the genus. Its range
-extends from the Red Sea through the entire Indo-West Pacific, to the East
-Pacific, Caribbean and the Mediterranean.
+the body wall is gray with dark spot, and with well-developed, lightly colored
+tubercles. The drawing accompanying the description corroborates these
+observations. Since then, the species has been attributed to
+\textit{Holothuria}, the most diverse genus of the Holothuriidae, typically
+reef-associated. The range of \textit{H. impatiens} has been extended, and today
+is recognized as the most widespread species in the genus. Its range extends
+from the Red Sea through the entire Indo-West Pacific, to the East Pacific,
+Caribbean and the Mediterranean.
 
 Pearson \cite{Pearson1915} described \textit{Thymiosycia} as one of five
 subgenera in \textit{Holothuria}, and designated \textit{Holothuria impatiens}
 as the type species. The modern concept of \textit{Thymiosycia} was proposed by
-Rowe \cite{Rowe1969} to include 13 species characterized by  well
-developed, regular and symmetrical tables and buttons. 
-
-% \cite{Pearson1915} to include species of Holothuriidae being characterized by
-% the absence of ``true pedicels'' and anal teeth, and the presence of
-% ``papillae scattered all over the body, generally on eminences''
+Rowe \cite{Rowe1969} to include 13 species characterized by well developed,
+regular and symmetrical tables and buttons.
 
 \textit{Holothuria impatiens} is a common, to locally abundant species found
 under rocks in shallow waters (in particular in lagoons and back-reef habitats),
 and is largely restricted to shallow water (< 10~m), although it has been
 recorded down to 158~m (\cite{Samyn2014-Miriky}).  Because of its ubiquitous
 distribution, it is one of the more studied species of holothuriid with studies
-on its reproduction \cite{Harriott1985}, Cuvierian tubules \cite{Flammang2002},
-\cite{Becker+Flammang2010}; toxicity \cite{Bakus1974}; feeding preferences
-\cite{Roberts1982}; parasites \cite{Martens1994}; the chemical composition
-\cite{Hampton1958}, statistical analysis of the shape \cite{Hampton1959}, and
-ontogenic changes in ossicles \cite{Cutress1996}. It has also been included in
-molecular phylogenies that investigate relationships among the major groups of
-holothurians (e.g., \cite{Lacey2005}) or as an outgroup when studying
+on its reproduction \cite{Harriott1985}, Cuvierian tubules
+\cite{Flammang2002,Becker+Flammang2010}; toxicity \cite{Bakus1974}; feeding
+preferences \cite{Roberts1982}; parasites \cite{Martens1994}; the chemical
+composition, statistical analysis of the shape, and ontogenic changes in
+ossicles \cite{Hampton1958,Hampton1959,Cutress1996}. It has also been included
+in molecular phylogenies that investigate relationships among the major groups
+of holothurians (e.g., \cite{Lacey2005}) or as an outgroup when studying
 relationships within a sub-genus (e.g.,
 \cite{Honey-Escandon2012}). \textit{Holothuria impatiens} is a low-value
 commercial species that is fished in the Eastern Pacific
@@ -233,24 +203,16 @@ commercial species that is fished in the Eastern Pacific
 Despite its relative biological and commercial importance, the variation
 observed in color patterns reported by previous workers (e.g.,
 \cite[p.178]{Clark1921}, \cite{Rowe+Richmond2004}) has yet to be
-investigated. In the present study, using a combination of morphological,
-genetic and ecological data, we show that ``\textit{Holothuria impatiens}''
-represents a complex of at least 12 putative species. Some of these species can
-be distinguished relatively easily from their live appearance, others can only
-be identified genetically. This, in combination with the fact that several of
-these species co-occur and can share the same habitat, has
-contributed to the failure to recognize this diversity, and differentiate
-species in this complex.
-
-The goal of this study is to identify cryptic species in the
-``\textit{Holothuria impatiens}'', and to understand the temporal and spatial
-dynamics of its diversification. To this end, we sampled the entire known
-geographic range of this complex, and assembled a multi-locus dataset. 
+investigated. The goal of this study is to identify cryptic species in the
+``\textit{Holothuria impatiens}'' complex, and to understand the temporal and
+spatial dynamics of its diversification. To this end, we sampled the entire
+known geographic range of this complex, and assembled a multi-locus dataset.
 
 To identify species limits in the complex, we used a combination of
 complementary methods of species delineation following modifications of the
-approaches by \cite{Leache2010,Grummer2014,Satler2013}. First, we used the
-Generalized Mixed Yule Coalescent method (GMYC) to delineate putative species
+approaches outlined by \cite{Leache2010,Satler2013,Grummer2014}. First, we used
+the Generalized Mixed Yule Coalescent method (GMYC) on a portion of the
+mitochondrial locus COI to delineate putative species
 \cite{Pons2006,Monaghan2009}. We then used independent lines of evidence
 (morphology, ecology and geographic information) to assess the validity of the
 lineages identified with GMYC. When no other line of evidence could separate the
@@ -270,7 +232,14 @@ and genetic differentiation.
 To investigate the evolutionary history and diversification of species within
 the ``\textit{H. impatiens}'' complex, we built a multi-locus, time-calibrated
 phylogeny.
-% need to add more details here
+
+%% need something here about how many species we find, how they are related to
+%% each others, and how in this paper we test how methods perform to our
+%% "perception?" of what the species are.
+
+% This, in combination with the fact that several of these species co-occur and
+% can share the same habitat, has contributed to the failure to recognize this
+% diversity, and differentiate species in this complex.
 
 
 % TODO -- needs to include the morphological characters/traits that allow to
@@ -1480,3 +1449,56 @@ completion of reproductive isolation.
 % data, recent developments in Bayesian statistics allow for integrating genetic
 % signal from a variety of markers by invoking the multi-coalescent process and
 % also compare competing models.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inferring the mode of speciation from current distributions can be misleading
+% because species distributions are dynamic and are especially influenced by
+% large-scale environmental changes. Glacio-eustatic sea level fluctuations have
+% had an important impact on shallow marine habitats because 100+~m amplitude
+% exceeds the depth range of most littoral species, and they recurred with
+% \char`~10$^4$-10$^5$ year periodicity during the late Tertiary and
+% Quarternary. These fluctuations have led to important habitat modifications and
+% changes in oceanic current patterns with consequences in connectivity,
+% population sizes and species ranges. These changes have made species
+% distributions in the Pacific highly dynamic (\cite{Paulay1990}) and are, in most
+% cases, too recent compared to the time frame needed for speciation.
+% % However, speciation can be very rapid, e.g., Asterinid from NSW Byrne2012
+% For instance, the latest minimum sea level (120 to 135~m below present) was
+% 18,000 years ago. During this period, circulation between Pacific and Indian
+% Oceans was significantly restricted, the Red Sea was most likely disconnected
+% from the Indian Ocean, and the South China Sea was nearly land-locked
+% (\cite{Veron1995}). Therefore, current distribution patterns  only
+% partially reflect the biogeographical context under which the modern
+% reef-associated fauna diversified. This is illustrated by the observation that
+% modern faunal breaks in the reef fauna are only poorly correlated with
+% present-day conditions, but are strongly associated with geological features
+% \cite{Keith2013,Pellissier2014}.
+
+% The consequences of sea level fluctuations on the populations can be apparent in
+% the present genetic diversity and structuring. For instance, during low sea
+% stands the connectivity between the Indian and Pacific oceans was reduced,
+% providing repeated opportunities for population divergence between these ocean
+% basins. While some species show substantial divergence in their mitochondrial
+% DNA (e.g., xxxxxx), many others (including the most widespread form of
+% \textit{Holothuria impatiens}) show little genetic structuring across this
+% area. Such lack of pattern can be the result of (1) maintained connectivity
+% during these low sea stands, as both oceans were still connected
+% (\cite{Voris2000}); (2) one of the two lineages was lost because of local
+% extinction or selective sweep; (3) the species recently expanded its ranges
+% and colonized one of the basin recently.
+
+% Taxonomic studies of most
+% marine invertebrates have relied on preserved specimens. Preservation can render
+% delicate morphological characters, including coloration, difficult or impossible
+% to see, and are frequently lost or fade with time. Because hard parts are easily
+% preserved and their form is generally not impacted by preservation, taxonomists
+% often favor them to differentiate species. For instance, in sea cucumbers,
+% species-level taxonomy has almost entirely relied on the shape of ossicles,
+% microscopic calcareous secretions found in many tissues.  Because ossicles show
+% substantial diversity and variability, whilst variation in the simple anatomy of
+% these animals is limited at lower taxonomic levels. Even with ossicles, until
+% recent decades, workers have mostly focused only on those found in the body
+% wall, ignoring ossicles in internal structures, and have paid little attention
+% to intraspecific variation, typically illustrating the ossicle assemblage of a
+% single individual.
