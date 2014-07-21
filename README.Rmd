@@ -87,7 +87,11 @@ three sections (and an additional one for early analyses that I didn't keep).
   the number of iterations to 3e6 with 2 independent runs, 1 with the same seed
   as one of the previous runs, and one with a random seed.
 
-
+## 20140721 -- starBEAST
+* to see if changing the molecular clock affects the likelihood calculations, I
+  resubmitted the analysis for the entire complex, using clock of 0.01 for COI
+  (which is what was estimated by the GMYC analyses using all sequences and the
+  prior on the isthmus).
 
 
 - - - - - - -
@@ -773,7 +777,13 @@ Redoing this with RAxML.
 * all results discarded
 * resubmitting with same prefix
 
+# 20140721 -- BEAST on full complex
 
+* To make things more consistent in the paper, used 20140519 as starting point,
+  but changed calibration of WA+EP+Gala node to the same as for the GMYC
+  analyses on COI alone:
+  - used a log-normal with mean 1.5, sd 0.75 and offset of 2.5.
+  - I do not expect much difference
 
 - - - - - - - - - 
 
