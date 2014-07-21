@@ -165,12 +165,13 @@ sizes, the multispecies coalescent may reveal new patterns and refine our
 understanding of speciation in the sea.
 
 In this study, we use morphological, genetic, distributional and ecological
-data, to reveal at least 13 species within ``\textit{Holothuria
-  impatiens}''. This complex includes both species that can be distinguished
-relatively easily from their live appearance, and species that can only be
-identified genetically. The broad geographical distribution of this complex and
-the elucidation of the phylogenetic relationships of its species provide the
-opportunity to investigate the spatial and temporal dynamics of this radiation.
+data, to reveal at least 13 species within ``\textit{Holothuria impatiens}''
+(see column ``consensus'' in Table~\ref{fig:species-limits}). This complex
+includes both species that can be distinguished relatively easily from their
+live appearance, and species that can only be identified genetically. The broad
+geographical distribution of this complex and the elucidation of the
+phylogenetic relationships of its species provide the opportunity to investigate
+the spatial and temporal dynamics of this radiation.
 
 Forssk\r{a}l described \textit{Fistularia impatiens} from material he collected
 in Suez, Egypt \cite{Forsskal1775}. His posthumous description is limited, but
@@ -254,10 +255,11 @@ museum. A few additional tissue samples were taken from vouchers housed at other
 institutions or were obtained through collaborators without vouchers being
 retained (Table~\ref{tab:voucherInfo} for details).
 
-We examined \Sexpr{nrow(impDB)} specimens morphologically and \Sexpr{nrow(impAlg)} were
-used for molecular analyses. These specimens were collected across the entire
-known range of \textit{H. impatiens}: Mediterranean Sea, Caribbean Sea, Red Sea,
-tropical Indian and Pacific Oceans (Table~\ref{tab:voucherInfo}).
+We examined \Sexpr{nrow(impDB)} specimens morphologically and
+\Sexpr{nrow(impAlg)} were used for molecular analyses. These specimens were
+collected across the entire known range of \textit{H. impatiens}: Mediterranean
+Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
+(Table~\ref{tab:voucherInfo}).
 
 
 \subsection{DNA extraction and amplification}
@@ -312,7 +314,10 @@ the alignment, which are considered as missing data by all the software used in
 this study.
 
 \begin{table}
-  \caption{Primers and PCR conditions for the markers used in this study.}
+  \caption[Primers and PCR conditions for the markers used in this
+  study.]{Primers and PCR conditions for the markers used in this study. Temp:
+    annealing temperature, Cycles: number of PCR cycles used to amplify the
+    locus, Ref.: reference used for the primers.}
 \begin{tabular}{ l l p{6cm} l l l}
   \hline
   Marker & Primer & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\
@@ -346,21 +351,7 @@ this study.
 \label{tab:pcrConditions}
 \end{table}
 
-%% \subsection{Morphological analysis}
-
-%% To compare intra- and inter-specific variation in ossicle size and shape in the
-%% dorsal body wall, we measured various characteristics of buttons and tables
-%% composing the ossicle assemblage of \textit{Holothuria impatiens}
-%% (Fig.\ref{fig:ossicleMeasurements}).
-
-%% For 3-5 individuals of each ESU, we measured characteristics of at least 10
-%% buttons and 10 tables. Measurements were made from  photographs of the
-%% ossicles at 400x magnification using ImageJ (\ref{ImageJ}).
-
-%% Measurements were analyzed in a principal component analysis in R
-%% \ref{Rcoreteam}.
-
-\subsection{Putative species delineation with GMYC}
+\subsection{Species delineation with GMYC}
 
 To delineate putative species based on molecular data, we fit the generalized
 mixed Yule coalescent (GMYC) model (\cite{Pons2006,Monaghan2009,Fujisawa2013})
@@ -413,38 +404,45 @@ detected by GMYC and higher uncertainty, both of which are undesirable for the
 purpose of the analysis.
 
 We performed the GMYC analyses using only COI sequences as the method was
-designed to be used on single locus dataset, and we wanted to compare how our
+designed to be used on single locus datasets, and we wanted to compare how our
 conclusions might differ if the entire dataset was considered. COI genealogies
 were estimated using BEAST 1.8.0 \cite{Drummond2012} and BEAGLE 2.1
 \cite{Ayres2012}. To determine the optimal partition scheme, we used
-PartitionFinder \cite{Lanfear2012} on the dataset including all sequences and
-the dataset including the haplotypes. We performed a complete search using each
-codon position as a partition, and limiting the search to the JC, HKY and GTR
-models with or without a proportion of invariant sites and/or gamma-distributed
-rates of evolution (12 different models \textit{in toto}). Both datasets (all
-sequences, only haplotypes) favored to assign each codon position to independent
-partitions. The partition scheme selected by PartitionFinder led to poor mixing
-due to over-parametrization in initial test runs. We modified slightly the
-partition scheme to use: HKY+I+G, GTR+G and HKY for each codon position
-respectively for the dataset including all sequences; and HKY+G, HKY+G and HKY
-for the analyses on unique haplotypes. In all analyses, base frequencies were
-estimated.
+PartitionFinder \cite{Lanfear2012} on the dataset including all sequences as
+well as on the dataset limited to distinct haplotypes only. We performed a
+complete search using each codon position as a partition, and limiting the
+search to the JC, HKY and GTR models with or without a proportion of invariant
+sites (+I) and/or gamma-distributed rates of evolution (+G) (12 different models
+\textit{in toto}). Both datasets (all sequences, only haplotypes) favored to
+assign each codon position to independent partitions. The partition scheme
+selected by PartitionFinder led to poor mixing due to over-parametrization in
+initial test runs. We modified the partition scheme slightly, to use: HKY+I+G,
+GTR+G and HKY for each codon position respectively for the dataset including all
+sequences; and HKY+G, HKY+G and HKY for the analyses on unique haplotypes. In
+all analyses, base frequencies were estimated.
 
 We used a log-normal distribution as the prior for the mean rate of substitution
 for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
-of -4 and a \textit{log}(standard deviation) of 1. We calibrated the COI
-genealogies using the closure of the isthmus of Panama. We constrained the age
-of the node corresponding to the most recent common ancestor of the individuals
-found in the Galapagos archipelago, the coast of the Eastern Pacific and in the
-Caribbean using a log-normal prior with a \textit{log}(mean) of 1.5, a
-\textit{log}(standard deviation) of 0.75 and an offset of 2.5. This distribution
-translates into a mean age of divergence set at \Sexpr{round(qlnorm(0.5,
-  meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago (Ma), (95\% confidence
-interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5,
-  sdlog=0.75) + 2.5, 2), collapse=", ")}]).
+of -4 and a \textit{log}(standard deviation) of 1.
+
+As no fossils are known in \textit{Holothuria}, we used the closure of the
+isthmus of Panama to calibrate the clock. The isthmus of Panama was completely
+closed about 3 Ma but most species were probably isolated earlier
+\cite{Lessios2008}. We chose a conservative estimate to account for the fact
+that the sister species lineages found across the isthmus are the lineages found
+in the Galapagos and the Caribbean (the coastal Eastern Pacific lineage is
+sister to the one found in the Galapagos, Figure~\ref{impatiens-tree}). We
+constrained the age of the node corresponding to the most recent common ancestor
+of the individuals found in the Galapagos archipelago, the coast of the Eastern
+Pacific and in the Caribbean using a log-normal prior with a \textit{log}(mean)
+of 1.5, a \textit{log}(standard deviation) of 0.75 and an offset of 2.5. This
+distribution translates into a mean age of divergence of
+\Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago
+(Ma), (95\% confidence interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
+  meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}]).
 
 We set the MCMC chain lengths at 5.10$^{7}$, sampling every 5.10$^{3}$
-generations. All analyses were ran twice from independent starting points and
+generations. All analyses were run twice from independent starting points and
 were checked for convergence. From visual inspection of the values sampled by
 the chains with Tracer 1.6, we determined that a burnin of 10\% was sufficient
 for all runs. ESS values for all parameters were above 350 in each independent
@@ -463,11 +461,30 @@ number of species corresponds to the minimum and maximum numbers of species for
 threshold values found within 2 log-likelihood units of the threshold associated
 with the highest likelihood.
 
+\subsection{Species delineation with other lines of evidence: coloration,
+  geography and ecology}
+
+To determine whether the putative species delineated with GMYC were biologically
+sound, we investigated color patterns, geographical distribution and ecology.
+
+Coloration information was obtained from the photographs of the live specimens
+and from field observations. Ecological and geographical coordinates were
+retrieved from the collecting information associated with the specimens.
+
+%% To compare intra- and inter-specific variation in ossicle size and shape in the
+%% dorsal body wall, we measured various characteristics of buttons and tables
+%% composing the ossicle assemblage of \textit{Holothuria impatiens}
+%% (Fig.\ref{fig:ossicleMeasurements}).
+
+%% For 3-5 individuals of each ESU, we measured characteristics of at least 10
+%% buttons and 10 tables. Measurements were made from  photographs of the
+%% ossicles at 400x magnification using ImageJ (\ref{ImageJ}).
+
+%% Measurements were analyzed in a principal component analysis in R
+%% \ref{Rcoreteam}.
+
 
 \subsection{Phylogeny and divergence time estimation}
-
-<<median-tmrca-WAgroup, eval=TRUE, echo=FALSE, cache=TRUE, dependson='init-phylo'>>=
-@ 
 
 Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
 with the default settings. All markers led to unambiguous alignments except for
@@ -489,30 +506,10 @@ proportion of invariant sites [+I] and/or Gamma distributed rates across sites
 [+G]). We selected the best-fit models and partition schemes based on the
 Bayesian Information Criterion. The best fit model had 9 partitions.
 
-For the BEAST analysis, following some initial testing runs, we modified
-slightly the partition scheme to improve mixing of the chains as the partition
+For the BEAST analysis, following some initial testing runs, we modified the
+partition scheme slightly to improve mixing of the chains as the partition
 scheme selected by PartitionFinder led to over-parametrization (supplementary
 Table \ref{tab:sm-partitions}).
-
-% need to re-word this paragraph
-As no fossils are known in \textit{Holothuria}, we used the closure of the
-isthmus of Panama to calibrate our phylogeny, and fixed the time of divergence
-for the individuals of the Eastern Pacific (including Galapagos) and the
-Caribbean to 5 Ma. The isthmus of Panama was completely closed about 3 Ma
-but most species were probably isolated earlier \cite{Lessios2008}. We chose a
-conservative estimate to account for the fact that the sister species lineages
-found across the isthmus are the lineages found in the Galapagos and the
-Caribbean (the coastal Eastern Pacific lineage is sister to the one found in the
-Galapagos, Figure~\ref{impatiens-tree}), suggesting that the divergence might
-have been preceded the closure of the isthmus.
-
-% Additionally, the estimated age of this node across the COI genealogies used for
-% the GMYC analyses, varied between \Sexpr{round(min(meanTmrca), 2)} and
-% \Sexpr{round(max(meanTmrca), 2)} MY (estimated from the mean on the posterior
-% distributions, prior \Sexpr{round(exp(1.5 + (.75^2)/2) + 2.5, 2)} MY; median
-% ranged between \Sexpr{round(min(medianTmrca), 2)} and
-% \Sexpr{round(max(medianTmrca), 2)} MY, prior
-% \Sexpr{qlnorm(.5, meanlog=1.5, sdlog=.75) + 2.5} MY).
 
 We used three independent strict molecular clocks (one for each of mitochondrial
 markers, protein-coding nuclear markers, nuclear ribosomal markers)
@@ -521,15 +518,12 @@ starting tree. The Markov chains were run for $185.10^6$ generations (and
 sampled every $5.10^3$ generations). The analysis was repeated twice from
 independent starting points.
 
-% We checked the operator file to ensure appropriate acceptance rates while
-% sampling the posterior. %% no ops file in BEAST2?
-
 We used Tracer 1.6 to check that the MCMC chains had reached stationarity, that
 mixing was adequate, and that the two independent runs were consistent. We
 ensured that a representative sample of the posterior distributions was sampled
 for each independent runs, by checking that the ESS values for all parameters
 were above 200. The samples from the posterior distribution from both runs were
-combined using locombiner after removing a 20\% burnin, resulting in 29601
+combined using logcombiner after removing a 20\% burnin, resulting in 29601
 states sampled. The ESS values obtained by combining the runs were all above
 440. We summarized the trees sampled with treeannotator using the common ancestor
 tree method \cite{Heled2013}.
@@ -537,14 +531,18 @@ tree method \cite{Heled2013}.
 
 \subsection{Test of species limits with *BEAST}
 
-Given the shallow genetic divergence observed among some of the putative species
-detected by GYMC and the lack of morphological differentiation among them, we
-compared species delineation models with *BEAST v 1.7.5 \cite{Heled2010} using
-Bayes Factors evaluated by the stepping-stone (SS) and the path sampling (PS)
-methods \cite{Baele2012}.
+Some of the putative species delineated by GMYC form well defined but shallow
+clusters, have geographically defined ranges, but cannot be differentiated
+morphologically. Their ranges overlap (\texttt{Hawaii,Wpac}) or border
+(\texttt{RedSea}) the widespread \texttt{ESU1}, bringing into question the
+reproductive isolation of these lineages. To investigate whether these clusters
+result from reproductive isolation rather than geographical structure, we
+compared competing hypotheses of species delineation with *BEAST v 1.7.5
+\cite{Heled2010} using Bayes Factors (BF) estimated by the stepping-stone (SS)
+and the path sampling (PS) methods \cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus dataset using the
-multi-species coalescent in a Bayesian framework to account for intraspecies
+multispecies coalescent in a Bayesian framework to account for intraspecies
 polymorphism and incomplete lineage sorting. This method assumes reproductive
 isolation (absence of gene flow) among species and requires the assignment of
 individuals to species \textit{a priori}.
@@ -564,30 +562,21 @@ different putative species by GMYC but that cannot be teased apart based on
 morphology.
 
 We investigated whether *BEAST favored models where all or some of the following
-ESUs were considered distinct species: WPac, Hawaii and RedSea or actually could
-not be distinguished from ESU1 (Table \ref{tab:delineationModels}). We included
-ESU3 and gracilis in our analysis to allow the estimation of the topology when
-all individuals for the species tested where attributed to ESU1. In these
-analyses, we selected individuals for which we had at least one mitochondrial
-marker and one nuclear marker. We used data from the following markers: 16S,
-COI, ATP6, c0036, c0775, ITS, LSU and H3a; and the same approach as for the
-phylogeny of the entire complex, using Gblocks to remove ambiguous parts of the
-alignment in ITS, PartitionFinder to find the most appropriate partition scheme
-and models of molecular evolution. We unlinked clocks for all markers, used
-strict molecular clocks, fixing the COI clock at 1.85\%/million years
-% Why did you use an urchin clock when you have an internal one?
-\cite{Lessios2008} while estimating the rate of the others. We ran the analysis
-for $50.10^{6}$ generations and repeated it at least twice for each group.
-
-For the estimation of the marginal likelihoods, we used the settings recommended
-by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
-evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
-chain lengths to $3.10^{6}$. If for any runs, the absolute difference between
-the marginal likelihoods estimated with the stepping stone and the path sampling
-methods was higher than 1, we interpreted this difference as a failure of the
-estimate to converge. We therefore discarded the results and repeated the
-analysis from a different starting point until the difference in likelihood was
-lower than 1.
+ESUs were considered distinct species: \texttt{WPac}, \texttt{Hawaii} and
+\texttt{RedSea}, or were panmictic with \texttt{ESU1} (Table
+\ref{tab:delineationModels}). We included \texttt{ESU3} and \texttt{gracilis} in
+our analysis to allow the estimation of the topology when all individuals for
+the species tested where attributed to \texttt{ESU1}. In these analyses, we
+selected individuals for which we had at least one mitochondrial marker and one
+nuclear marker. We used data from the following markers: 16S, COI, ATP6, c0036,
+c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of the
+entire complex, using Gblocks to remove ambiguous parts of the alignment in ITS,
+PartitionFinder to find the most appropriate partition scheme and models of
+molecular evolution. We unlinked clocks for all markers, used strict molecular
+clocks, fixing the COI clock at 1\%/million years which is the estimated rate
+from the GMYC analyses while estimating the rate for the others clocks. We ran
+the analysis for $50.10^{6}$ generations and repeated it at least twice for each
+group.
 
 \begin{table}
   \centering
@@ -608,10 +597,29 @@ lower than 1.
   \label{tab:delineationModels}
 \end{table}
 
+For the estimation of the marginal likelihoods, we used the settings recommended
+by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
+evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
+chain lengths to $3.10^{6}$. If for any runs, the absolute difference between
+the marginal likelihoods estimated with the stepping stone and the path sampling
+methods was higher than 1, we interpreted this difference as a failure of the
+estimate to converge. We therefore discarded the results and repeated the
+analysis from a different starting point until the difference in likelihood was
+lower than 1.
+
 To confirm that COI, which was used to delineate putative species with GMYC,
 does not drive the differences in marginal likelihoods among the different
-models tested with *BEAST, we repeated the analyses omitting COI (for the models
+models tested with *BEAST, we repeated some of the analyses omitting COI (models
 M4, M5, M6 and M7).
+
+To rule out that this approach did not favor models that included more species,
+we added a ``ghost'' species in the analysis. This ``ghost'' species was
+comprised of individuals that formed a shallow reciprocally monophyletic group
+in COI within \texttt{ESU1}, but that was not identified as a putative species
+in the GMYC analyses.
+
+To obtain a baseline of the variation that was expected in the differences in
+likelihoods, we also assigned the species randomly to the individuals.
 
 % TODO -- Furthermore, to assess more generally the contribution of the nuclear
 % data to the results, we repeated the analyses by attributing randomly the
@@ -624,7 +632,11 @@ M4, M5, M6 and M7).
 \includegraphics[width=6.5in]{manual-figures/species_limits}
 }
 \label{fig:species-limits}
-\caption{Correspondence between the different criteria used to delineate the species.}
+\caption[Correspondence between the different criteria used to delineate the
+species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence between
+the different criteria used to delineate the species of the ``\textit{Holothuria
+  impatiens}'' complex. Medit: Mediterranean, WA: Western Atlantic, Gala:
+Galapagos, EP: Eastern Pacific; PNG: Papua New Guinea; Wpac: Western Pacific.}
 \end{figure}
 
 \subsection{Sequence data}
@@ -667,7 +679,7 @@ sequenced for at least 1 nuclear locus and
 % Here comment on results based on RAxML runs on individual loci.
 
 
-\subsection{GMYC}
+\subsection{Species delineation with GMYC}
 
 <<gmyc-coi-results, cache=TRUE, eval=TRUE, echo=FALSE>>=
 @ 
@@ -694,7 +706,7 @@ from \Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method, and
 from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
 (Fig~\ref{fig:gmyc-coi-plot}).
 
-<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies'>>=
+<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
 @ 
 
 sGMYC produced species estimates that were more conservative and with
@@ -717,25 +729,35 @@ With sGMYC, the estimated number of species was more conservative and
 less sensitive to the priors used to reconstruct the genealogy when
 all haplotypes were considered.
 
-
-
 % discuss identity of species delineated.
 
-\subsection{Species based on morphology}
+\subsection{Species delineation with other lines of evidence: morphology,
+  geography, ecology}
 
-Members of the \textit{H. impatiens} group are usually characterized by having a
-body wall dominated by a dark color and a lighter one. Both are considerably
-variable across species and across individuals. The dark color is typically
-brown but varies in lightness and can take a red or purple tint. The lighter
-color is typically gray but varies in lightness from light brown to yellow or
-even white. The light-colored areas, are also typically harboring a
-``salt-and-pepper'' pattern with small spots of a darker coloration on the light
+Members of the ``\textit{H. impatiens}'' complex are generally bi-color. The
+dark coloration is typically solid towards the anterior end, forms bands in the
+middle of the body, and then spots that become rare towards the posterior end.
+This pattern varies considerably across species and across individuals. The dark
+color is typically brown but varies in lightness and can take a red or purple
+tint. The lighter color is typically gray but varies in lightness from light
+brown to yellow or even white. The light-colored areas typically harbor a
+``salt-and-pepper'' pattern with small dark spots on the light
 background. Despite these common characteristics, the combination of color
 patterns and geographical distribution allows us to distinguish unambiguously at
-least nine species (Figure~\ref{fig:impatiens-images}).
+least ten species (Figure~\ref{fig:impatiens-images}).
 
-The size and shape of the ossicles do not differ in this group and cannot be
-used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
+\texttt{Medit}, \texttt{WA}, \texttt{Gala}, \texttt{EP}, \texttt{RedSea},
+\texttt{ESU1} are morphologically close but subtle differences in their color
+patterns, and their distinct geographic distributions allow to tease them
+apart. \texttt{ESU2} is the only species with bright yellow papillae and
+tentacles. \texttt{tiger} and \texttt{tigerRedSea} are also very distinctive
+with sparse, dark, tubercles that barely raise from the body wall, giving them a
+smooth appearance. They are also much larger than the other species and
+specimens reach regularly more than 30~cm. \texttt{gracilis} has very large
+conical, typically red tubercles and a very distinctive ``gritty'' texture. 
+\texttt{ESU3} has elongated, pyramidal tubercles with white papillae.
+
+Ecologically....
 
 \begin{figure}
   {\centering
@@ -746,6 +768,7 @@ used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
       E. RedSea, Djibouti, UF12070; F. Wpac, Majuro Marshall Islands, UF6771;
       G. Hawaii, French Fregate Shoal, Hawaiian archipelago, UF6243.}
 }
+\label{fig:photo-ESU1-andFriends}
 \end{figure}
 
 \begin{figure}
@@ -758,6 +781,7 @@ used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
       UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
       Nosy B\'{e}, Madagascar, UF7469.}
   }
+\label{fig:photo-ESU2-andFriends}
 \end{figure}
 
 \begin{figure}
@@ -766,6 +790,7 @@ used to distinguish among the species (Figure~\ref{fig:impatiens-ossicles}).
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. WA, St Martin, UF11790; B. EP, Panama (no Voucher).}
 }
+\label{fig:photo-WA+EP}
 \end{figure}
 
 
@@ -1315,6 +1340,7 @@ completion of reproductive isolation.
     8      & JC         & H3a$_3$           \\
     9      & HKY+G      & ITS               \\       
   \end{tabular}
+  \label{tab:sm-partitions}
 \end{table}
 
 %% raxml tree
@@ -1324,7 +1350,7 @@ completion of reproductive isolation.
 
 %% locus trees
 
-<<per-locus-trees, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=8, fig.scap='Genealogies per locus', fig.cap='Maximum-likelihood genealogies for each locus reconstructed using RAxML with a GTR+G model of molecular evolution for each partitions. Black circles on the nodes indicate bootstrap values \\seq 80 based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA\" is the concatenation of ATP6, COI, 16S; ``rDNA\" is the concatenation of ITS and LSU.' >>=
+<<per-locus-trees, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=8, fig.scap='Genealogies per locus', fig.cap='Maximum-likelihood genealogies (unrooted) for each locus reconstructed using RAxML with a GTR+G model of molecular evolution for each partitions. Black circles on the nodes indicate bootstrap values \\seq 80 based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA\" is the concatenation of ATP6, COI, 16S; ``rDNA\" is the concatenation of ITS and LSU.' >>=
 
 @ 
 
