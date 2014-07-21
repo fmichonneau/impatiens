@@ -99,102 +99,104 @@ used to assess patterns of diversity, identify regions of conservation concern
 and manage exploited resources \cite{Pimm2014}. For many taxonomic groups,
 species limits are misunderstood and the level of undescribed diversity debated,
 making global estimates of diversity poorly constrained
-\cite{Appeltans2012,Costello2013}. DNA-based species delineation methods have
-become increasingly popular as they provide an inexpensive and efficient way to
-identify species and resolve complexes. These methods are efficient as genetic
-data carry the signature of the historical processes experienced by species. New
-coalescent-based methods using multi-locus datasets have overcome some of the
-shortcomings of single-locus analyses that were unable to distinguish between
-different processes leading to identical patterns (e.g., incomplete lineage
-sorting and introgression), and do not depend on arbitrary threshold of genetic
-divergence. Not only do these methods account for the stochastic process
-associated with the independent sorting of genealogies along the species tree,
-but they use it to estimate the species tree and the demographic history of the
-species \cite{Fujita2012a}. Additionally, these methods provide a statistical
-framework to test alternate species delineation hypotheses when other lines of
-evidence are equivocal \cite{Baele2012}.
+\cite{Appeltans2012,Costello2013}. Additionally, conservation efforts aim at
+preserving the evolutionary potential of the species, but limited understanding
+of the processes that maintain present and future diversity hinders these goals
+\cite{Moritz2002}. Genetic data, and barcoding in particular, are facilitating
+the documentation of biodiversity not only by providing an inexpensive and
+efficient way to identify species and resolve complexes, but also by providing
+insights into the evolutionary history of the species.
 
-Molecular methods have revealed that many species, thought to be
-well-understood, are complexes of cryptic species. In many cases, these
-``pseudo-cryptic'' species differ morphologically but in traits not
-traditionally considered, or in traits not available to taxonomists because of
-the preservation methods or the lack of information about the natural history of
-the species \cite{Knowlton1993}. For instance, differences in coloration
-\cite{Malay2010}, depth \cite{Prada-missing}, mating signals \cite{}, were not
-considered as indicative of species limits before cryptic lineages were
+Barcoding has revealed that many species, thought to be well-understood, are
+complexes. In most cases, these ``pseudo-cryptic'' species differ
+morphologically but in traits not traditionally considered, or in traits not
+available to taxonomists because of the preservation methods or the lack of
+information about the natural history of the species \cite{Knowlton1993}. For
+instance, differences in coloration \cite{Brown2007,Malay2010}, depth
+\cite{Prada-missing}, mating signals \cite{}, host preference \cite{Hebert2004},
+were not considered as indicative of species limits before cryptic lineages were
 uncovered by molecular data. In these cases, the single-locus approach provided
 a way to infer species limits using the evolutionary significant unit (ESU)
 concept \cite{Moritz1994} that defines species-level units based on reciprocal
 monophyly in at least one marker (typically mtDNA), and at least another
 defining attribute (morphology, distribution, reciprocal monophyly in another
-trait).
+trait). If this approach has allowed to unravel high levels of unrecognized
+diversity, when other defining traits to infer reproductive isolation are
+lacking, the patterns of genetic differentiation have remained difficult to
+interpret objectively.
 
-If this approach has allowed to unravel high levels of unrecognized diversity,
-when other defining traits to infer reproductive isolation are lacking, the
-patterns of genetic differentiation have remained difficult to interpret
-objectively. Many species rely on chemical recognition systems to maintain
-species integrity (e.g., mate recognition, habitat specificity)
-\cite{Knowlton1993}. Not only these systems are poorly characterized or
-difficult to investigate in the context of a taxonomic study, they also rarely
-translate into morphological differences. In this context, defining traits that
-correlate with genetic clusters identified from single-locus data sets are
-scarce, forming ``true cryptic'' species complexes.
+Many species rely on chemical recognition systems to maintain species integrity
+(e.g., mate recognition, habitat specificity) \cite{Knowlton1993}. Not only
+these systems are poorly characterized or difficult to investigate in the
+context of a taxonomic study, they also rarely translate into morphological,
+behavioral or ecological differences. The absence of defining traits that
+correlates with genetic clusters identified from single-locus data make these
+species ``true cryptic'' complexes. New methods based on the multispecies
+coalescent are emerging as powerful ways to investigate species limits in these
+complexes when evidence is equivocal. By using multi-locus datasets, these
+methods overcome some of the shortcomings of single-locus analyses that were
+unable to distinguish between different processes leading to identical patterns
+(e.g., incomplete lineage sorting and introgression), and do not depend on
+arbitrary threshold of genetic divergence. Instead, they account for the
+stochastic process associated with the independent sorting of genealogies along
+the species tree, and use it to estimate the species tree and the demographic
+history of the species \cite{Fujita2012a}. These methods also provide a
+statistical framework to test competing species delineation hypotheses
+\cite{Baele2012}.
 
-%%% rewrite this paragraph
-%% cryptic lineages paint a more complex picture of speciation than strict
-%% allopatry with potential role of selection to account for rapid secondary
-%% sympatry as well as changes in species distribution through time.
-% Among marine organisms, these findings are changing our understanding of
-% speciation in the sea \cite{Mayr1954}. Since most marine invertebrates have a
-% highly dispersive larval stage, and the oceans in general, and the Indo-Pacific
-% in particular, lack clear geographical barriers to dispersal, opportunities for
-% allopatric speciation seem limited. Yet, while many closely related species have
-% non-overlapping distributions suggesting that allopatric speciation is
-% prevalent, overlap in the distribution of sister species is common. These
-% observations have led to the realization that (1) selection (along environmental
-% gradients, sexual selection, host specificity) may play an important role in
-% reproductive isolation (reviewed in \cite{Bowen2013}); (2) important changes in
-% species ranges and distributions have obscurred the barriers responsible for the
-% initiation of reproductive isolation.
+Among marine organisms, the discovery of high levels of cryptic diversity has
+challenged the importance of physical barriers as the primary driver of
+diversification \cite{Mayr1954}. Since most marine invertebrates have a
+potentially highly dispersive larval stage, and the oceans in general, and the
+Indo-Pacific in particular, lack clear geographical barriers to dispersal,
+opportunities for allopatric speciation seem limited. Yet, while many closely
+related species have non-overlapping distributions suggesting that allopatric
+speciation is prevalent, overlap in the distribution of sister species is
+common. These observations have led to the realization that (1) selection (along
+environmental gradients, sexual selection, host specificity) may play an
+important role in reproductive isolation (reviewed in \cite{Bowen2013}); (2)
+changes in species distributions have obscurred the geographic context at the
+time of speciation. By clarifying the identity of the species, by providing more
+accurate estimates of the timing of speciation, and by estimating populations
+sizes, the multispecies coalescent may reveal new patterns and refine our
+understanding of speciation in the sea.
 
-In this study, using a combination of morphological, genetic and ecological
-data, we show that ``\textit{Holothuria impatiens}'' represents a complex of at
-least 13 species, including both ``pseudo-cryptic'' and ``true cryptic''
-species: some of these species can be distinguished relatively easily from their
-live appearance, others can only be identified genetically.
-% And we use this radiation to investigate spatial and temporal patterns of
-% diversification in the complex
+In this study, we use morphological, genetic, distributional and ecological
+data, to reveal at least 13 species within ``\textit{Holothuria
+  impatiens}''. This complex includes both species that can be distinguished
+relatively easily from their live appearance, and species that can only be
+identified genetically. The broad geographical distribution of this complex and
+the elucidation of the phylogenetic relationships of its species provide the
+opportunity to investigate the spatial and temporal dynamics of this radiation.
 
-Forssk\r{a}l described \textit{Fistularia impatiens} from collections he made in
-Suez, Egypt \cite{Forsskal1775}. His description is limited, but indicates that
-the body wall is gray with dark spot, and with well-developed, lightly colored
-tubercles. The drawing accompanying the description corroborates these
-observations. Since then, the species has been attributed to
-\textit{Holothuria}, the most diverse genus of the Holothuriidae, typically
-reef-associated. The range of \textit{H. impatiens} has been extended, and today
-is recognized as the most widespread species in the genus. Its range extends
-from the Red Sea through the entire Indo-West Pacific, to the East Pacific,
-Caribbean and the Mediterranean.
-
-Pearson \cite{Pearson1915} described \textit{Thymiosycia} as one of five
-subgenera in \textit{Holothuria}, and designated \textit{Holothuria impatiens}
-as the type species. The modern concept of \textit{Thymiosycia} was proposed by
-Rowe \cite{Rowe1969} to include 13 species characterized by well developed,
-regular and symmetrical tables and buttons.
+Forssk\r{a}l described \textit{Fistularia impatiens} from material he collected
+in Suez, Egypt \cite{Forsskal1775}. His posthumous description is limited, but
+indicates that the body wall is gray with dark spot, and with well-developed,
+lightly colored tubercles. The drawing accompanying the description corroborates
+these observations. Since then, the species has been attributed to
+\textit{Holothuria}, the mostly reef-associated and most diverse genus within
+the Holothuriidae. The range of \textit{H. impatiens} has been extended, and
+today is recognized as the most widespread species in the genus. Its range
+extends from the Red Sea through the entire Indo-West Pacific, to the East
+Pacific, Caribbean and the Mediterranean. Pearson \cite{Pearson1915} described
+\textit{Thymiosycia} as one of five subgenera in \textit{Holothuria}, and
+designated \textit{Holothuria impatiens} as the type species. The modern concept
+of \textit{Thymiosycia} was proposed by Rowe \cite{Rowe1969} to include 13
+species characterized by well developed, regular and symmetrical tables and
+buttons.
 
 \textit{Holothuria impatiens} is a common, to locally abundant species found
-under rocks in shallow waters (in particular in lagoons and back-reef habitats),
-and is largely restricted to shallow water (< 10~m), although it has been
-recorded down to 158~m (\cite{Samyn2014-Miriky}).  Because of its ubiquitous
-distribution, it is one of the more studied species of holothuriid with studies
-on its reproduction \cite{Harriott1985}, Cuvierian tubules
-\cite{Flammang2002,Becker+Flammang2010}; toxicity \cite{Bakus1974}; feeding
-preferences \cite{Roberts1982}; parasites \cite{Martens1994}; the chemical
-composition, statistical analysis of the shape, and ontogenic changes in
-ossicles \cite{Hampton1958,Hampton1959,Cutress1996}. It has also been included
-in molecular phylogenies that investigate relationships among the major groups
-of holothurians (e.g., \cite{Lacey2005}) or as an outgroup when studying
-relationships within a sub-genus (e.g.,
+under rocks (in particular in lagoons and back-reef habitats), and is largely
+restricted to shallow water (< 10~m), although it has been recorded down to
+158~m (\cite{Samyn2014-Miriky}).  Because of its ubiquitous distribution, it is
+one of the more studied species of holothuriid with studies on its reproduction
+\cite{Harriott1985}, Cuvierian tubules \cite{Flammang2002,Becker+Flammang2010};
+toxicity \cite{Bakus1974}; feeding preferences \cite{Roberts1982}; parasites
+\cite{Martens1994}; the chemical composition, statistical analysis of the shape,
+and ontogenic changes in ossicles \cite{Hampton1958,Hampton1959,Cutress1996}. It
+has also been included in molecular phylogenies that investigate relationships
+among the major groups of holothurians (e.g., \cite{Lacey2005}) or as an
+outgroup when studying relationships within a sub-genus (e.g.,
 \cite{Honey-Escandon2012}). \textit{Holothuria impatiens} is a low-value
 commercial species that is fished in the Eastern Pacific
 \cite{Toral-Granda2008}, Madagascar \cite{Conand2007}, and Palau
@@ -220,69 +222,14 @@ lineages identified with GMYC, we used model comparison in *BEAST
 \cite{Heled2010,Baele2012} to validate species limits. We used this approach as
 the complex includes both deeply divergent lineages that can be readily
 distinguished with morphological characters, and recent species radiations that
-appear to be morphologically indistinguishable. The multispecies coalescent
-offers a statistical framework that provides an objective assessment of species
-limits \cite{Fujita2012a}, even when no other morphological, ecological or
-geographical information allows to identify independent evolutionary
-lineages. Our study shows that these methods can be added to the lines of
-evidence typically used in integrative taxonomy, and provide a powerful tool for
-evaluating species limits in rapidly evolving groups with limited morphological
-and genetic differentiation.
-
-To investigate the evolutionary history and diversification of species within
-the ``\textit{H. impatiens}'' complex, we built a multi-locus, time-calibrated
-phylogeny.
+appear to be morphologically indistinguishable. Our study shows that these
+methods can be added to the lines of evidence typically used in integrative
+taxonomy, and provide a powerful tool for evaluating species limits in rapidly
+evolving groups with limited morphological and genetic differentiation.
 
 %% need something here about how many species we find, how they are related to
 %% each others, and how in this paper we test how methods perform to our
 %% "perception?" of what the species are.
-
-% This, in combination with the fact that several of these species co-occur and
-% can share the same habitat, has contributed to the failure to recognize this
-% diversity, and differentiate species in this complex.
-
-
-% TODO -- needs to include the morphological characters/traits that allow to
-% distinguish species
-
-% include something on how importance of rate of secondary sympatry for building
-% up local diversity, and confusion about sympatry + genetic differentiation in
-% case of no clear barriers and possibility for rapid changes in population
-% sizes, geographical ranges
-
-% Based on the precept that species are defined on the criterion of reproductive
-% isolation, three processes operating at different rates are interacting during
-% speciation: (1) acquisition of reproductive isolation, (2) morphological
-% differentiation, (3) genetic differentiation. In many cases, these three
-% processes can be independent making species delineation challenging. For
-% instance, broadcast spawning marine invertebrates for which reproductive
-% cohesion is maintained behaviorally
-% %(e.g., spawning aggregations cukes?,
-% %lobsters? \cite{}, spawning based on environmental clues corals? \cite{})
-% and biochemically (e.g., gamete recognition proteins \cite{Hellberg2000}),
-% selection on these traits is unlikely to drive morphological differentiation
-% among closely related species \cite{Knowlton1993}. Similarly, barcoding markers
-% evolve typically neutrally and the time taken for them to show enough
-% differentiation to be recognized as different species will depend on effective
-% population sizes or DNA repair mechanisms (in absence of introgression) that
-% will also be independent of the species identity.
-
-% The failure to distinguish reproductively isolated species can stem from either
-% the choice of an inappropriate set of characters to distinguish species
-% otherwise morphologically variable, or from the absence of variation in
-% morphology but differentiation in other traits (e.g., ecology, chemical cues)
-% allows them to remain reproductively isolated
-
-
-
-
-
-
-% Allopatry without clear geographic barriers (Diadema setosum, Lessios 2001)
-
-% use these bayesian methods and test for adequacy of multispecies coalescent
-% justified because wide ranging species with no clear geographical barriers to
-% their range.
 
 
 \section{Methods}
@@ -1121,6 +1068,13 @@ lineages in sympatry.
 
 \subsection{Rates of secondary sympatry}
 
+
+% include something on how importance of rate of secondary sympatry for building
+% up local diversity, and confusion about sympatry + genetic differentiation in
+% case of no clear barriers and possibility for rapid changes in population
+% sizes, geographical ranges
+
+
 The restriction of marine invertebrates to ``oceanic'' and ``continental''
 habitats has been documented for a range of organisms (e.g., land snails
 \cite{Paulay1994}, marine snails \cite{Abbott1960, Reid2006b, Williams2011},
@@ -1502,3 +1456,32 @@ completion of reproductive isolation.
 % wall, ignoring ossicles in internal structures, and have paid little attention
 % to intraspecific variation, typically illustrating the ossicle assemblage of a
 % single individual.
+
+
+% This, in combination with the fact that several of these species co-occur and
+% can share the same habitat, has contributed to the failure to recognize this
+% diversity, and differentiate species in this complex.
+
+% Based on the precept that species are defined on the criterion of reproductive
+% isolation, three processes operating at different rates are interacting during
+% speciation: (1) acquisition of reproductive isolation, (2) morphological
+% differentiation, (3) genetic differentiation. In many cases, these three
+% processes can be independent making species delineation challenging. For
+% instance, broadcast spawning marine invertebrates for which reproductive
+% cohesion is maintained behaviorally
+% %(e.g., spawning aggregations cukes?,
+% %lobsters? \cite{}, spawning based on environmental clues corals? \cite{})
+% and biochemically (e.g., gamete recognition proteins \cite{Hellberg2000}),
+% selection on these traits is unlikely to drive morphological differentiation
+% among closely related species \cite{Knowlton1993}. Similarly, barcoding markers
+% evolve typically neutrally and the time taken for them to show enough
+% differentiation to be recognized as different species will depend on effective
+% population sizes or DNA repair mechanisms (in absence of introgression) that
+% will also be independent of the species identity.
+
+% The failure to distinguish reproductively isolated species can stem from either
+% the choice of an inappropriate set of characters to distinguish species
+% otherwise morphologically variable, or from the absence of variation in
+% morphology but differentiation in other traits (e.g., ecology, chemical cues)
+% allows them to remain reproductively isolated
+
