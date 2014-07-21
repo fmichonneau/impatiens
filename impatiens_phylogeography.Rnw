@@ -30,10 +30,13 @@
 
 \title{Cryptic and not-so-cryptic species in the complex ``\textit{Holothuria
     (Thymiosycia) imaptiens}'' (Forssk\r{a}l, 1775) (Echinodermata:
-  Holothuroidea: Holothuriidae)} \author[1]{Fran\c{c}ois
-  Michonneau\thanks{Corresponding author: francois.michonneau@gmail.com}}
-\author[1]{Gustav Paulay} \affil[1]{Florida Museum of Natural History,
-  University of Florida, Gainesville, FL 32611-7800, USA}
+  Holothuroidea: Holothuriidae)}
+
+\author[1]{Fran\c{c}ois Michonneau\thanks{Corresponding author:
+    francois.michonneau@gmail.com}}
+
+\affil[1]{Florida Museum of Natural History, University of Florida, Gainesville,
+  FL 32611-7800, USA}
 
 \renewcommand\Authands{ and }
 
