@@ -858,32 +858,44 @@ suggesting a better fit to the data than the null hypothesis (BF =
 <<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in million years.">>=
 @
 
-The topologies obtained with BEAST and RAxML analyses were very similar
-(Fig.~\ref{fig:impatiens-tree} and Supplementary Material~\ref{}), and the
-clades identified were found for all the loci analyzed (Supplementary
-Material~\ref{}).
+The phylogenetic relationships recovered with BEAST and RAxML of the species
+included in the ``\textit{H. impatiens}'' complex on the concatenated alignment
+were identical (Fig.~\ref{fig:impatiens-tree} and
+Fig.~\ref{fig:raxml-tree}). The topology was highly supported, and the nodes
+corresponding to the most recent common ancestors of the ESUs had high posterior
+probabilities (> 0.99) and bootstrap values (10 out of 13 ESUs > 0.9, others >
+0.8) for the Bayesian and maximum-likelihood tree respectively.
 
-The topologies were highly supported at least up to the node corresponding to
-the most recent common ancestors of the species delineated with the most
-conservative result of the GMYC method. 
+Two main clades can be distinguished that diverged approximately 10 Ma
+(Fig.~\ref{fig:impatiens-tree}). Clade I (\texttt{Medit}, \texttt{WA},
+\texttt{EP}, \texttt{Gala}, \texttt{ESU2}, \texttt{tiger}, \texttt{tigerRedSea})
+is circumtropical and is found in the Mediterranean Sea, the Caribbean basin,
+the Eastern-Pacific and across the Indo-West Pacific, including the Red
+Sea. Clade II (\texttt{ESU1}, \texttt{Hawaii}, \texttt{Wpac}, \texttt{ESU3},
+\texttt{gracilis}) is restricted to the Indo-West Pacific (including the Red
+Sea).
 
-The \textit{H. impatiens} complex comprises two clades that diverged
-approximately 10 Ma (Fig.~\ref{fig:impatiens-tree}). Clade I has the widest
-geographic distribution and is found in the Mediterranean Sea, the Caribbean
-basin, the Eastern-Pacific and across the Indo-West Pacific, including the Red
-Sea. Clade II is restricted to the Indo-West Pacific (including the Red Sea).
+The geographical ranges of the species vary considerably. Some are restricted to
+an ocean basin (\texttt{Medit}, \texttt{WA}, \texttt{RedSea},
+\texttt{tigerRedSea}) or an archipelago (\texttt{Hawaii}, \texttt{Gala}) but
+others have ranges that encompass large sections of the Indo-West Pacific
+(\texttt{ESU1}, \texttt{ESU2}, \texttt{ESU3}). This diversity of distributions
+results in the co-occurrence of several species of the complex across most of
+the Indo-West Pacific, and culminates in the Philippines where at least 5
+species are found. More generally, at least 3 species are co-occurring in the
+Northern part of the Western Pacific (the Philippines, Micronesia, Hawaiian
+archipelago).
 
-The phylogeny also highlights that several speciation events in the complex were
-concurrent throughout the diversification history of the complex (e.g., the first
-speciation event in each clade about 9.5 Ma).
+Overall, species found in the Indo-Pacific have overlapping ranges, even for
+species that diverged recently. For instance, \texttt{Wpac} and \texttt{Hawaii}
+co-occur with \texttt{ESU1} and diverged most recently (1.8~Ma and 2.2~Ma
+respectively, Fig.~\ref{fig:impatiens-tree} and
+Fig.~\ref{fig:impatiens-map-group1}).
 
-The youngest pair of sister species delineated by GMYC are estimated to have
-diverged 1.8 Ma. The three delineated species that diverged the most recently
-(ESU1, WPac and Hawaii) have overlapping distributions
-(Figure~\ref{fig:impatiens-map-group2}).
+% The phylogeny also highlights that several speciation events in the complex were
+% concurrent throughout the diversification history of the complex (e.g., the first
+% speciation event in each clade about 9.5 Ma).
 
-%% Look into Hernandez-Molina2014 for timing of fluctuation/closures to compare
-%% with phylogeny.
 
 <<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean">>=
 @ 
