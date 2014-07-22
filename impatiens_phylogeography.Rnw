@@ -5,6 +5,7 @@
 \usepackage{tabularx}
 \usepackage{float}
 \usepackage{amsmath}
+\usepackage{longtable}
 \usepackage[margin=1in]{geometry}
 \usepackage[font=sf]{caption}
 
@@ -461,8 +462,8 @@ number of species corresponds to the minimum and maximum numbers of species for
 threshold values found within 2 log-likelihood units of the threshold associated
 with the highest likelihood.
 
-\subsection{Species delineation with other lines of evidence: coloration,
-  geography and ecology}
+\subsection{Species delineation with other lines of evidence: coloration and
+  geography} 
 
 To determine whether the putative species delineated with GMYC were biologically
 sound, we investigated color patterns, geographical distribution and ecology.
@@ -731,8 +732,8 @@ all haplotypes were considered.
 
 % discuss identity of species delineated.
 
-\subsection{Species delineation with other lines of evidence: morphology,
-  geography, ecology}
+\subsection{Species delineation with other lines of evidence: coloration and
+  geography}
 
 Members of the ``\textit{H. impatiens}'' complex are generally bi-color. The
 dark coloration is typically solid towards the anterior end, forms bands in the
@@ -748,16 +749,18 @@ least ten species (Figure~\ref{fig:impatiens-images}).
 
 \texttt{Medit}, \texttt{WA}, \texttt{Gala}, \texttt{EP}, \texttt{RedSea},
 \texttt{ESU1} are morphologically close but subtle differences in their color
-patterns, and their distinct geographic distributions allow to tease them
-apart. \texttt{ESU2} is the only species with bright yellow papillae and
-tentacles. \texttt{tiger} and \texttt{tigerRedSea} are also very distinctive
-with sparse, dark, tubercles that barely raise from the body wall, giving them a
-smooth appearance. They are also much larger than the other species and
-specimens reach regularly more than 30~cm. \texttt{gracilis} has very large
-conical, typically red tubercles and a very distinctive ``gritty'' texture. 
-\texttt{ESU3} has elongated, pyramidal tubercles with white papillae.
-
-Ecologically....
+patterns, and the restriction of their ranges to an oceanic basin or an
+archipelago allow teasing them apart. \texttt{ESU2} is the only species with
+bright yellow papillae and tentacles
+(Figure~\ref{fig:photo-ESU2-andFriends}). \texttt{tiger} and
+\texttt{tigerRedSea} are also very distinctive with sparse, dark, tubercles that
+barely raise from the body wall, giving them a smooth appearance. They are also
+much larger than the other species and specimens reach regularly more than
+30~cm. \texttt{gracilis} has very large conical, typically red tubercles and a
+very distinctive ``gritty'' texture.  \texttt{ESU3} has elongated, pyramidal
+tubercles with white papillae. However, \texttt{ESU1}, \texttt{Hawaii} and
+\texttt{Wpac} have broadly overlapping distributions and are morphologically
+indistinguishable (Figure~\ref{fig:photo-ESU1-andFriends}).
 
 \begin{figure}
   {\centering
@@ -1326,10 +1329,13 @@ completion of reproductive isolation.
 
 \begin{table}[h]
   \centering
-  \caption{The subscript number corresponds to the to the codon position in the
-    alignment. The ``real'' codon position is offset by 2 for COI, H3a and ATP6
-    (i.e., COI$_1$ is 3rd codon position)}
+  \caption[Partition table]{Partition table. The subscript number corresponds to
+    the to the codon position in the alignment. The ``real'' codon position is
+    offset by 2 for COI, H3a and ATP6 (i.e., COI$_1$ is 3rd codon position)}
   \begin{tabular} { l l l }
+    \hline
+    Partition & Model   & Loci              \\
+    \hline
     1      & GTR+I+G    & 16S, ATP6$_2$     \\
     2      & HKY+I+G    & ATP6$_1$, COI$_1$ \\ 
     3      & HKY+I+G    & ATP6$_3$, c0775   \\ 
@@ -1338,13 +1344,14 @@ completion of reproductive isolation.
     6      & HKY+I      & COI$_3$           \\ 
     7      & HKY        & H3a$_1$, LSU      \\ 
     8      & JC         & H3a$_3$           \\
-    9      & HKY+G      & ITS               \\       
+    9      & HKY+G      & ITS               \\
+    \hline
   \end{tabular}
   \label{tab:sm-partitions}
 \end{table}
 
 %% raxml tree
-<<raxml-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values \\seq 90, red circles bootstrap values \\seq 80. Colored vertical bars represent consensus ESUs.'>>=
+<<raxml-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values $\\geq$ 90, red circles bootstrap values $\\geq$ 80. Colored vertical bars represent consensus ESUs.'>>=
 
 @ 
 
@@ -1367,6 +1374,13 @@ completion of reproductive isolation.
 <<sm-starbeast-summary, dependson='starbeast-summary', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
 @ 
 
+\clearpage
+
+%% specimen table
+
+<<specimen-table, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='asis'>>=
+
+@ 
 
 %% Notes about the biology of the species
 %% - EP: discharge Cuv tubules \cite{Bakus1974}, ``relatively very active''

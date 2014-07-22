@@ -30,6 +30,10 @@ impTree4 <- as(impTree, "phylo4")
 ## DNA alignment for all data
 impAlg <- ape::read.dna(file="data/20130923.impatiens.phy", format="seq")
 
+## ESU list
+esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
+             "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+
 ## Other common variables
 gmycFactors <- expand.grid(c("strict", "relaxed"),
                            c("yule", "coalexp", "coalcst"))
@@ -129,8 +133,8 @@ locTable <- print(xtable(lociCharTable,
                              "$S_{i}$: number of parsimony informative sites.",
                              "The statistics given for ITS are for the ones used in the",
                              "analysis (i.e., after using Gblock)."), # long
-                             "Loci characteristics"),
-                         label="tab:loci-characteristics"), # short
+                             "Loci characteristics"),  # short
+                         label="tab:loci-characteristics"),
                   caption.placement="top",
                   sanitize.text.function = function(x) {x},
                   print.results=FALSE)
@@ -277,8 +281,6 @@ raxmlImpTr <- drop.tip(root(raxmlImpTr, "S0213"), "S0213")
 raxmlImpTr <- ladderize(raxmlImpTr)
 
 raxmlImpTr <- extToLbl(raxmlImpTr, impDB, c("consensusESU", "Country", "UFID", "Extract"))
-esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
-             "Gala", "EP", "Hawaii", "Wpac", "RedSea")
 
 ndCol <- character(length(raxmlImpTr$node.label))
 ndCol[as.numeric(raxmlImpTr$node.label) >= 90] <- "black"
@@ -665,6 +667,31 @@ for (i in 1:6) {
              y1=Ntip(keepTree), col="red", lwd=2, lty=2)
 }
 
+### ---- specimen-table ----
+library(xtable)
+spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract")]
+spcmTable <- spcmTable[regmatches(spcmTable$Extract, regexpr("^[^,]+", spcmTable$Extract)) %in% dimnames(impAlg)[[1]], ]
+spcmTable <- spcmTable[-match("S0213", spcmTable$Extract), ]
+stopifnot(all(spcmTable$consensusESU %in% esuList))
+spcmTable <- spcmTable[order(spcmTable$consensusESU), ]
+spcmTable$Country <- iconv(spcmTable$Country, "latin1", "ASCII", "")
+spcmTable$Country <- gsub("Runion", "R\\'{e}union", spcmTable$Country, fixed=TRUE)
+spcmTable$Country <- gsub("Nosy B", "Nosy B\\'{e}", spcmTable$Country, fixed=TRUE)
+spcmTable$UFID <- gsub("_", " ", spcmTable$UFID, fixed=TRUE)
+spcmTable$Extract <- gsub("_", " ", spcmTable$Extract, fixed=TRUE)
+names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.")
+spcmTable <- xtable(spcmTable,
+                    caption=c("Specimen information including location, catalog number, and ESU (consensus)",
+                        "Specimen information"),
+                    label="tab:specimen-table")
+headerTable <- paste("\\hline", paste(names(spcmTable), collapse=" & "), "\\\\ \\hline \\endfirsthead \n",
+                     "\\caption{(continued) specimen information} \n")
+print.xtable(spcmTable, tabular.environment="longtable", floating=FALSE,
+             hline.after = c(-1, nrow(spcmTable)),
+             add.to.row = list(pos = list(-1, 0),
+                 command = c(headerTable, "\\hline \\endhead \n")),
+             sanitize.text.function=function(x) {x}, caption.placement="top",
+             include.rownames=FALSE)
 
 ### ---- median-tmrca-WAgroup ----
 ## Get mean and median for node corresponding to MRCA for all
