@@ -490,10 +490,10 @@ clusters, have geographically defined ranges, but cannot be differentiated
 morphologically. Their ranges overlap (\texttt{Hawaii,Wpac}) or border
 (\texttt{RedSea}) the widespread \texttt{ESU1}, bringing into question the
 reproductive isolation of these lineages. To investigate whether these clusters
-result from reproductive isolation rather than geographical structure, we
-compared competing hypotheses of species delineation with *BEAST v 1.7.5
-\cite{Heled2010} using Bayes Factors (BF) estimated by the stepping-stone (SS)
-and the path sampling (PS) methods \cite{Baele2012}.
+are reproductively isolated, we compared competing hypotheses of species
+delineation with *BEAST v 1.7.5 \cite{Heled2010} using Bayes Factors (BF)
+estimated by the stepping-stone (SS) and the path sampling (PS) methods
+\cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus dataset using the
 multispecies coalescent in a Bayesian framework to account for intraspecies
@@ -554,26 +554,24 @@ group.
 For the estimation of the marginal likelihoods, we used the settings recommended
 by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
 evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
-chain lengths to $3.10^{6}$. If for any runs, the absolute difference between
-the marginal likelihoods estimated with the stepping stone and the path sampling
-methods was higher than 1, we interpreted this difference as a failure of the
-estimate to converge. We therefore discarded the results and repeated the
-analysis from a different starting point until the difference in likelihood was
-lower than 1.
-
-To confirm that COI, which was used to delineate putative species with GMYC,
-does not drive the differences in marginal likelihoods among the different
-models tested with *BEAST, we repeated some of the analyses omitting COI (models
-M4, M5, M6 and M7 in Table~\ref{tab:delineationModels}).
+chain lengths to $3.10^{6}$. We interpreted an absolute difference between the
+marginal likelihoods estimated with the stepping stone and the path sampling
+methods higher than 1 as a failure of the estimate to converge. In these cases,
+we repeated the analysis from a different starting point until the difference
+between the likelihoods was lower than 1.
 
 To rule out that this approach did not favor models that included more species,
 we added a ``ghost'' species in the analysis. This ``ghost'' species was
 comprised of individuals that formed a shallow reciprocally monophyletic group
 in COI within \texttt{ESU1}, but that was not identified as a putative species
-in the GMYC analyses.
+in any of the sGMYC analyses.
 
-To obtain a baseline of the variation that was expected in the differences in
-likelihoods, we also assigned the species randomly to the individuals.
+To confirm that COI, which was used to delineate putative species with GMYC, did
+not drive the differences in marginal likelihoods among the models tested with
+*BEAST, we repeated some of the analyses omitting COI (models M4-M7 in
+Table~\ref{tab:delineationModels}). We also repeated the analyses for these
+models using only nuclear data to assess the influence of mitochondrial data on
+the results.
 
 % TODO -- Furthermore, to assess more generally the contribution of the nuclear
 % data to the results, we repeated the analyses by attributing randomly the
