@@ -564,7 +564,7 @@ lower than 1.
 To confirm that COI, which was used to delineate putative species with GMYC,
 does not drive the differences in marginal likelihoods among the different
 models tested with *BEAST, we repeated some of the analyses omitting COI (models
-M4, M5, M6 and M7).
+M4, M5, M6 and M7 in Table~\ref{tab:delineationModels}).
 
 To rule out that this approach did not favor models that included more species,
 we added a ``ghost'' species in the analysis. This ``ghost'' species was
@@ -743,8 +743,8 @@ relaxed clock, many coalescent events were reconstructed in the vicinity of the
 threshold leading to broad confidence intervals.
 
 With the strict clock analyses, the additional species delineated between the
-unique haplotypes and all sequences corresponds to the split of \texttt{tiger}
-and \texttt{tigerRedSea}.
+unique haplotypes and all sequences corresponds to the recognition of both
+\texttt{tiger} and \texttt{tigerRedSea}.
 
 
 
@@ -814,19 +814,46 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
+<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"very strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes the putative species identified by the GMYC approach that do not differ morphologically.'>>=
 @ 
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
 estimates of the marginal likelihoods, and here, we only report the SS results
-(see supplementary material \ref{sm:pathsampling} for the PS results). The model
-with all the putative species identified by GMYC had the highest marginal
-likelihoods \ref{fig:starbeast-summary}. The Bayes factors for the models that
-considered Hawaii, Wpac and RedSea as exchanging gene flow with ESU1 are below
-the threshold needed to consider the evidence strong ($BF=\Sexpr{BFHawaii}$,
-\Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The Bayes factor for the
-comparison with the model with an additional species (oversplitting) indicated a
-poorer fit to the data (\Sexpr{BFsplit}).
+(see supplementary material \ref{sm:pathsampling} for the PS results). The
+values reported for the Bayes factors (BF) are the means of the two independent
+replicates. Here, the more negative the BF, the stronger the statistical
+evidence in favor of the null hypothesis specifying that \texttt{Wpac},
+\texttt{Hawaii}, \texttt{RedSea} and \texttt{ESU1} are all reproductively
+isolated species.
+
+The model that included all the putative species identified by GMYC, that do not
+differ morphologically (\texttt{Hawaii}, \texttt{Wpac} and \texttt{ESU1}) had
+the highest marginal likelihoods (Figure~\ref{fig:starbeast-summary}). The Bayes
+factors for the models that considered \texttt{Hawaii}, \texttt{Wpac} and
+\texttt{RedSea} as being panmictic with \texttt{ESU1} lent ``very strong''
+support in favor of the null hypothesis (BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac},
+and \Sexpr{BFRedSea} respectively). The model with an additional ``ghost''
+species also indicated a poorer fit (BF = \Sexpr{BFsplit}), indicating that this
+approach did not favor a model that included more species.
+
+% The random assignment of individuals to species led to a much lower BF (BF =
+% \Sexpr{BFrandom}), indicating a strong
+
+Similar results were obtained when COI was omitted. The differences in
+likelihood were however smaller leading to BF > $-10$ but < $-6$ for models that
+considered \texttt{Hawaii} (BF = \Sexpr{BFHawaiiNoCOI}) and \texttt{Wpac} (BF =
+\Sexpr{BFWpacNoCOI}) as panmictic with \texttt{ESU1} indicating ``strong''
+support in favor of the null hypothesis. The BF was still below $-10$ for the
+model that considered \texttt{RedSea} as panmictic with \texttt{ESU1} (BF =
+\Sexpr{BFRedSeaNoCOI}).
+
+Analyses conducted on nuclear data alone led to low BF that do not support the
+null model (BF = \Sexpr{BFHawaiiNoMt} for no \texttt{Hawaii}, and BF =
+\Sexpr{BFRedSeaNoMt} for no \texttt{RedSea}). For the model that considered
+\texttt{Wpac} as the same species as \texttt{ESU1} the BF was positive
+suggesting a better fit to the data than the null hypothesis (BF =
+\Sexpr{BFWpacNoMt}).
+
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.

@@ -374,11 +374,23 @@ meanESU1PSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$PS_logLik)
 sbSummNoCOI$stdSS <- sbSummNoCOI$SS_logLik - meanESU1SSnoCOI
 sbSummNoCOI$stdPS <- sbSummNoCOI$PS_logLik - meanESU1SSnoCOI
 sbSummNoCOI$dataIncluded <- "No COI"
+sbSummNoMt <- subset(sbeast, dataIncluded == "noMt")
+meanESU1SSnoMt <- mean(subset(sbSummNoMt, groupings == "allESU1")$SS_logLik)
+sbSummNoMt$stdSS <- sbSummNoMt$SS_logLik - meanESU1SSnoMt
 
-BFHawaii <- round(2 * mean(subset(sbSummAll, groupings == "noHawaii")$stdPS), 1)
-BFWpac <- round(2 * mean(subset(sbSummAll, groupings == "noWpac")$stdPS), 1)
-BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdPS), 1)
-BFsplit  <- round(2 * mean(subset(sbSummAll, groupings == "allESU1split")$stdPS), 1)
+BFHawaii <- round(2 * mean(subset(sbSummAll, groupings == "noHawaii")$stdSS), 1)
+BFWpac <- round(2 * mean(subset(sbSummAll, groupings == "noWpac")$stdSS), 1)
+BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdSS), 1)
+BFsplit  <- round(2 * mean(subset(sbSummAll, groupings == "allESU1split")$stdSS), 1)
+BFrandom <- round(2 * (mean(sbeast[sbeast$groupings=="random" & !is.na(sbeast$SS_logLik), "SS_logLik"]) - meanESU1SS), 1)
+
+BFHawaiiNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noHawaii")$stdSS), 1)
+BFWpacNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noWpac")$stdSS), 1)
+BFRedSeaNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noRedSea")$stdSS), 1)
+
+BFHawaiiNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noHawaii")$stdSS), 1)
+BFWpacNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noWpac")$stdSS), 1)
+BFRedSeaNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noRedSea")$stdSS), 1)
 
 ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
     stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
