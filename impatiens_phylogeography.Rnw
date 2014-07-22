@@ -352,7 +352,7 @@ this study.
 \label{tab:pcrConditions}
 \end{table}
 
-\subsection{Species delineation with GMYC}
+\subsection{Species limits with GMYC}
 
 To delineate putative species based on molecular data, we fit the generalized
 mixed Yule coalescent (GMYC) model (\cite{Pons2006,Monaghan2009,Fujisawa2013})
@@ -462,8 +462,7 @@ number of species corresponds to the minimum and maximum numbers of species for
 threshold values found within 2 log-likelihood units of the threshold associated
 with the highest likelihood.
 
-\subsection{Species delineation with other lines of evidence: coloration and
-  geography} 
+\subsection{Species limits with coloration and geography}
 
 To determine whether the putative species delineated with GMYC were biologically
 sound, we investigated color patterns, geographical distribution and ecology.
@@ -484,53 +483,7 @@ retrieved from the collecting information associated with the specimens.
 %% Measurements were analyzed in a principal component analysis in R
 %% \ref{Rcoreteam}.
 
-
-\subsection{Phylogeny and divergence time estimation}
-
-Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
-with the default settings. All markers led to unambiguous alignments except for
-ITS. For this locus, we used Gblocks \ref{Castresana2000} to remove parts that
-were difficult to align using a minimum length of a block of 5 (\texttt{-b4=5}),
-and the option ``all gap positions can be selected'' (\texttt{-b5=a}). We used
-the resulting alignment to estimate the phylogenetic relationships and the
-timing of the divergence among the different lineages of \textit{Holothuria
-  impatiens} using RAxML 8.0.1 \cite{Stamatakis2014} and BEAST 2.1.2
-\cite{Bouckaert2014} (using BEAGLE 2.1.2 \cite{Ayres2012}).
-
-To determine the optimal partition scheme and models of molecular evolution, we
-analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
-data blocks such that the three codon position for ATP6, COI, H3a, and each of
-16S, c0036, c0775, ITS and LSU were individual partitions. We used the greedy
-algorithm, with linked branch lengths, no user tree, and models of molecular
-evolution available by default in BEAST (JC69, HKY, GTR, without or with a
-proportion of invariant sites [+I] and/or Gamma distributed rates across sites
-[+G]). We selected the best-fit models and partition schemes based on the
-Bayesian Information Criterion. The best fit model had 9 partitions.
-
-For the BEAST analysis, following some initial testing runs, we modified the
-partition scheme slightly to improve mixing of the chains as the partition
-scheme selected by PartitionFinder led to over-parametrization (supplementary
-Table \ref{tab:sm-partitions}).
-
-We used three independent strict molecular clocks (one for each of mitochondrial
-markers, protein-coding nuclear markers, nuclear ribosomal markers)
-\cite{Hasegawa1985}. The tree prior was set to a Yule process, and a random
-starting tree. The Markov chains were run for $185.10^6$ generations (and
-sampled every $5.10^3$ generations). The analysis was repeated twice from
-independent starting points.
-
-We used Tracer 1.6 to check that the MCMC chains had reached stationarity, that
-mixing was adequate, and that the two independent runs were consistent. We
-ensured that a representative sample of the posterior distributions was sampled
-for each independent runs, by checking that the ESS values for all parameters
-were above 200. The samples from the posterior distribution from both runs were
-combined using logcombiner after removing a 20\% burnin, resulting in 29601
-states sampled. The ESS values obtained by combining the runs were all above
-440. We summarized the trees sampled with treeannotator using the common ancestor
-tree method \cite{Heled2013}.
-
-
-\subsection{Test of species limits with *BEAST}
+\subsection{Species limits with *BEAST}
 
 Some of the putative species delineated by GMYC form well defined but shallow
 clusters, have geographically defined ranges, but cannot be differentiated
@@ -626,6 +579,53 @@ likelihoods, we also assigned the species randomly to the individuals.
 % data to the results, we repeated the analyses by attributing randomly the
 % nuclear data.
 
+
+\subsection{Phylogeny and divergence time estimation}
+
+Sequences obtained for each marker were aligned using MUSCLE \cite{Edgar2004}
+with the default settings. All markers led to unambiguous alignments except for
+ITS. For this locus, we used Gblocks \ref{Castresana2000} to remove parts that
+were difficult to align using a minimum length of a block of 5 (\texttt{-b4=5}),
+and the option ``all gap positions can be selected'' (\texttt{-b5=a}). We used
+the resulting alignment to estimate the phylogenetic relationships and the
+timing of the divergence among the different lineages of \textit{Holothuria
+  impatiens} using RAxML 8.0.1 \cite{Stamatakis2014} and BEAST 2.1.2
+\cite{Bouckaert2014} (using BEAGLE 2.1.2 \cite{Ayres2012}).
+
+To determine the optimal partition scheme and models of molecular evolution, we
+analyzed the alignment using PartitionFinder \cite{Lanfear2012}. We defined the
+data blocks such that the three codon position for ATP6, COI, H3a, and each of
+16S, c0036, c0775, ITS and LSU were individual partitions. We used the greedy
+algorithm, with linked branch lengths, no user tree, and models of molecular
+evolution available by default in BEAST (JC69, HKY, GTR, without or with a
+proportion of invariant sites [+I] and/or Gamma distributed rates across sites
+[+G]). We selected the best-fit models and partition schemes based on the
+Bayesian Information Criterion. The best fit model had 9 partitions.
+
+For the BEAST analysis, following some initial testing runs, we modified the
+partition scheme slightly to improve mixing of the chains as the partition
+scheme selected by PartitionFinder led to over-parametrization (supplementary
+Table \ref{tab:sm-partitions}).
+
+We used three independent strict molecular clocks (one for each of mitochondrial
+markers, protein-coding nuclear markers, nuclear ribosomal markers)
+\cite{Hasegawa1985}. The tree prior was set to a Yule process, and a random
+starting tree. The Markov chains were run for $185.10^6$ generations (and
+sampled every $5.10^3$ generations). The analysis was repeated twice from
+independent starting points.
+
+We used Tracer 1.6 to check that the MCMC chains had reached stationarity, that
+mixing was adequate, and that the two independent runs were consistent. We
+ensured that a representative sample of the posterior distributions was sampled
+for each independent runs, by checking that the ESS values for all parameters
+were above 200. The samples from the posterior distribution from both runs were
+combined using logcombiner after removing a 20\% burnin, resulting in 29601
+states sampled. The ESS values obtained by combining the runs were all above
+440. We summarized the trees sampled with treeannotator using the common ancestor
+tree method \cite{Heled2013}.
+
+
+
 \section{Results}
 
 \begin{figure}
@@ -680,7 +680,7 @@ sequenced for at least 1 nuclear locus and
 % Here comment on results based on RAxML runs on individual loci.
 
 
-\subsection{Species delineation with GMYC}
+\subsection{Species limits with GMYC}
 
 <<gmyc-coi-results, cache=TRUE, eval=TRUE, echo=FALSE>>=
 @ 
@@ -703,20 +703,19 @@ noDupStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
 @ 
 
 The number of species estimated by the GMYC methods varied widely and ranged
-from \Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method, and
-from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
-(Fig~\ref{fig:gmyc-coi-plot}).
+from \Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method
+(sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold
+method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 <<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
 @ 
 
-sGMYC produced species estimates that were more conservative and with
-narrower confidence intervals (CI) than the mGMYC approach. The
-maximum-likelihood estimates for the sGMYC were in most cases at the
-lower limit of the CI, while the estimates from the mGMYC were at the
-upper limit of the CI. For the analyses performed on all the
-sequences, the CI for the estimated number of species using sGMYC and
-mGMYC did not overlap.
+Species estimates from sGMYC were more conservative and with narrower confidence
+intervals (CI) than the mGMYC approach. The maximum-likelihood estimates for the
+sGMYC were in most cases at the lower limit of the CI, while the estimates from
+the mGMYC were at the upper limit of the CI. For the analyses performed on all
+the sequences, the CI for the estimated number of species using sGMYC and mGMYC
+did not overlap.
 
 On the genealogies estimated with a strict clock, sGMYC was less sensitive to
 the type of tree prior used, as the estimated number of species was identical
@@ -726,14 +725,30 @@ haplotypes and on unique haplotypes respectively. The Yule prior produced equal
 or more conservative estimates of the number of species compared to the two
 types of coalescent priors.
 
-With sGMYC, the estimated number of species was more conservative and
-less sensitive to the priors used to reconstruct the genealogy when
-all haplotypes were considered.
+With sGMYC, the estimated number of species was more conservative and less
+sensitive to the priors used to reconstruct the genealogy when all sequences
+were included.
 
-% discuss identity of species delineated.
+Overall, the species delineated with sGMYC were consistent across the different
+priors used. For the analyses based on all sequences, the difference in the
+estimated number of species was associated with (1) the estimated time of
+coalescence of divergent haplotypes related to ESU3 was occurring after the
+threshold with the Yule prior; (2) the lumping of \texttt{tigerRedSea} and
+\texttt{tiger}.
 
-\subsection{Species delineation with other lines of evidence: coloration and
-  geography}
+For the analyses based on unique haplotypes and a relaxed clock, with the Yule
+prior, the coalescence of the haplotypes happened later in the tree leading to
+lower estimated number of species compared to the coalescent priors. With the
+relaxed clock, many coalescent events were reconstructed in the vicinity of the
+threshold leading to broad confidence intervals.
+
+With the strict clock analyses, the additional species delineated between the
+unique haplotypes and all sequences corresponds to the split of \texttt{tiger}
+and \texttt{tigerRedSea}.
+
+
+
+\subsection{Species limits with coloration and geography}
 
 Members of the ``\textit{H. impatiens}'' complex are generally bi-color. The
 dark coloration is typically solid towards the anterior end, forms bands in the
@@ -754,13 +769,14 @@ archipelago allow teasing them apart. \texttt{ESU2} is the only species with
 bright yellow papillae and tentacles
 (Figure~\ref{fig:photo-ESU2-andFriends}). \texttt{tiger} and
 \texttt{tigerRedSea} are also very distinctive with sparse, dark, tubercles that
-barely raise from the body wall, giving them a smooth appearance. They are also
-much larger than the other species and specimens reach regularly more than
-30~cm. \texttt{gracilis} has very large conical, typically red tubercles and a
-very distinctive ``gritty'' texture.  \texttt{ESU3} has elongated, pyramidal
-tubercles with white papillae. However, \texttt{ESU1}, \texttt{Hawaii} and
-\texttt{Wpac} have broadly overlapping distributions and are morphologically
-indistinguishable (Figure~\ref{fig:photo-ESU1-andFriends}).
+barely raise from the body wall, giving them a smoother appearance than the
+other species. They are also much larger than the other species and specimens
+reach regularly more than 30~cm. \texttt{gracilis} has very large conical,
+typically red tubercles and a very distinctive ``gritty'' texture.
+\texttt{ESU3} has elongated, pyramidal tubercles with white papillae. However,
+\texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} have broadly overlapping
+distributions and are morphologically indistinguishable
+(Figure~\ref{fig:photo-ESU1-andFriends}).
 
 \begin{figure}
   {\centering
@@ -796,6 +812,21 @@ indistinguishable (Figure~\ref{fig:photo-ESU1-andFriends}).
 \label{fig:photo-WA+EP}
 \end{figure}
 
+\subsection{Species limits with *BEAST}
+
+<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
+@ 
+
+Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
+estimates of the marginal likelihoods, and here, we only report the SS results
+(see supplementary material \ref{sm:pathsampling} for the PS results). The model
+with all the putative species identified by GMYC had the highest marginal
+likelihoods \ref{fig:starbeast-summary}. The Bayes factors for the models that
+considered Hawaii, Wpac and RedSea as exchanging gene flow with ESU1 are below
+the threshold needed to consider the evidence strong ($BF=\Sexpr{BFHawaii}$,
+\Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The Bayes factor for the
+comparison with the model with an additional species (oversplitting) indicated a
+poorer fit to the data (\Sexpr{BFsplit}).
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
@@ -838,21 +869,7 @@ diverged 1.8 Ma. The three delineated species that diverged the most recently
 <<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 2.">>=
 @ 
 
-\subsection{Species limits}
 
-<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
-@ 
-
-Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
-estimates of the marginal likelihoods, and here, we only report the SS results
-(see supplementary material \ref{sm:pathsampling} for the PS results). The model
-with all the putative species identified by GMYC had the highest marginal
-likelihoods \ref{fig:starbeast-summary}. The Bayes factors for the models that
-considered Hawaii, Wpac and RedSea as exchanging gene flow with ESU1 are below
-the threshold needed to consider the evidence strong ($BF=\Sexpr{BFHawaii}$,
-\Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The Bayes factor for the
-comparison with the model with an additional species (oversplitting) indicated a
-poorer fit to the data (\Sexpr{BFsplit}).
 
 \section{Discussion}
 
@@ -1366,8 +1383,12 @@ completion of reproductive isolation.
 <<gmyc-tree-plot-prep, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='hide', message=FALSE, warning=FALSE>>=
 @
 
-<<gmyc-tree-plot, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
+<<gmyc-tree-plot-allSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
 @ 
+
+<<gmyc-tree-plot-uniqSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
+@ 
+
 
 %% starbeast results
 

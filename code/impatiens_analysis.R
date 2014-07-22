@@ -613,17 +613,18 @@ nspecies <- sapply(gmycRes, function(x) {
     tmpSingle$entity[which.max(tmpSingle$likelihood)]
 })
 nmTrees <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycRes))
-nmTrees <- gsub("^allSeq_", "", nmTrees)
+nmTrees <- gsub("^allSeq_", "All sequences, ", nmTrees)
+nmTrees <- gsub("^noDup_", "Haplotypes, ", nmTrees)
 nmTrees <- gsub("relaxed_", "Relaxed Clock, ", nmTrees)
 nmTrees <- gsub("strict_", "Strict Clock, ", nmTrees)
 nmTrees <- gsub("yule$", "Yule", nmTrees)
 nmTrees <- gsub("coalexp", "Coalescent (Exponential growth)", nmTrees)
 nmTrees <- gsub("coalcst", "Coalescent (Constant)", nmTrees)
 
-gmEd <- lapply(gmycRes[1:6], function(x) gmycEdges(x$simpleGmyc))
-gmGrp <- lapply(gmycRes[1:6], function(x) gmycGroups(x$simpleGmyc))
+allSeqGmEd <- lapply(gmycRes[1:6], function(x) gmycEdges(x$simpleGmyc))
+uniqSeqGmEd <- lapply(gmycRes[7:12], function(x) gmycEdges(x$simpleGmyc))
 
-### ---- gmyc-tree-plot ---- 
+### ---- gmyc-tree-plot-allSeq ---- 
 par(mfrow=c(3, 2))
 for (i in 1:6) {
     resKeep <- gmycRes[[i]]$simpleGmyc
@@ -641,20 +642,62 @@ for (i in 1:6) {
         mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
     plotTree <- ladderize(keepTree)
     colEdges <- rep("black", nrow(plotTree$edge))
-    edgesToChange <- gmycMatchEdges(gmEd[[i]], plotTree)
+    edgesToChange <- gmycMatchEdges(allSeqGmEd[[i]], plotTree)
     nSpp <- length(edgesToChange)
     if (nSpp == 14) {
         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
                              "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
                              "Wpac")]
-    }
-    else if (nSpp == 16) {
+    } else if (nSpp == 16) {
         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
                              "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
                              "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
                              "tigerRedSea")]
     }
     else stop("Houston, we have a problem.")
+    for (j in 1:nSpp) {
+        colEdges[edgesToChange[[j]]] <- colToUse[j]
+    }
+    par(mai= c(1, 0, 0, 0))
+    plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
+         x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
+         edge.color=colEdges, edge.width=0.5)
+    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
+    segments(x0=thresLine, x1=thresLine, y0=10,
+             y1=Ntip(keepTree), col="red", lwd=2, lty=2)
+}
+
+### ---- gmyc-tree-plot-uniqSeq ---- 
+par(mfrow=c(3, 2))
+for (i in 7:12) {
+    k <- i - 6
+    resKeep <- gmycRes[[i]]$simpleGmyc
+    stopifnot(identical(class(resKeep), "gmyc"))
+    keepTree <- resKeep$tree
+    ## Get threshold
+    keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+    ## Find edge length for edge leading to node associate with threshold
+    ##   so we can draw line in the middle of the edge
+    keepBrTimes <- sort(branching.times(keepTree))
+    keepWhichEdge <- which(keepBrTimes == -keepThreshold)
+    ## We place the threshold line between where the thershold point is and
+    ##  the following (in branching order) node in the tree
+    thresLine <- max(branching.times(keepTree)) - 
+        mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
+    plotTree <- ladderize(keepTree)
+    colEdges <- rep("black", nrow(plotTree$edge))
+    edgesToChange <- gmycMatchEdges(uniqSeqGmEd[[k]], plotTree)
+    nSpp <- length(edgesToChange)
+    if (nSpp == 14) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
+                             "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
+                             "Wpac")]
+    }  else if (nSpp == 16) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
+                             "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
+                             "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
+                             "tigerRedSea")]
+    } else stop("Houston, we have a problem.")
     for (j in 1:nSpp) {
         colEdges[edgesToChange[[j]]] <- colToUse[j]
     }
