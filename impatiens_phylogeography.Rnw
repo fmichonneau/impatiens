@@ -820,7 +820,7 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by stepping-stone sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"very strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes the putative species identified by the GMYC approach that do not differ morphologically.'>>=
+<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M7: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" against the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
 @ 
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
@@ -856,9 +856,9 @@ model that considered \texttt{RedSea} as panmictic with \texttt{ESU1} (BF =
 Analyses conducted on nuclear data alone led to low BF that do not support the
 null model (BF = \Sexpr{BFHawaiiNoMt} for no \texttt{Hawaii}, and BF =
 \Sexpr{BFRedSeaNoMt} for no \texttt{RedSea}). For the model that considered
-\texttt{Wpac} as the same species as \texttt{ESU1} the BF was positive
-suggesting a better fit to the data than the null hypothesis (BF =
-\Sexpr{BFWpacNoMt}).
+\texttt{Wpac} as the same species as \texttt{ESU1}, the BF was positive
+suggesting a better fit to the data than the null hypothesis, but below the
+threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
 
 
 \subsection{Phylogenetic relationships among the ESUs}
@@ -1432,12 +1432,6 @@ completion of reproductive isolation.
 @ 
 
 <<gmyc-tree-plot-uniqSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
-@ 
-
-
-%% starbeast results
-
-<<sm-starbeast-summary, dependson='starbeast-summary', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.scap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex.', fig.cap='Differences in log-marginal likelihoods (estimated by path sampling) for various models of species assignment to individuals belonging to the ESU1 complex. The results are reported for two independent fittings of the model (dark and light gray bars). The differences are calculated compared to the second best model which provides the minimum (conservative) difference between the best fit model and the other models. The dashed line represent a difference in log-marginal likelihood of 5 that provides a Bayes Factor value of 10, considered as \"strong evidence\" according to  Kass \\& Raftery \\cite{Kass1995}. The best-fit model includes all the putative species identified by the GMYC approach.'>>=
 @ 
 
 \clearpage

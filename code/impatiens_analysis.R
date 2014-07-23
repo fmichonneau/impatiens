@@ -336,38 +336,29 @@ sbeast <- sbeastOrig[, c("groupings", "runs", "chainLength", "dataIncluded",
                          "PS_logLik", "SS_logLik")]
 sbeast <- sbeast[grep("[0-9]$", sbeast$runs), ] # runs with X at the ends are not meant to be included
 
-## wMtSB <- subset(sbeast, chainLength == "long" & dataIncluded == "all")
-## bppsMat <- matrix(wMtSB[, c("PS_logLik")], nrow=2); bppsMat <- bppsMat[, -ncol(bppsMat)]
-## bppsMat <- bppsMat - min(bppsMat[,1]) #bppsMat[, 1]
-## bpssMat <- matrix(wMtSB[, c("SS_logLik")], nrow=2); bpssMat <- bpssMat[, -ncol(bpssMat)]
-## bpssMat <- bpssMat - min(bpssMat[,1]) #bpssMat[, 1]
-## lbls <- unique(wMtSB$groupings); lbls <- lbls[-length(lbls)]
-## noCOISB <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI")
-## noCOIbpssMat <- matrix(noCOISB[, c("SS_logLik")], nrow=2)
-## noCOIbpssMat <- noCOIbpssMat - max(noCOIbpssMat[, 1])
-## noCOIlbls <- unique(noCOISB$groupings)
-
-## par(mfrow=c(1, 2))
-## bpss <- barplot(bpssMat, ylab="Difference in log-marginal likelihoods",
-##                 beside=T, main="With COI", ylim=c(-50, 5))
-## mtext(side=1, at=colMeans(bpss), line=0, text=as.character(lbls), las=2, adj=0)
-## text(bpss[1:2], bpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
-## abline(h=-5, lty=2)
-## noCOIbpss <- barplot(noCOIbpssMat, beside=T, main="Without COI",
-##                      ylim=c(-50, 5))
-## mtext(side=1, at=colMeans(noCOIbpss), line=0, text=as.character(noCOIlbls),
-##       las=2, adj=0)
-## abline(h=-5, lty=2)
-## text(noCOIbpss[1:2], noCOIbpssMat[,1] + c(-1.5, 1.5), c("*", "*"))
-
 sbCol <- wes.palette(5, "Zissou")[c(1, 5)]
+names(sbCol) <- c("BFSS", "BFPS")
 
 sbSummAll <- subset(sbeast, chainLength == "long" & dataIncluded == "all" & groupings != "random")
 meanESU1SS <- mean(subset(sbSummAll, groupings == "allESU1")$SS_logLik)
 meanESU1PS <- mean(subset(sbSummAll, groupings == "allESU1")$PS_logLik) 
 sbSummAll$stdSS <- sbSummAll$SS_logLik - meanESU1SS
 sbSummAll$stdPS <- sbSummAll$PS_logLik - meanESU1PS
+sbSummAll$BFSS <- 2 * sbSummAll$stdSS
+sbSummAll$BFPS <- 2 * sbSummAll$stdPS
 sbSummAll$dataIncluded <- "All data"
+sbSummAll$plotGroupings <- sbSummAll$groupings
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1"] <- "M7"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1split"] <- "oversplit"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noHawaii"] <- "M5"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noRedSea"] <- "M6"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpac"] <- "M4"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacHawaii"] <- "M3"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacRedSea"] <- "M2"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacRedSeaHawaii"] <- "M1"
+sbSummPlot <- melt(sbSummAll[, -match(c("PS_logLik", "SS_logLik", "stdSS", "stdPS"), names(sbSummAll))],
+                   measure.vars=c("BFSS", "BFPS"))
+
 sbSummNoCOI <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI" & groupings != "random")
 meanESU1SSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$SS_logLik)
 meanESU1PSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$PS_logLik) 
@@ -392,14 +383,21 @@ BFHawaiiNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noHawaii")$stdSS
 BFWpacNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noWpac")$stdSS), 1)
 BFRedSeaNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noRedSea")$stdSS), 1)
 
-ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
-    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
+
+ggplot(sbSummPlot, aes(x=plotGroupings, y=value, group=variable, colour=variable)) +
+    scale_x_discrete(limits=c("M7", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
+    scale_colour_manual(values=sbCol, breaks=c("BFSS", "BFPS"),
+                        labels=c("Stepping Stone Sampling", "Path Sampling")) +
+    geom_point(position=position_dodge(width=.3)) +
+    stat_summary(fun.y = mean, geom="point", size=3,
+                 position=position_dodge(width=.3)) +    
+    geom_hline(yintercept=-10, width=.1, col=sbCol[2], linetype=2) +
     theme(legend.position="top", legend.title=element_blank(),
           panel.background = element_rect(fill = "gray95"),
           panel.grid.major = element_line(colour = "white", size=0.1),
           panel.grid.minor = element_line(NA)) +
-    labs(y="Difference in Marginal log-Likelihood", x="Models") +
+    labs(y="Bayes Factors ", x="Models") +
+    theme(legend.justification=c(0,0), legend.position=c(0,0)) +
     facet_grid( ~ dataIncluded)
 
 
@@ -415,39 +413,6 @@ ggplot(sbSummAll, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colo
 
 
 #multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
-
-
-### ---- sm-starbeast-summary ----
-## bpps <- barplot(bppsMat, ylab="Difference in log-marginal likelihoods",
-##                 beside=T, #main="Path sampling",
-##                 ylim=c(-50, 0))
-## mtext(side=1, at=colMeans(bpps), line=0, text=as.character(lbls), las=2, adj=0)
-## text(bpps[1:2], bppsMat[,1] - 1.5, c("*", "*"))
-## abline(h=-5, lty=2)
-
-
-ggplot(sbSummAll, aes(x=groupings, y=stdPS)) + #, ymin=0, ymax=stdPS)) +
-    geom_point(aes(x=groupings, y=stdPS), colour=sbCol[1], size=1) +
-    stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
-    geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
-    theme(legend.position="top", legend.title=element_blank(),
-          panel.background = element_rect(fill = "gray95"),
-          panel.grid.major = element_line(colour = "white", size=0.1),
-          panel.grid.minor = element_line(NA)) +
-    labs(y="Difference in Marginal log-Likelihood", x="Models") +
-    facet_grid( ~ dataIncluded)        
-
-## sbNoCoiPlotPS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdPS)) + geom_point(position="dodge", colour=sbCol[1]) +
-##     stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
-##     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
-##     theme(legend.position="top", legend.title=element_blank(),
-##           panel.background = element_rect(fill = "gray95"),
-##           panel.grid.major = element_line(colour = "white", size=0.1),
-##           panel.grid.minor = element_line(NA)) +
-##     labs(y="", x="Models") +
-##     facet_grid(~ dataIncluded)
-
-## multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
                     
 
 ### NJ analyses
