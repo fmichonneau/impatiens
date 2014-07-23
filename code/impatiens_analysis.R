@@ -140,7 +140,7 @@ locTable <- print(xtable(lociCharTable,
                   print.results=FALSE)
 
 multiColStr <- paste("\\1 \\& \\\\multicolumn{3}{c}{mtDNA} \\& ",
-                    "\\\\multicolumn{5}{c}{nucDNA} \\\\\\\\ \\\n",
+                    "\\\\multicolumn{5}{|c}{nucDNA} \\\\\\\\ \\\n",
                     "\\\\cline{2-4} \\\\cline{5-9}", sep="")
 
 cat(gsub("(}\\\n)(\\s+\\\\\\hline)", multiColStr, locTable))
