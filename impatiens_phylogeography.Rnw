@@ -627,7 +627,7 @@ tree method \cite{Heled2013}.
 \section{Results}
 
 \begin{figure}
-  {\centering
+  \centering
     \includegraphics[width=6.5in]{manual-figures/species_limits}
     \caption[Correspondence between the different criteria used to delineate the
     species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence between
@@ -635,9 +635,8 @@ tree method \cite{Heled2013}.
         impatiens}'' complex. Medit: Mediterranean, WA: Western Atlantic, Gala:
       Galapagos, EP: Eastern Pacific; PNG: Papua New Guinea; Wpac: Western
       Pacific.}
-  }
+    \label{fig:species-limits}
 \end{figure}
-\label{fig:species-limits}
 
 \subsection{Sequence data}
 
@@ -752,7 +751,7 @@ Fig.~\ref{fig:species-limits}). In all analyses (except with the most
 conservative estimate, i.e., using all sequences, a relaxed clock and a Yule
 prior), two sequences related to \texttt{ESU3} (from the Ryukyus, Japan, and
 from Papua New Guinea), were each assigned to their own species
-(\texttt{ESU3_Deep} and \texttt{ESU3_PNG} respectively in
+(\texttt{ESU3\_Deep} and \texttt{ESU3\_PNG} respectively in
 Fig.~\ref{fig:species-limits}).
 
 \subsection{Species limits with coloration and geography}
@@ -767,7 +766,8 @@ brown to yellow or even white. The light-colored areas typically harbor a
 ``salt-and-pepper'' pattern with small dark spots on the light
 background. Despite these common characteristics, the combination of color
 patterns and geographical distribution allows us to distinguish unambiguously at
-least ten species (Figure~\ref{fig:impatiens-images}).
+least ten species (Fig.~\ref{fig:species-limits},
+\ref{fig:photo-ESU1-andFriends}, \ref{fig:photo-ESU2-andFriends}).
 
 \texttt{Medit}, \texttt{WA}, \texttt{Gala}, \texttt{EP}, \texttt{RedSea},
 \texttt{ESU1} are morphologically close but subtle differences in their color
@@ -786,19 +786,18 @@ distributions and are morphologically indistinguishable
 (Figure~\ref{fig:photo-ESU1-andFriends}).
 
 \begin{figure}
-  {\centering
+  \centering
     \includegraphics[width=6.5in]{manual-figures/figure-group1}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
       UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
       E. RedSea, Djibouti, UF12070; F. Wpac, Majuro Marshall Islands, UF6771;
       G. Hawaii, French Fregate Shoal, Hawaiian archipelago, UF6243.}
-}
-\label{fig:photo-ESU1-andFriends}
+    \label{fig:photo-ESU1-andFriends}
 \end{figure}
 
 \begin{figure}
-  {\centering
+  \centering
     \includegraphics[width=6.5in]{manual-figures/figure-group2}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287; B. ESU2, Guam, UF6729;
@@ -806,18 +805,18 @@ distributions and are morphologically indistinguishable
       E. gracilis, Lizard Island, Australia, UF8288; F. tigerRedSea, Djibouti,
       UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
       Nosy B\'{e}, Madagascar, UF7469.}
-  }
-\label{fig:photo-ESU2-andFriends}
+    \label{fig:photo-ESU2-andFriends}  
 \end{figure}
 
+
 \begin{figure}
-  {\centering
+  \centering
     \includegraphics[width=6.5in]{manual-figures/figure-group3}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. WA, St Martin, UF11790; B. EP, Panama (no Voucher).}
-}
-\label{fig:photo-WA+EP}
+    \label{fig:photo-WA+EP}
 \end{figure}
+
 
 \subsection{Species limits with *BEAST}
 
