@@ -820,27 +820,27 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M7: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" against the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
+<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M7: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" in favor of the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
 @ 
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
-estimates of the marginal likelihoods, and here, we only report the SS results
-(see supplementary material \ref{sm:pathsampling} for the PS results). The
+estimates of the marginal likelihoods (Fig~\ref{fig:starbeast-summary}). The
 values reported for the Bayes factors (BF) are the means of the two independent
 replicates. Here, the more negative the BF, the stronger the statistical
 evidence in favor of the null hypothesis specifying that \texttt{Wpac},
 \texttt{Hawaii}, \texttt{RedSea} and \texttt{ESU1} are all reproductively
 isolated species.
 
-The model that included all the putative species identified by GMYC, that do not
-differ morphologically (\texttt{Hawaii}, \texttt{Wpac} and \texttt{ESU1}) had
-the highest marginal likelihoods (Figure~\ref{fig:starbeast-summary}). The Bayes
-factors for the models that considered \texttt{Hawaii}, \texttt{Wpac} and
-\texttt{RedSea} as being panmictic with \texttt{ESU1} lent ``very strong''
-support in favor of the null hypothesis (BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac},
-and \Sexpr{BFRedSea} respectively). The model with an additional ``ghost''
-species also indicated a poorer fit (BF = \Sexpr{BFsplit}), indicating that this
-approach did not favor a model that included more species.
+The model that included putative species identified by GMYC represented by more
+than one individual, that do not differ morphologically (\texttt{Hawaii},
+\texttt{Wpac} and \texttt{ESU1}) had the highest marginal likelihood
+(Figure~\ref{fig:starbeast-summary}). The Bayes factors for the models that
+considered \texttt{Hawaii}, \texttt{Wpac} and \texttt{RedSea} as being panmictic
+with \texttt{ESU1} lent ``very strong'' support in favor of the null hypothesis
+(BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The
+model with an additional ``ghost'' species also indicated a poorer fit (BF =
+\Sexpr{BFsplit}), indicating that this approach did not favor a model that
+included more species.
 
 % The random assignment of individuals to species led to a much lower BF (BF =
 % \Sexpr{BFrandom}), indicating a strong
@@ -918,7 +918,25 @@ Fig.~\ref{fig:impatiens-map-group1}).
 
 \section{Discussion}
 
-\subsection{Species delineation using GMYC}
+\subsection{Species limits in the ``\textit{Holothuria impatiens}'' complex}
+
+Species delineation is a complex issue and the conclusions will depend of the
+characters and methods chosen. Here, using complementary approaches, combining
+discovery (GMYC) and testing methods (*BEAST), we unraveled at least 13 species
+within the complex ``\textit{Holothuria impatiens}'' supported by multiple lines
+of evidence. The discovery methods, based on genetic differentiation in the
+mitochondrial locus COI, found putative species which status would require
+additional material to be evaluated. In particular, two individuals
+characterized by divergent haplotypes, related to \texttt{ESU1} and
+\texttt{ESU3} respectively, were consistently recovered as separate species. In
+both cases, a single individual was available, making it impossible to use
+*BEAST to test for possible reproductive isolation. The individual related to
+\texttt{ESU1} (UF8191) has the typical color pattern of \texttt{ESU1}, with
+which it co-occurs and no line of evidence seem to indicate that it could be a
+different species. The individual related to \texttt{ESU3} (RUMF-ZE-0074) is a
+small individual that was dredged from 32~m. The distinct ecology and deeply
+divergent sequences characterizing this individual, suggest it could represent a
+different species but additional material is needed to assess this hypothesis.
 
 Despite being widely used to delineate species, the sensitivity of the GMYC
 method to the factors affecting the shape of the tree used have not been
@@ -929,54 +947,104 @@ migration rates on GMYC accuracy and precision \cite{Papadopoulou2008,
   Esselstyn2012}. Some of the effects of the methodological choices have been
 evaluated by the authors of the method \cite{Pons2006, Monaghan2009,
   Fujisawa2013} and by others \cite{Talavera2013}, but the conclusions might be
-difficult to generalize depending on the nature of the dataset. 
+difficult to generalize as they depend in part on the nature of the
+dataset. Other species delineation methods using sequence data are also
+available (e.g., RESL \cite{Ratnasingham2013}, ABGD \cite{Puillandre2011}, bPTP
+\cite{Zhang2013}, bGMYC \cite{Reid2012}), and it would be interesting to
+investigate how they perform compared to the results obtained here.
 
-We showed that the multiple-threshold method (mGMYC) led to oversplitting and
-was less accurate than the single-threshold method (sGMYC). These conclusions
-were also reached by the authors of the method using a simulated dataset, they
-however found that the 95\% confidence set for the estimated number of putative
-species between sGMYC and mGMYC were overlapping \cite{Fujisawa2013}. We
-observed this pattern on the analyses using only unique haplotypes but not in
-the analysis that included all sequences. On our dataset, sGMYC outperformed
-mGMYC.
+The multiple-threshold method (mGMYC) led to higher estimates of the number of
+species, and was less accurate than the single-threshold method (sGMYC). We did
+not find any other line of evidence that could corroborate the delineation
+proposed by this approach. In particular, some of the putative species proposed
+by mGMYC would split, lineages that are otherwise highly supported by the
+multi-locus phylogeny. The overall lower performance of mGMYC was also observed
+by the authors of the method using a simulated dataset, they however found that
+the 95\% confidence set for the estimated number of putative species between
+sGMYC and mGMYC were overlapping \cite{Fujisawa2013}. We observed this pattern
+on the analyses using only unique haplotypes but not in the analysis that
+included all sequences.
 
-On our empirical dataset, keeping all sequences, using a relaxed molecular
-clock, and a coalescent exponentially growing population tree prior, led to the
-most realistic number of delineated species. This combination of priors led to
-overestimating the number of species when it was tested by the authors of the
-method \cite{Monaghan2009}. On the other hand, Talavera et al
-\cite{Talavera2013} did not find any notable differences using trees estimated
-with different sets of priors. Our dataset differs from these studies by
-including a younger radiation (here: less than 10 Ma, \cite{Monaghan2009}: 4
-insect orders; \cite{Talavera2013} 5 Lepidoptera families), less species (here:
-14; \cite{Monaghan2009} about 370; \cite{Talavera2013} 176), and more
-individuals per species (here: about 14 ind/species; \cite{Monaghan2009}: about
-3 ind/species; \cite{Talavera2013} about 7 ind/species).
+On our dataset, when analyzing all sequences, the number of putative species was
+consistently 16, except for the relaxed clock with the Yule prior in which case
+it was 14. These results indicate that the method is relatively robust to prior
+specification. The 16 species delineation is the most realistic as it recovers
+morphologically differentiated species that were not considered distinct in the
+14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). sGMYC recovered
+more putative species than we can confidently recognize, since they were
+represented by single individuals. This is a common pitfall of single-locus
+species delineation methods, where the broad geographical sampling of many
+individuals will reveal rare, divergent haplotypes that may not represent
+different species. However, in our analysis, it is worth noting that all our
+recognized species were reciprocally monophyletic making the GMYC suitable.
+
+The combination of priors used in our study led to overestimating the number of
+species when it was tested by the authors of the method \cite{Monaghan2009}. On
+the other hand, Talavera et al \cite{Talavera2013} did not find any notable
+differences using trees estimated with different sets of priors. Our dataset
+differs from these studies by including a younger radiation, less species, and
+more individuals per species.
 
 % Esseltyn+2012 also used both all sequences & only unique, but didn't provide
 % the differences in results
 
 Talavera et al \cite{Talavera2013} did not find that using all haplotypes or
 only the unique haplotypes affected the number of species estimated with the
-GMYC method. Here, we found that removing the duplicated sequences overestimated
-the number of species and decreased the precision of the estimates. Keeping
-identical sequences in the analysis overestimates the effective population size
-parameters that BEAST uses. In turns, these overestimated sizes spuriously
-increase the time to coalescence for the lineages, making the estimation of the
-inflection point between species- and population-level coalescent events earlier
-in the tree and more difficult to detect. This bias leads to oversplitting and
-decreases accuracy.
+GMYC method. Here, we confirmed the theoretical expectation that removing the
+duplicated sequences overestimated the number of species and decreased the
+precision of the estimates. Removing identical sequences in the analysis
+overestimates the effective population size parameters that BEAST uses. In turn,
+these overestimated sizes spuriously increase the time to coalescence for the
+lineages, making the estimation of the inflection point between species- and
+population-level coalescent events earlier in the tree and more difficult to
+detect. This bias leads to oversplitting and decreases accuracy. Investigating
+how many individuals need to be sampled to obtain correct estimates would be
+worth pursuing.
 
 GMYC was developed with the intent of automating the estimation of the number of
 species from large-scale single-locus sampling efforts, particularly from
 environmental samples. In this context, a reasonable amount of inaccuracy or
-imprecision from the true number of species might be acceptable. The advantage
-of the method, namely providing a rapid and objective assessment of the number
-of species, outweighs the possible deviations from the true value. However, in
-the context of a taxonomic study where the goal is to identify species limits
-among a few hundred individuals, the factors affecting tree shape need to be
+imprecision from the true number of species may be acceptable. The advantage of
+the method, namely providing a rapid and objective assessment of the number of
+species, outweighs the possible deviations from the true value. However, in the
+context of a taxonomic study where the goal is to identify species limits among
+a few hundred individuals, the factors affecting tree shape need to be
 considered, and additional lines of evidence need to be included to validate the
 putative species delineated \cite{Marshall2011a, Esselstyn2012}.
+
+The statistical framework offered by *BEAST that compares alternative models of
+species assignment seems a promising venue to investigate species limits, when
+other lines of evidence are equivocal (e.g., \cite{Grummer2013, Satler2013}. The
+requirement to assign specimens to species \textit{a priori} can however be
+challenging. When morphological evidence is scarce, and deeply divergent
+lineages are recovered with genetic data, circularity is introduced when the
+same data is used to recognize species, and to provide statistical support for
+these species. Here, COI was used to assign species to individuals for putative
+species that could not be differentiated morphologically. The results for the
+analyses conducted without COI were qualitatively similar to the analyses
+performed with this locus, but the statistical evidence in favor of the null
+hypothesis, considering these closely related lineages as different species, was
+weaker. There was no statistical evidence supporting the null hypothesis when
+the analysis was conducted on nuclear data alone, owing to the low
+differentiation in these loci for the putative species tested by the
+models.
+
+% TODO -- need to make a drawing to clarify what I want to say here
+% This suggests that until many additional nuclear markers are sampled to
+% counter-balance the information lost by ignoring mitochondrial data,
+
+Another potential issue with assigning species to individuals based on their COI
+sequences, is that they may not reflect species limits because of introgression
+or incomplete lineage sorting. Recently diverged species might still be poly- or
+paraphyletic in their COI genealogy making species assignment
+inaccurate. Inaccurate species assignment can potentially be detected from the
+population sizes estimated by *BEAST that will be unusually high
+\cite{Leache2013,Drummond2014}. This would however require to analyze many more
+loci than in the present study to obtain accurate estimates of population sizes
+\cite{Heled2010}. Determining how the Bayes factors will behave if the null
+hypotheses is misspecified remain to be investigated.
+
+
 
 % \subsection{Using *BEAST and model selection for species delineation}
 
@@ -1043,26 +1111,26 @@ lineages. % TODO -- add pictures...
 % Add something about how differences in colors among ESUs might be a result of
 % the same type of proteins than GRP.
 
-\subsection{Taxonomic consequences}
+% \subsection{Taxonomic consequences}
 
-The \textit{H. impatiens} complex belongs to the subgenus \textit{Thymiosycia}
-of which it is the type species. However, except for \textit{H. gracilis}, no
-other species currently included in this subgenus shows any affinity with the
-``\textit{H. impatiens}'' complex. The subgenus \textit{Thymiosycia} therefore
-needs to be redefined to only include the species of the \textit{H. impatiens}
-complex. Based on species descriptions, no name can be applied to the species in
-the complex, and all will need to be described formally.
+% The \textit{H. impatiens} complex belongs to the subgenus \textit{Thymiosycia}
+% of which it is the type species. However, except for \textit{H. gracilis}, no
+% other species currently included in this subgenus shows any affinity with the
+% ``\textit{H. impatiens}'' complex. The subgenus \textit{Thymiosycia} therefore
+% needs to be redefined to only include the species of the \textit{H. impatiens}
+% complex. Based on species descriptions, no name can be applied to the species in
+% the complex, and all will need to be described formally.
 
-As the type locality for \textit{H. impatiens} is the Northern Red Sea, based on
-its description and the drawing accompanying it, our results indicate that this
-species (RedSea here) is actually restricted to the Red Sea.
+% As the type locality for \textit{H. impatiens} is the Northern Red Sea, based on
+% its description and the drawing accompanying it, our results indicate that this
+% species (RedSea here) is actually restricted to the Red Sea.
 
-As a consequence, all the studies on the biology of ``\textit{H. impatiens}''
-were in most cases based on one or more species of the complex. In some cases
-the identity of these species can be guessed as the locality is indicated and
-only one species is known from there, but in other cases it cannot since the
-locality is missing (e.g., \cite{Hampton1958,Hampton1959}) or several species
-are known from the area (e.g., \cite{Roberts1982,Cutress1996}).
+% As a consequence, all the studies on the biology of ``\textit{H. impatiens}''
+% were in most cases based on one or more species of the complex. In some cases
+% the identity of these species can be guessed as the locality is indicated and
+% only one species is known from there, but in other cases it cannot since the
+% locality is missing (e.g., \cite{Hampton1958,Hampton1959}) or several species
+% are known from the area (e.g., \cite{Roberts1982,Cutress1996}).
 
 
 %% Diversification of the complex is really ~20 MY really fits with idea that
