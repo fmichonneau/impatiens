@@ -125,7 +125,7 @@ concept \cite{Moritz1994} that defines species-level units based on reciprocal
 monophyly in at least one marker (typically mtDNA), and at least another
 defining attribute (morphology, distribution, reciprocal monophyly in another
 trait). If this approach has allowed to unravel high levels of unrecognized
-diversity, when other defining traits to infer reproductive isolation are
+diversity, when other defining attributes to infer reproductive isolation are
 lacking, the patterns of genetic differentiation have remained difficult to
 interpret objectively.
 
@@ -166,7 +166,7 @@ sizes, the multispecies coalescent may reveal new patterns and refine our
 understanding of speciation in the sea.
 
 In this study, we use morphological, genetic, distributional and ecological
-data, to reveal at least 13 species within ``\textit{Holothuria impatiens}''
+data, to unravel at least 13 species within ``\textit{Holothuria impatiens}''
 (see column ``consensus'' in Table~\ref{fig:species-limits}). This complex
 includes both species that can be distinguished relatively easily from their
 live appearance, and species that can only be identified genetically. The broad
@@ -174,20 +174,20 @@ geographical distribution of this complex and the elucidation of the
 phylogenetic relationships of its species provide the opportunity to investigate
 the spatial and temporal dynamics of this radiation.
 
-Forssk\r{a}l described \textit{Fistularia impatiens} from material he collected
-in Suez, Egypt \cite{Forsskal1775}. His posthumous description is limited, but
-indicates that the body wall is gray with dark spot, and with well-developed,
-lightly colored tubercles. The drawing accompanying the description corroborates
-these observations. Since then, the species has been attributed to
-\textit{Holothuria}, the mostly reef-associated and most diverse genus within
-the Holothuriidae. The range of \textit{H. impatiens} has been extended, and
-today is recognized as the most widespread species in the genus. Its range
-extends from the Red Sea through the entire Indo-West Pacific, to the East
-Pacific, Caribbean and the Mediterranean. Pearson \cite{Pearson1915} described
-\textit{Thymiosycia} as one of five subgenera in \textit{Holothuria}, and
-designated \textit{Holothuria impatiens} as the type species. The modern concept
-of \textit{Thymiosycia} was proposed by Rowe \cite{Rowe1969} to include 13
-species characterized by well developed, regular and symmetrical tables and
+Forssk\r{a}l described posthumously in 1775 \textit{Fistularia impatiens} from
+material he collected in Suez, Egypt \cite{Forsskal1775}. The description is
+limited, but indicates that the body wall is gray with dark spot, and with
+well-developed, lightly colored tubercles. The drawing accompanying the
+description corroborates these observations. Since then, the species has been
+attributed to \textit{Holothuria}, the mostly reef-associated and most diverse
+genus within the Holothuriidae. The range of \textit{H. impatiens} has been
+extended, and today is recognized as the most widespread species in the
+genus. Its range extends from the Red Sea through the entire Indo-West Pacific,
+to the East Pacific, Caribbean and the Mediterranean. Pearson \cite{Pearson1915}
+described \textit{Thymiosycia} as one of five subgenera in \textit{Holothuria},
+and designated \textit{Holothuria impatiens} as the type species. The modern
+concept of \textit{Thymiosycia} was proposed by Rowe \cite{Rowe1969} to include
+13 species characterized by well developed, regular and symmetrical tables and
 buttons.
 
 \textit{Holothuria impatiens} is a common, to locally abundant species found
@@ -254,13 +254,13 @@ Museum of Natural History, University of Florida (UF), Gainesville, FL, USA,
 while tissue samples are stored in the Genetic Resources Repository of the
 museum. A few additional tissue samples were taken from vouchers housed at other
 institutions or were obtained through collaborators without vouchers being
-retained (Table~\ref{tab:voucherInfo} for details).
+retained (Table~\ref{tab:specimen-table} for details).
 
 We examined \Sexpr{nrow(impDB)} specimens morphologically and
 \Sexpr{nrow(impAlg)} were used for molecular analyses. These specimens were
 collected across the entire known range of \textit{H. impatiens}: Mediterranean
 Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
-(Table~\ref{tab:voucherInfo}).
+(Table~\ref{tab:specimen-table}).
 
 
 \subsection{DNA extraction and amplification}
@@ -432,7 +432,7 @@ closed about 3 Ma but most species were probably isolated earlier
 \cite{Lessios2008}. We chose a conservative estimate to account for the fact
 that the sister species lineages found across the isthmus are the lineages found
 in the Galapagos and the Caribbean (the coastal Eastern Pacific lineage is
-sister to the one found in the Galapagos, Figure~\ref{impatiens-tree}). We
+sister to the one found in the Galapagos, Fig.~\ref{fig:impatiens-tree}). We
 constrained the age of the node corresponding to the most recent common ancestor
 of the individuals found in the Galapagos archipelago, the coast of the Eastern
 Pacific and in the Caribbean using a log-normal prior with a \textit{log}(mean)
@@ -487,11 +487,11 @@ retrieved from the collecting information associated with the specimens.
 
 Some of the putative species delineated by GMYC form well defined but shallow
 clusters, have geographically defined ranges, but cannot be differentiated
-morphologically. Their ranges overlap (\texttt{Hawaii,Wpac}) or border
+morphologically. Their ranges overlap (\texttt{Hawaii}, \texttt{Wpac}) or border
 (\texttt{RedSea}) the widespread \texttt{ESU1}, bringing into question the
 reproductive isolation of these lineages. To investigate whether these clusters
 are reproductively isolated, we compared competing hypotheses of species
-delineation with *BEAST v 1.7.5 \cite{Heled2010} using Bayes Factors (BF)
+delineation with *BEAST v 1.7.5 \cite{Heled2010} using Bayes factors (BF)
 estimated by the stepping-stone (SS) and the path sampling (PS) methods
 \cite{Baele2012}.
 
@@ -627,16 +627,17 @@ tree method \cite{Heled2013}.
 \section{Results}
 
 \begin{figure}
-{\centering
-\includegraphics[width=6.5in]{manual-figures/species_limits}
-}
-\label{fig:species-limits}
-\caption[Correspondence between the different criteria used to delineate the
-species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence between
-the different criteria used to delineate the species of the ``\textit{Holothuria
-  impatiens}'' complex. Medit: Mediterranean, WA: Western Atlantic, Gala:
-Galapagos, EP: Eastern Pacific; PNG: Papua New Guinea; Wpac: Western Pacific.}
+  {\centering
+    \includegraphics[width=6.5in]{manual-figures/species_limits}
+    \caption[Correspondence between the different criteria used to delineate the
+    species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence between
+      the different criteria used to delineate the species of the ``\textit{Holothuria
+        impatiens}'' complex. Medit: Mediterranean, WA: Western Atlantic, Gala:
+      Galapagos, EP: Eastern Pacific; PNG: Papua New Guinea; Wpac: Western
+      Pacific.}
+  }
 \end{figure}
+\label{fig:species-limits}
 
 \subsection{Sequence data}
 
@@ -728,11 +729,11 @@ sensitive to the priors used to reconstruct the genealogy when all sequences
 were included.
 
 Overall, the species delineated with sGMYC were consistent across the different
-priors used. For the analyses based on all sequences, the difference in the
-estimated number of species was associated with (1) the estimated time of
-coalescence of divergent haplotypes related to ESU3 was occurring after the
-threshold with the Yule prior; (2) the lumping of \texttt{tigerRedSea} and
-\texttt{tiger}.
+priors used. For the analyses based on all sequences, the difference between the
+14 species estimated with the Yule prior and the 16 species estimated with the
+other priors was caused by (1) the lumping of \texttt{tigerRedSea} and
+\texttt{tiger}; (2) the later time to coalescence for divergent haplotypes
+related to ESU3 with the Yule prior.
 
 For the analyses based on unique haplotypes and a relaxed clock, with the Yule
 prior, the coalescence of the haplotypes happened later in the tree leading to
@@ -744,7 +745,15 @@ With the strict clock analyses, the additional species delineated between the
 unique haplotypes and all sequences corresponds to the recognition of both
 \texttt{tiger} and \texttt{tigerRedSea}.
 
-
+For all analyses, at least one putative species was represented by a single
+sequence. A divergent lineage related to \texttt{ESU1}, collected in Lizard
+Island, Australia, was assigned to its own species (\texttt{ESU1\_Lizard} in
+Fig.~\ref{fig:species-limits}). In all analyses (except with the most
+conservative estimate, i.e., using all sequences, a relaxed clock and a Yule
+prior), two sequences related to \texttt{ESU3} (from the Ryukyus, Japan, and
+from Papua New Guinea), were each assigned to their own species
+(\texttt{ESU3_Deep} and \texttt{ESU3_PNG} respectively in
+Fig.~\ref{fig:species-limits}).
 
 \subsection{Species limits with coloration and geography}
 
