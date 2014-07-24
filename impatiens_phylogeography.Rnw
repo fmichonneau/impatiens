@@ -221,9 +221,9 @@ approaches outlined by \cite{Leache2010,Satler2013,Grummer2014}. First, we used
 the Generalized Mixed Yule Coalescent method (GMYC) on a portion of the
 mitochondrial locus COI to delineate putative species
 \cite{Pons2006,Monaghan2009}. We then used independent lines of evidence
-(morphology, ecology and geographic information) to assess the validity of the
-lineages identified with GMYC. When no other line of evidence could separate the
-lineages identified with GMYC, we used model comparison in *BEAST
+(morphology, ecology and geographic information) to assess the validity of these
+putative species. When no other line of evidence could separate the putative
+species identified with GMYC, we used model comparison in *BEAST
 \cite{Heled2010,Baele2012} to validate species limits. We used this approach as
 the complex includes both deeply divergent lineages that can be readily
 distinguished with morphological characters, and recent species radiations that
@@ -351,6 +351,27 @@ this study.
 \end{tabular}
 \label{tab:pcrConditions}
 \end{table}
+
+\subsection{Definitions}
+
+In this paper, we use three concepts: ``putative species'', ``evolutionary
+significant units (ESUs)'', and ``species'':
+\begin{itemize}
+\item  ``Putative species'' describes the lineages identified by the GMYC method
+  and follows the terminology used by the author of the method \cite{Pons2006,
+    Monaghan2009}.
+\item ``Evolutionary significant units (ESUs)'' are defined as reciprocally
+  monophyletic lineages in COI that are also characterized by another
+  independent defining attribute (e.g., coloration, morphology, geographical
+  distribution, reciprocal monophyly in another marker). We use this concept
+  as defined by Moritz \cite{Moritz1994}. The ESUs of this study include one or
+  more putative species identified with GMYC.
+\item The ``species'' are the lineages supported by the model of species
+  delineation that best explains the data as assessed by Bayes factors estimated
+  from the multispecies coalescent in *BEAST. They provide an indirect
+  assessment of reproductive isolation and the species are assumed to not
+  exchange genes. The species include one or more ESUs.
+\end{itemize}
 
 \subsection{Species limits with GMYC}
 
@@ -1026,8 +1047,7 @@ performed with this locus, but the statistical evidence in favor of the null
 hypothesis, considering these closely related lineages as different species, was
 weaker. There was no statistical evidence supporting the null hypothesis when
 the analysis was conducted on nuclear data alone, owing to the low
-differentiation in these loci for the putative species tested by the
-models.
+differentiation in these loci for the putative species tested by the models.
 
 % TODO -- need to make a drawing to clarify what I want to say here
 % This suggests that until many additional nuclear markers are sampled to
@@ -1039,25 +1059,13 @@ or incomplete lineage sorting. Recently diverged species might still be poly- or
 paraphyletic in their COI genealogy making species assignment
 inaccurate. Inaccurate species assignment can potentially be detected from the
 population sizes estimated by *BEAST that will be unusually high
-\cite{Leache2013,Drummond2014}. This would however require to analyze many more
-loci than in the present study to obtain accurate estimates of population sizes
-\cite{Heled2010}. Determining how the Bayes factors will behave if the null
-hypotheses is misspecified remain to be investigated.
+\cite{Leache2013, Drummond2014}. This would however require to analyze more loci
+than in the present study to obtain accurate estimates of population sizes
+\cite{Heled2010, Harris2013}. Determining how the Bayes factors will behave if
+the null hypothesis is misspecified remains to be investigated.
 
+Species delineation using
 
-
-% \subsection{Using *BEAST and model selection for species delineation}
-
-%% From the BEAST book
-% It can happen that the species assignment is incorrect, which results in co-
-% alescent events higher up in the species tree than if the species assignment is
-% correct. As a result population size estimates will be unusually high. So,
-% relative high population size estimates may indicate incorrect assignments, but
-% it can also indicate the existence of a cryptic species
-
-% Low PP on some nodes, probably from using low number of loci (and duplicated
-% sequences). This low number of loci, is also not enough to obtain accurate
-% population estimates (see Harris+2013,10.1111/evo.12280).
 
 \subsection{Coloration, species limits and polymorphism}
 
