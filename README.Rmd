@@ -93,6 +93,11 @@ three sections (and an additional one for early analyses that I didn't keep).
   (which is what was estimated by the GMYC analyses using all sequences and the
   prior on the isthmus).
 
+## 20140724 -- starBEAST
+* yes, it changes the likelihood went from -17428 to -17438. To see if it
+  affects the BF for model comparisons re-ran noWpac, noRedSea and noHawaii (2
+  replicates each) on CIPRES
+
 
 - - - - - - -
 
