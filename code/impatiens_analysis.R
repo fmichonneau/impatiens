@@ -1,12 +1,27 @@
 
 ### ---- init-phylo ----
 setwd("~/Documents/Impatiens/impatiens_phylogeography/")
-impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
-                  stringsAsFactors=FALSE)
 library(seqManagement)
 library(ggplot2)
 library(ape)
 library(phylobase)
+library(XML)
+
+## a quick function
+xmlBeastGetTaxa <- function(file) {
+    doc <- xmlTreeParse(file, getDTD=FALSE)
+    r <- xmlRoot(doc)
+    unname(sapply(xmlChildren(r[["taxa"]]), function(x) xmlGetAttr(x, "id")))
+}
+
+## database
+impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv",
+                  stringsAsFactors=FALSE)
+impDB$SingleExtract[nzchar(impDB$Extract)] <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
+
+## quick check on data
+impExt <- impDB$Extract[nzchar(impDB$Extract)]
+stopifnot(ncol(impDB) > 1)
 
 ## external scripts (need to be moved)
 source("~/R-dev/phylothuria/pkg/R/barMonophyletic.R")
@@ -18,9 +33,6 @@ source("code/multiplot.R")
 source("code/extToLbl.R")
 source("code/getPosteriors.R")
 
-## quick check on data
-impExt <- impDB$Extract[nzchar(impDB$Extract)]
-stopifnot(ncol(impDB) > 1)
 
 ## beast tree
 ## TODO -- change path
@@ -80,8 +92,11 @@ locFiles <- cutAlignment(algfile="data/20130923.impatiens.phy",
                          partfile="data/20130923.partition-raxml-perlocus",
                          formatin="sequential", format="sequential")
 
-tmpDir <- tempdir()
-dir.create(file.path(tmpDir, "data"), recursive=TRUE)
+tmpDir <- "tmp/"
+
+if (! file.exists(file.path(tmpDir, "data"))) {
+    dir.create(file.path(tmpDir, "data"), recursive=TRUE)
+}
 
 lociChar <- sapply(locFiles, function(fnm) {
     tmpfnm <- file.path(tmpDir, fnm)
@@ -157,39 +172,40 @@ names(locCov) <- gsub(".+_(.+)\\.phy", "\\1", names(locCov))
 
 locWhich <- mapply(function(x, y) cbind(x, rep(y, length(x))), locCov, names(locCov))
 locWhich <- do.call("rbind", locWhich)
-
 locWhich <- data.frame(locWhich, stringsAsFactors=FALSE)
 names(locWhich) <- c("Extract", "Locus")
 
 locPos <- data.frame("Locus" = unique(locWhich$Locus)[c(1,5,2,3,4,6,7,8)],
                      "begin" = 1:length(unique(locWhich$Locus)),
                      "end"   = 1:length(unique(locWhich$Locus))+1)
-
 locWhich <- merge(locWhich, locPos)
 
 tmpDB <- impDB[, c("Extract", "consensusESU")]
 tmpDB <- tmpDB[nzchar(tmpDB$Extract), ]
 tmpDB$Extract <- sapply(tmpDB$Extract, function(x) unlist(strsplit(x, ","))[1])
-
 locWhich <- merge(locWhich, tmpDB)
+
+locWhich <- subset(locWhich, Extract != "S0213")
 
 locRank <- data.frame(table(locWhich$Extract))
 names(locRank) <- c("Extract", "nLoci")
 locRank$Rank <- rank(locRank$nLoci, ties.method="random")
-
 locWhich <- merge(locWhich, locRank)
+
+locWhich <- locWhich[order(locWhich$nLoci, locWhich$consensusESU), ]
+ordr <- data.frame(Extract=unique(locWhich$Extract), Order=1:length(unique(locWhich$Extract)))
+locWhich <- merge(locWhich, ordr)
 
 hasMt <- locWhich[locWhich$Locus %in% c("16S", "COI", "ATP6"), ]
 
-hasMtNuc <- locWhich[locWhich$Extract %in% hasmt$Extract &
+hasMtNuc <- locWhich[locWhich$Extract %in% hasMt$Extract &
                      locWhich$Locus %in% c("c0036", "c0775", "ITS", "LSU", "H3a"), ]
 
 
 ### ---- loci-coverage-plot ----
-ggplot(data=locWhich) + geom_segment(aes(x=begin, xend=end,
-                            y=Rank, yend=Rank, colour=consensusESU),
-                        lineend="round",
-                        size=I(1.5)) +
+ggplot(data=locWhich) +
+    geom_segment(aes(x=begin, xend=end, y=Order, yend=Order, colour=consensusESU),
+                 lineend="round", size=I(1.5)) +
     scale_x_continuous(breaks=1:length(unique(locWhich$Locus))+0.5, labels=locPos$Locus) +
     scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
     scale_colour_manual(values=impPal) +
@@ -221,6 +237,10 @@ nAmbPositions <- nAmbc0036 + nAmbc0775 + nAmbH3a + nAmbITS + nAmbLSU
 nAmbTotal <- length(c(unlist(ambc0036), unlist(ambc0775), unlist(ambH3a), unlist(ambITS), unlist(ambLSU)))
 totalNucl <- sum(fullAlg %in% c("a", "c", "t", "g")) 
 
+### ---- star-beast-stats ----
+sBeastTax <- xmlBeastGetTaxa(file="~/Documents/Impatiens/impatiens_analyses/000.allESU1/20140721.impatiens_allESU1_coiRate01_run1/20140721.impatiens_allESU1_coiRate01.xml")
+sBeastESU <- merge(data.frame(SingleExtract=sBeastTax), impDB)
+sBeastESU <- table(sBeastESU$consensusESU)
 
 ### full impatiens Tree
 ### ---- impatiens-tree ----
@@ -348,7 +368,7 @@ sbSummAll$BFSS <- 2 * sbSummAll$stdSS
 sbSummAll$BFPS <- 2 * sbSummAll$stdPS
 sbSummAll$dataIncluded <- "All data"
 sbSummAll$plotGroupings <- sbSummAll$groupings
-levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1"] <- "M7"
+levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1"] <- "M0"
 levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1split"] <- "oversplit"
 levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noHawaii"] <- "M5"
 levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noRedSea"] <- "M6"
@@ -385,7 +405,7 @@ BFRedSeaNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noRedSea")$stdSS
 
 
 ggplot(sbSummPlot, aes(x=plotGroupings, y=value, group=variable, colour=variable)) +
-    scale_x_discrete(limits=c("M7", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
+    scale_x_discrete(limits=c("M0", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
     scale_colour_manual(values=sbCol, breaks=c("BFSS", "BFPS"),
                         labels=c("Stepping Stone Sampling", "Path Sampling")) +
     geom_point(position=position_dodge(width=.3)) +
@@ -436,12 +456,6 @@ add.scale.bar()
 
 ### GMYC analyses
 ### ---- gmyc-target-tree    ----
-library(XML)
-xmlBeastGetTaxa <- function(file) {
-    doc <- xmlTreeParse(file, getDTD=FALSE)
-    r <- xmlRoot(doc)
-    unname(sapply(xmlChildren(r[["taxa"]]), function(x) xmlGetAttr(x, "id")))
-}
 targetTreeFull <- read.nexus(file="~/Documents/Impatiens/20140519.allImpatiens/allimpatiens_strict.tree.nex")
 labelsCoi <- xmlBeastGetTaxa(file="~/Documents/Impatiens/20140422.allSeq_relaxed_yule/20140422.allSeq_relaxed_yule.xml")
 targetTreeLblAll <- targetTreeFull$tip.label
