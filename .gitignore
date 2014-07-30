@@ -2,6 +2,9 @@
 impatiens_phylogeography.tex
 impatiens_phylogeography.pdf
 
+## --- tmp/ folder ----
+tmp/
+
 ## --- XCF files ---
 *.xcf
 
