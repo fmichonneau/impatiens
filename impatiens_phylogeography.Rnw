@@ -115,7 +115,7 @@ complexes. In most cases, these ``pseudo-cryptic'' species differ
 morphologically but in traits not traditionally considered, or in traits not
 available to taxonomists because of the preservation methods or the lack of
 information about the natural history of the species \cite{Knowlton1993}. For
-instance, differences in coloration \cite{Brown2007,Malay2010}, depth
+instance, differences in coloration \cite{Brown2007,Malay2010}, habitat
 \cite{Prada2013}, or host preference \cite{Hebert2004}, were not considered as
 indicative of species limits before cryptic lineages were uncovered by molecular
 data. In these cases, the single-locus approach provided a way to infer species
@@ -193,9 +193,9 @@ concept of \textit{Thymiosycia} was proposed by Rowe \cite{Rowe1969} to include
 \textit{Holothuria impatiens} is a common, to locally abundant species found
 under rocks (in particular in lagoons and back-reef habitats), and is largely
 restricted to shallow water (< 10~m), although it has been recorded down to
-158~m (\cite{Samyn2014-Miriky}).  Because of its ubiquitous distribution, it is
+158~m (Y. Samyn, pers. comm.).  Because of its ubiquitous distribution, it is
 one of the more studied species in the family with studies on its reproduction
-\cite{Harriott1985}, Cuvierian tubules \cite{Flammang2002,Becker+Flammang2010};
+\cite{Harriott1985}; Cuvierian tubules \cite{Flammang2002,Becker+Flammang2010};
 toxicity \cite{Bakus1974}; feeding preferences \cite{Roberts1982}; parasites
 \cite{Martens1994}; the chemical composition, statistical analysis of the shape,
 and ontogenic changes in ossicles \cite{Hampton1958,Hampton1959,Cutress1996}. It
@@ -224,13 +224,11 @@ mitochondrial locus COI to delineate putative species
 patterns, ecology and geographic information) to assess the validity of these
 putative species. When no other line of evidence could separate the putative
 species identified with GMYC, we used model comparison in *BEAST
-\cite{Heled2010,Baele2012} to validate species limits. We used this approach as
-the complex includes both deeply divergent lineages that can be readily
-distinguished with morphological characters, and recent species radiations that
-appear to be morphologically indistinguishable. Our study shows that these
-methods can be added to the lines of evidence typically used in integrative
-taxonomy, and provide a powerful tool for evaluating species limits in rapidly
-evolving groups with limited morphological and genetic differentiation.
+\cite{Heled2010,Baele2012} to validate species limits. Our study shows that
+these methods can be added to the lines of evidence typically used in
+integrative taxonomy, and provide a powerful tool for evaluating species limits
+in rapidly evolving groups with limited morphological and genetic
+differentiation.
 
 %% need something here about how many species we find, how they are related to
 %% each others, and how in this paper we test how methods perform to our
@@ -250,7 +248,7 @@ extractions.
 
 Specimens were deposited in the Invertebrate Zoology collections of the Florida
 Museum of Natural History, University of Florida (UF), Gainesville, FL, USA,
-while tissue samples are stored in the Genetic Resources Repository of the
+while tissue samples are stored in the Genetic Resources Repository of this
 museum. A few additional tissue samples were taken from vouchers housed at other
 institutions or were obtained through collaborators without vouchers being
 retained (Table~\ref{tab:specimen-table} for details).
@@ -275,8 +273,8 @@ extractions were performed on tissue sampled in the field.
 
 In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
 nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775
-\ref{tab:pcrConditions}. ATP6 primers were developed in this study based on
-sequences available for this gene in GenBank. c0036 and c0775 are anonymous
+(Table~\ref{tab:pcrConditions}). ATP6 primers were developed in this study based
+on sequences available for this locus in GenBank. c0036 and c0775 are anonymous
 markers developed from a 454 run on genomic DNA from \textit{Holothuria edulis},
 and additional details will be provided in a future
 study. %(\cite{MichonneauInPrep}).
@@ -290,8 +288,8 @@ gene encoding for the protein SFI1 (locus XP\_792620), with an e-value of
 
 Primers and PCR conditions used are provided in
 Table~\ref{tab:pcrConditions}. Because of the length of ITS1-5.8S-ITS2, we used
-the additional sequencing primer fm-5.8S-f. The primers fm-ITS-f is the reverse
-complement sequence of the primer 18S-1708R (WN-1708R in \cite{Lacey2005}) and
+the additional sequencing primer fm-5.8S-f. The primer fm-ITS-f is the reverse
+complement sequence of the primer 18S-1708R (WN-1708R in \cite{Lacey2005}), and
 fm-ITS-r is the reverse complement of LSUFW1 (LSU D1,D2 fw1: 56-74 in
 \cite{Sonnenberg2007}).
 
@@ -319,7 +317,7 @@ all the software used in this study.
   study.]{Primers and PCR conditions for the markers used in this study. Temp:
     annealing temperature, Cycles: number of PCR cycles used to amplify the
     locus, Ref.: reference used for the primers.}
-\begin{tabular}{ l l p{6cm} l l l}
+\begin{tabular}{ l l p{6cm} l l p{2cm}}
   \hline
   Marker & Primer & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\
   \hline
@@ -551,7 +549,7 @@ individuals: \Sexpr{sBeastESU["ESU1"]} of \texttt{ESU1},
 \Sexpr{sBeastESU["Hawaii"]} of \texttt{Hawaii}, \Sexpr{sBeastESU["Wpac"]} of
 \texttt{Wpac}, \Sexpr{sBeastESU["RedSea"]} of \texttt{RedSea},
 \Sexpr{sBeastESU["gracilis"]} of \texttt{gracilis}, \Sexpr{sBeastESU["ESU3"]} of
-x\texttt{ESU3}). We used data from the following markers: 16S, COI, ATP6, c0036,
+\texttt{ESU3}). We used data from the following markers: 16S, COI, ATP6, c0036,
 c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of the
 entire complex, using Gblocks to remove ambiguous parts of the alignment in ITS,
 PartitionFinder to find the most appropriate partition scheme and models of
@@ -637,8 +635,8 @@ scheme selected by PartitionFinder led to over-parametrization (Table
 We used three independent strict molecular clocks (one for each of mitochondrial
 markers, protein-coding nuclear markers, nuclear ribosomal markers)
 \cite{Hasegawa1985}. The tree prior was set to a Yule process, and a random
-starting tree. The Markov chains were run for $185.10^6$ generations (and
-sampled every $5.10^3$ generations). The analysis was repeated twice from
+starting tree. The Markov chains were run for 185.10$^6$ generations (and
+sampled every 5.10$^3$ generations). The analysis was repeated twice from
 independent starting points.
 
 We used Tracer 1.6 to check that the MCMC chains had reached stationarity, that
@@ -658,7 +656,7 @@ tree method \cite{Heled2013}.
 \begin{figure}
   \centering
     \includegraphics[width=6.5in]{manual-figures/species_limits}
-    \caption[Correspondence between the different criteria used to delineate the
+    \caption[Correspondence between the different methods used to delineate the
     species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence
       between the different criteria used to delineate the species of the
       ``\textit{Holothuria impatiens}'' complex. Medit: Mediterranean, WA:
@@ -699,10 +697,6 @@ sequenced for at least 1 nuclear locus and
 \Sexpr{round(sum(table(hasMtNuc[, "Extract"]) >=
   2)/length(unique(locWhich[, "Extract"])) *100, 0) }\% for 2 or more
 (Fig.~\ref{fig:loci-coverage-plot}).
-
-<<loci-coverage-plot, cache=TRUE, dependson='loci-coverage-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
-
-@ 
 
 % Here comment on results based on RAxML runs on individual loci.
 
@@ -761,7 +755,7 @@ different priors used. For the analyses based on all sequences, the difference
 between the 14 species estimated with the Yule prior and the 16 species
 estimated with the other priors was caused by (1) the lumping of
 \texttt{tigerRedSea} and \texttt{tiger}; (2) the later time to coalescence for
-divergent haplotypes related to ESU3 with the Yule prior.
+divergent haplotypes related to \texttt{ESU3} with the Yule prior.
 
 For the analyses based on unique haplotypes and a relaxed clock, with the Yule
 prior, the coalescence of the haplotypes happened later in the tree leading to
@@ -806,8 +800,8 @@ tentacles (Figure~\ref{fig:photo-ESU2-andFriends}). \texttt{tiger} and
 \texttt{tigerRedSea} are also very distinctive with sparse, dark, tubercles that
 barely raise from the body wall, giving them a smoother appearance than the
 other species. They are also much larger than the other species and specimens
-reach regularly more than 30~cm. \texttt{gracilis} has very large conical,
-typically red tubercles and a very distinctive ``gritty'' texture.
+reach regularly more than 30~cm. \texttt{gracilis} has very large, conical,
+typically red tubercles, and a very distinctive ``gritty'' texture.
 \texttt{ESU3} has elongated, pyramidal tubercles with white papillae. However,
 \texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} have broadly overlapping
 distributions and are morphologically indistinguishable
@@ -828,11 +822,11 @@ distributions and are morphologically indistinguishable
   \centering
     \includegraphics[width=6.5in]{manual-figures/figure-group2}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
-      complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287; B. ESU2, Guam, UF6729;
-      C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa, Japan, UF11012;
-      E. gracilis, Lizard Island, Australia, UF8288; F. tigerRedSea, Djibouti,
-      UF11956; G. tiger, Kosrae, Federated States of Micronesia, UF6929; H. ESU3,
-      Nosy B\'{e}, Madagascar, UF7469.}
+      complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287 (juvenile); B. ESU2,
+      Guam, UF6729; C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa,
+      Japan, UF11012; E. gracilis, Lizard Island, Australia, UF8288;
+      F. tigerRedSea, Djibouti, UF11956; G. tiger, Kosrae, Federated States of
+      Micronesia, UF6929; H. ESU3, Nosy B\'{e}, Madagascar, UF7469.}
     \label{fig:photo-ESU2-andFriends}  
 \end{figure}
 
@@ -868,13 +862,14 @@ with \texttt{ESU1} lent ``very strong'' support in favor of the null hypothesis
 (BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The
 model with an additional ``ghost'' species also indicated a poorer fit (BF =
 \Sexpr{BFsplit}), indicating that this approach did not favor a model that
-included more species.
+included more species. The model with a random assignment of the species had the
+worst fit (BF = \Sexpr{BFrandom}).
 
 % The random assignment of individuals to species led to a much lower BF (BF =
 % \Sexpr{BFrandom}), indicating a strong
 
 Similar results were obtained when COI was omitted. The differences in
-likelihood were however smaller leading to BF > $-10$ but < $-6$ for models that
+likelihood were however smaller leading to $-10$ < BF < $-6$ for models that
 considered \texttt{Hawaii} (BF = \Sexpr{BFHawaiiNoCOI}) and \texttt{Wpac} (BF =
 \Sexpr{BFWpacNoCOI}) as panmictic with \texttt{ESU1} indicating ``strong''
 support in favor of the null hypothesis. The BF was still below $-10$ for the
@@ -903,11 +898,11 @@ probabilities (> 0.99) and bootstrap values (10 out of 13 ESUs > 0.9, others >
 0.8) for the Bayesian and maximum-likelihood tree respectively.
 
 Two main clades can be distinguished that diverged approximately 10 Ma
-(Fig.~\ref{fig:impatiens-tree}). Clade I (\texttt{Medit}, \texttt{WA},
+(Fig.~\ref{fig:impatiens-tree}). The first clade (\texttt{Medit}, \texttt{WA},
 \texttt{EP}, \texttt{Gala}, \texttt{ESU2}, \texttt{tiger}, \texttt{tigerRedSea})
 is circumtropical and is found in the Mediterranean Sea, the Caribbean basin,
-the Eastern-Pacific and across the Indo-West Pacific, including the Red
-Sea. Clade II (\texttt{ESU1}, \texttt{Hawaii}, \texttt{Wpac}, \texttt{ESU3},
+the Eastern-Pacific and across the Indo-West Pacific, including the Red Sea. The
+other clade (\texttt{ESU1}, \texttt{Hawaii}, \texttt{Wpac}, \texttt{ESU3},
 \texttt{gracilis}) is restricted to the Indo-West Pacific (including the Red
 Sea).
 
@@ -933,13 +928,13 @@ Fig.~\ref{fig:impatiens-map-group1}).
 % speciation event in each clade about 9.5 Ma).
 
 
-<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean">>=
+<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA, Gala, EP)">>=
 @ 
 
-<<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 1.">>=
+<<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.">>=
 @ 
 
-<<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for the ESUs in group 2.">>=
+<<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU2, tiger, and tigerRedSea.">>=
 @ 
 
 
@@ -965,12 +960,11 @@ color pattern of \texttt{ESU1}, with which it co-occurs and no line of evidence
 seem to indicate that it could be a different species. The same situation occurs
 with one of the individuals related to \texttt{ESU3} (N0027) that cannot be
 differentiated from other individuals from \texttt{ESU3}. The other individual
-related to \texttt{ESU3} (RUMF-ZE-0074) is small individual, and was dredged
-from 32~m in a soft bottom bay of Kume Island, Ryukyus, Japan, a different
-habitat from the typically reef-asssoicated \texttt{ESU3}. The distinct ecology
-and deeply divergent sequences characterizing this individual suggest it could
-represent a different species but additional material is needed to assess this
-hypothesis.
+related to \texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a
+soft bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
+typically reef-asssoicated \texttt{ESU3}. The distinct ecology and deeply
+divergent sequences characterizing this individual suggest it could represent a
+different species but additional material is needed to assess this hypothesis.
 
 The combination of geography and differences in color patterns, in retrospect,
 allow the differentiation of 10 species in the complex
@@ -1004,15 +998,16 @@ method to the factors affecting the shape of the tree used have not been
 investigated thoroughly. Tree shape can be affected by biological factors or by
 the type of analysis used to build the tree. Simulated data have been used to
 test the influence of diversification rates, effective population sizes, and
-migration rates on GMYC accuracy and precision \cite{Papadopoulou2008,
-  Esselstyn2012}. Some of the effects of the methodological choices have been
-evaluated by the authors of the method \cite{Pons2006, Monaghan2009,
-  Fujisawa2013} and by others \cite{Talavera2013}, but the conclusions might be
-difficult to generalize as they depend in part on the nature of the
-dataset. Other species delineation methods using sequence data are also
-available (e.g., RESL \cite{Ratnasingham2013}, ABGD \cite{Puillandre2012a}, bPTP
-\cite{Zhang2013}, bGMYC \cite{Reid2012}), and it would be interesting to
-investigate how they perform compared to the results obtained here.
+migration rates, on the accuracy and precision of GMYC estimates
+\cite{Papadopoulou2008, Esselstyn2012}. Some of the effects of the
+methodological choices have been evaluated by the authors of the method
+\cite{Pons2006, Monaghan2009, Fujisawa2013} and by others \cite{Talavera2013},
+but the conclusions might be difficult to generalize as they depend in part on
+the nature of the dataset. Other species delineation methods using sequence data
+are also available (e.g., RESL \cite{Ratnasingham2013}, ABGD
+\cite{Puillandre2012a}, bPTP \cite{Zhang2013}, bGMYC \cite{Reid2012}), and it
+would be interesting to investigate how they perform compared to the results
+obtained here.
 
 The multiple-threshold method (mGMYC) led to higher estimates of putative
 species, and was less accurate than the single-threshold method (sGMYC). We did
@@ -1031,15 +1026,14 @@ consistently 16, except for the relaxed clock with the Yule prior in which case
 it was 14. The method is therefore relatively robust to prior specification on
 our dataset. The 16 species delineation is the most realistic as it recovers
 morphologically differentiated species that were not considered distinct in the
-14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). Additionally, 
-sGMYC recovered
-more putative species than we can confidently recognize, since they were
-represented by single individuals. This is a common pitfall of single-locus
-species delineation methods, where the broad geographical sampling of many
-individuals will reveal unique, divergent haplotypes that may not represent
-different species. However, in our analysis, it is worth noting that all our
-recognized species were reciprocally monophyletic making the GMYC approach
-suitable.
+14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). Additionally,
+sGMYC recovered more putative species than we can confidently recognize, since
+they were represented by single individuals. This is a common pitfall of
+single-locus species delineation methods, where the broad geographical sampling
+of many individuals will reveal unique, divergent haplotypes that may not
+represent different species. However, in our analysis, it is worth noting that
+all our recognized species were apparently reciprocally monophyletic making the
+GMYC approach suitable.
 
 The combination of priors used in our study led to overestimating the number of
 species when it was tested by the authors of the method \cite{Monaghan2009}. On
@@ -1130,7 +1124,7 @@ species can be distinguished based on their color patterns, natural selection
 may play a role in its evolution. Color patterns have been documented to be
 diagnostic of species limits in crustaceans \cite{Malay2010}, nemerteans
 \cite{Knowlton1993}, fish \cite{McMillan1999}. In some of these cases, the
-association between color patterns and species limits is maintain by assortative
+association between color patterns and species limits is maintained by assortative
 mating (fish \cite{McMillan1999}, crabs \cite{Detto2007, Baldwin2012}). Given
 that most sea cucumbers inhabit cryptic habitats and do not possess
 image-forming eyes, the mechanisms maintaining a tight association between
@@ -1172,16 +1166,16 @@ The close phylogenetic relationship of \texttt{WA} with \texttt{EP} and
 \texttt{Gala} indicates that the closure of the isthmus of Panama led to the
 isolation of the species in the two basins.
 
-The estimated ages of the \texttt{Medit}, and the two Red Sea species are older
+The estimated ages of \texttt{Medit}, and the two Red Sea species are older
 (8.4-10.5 My, 1.1-1.7 My and 3.2-4.1 My respectively) than the last salinity
 crises characterizing these seas (\textit{c.} 5 My for the Mediterranean
 \cite{Hernandez-Molina2014} and potentially as early as \textit{c.} 19,000 years
 ago for the Red Sea). This, in combination with the occurrence of these species
 outside their basins (\texttt{Medit} is known from Portugal and the Canaries;
 and both Red Sea species from Djibouti) indicate that these species invaded
-these seas recently and found refugia at the periphery of these basins
-during the salinity crises \cite{DiBattista2013}. It is also interesting to note
-that the age of divergence for the two species from the Red Sea do not coincide
+these seas recently and found refugia at the periphery of these basins during
+the salinity crises \cite{DiBattista2013}. It is also interesting to note that
+the age of divergence for the two species from the Red Sea do not coincide
 suggesting that different events were responsible for the geographic isolation
 of these populations.
 
@@ -1472,6 +1466,12 @@ confirmed with genetic data that capture a larger fraction of the genome.
 \pagebreak
 
 \section{Supplementary materials}
+
+
+<<loci-coverage-plot, cache=TRUE, dependson='loci-coverage-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
+
+@ 
+
 
 \begin{table}[h]
   \centering

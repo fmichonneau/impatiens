@@ -280,7 +280,7 @@ impAllNds <- 1:length(impNodLbl)
 impKeepNds <- impAllNds[!is.na(impNodLblCol)]
 
 par(mai=c(1,0,0,0))
-plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0,12))
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0, 12.5))
 nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
                frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
                bg=impNodLblCol[!is.na(impNodLblCol)],
