@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="646.0495"
-   height="581.7644"
+   width="645.06726"
+   height="608.29852"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2239973"
-     inkscape:cx="394.11197"
-     inkscape:cy="264.59162"
+     inkscape:zoom="2.4479946"
+     inkscape:cx="332.43592"
+     inkscape:cy="431.3628"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,7 +55,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-45.446766,-31.937039)">
+     transform="translate(-45.937874,-4.9117787)">
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
@@ -71,13 +71,13 @@
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
        x="120"
-       y="49.505039"
+       y="51.999779"
        id="text3452"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3454"
          x="120"
-         y="49.505039">GMYC (16 spp)</tspan></text>
+         y="51.999779">GMYC (16 spp)</tspan></text>
     <rect
        style="color:#000000;fill:#89b151;fill-opacity:1;stroke:none;stroke-width:0.9822166;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2985"
@@ -303,13 +303,17 @@
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
        x="450.47586"
-       y="51.999775"
+       y="21.999779"
        id="text3460"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3462"
          x="450.47586"
-         y="51.999775">Morphology</tspan></text>
+         y="21.999779">Coloration &amp;</tspan><tspan
+         sodipodi:role="line"
+         x="450.47586"
+         y="51.999779"
+         id="tspan3160"> Geography</tspan></text>
     <rect
        style="color:#000000;fill:#89b151;fill-opacity:1;stroke:none;stroke-width:0.9822166;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2985-12"
@@ -370,13 +374,13 @@
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro"
        x="617.14288"
-       y="49.979469"
+       y="51.999779"
        id="text3464"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3466"
          x="617.14288"
-         y="49.979469">consensus</tspan></text>
+         y="51.999779">*BEAST</tspan></text>
     <rect
        style="color:#000000;fill:#89b151;fill-opacity:1;stroke:none;stroke-width:0.9822166;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2985-4"
@@ -747,7 +751,7 @@
      id="layer2"
      inkscape:label="text"
      style="display:inline"
-     transform="translate(-45.446766,-31.937039)"
+     transform="translate(-45.937874,-4.9117787)"
      sodipodi:insensitive="true">
     <text
        xml:space="preserve"
