@@ -7,7 +7,8 @@ all: impatiens_phylogeography.tex impatiens_phylogeography_nourl.bib clean-parti
 impatiens_phylogeography.tex: impatiens_phylogeography.Rnw code/impatiens_analysis.R code/impatiens_map.R
 	Rscript -e "library(knitr); knit('impatiens_phylogeography.Rnw')"
 
-impatiens_phylogeography_nourl.bib: impatiens_phylogeography.tex impatiens_phylogeography.bib ~/Library/impatiens_phylogeography.bib
+
+impatiens_phylogeography_nourl.bib: impatiens_phylogeography.tex ~/Library/impatiens_phylogeography.bib
 	cp ~/Library/impatiens_phylogeography.bib .
 	Rscript parseURLs.R
 

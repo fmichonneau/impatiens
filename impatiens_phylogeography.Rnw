@@ -1,4 +1,4 @@
-% -*- 
+% -*-
 \documentclass[12pt]{article}
 
 \usepackage{authblk}
@@ -40,7 +40,7 @@
   FL 32611-7800, USA}
 
 \renewcommand\Authands{ and }
-
+\date{}
 
 \begin{document}
 
@@ -53,13 +53,13 @@ options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
             "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
 read_chunk('code/impatiens_analysis.R')
 read_chunk('code/impatiens_map.R')
-@ 
+@
 
 <<init-phylo, echo=FALSE, cache=TRUE, include=FALSE>>=
-@ 
+@
 
 <<init-map, echo=FALSE, cache=TRUE, include=FALSE>>=
-@ 
+@
 
 \maketitle
 
@@ -263,7 +263,7 @@ Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 \subsection{DNA extraction and amplification}
 
 <<number-ambiguities, echo=FALSE, cache=TRUE>>=
-@ 
+@
 
 DNA was extracted using either Invitrogen\texttrademark\ DNAZol\textregistered\
 or Omega Bio-Tek$^{\text{TM}}$ E.Z.N.A\textregistered\ Mollusc DNA kit following
@@ -321,14 +321,14 @@ all the software used in this study.
   \hline
   Marker & Primer & Primer Forward ($5'-3'$) \& Primer Reverse ($5'-3'$)  & Temp &  Cycles & Ref. \\
   \hline
-  % COI --- 
+  % COI ---
   COI &  COIceF  & ACT GCC CAC GCC CTA GTA ATG ATA TTT TTT ATG GTN ATG CC & 42 & 40 & \cite{Hoareau2010} \\
        & COIceR  & TCG TGT GTC TAC GTC CAT TCC TAC TGT RAA CAT RTG & & & \\
   % 16S ---
   16S & 16SAR & CGC CTG TTT ATC AAA AAC AT & 52 & 35 & \cite{Arndt1996} \\
       & 16SBR & GCC GGT CTG AAC TCA GAT CAC GT & & & \\
   % 16Sc ---
-  %% TODO 
+  %% TODO
   % ATP6 ---
   ATP6 & ATP6f   & GGA CAA TTT TCC CCA GAC CT & 42 & 40 & This study \\
        & ATP6r   & GGT GAA GAG GGT GTT GAT GG & & & \\
@@ -541,7 +541,7 @@ the species tested where attributed to \texttt{ESU1}. The null hypothesis was
 that all putative species were reproductively isolated.
 
 <<star-beast-stats, cache=TRUE, echo=FALSE>>=
-@ 
+@
 
 In these analyses, we selected individuals for which we had at least one
 mitochondrial marker and one nuclear marker (\Sexpr{length(sBeastTax)}
@@ -565,7 +565,7 @@ independent runs for 50.10$^{6}$ generations for each group.
   \begin{tabular}{ l l l }
     \hline
     Model   & Number of species & ESUs attributed to ESU1 \\
-    \hline 
+    \hline
     M0      &     5             &  --                     \\
     M1      &     2             &  \texttt{Wpac}, \texttt{Hawaii}, \texttt{RedSea}   \\
     M2      &     3             &  \texttt{Wpac}, \texttt{RedSea}           \\
@@ -681,7 +681,7 @@ parsimony-informative sites, \Sexpr{round(sum(lociChar["S_i", c("16S", "COI",
 
 <<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
 
-@ 
+@
 
 <<loci-coverage-data, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE>>=
 
@@ -704,7 +704,7 @@ sequenced for at least 1 nuclear locus and
 \subsection{Species limits with GMYC}
 
 <<gmyc-coi-results, cache=TRUE, eval=TRUE, echo=FALSE>>=
-@ 
+@
 
 <<gmyc-coi-vars, eval=TRUE, echo=FALSE, cache=TRUE, dependson='gmyc-coi-results'>>=
 minSingle <- min(subset(gmycSumm, analysisType == "single")$mean)
@@ -721,7 +721,7 @@ allSeqStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
 noDupStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
                               gmycSumm$clock == "strict" &
                               gmycSumm$sequences == "noDup", "mean"]
-@ 
+@
 
 The maximum-likelihood estimates for the number of putative species varied
 widely and ranged from \Sexpr{minSingle} to \Sexpr{maxSingle} for the
@@ -729,7 +729,7 @@ single-threshold method (sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti}
 for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 <<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
-@ 
+@
 
 Species estimates from sGMYC were more conservative and with narrower confidence
 intervals (CI) than the mGMYC approach. The maximum-likelihood estimates for the
@@ -827,7 +827,7 @@ distributions and are morphologically indistinguishable
       Japan, UF11012; E. gracilis, Lizard Island, Australia, UF8288;
       F. tigerRedSea, Djibouti, UF11956; G. tiger, Kosrae, Federated States of
       Micronesia, UF6929; H. ESU3, Nosy B\'{e}, Madagascar, UF7469.}
-    \label{fig:photo-ESU2-andFriends}  
+    \label{fig:photo-ESU2-andFriends}
 \end{figure}
 
 
@@ -843,7 +843,7 @@ distributions and are morphologically indistinguishable
 \subsection{Species limits with *BEAST}
 
 <<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M0: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" in favor of the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
-@ 
+@
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
 estimates of the marginal likelihoods (Fig~\ref{fig:starbeast-summary}). The
@@ -929,13 +929,13 @@ Fig.~\ref{fig:impatiens-map-group1}).
 
 
 <<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA, Gala, EP)">>=
-@ 
+@
 
 <<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.">>=
-@ 
+@
 
 <<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU2, tiger, and tigerRedSea.">>=
-@ 
+@
 
 
 
@@ -1328,7 +1328,7 @@ the confirmation of the species delineated in this study.
 This study showed that the widespread, common and well known sea cucumber,
 \textit{Holothuria impatiens} is actually a complex of at least 13
 species. This estimate is conservative as additional lineages that could not be
-fully evaluated were also unraveled. 
+fully evaluated were also unraveled.
 
 The multispecies coalescent framework allows the investigation of species limits
 in situations where evidence might have been inconclusive in the past. It is now
@@ -1345,14 +1345,14 @@ confirmed with genetic data that capture a larger fraction of the genome.
 % of this complex are broadly overlapping.
 
 % \textit{Holothuria impatiens} is not an isolated case. Other marine organisms
-% also hide substantial cryptic diversity. 
+% also hide substantial cryptic diversity.
 
 
 % Many cryptic species = change in patterns of biodiversity
 % - find examples of other species that show similar patterns indicative of small
 %   scale endemism
 % - potential to redefine hotspots
-% - 
+% -
 
 % possibly easier to detect because faster to achieve reciprocal monophyly.
 
@@ -1429,7 +1429,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 %% lowers the fitness of hybrids." How does density dependence in fecundation
 %% success interplays with/changes this statement?
 %% One can imagine that if particular genotype associated with high fitness in
-%% particular habitat, abundance is higher, 
+%% particular habitat, abundance is higher,
 
 %% Review papers on GRP to see if they are considered a Fisherian sexual
 %% selection trait
@@ -1470,7 +1470,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 <<loci-coverage-plot, cache=TRUE, dependson='loci-coverage-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
 
-@ 
+@
 
 
 \begin{table}[h]
@@ -1483,12 +1483,12 @@ confirmed with genetic data that capture a larger fraction of the genome.
     Partition & Model   & Loci              \\
     \hline
     1      & GTR+I+G    & 16S, ATP6$_2$     \\
-    2      & HKY+I+G    & ATP6$_1$, COI$_1$ \\ 
-    3      & HKY+I+G    & ATP6$_3$, c0775   \\ 
-    4      & GTR+I+G    & c0036             \\ 
+    2      & HKY+I+G    & ATP6$_1$, COI$_1$ \\
+    3      & HKY+I+G    & ATP6$_3$, c0775   \\
+    4      & GTR+I+G    & c0036             \\
     5      & GTR+I+G    & COI$_2$, H3a$_2$  \\
-    6      & HKY+I      & COI$_3$           \\ 
-    7      & HKY        & H3a$_1$, LSU      \\ 
+    6      & HKY+I      & COI$_3$           \\
+    7      & HKY        & H3a$_1$, LSU      \\
     8      & JC         & H3a$_3$           \\
     9      & HKY+G      & ITS               \\
     \hline
@@ -1499,13 +1499,13 @@ confirmed with genetic data that capture a larger fraction of the genome.
 %% raxml tree
 <<raxml-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values $\\geq$ 90, red circles bootstrap values $\\geq$ 80. Colored vertical bars represent consensus ESUs.'>>=
 
-@ 
+@
 
 %% locus trees
 
 <<per-locus-trees, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=8, fig.scap='Genealogies per locus', fig.cap='Maximum-likelihood genealogies (unrooted) for each locus reconstructed using RAxML with a GTR+G model of molecular evolution for each partitions. Black circles on the nodes indicate bootstrap values $\\geq$ 80 based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA\" is the concatenation of ATP6, COI, 16S; ``rDNA\" is the concatenation of ITS and LSU.' >>=
 
-@ 
+@
 
 %% gmyc tree
 
@@ -1513,10 +1513,10 @@ confirmed with genetic data that capture a larger fraction of the genome.
 @
 
 <<gmyc-tree-plot-allSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
-@ 
+@
 
 <<gmyc-tree-plot-uniqSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
-@ 
+@
 
 \clearpage
 
@@ -1524,20 +1524,20 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 <<specimen-table, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='asis'>>=
 
-@ 
+@
 
 \end{document}
 
 %% Notes about the biology of the species
 %% - EP: discharge Cuv tubules \cite{Bakus1974}, ``relatively very active''
-%% \cite{Bakus1974}, 
+%% \cite{Bakus1974},
 %% - Egypt: tables appear earlier than buttons in juveniles, look for pl.8 fig4-5,
 %% and pl.9 2 in Savigny \cite{Mortensen1902}10.1111/j.1096-3642.1926.tb00326.x
 
 %% READ \cite{Cutress1996}, seems like there is a lot of information about
 %% ontogenetic changes in the shape of the ossicles.
 %% ``Buttons in OM dermis of the 195 mm specimen from Ceylon, however, are
-%% distinctly smaller.'' 
+%% distinctly smaller.''
 
 
 % ESU2: Easily recognizable because of (1) yellow tentacles and tube feet, (2)
@@ -1681,5 +1681,3 @@ confirmed with genetic data that capture a larger fraction of the genome.
 %% Diversification of the complex is really ~20 MY really fits with idea that
 %% most of the reef-associated fauna diversified with corals see citations
 %% within Williams et al 2011.
-
-
