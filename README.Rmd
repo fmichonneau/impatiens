@@ -98,6 +98,66 @@ three sections (and an additional one for early analyses that I didn't keep).
   affects the BF for model comparisons re-ran noWpac, noRedSea and noHawaii (2
   replicates each) on CIPRES
 
+## 20141104 -- starBEAST (test of STACEY)
+* STACEY works with BEAST2 so downloaded v2.1.3
+* installed STACEY in ~/.beast/2.1/STACEY
+* followed instructions from STACEY manual
+  - file > templates > STACEY
+  - import alignment (used /home/francois/Documents/Impatiens/000.impatiens_datafiles/starBeast_esu1_allDNA/20130930.impatiens_starbeast.nex)
+  - trees:
+    - mtDNA_tree for 16S, ATP6, COI
+    - rDNA_tree for ITS, LSU
+    - H3a_tree for H3a
+    - c0036
+    - c0775
+  - see below for model of molecular evolution used
+  - see below for clocks used
+* models used
+  | partition | loci                        | model    |
+  |-----------|-----------------------------|----------|
+  | p1        | 16S, ATP6\_2                | GTR+G    |
+  | p2        | ATP6\_1, COI\_2             | HKY+I    |
+  | p3        | ATP6_3, c0775, COI\_3       | HKY+I    |
+  | p4        | c0036                       | TN93+I+G |
+  | p5        | COI\_2, H3a\_1, H3a\_2, LSU | HKY+I    |
+  | p6        | H3a_3                       | TN93     |
+  | p7        | ITS                         | HKY+G    |
+* clocks used
+  - 16S, ATP6\_clock, c0036, c0775, COI\_clock, H3a\_clock, rDNA\_clock
+* Priors
+  - COI\_clock set as uniform prior on 0.0184-0.0186
+  - all other clocks using exponential pr
+
+## 20141117 -- starBEAST (test of STACEY)
+
+After a few complicated runs (mostly due to bug in beauti assigning correct parameters with clock encompassing several nucleotide partitions), tweaked priors on molecular evolution rates based on initial run.
+submitted with 20141117.stacey_allESUs prefix
+
+## 20141119 -- starBEAST (with STACEY)
+
+results from 20141117 show better mixing but incorrect phylogeny seems supported
+with gracilis sister to RedSea + Hawaii. However, stacey supports the prior
+grouping majoritarily.
+
+Changing a few things:
+- in site model: checked fix mean subst. rate, and all subst. rate are checked
+  for 'estimate'    
+- in clock rate, mtDNA_clock is unchecked for estimate, but fixed at 0.0185
+- add additional "oversplit" population 
+
+## 20141121 -- starBEAST (with STACEY)
+
+Something is wrong and the parameters for the clock/subst rates are not
+identifiable. Reading again a message from the mailing list makes think that the
+subst. rate isn't needed and can be fixed to one, while the clock rate should be
+estimated. I fixed all subst. rates to 1 (unchecked estimate); while I set the
+clocks to be estimated (except mtDNA_clock that is set to 0.0185).
+
+## 20141125 -- starBEAST (with STACEY)
+
+Good mixing and ESS for previous run. Stacey favors model with ghost population,
+running again but removed ghost population. Depending on result, will email
+author of Stacey for suggestions.
 
 - - - - - - -
 

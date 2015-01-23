@@ -70,8 +70,9 @@ if (FALSE) {
 sGmycRes <- lapply(gmycRes, function(x) x$simpleGmyc)
 gmycGrps <- lapply(sGmycRes, function(x) gmycGroups(x))
 names(gmycGrps) <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycGrps))
-gmycGrpsDt <- data.frame(gmycGrps[1:6])
 
+### test 1
+gmycGrpsDt <- data.frame(gmycGrps[1:6])
 assgmt <- apply(gmycGrpsDt, 1, function(x) sum(duplicated(x)) != ncol(gmycGrpsDt) - 1)
 
 apply(gmycGrpsDt, 1, function(x) x) #identical(x[1], x))
@@ -87,6 +88,42 @@ gmycGrpsDt$xxmax <- as.numeric(gmycGrpsDt$variable) + 0.5
 
 ggplot(gmycGrpsDt,
        aes(x=xxmin, xend=xxmax, y=yymin, yend=yymin, colour=factor(value), size=1)) +
-    geom_segment() + scale_colour_discrete()
+    geom_segment() + scale_colour_manual(values=impPal)
+
+### test 2
+
+### this returns a string such as ESU_x where ESU is the consensusESU
+### and x is the group number as identified by GMYC. If GMYC splits
+### ESUs, the prefix (ESU) will be the same but the suffix (x) will be
+### different; if GMYC lumps ESUs, the prefix will be different but
+### the suffixes will be the same. So we can use prefixes for colors
+### and suffixes for limits.
+
+tmpExtract <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
+
+nmGrps <- lapply(gmycGrps, function(x) {
+    nbGrp <- unique(x)
+    for (i in 1:length(nbGrp)) {
+        tmpGrp <- x[x == i]
+        tmpNm <- impDB$consensusESU[match(names(tmpGrp), tmpExtract)]
+        x[x == i] <- paste(tmpNm, tmpGrp, sep="_")
+    }
+    x
+})
+
+testGrp <- nmGrps[[1]]
+ext <- names(testGrp)
+pre <- sapply(testGrp, function(x) unlist(strsplit(x, "_"))[1])
+suf <- sapply(testGrp, function(x) unlist(strsplit(x, "_"))[2])
+
+testGrp <- data.frame(Extract = ext, ESU = pre, Grp = suf)
+testGrp$ESU <- factor(testGrp$ESU, levels=rev(c("Medit", "WA", "Gala", "EP", "tigerRedSea", "tiger",
+                                       "ESU2", "ESU3", "gracilis", "RedSea", "Hawaii", "WPac", "ESU1")))
+testGrp <- testGrp[order(testGrp$ESU), ]
+testGrp$yy <- 1:nrow(testGrp)
+testGrp$xxMin <- 1
+testGrp$xxMax <- 1.5
+
+ggplot(testGrp) + geom_segment(aes(x=xxMin, xend=xxMax, y=yy, yend=yy, colour=Grp), size=1)
 
 }
