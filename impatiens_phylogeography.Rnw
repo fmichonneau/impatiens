@@ -45,9 +45,10 @@
 \begin{document}
 
 <<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
+library(knitr)
 opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
                external=TRUE, fig.width=7, fig.height=4, fig.align="center")
-##knit_hooks$set(crop = hook_pdfcrop)
+
 options(tikzDefaultEngine = "xetex")
 options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
             "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
@@ -55,10 +56,7 @@ read_chunk('code/impatiens_analysis.R')
 read_chunk('code/impatiens_map.R')
 @
 
-<<init-phylo, echo=FALSE, cache=TRUE, include=FALSE>>=
-@
-
-<<init-map, echo=FALSE, cache=TRUE, include=FALSE>>=
+<<common-variables, echo=FALSE>>=
 @
 
 \maketitle
@@ -234,7 +232,6 @@ differentiation.
 %% each others, and how in this paper we test how methods perform to our
 %% "perception?" of what the species are.
 
-
 \section{Methods}
 
 \subsection{Sampling}
@@ -262,7 +259,7 @@ Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 
 \subsection{DNA extraction and amplification}
 
-<<number-ambiguities, echo=FALSE, cache=TRUE>>=
+<<ambiguities, echo=FALSE>>=
 @
 
 DNA was extracted using either Invitrogen\texttrademark\ DNAZol\textregistered\
@@ -305,12 +302,12 @@ Biotechnology Research at the University of Florida. Chromatrograms were edited
 using Geneious \cite{Geneious558}.
 
 Overall, \Sexpr{nAmbTotal} positions
-(\Sexpr{round(nAmbPositions/dim(fullAlg)[2], 4)*100}\% of the alignment length,
+(\Sexpr{round(nAmbPositions/dim(impAlg)[2], 4)*100}\% of the alignment length,
 and \Sexpr{round(nAmbTotal/totalNucl, 4)*100}\% of the total number of
-nucleotide positions in the alignment) contained heterozygous positions. We used
-the International Union of Pure and Applied Chemistry (IUPAC) nomenclature codes
-for these positions in the alignment, which are considered as missing data by
-all the software used in this study.
+nucleotides in the alignment) contained heterozygous positions. We used the
+International Union of Pure and Applied Chemistry (IUPAC) nomenclature codes for
+these positions in the alignment, which are considered as missing data by all
+the software used in this study.
 
 \begin{table}
   \caption[Primers and PCR conditions for the markers used in this
@@ -544,7 +541,7 @@ that all putative species were reproductively isolated.
 @
 
 In these analyses, we selected individuals for which we had at least one
-mitochondrial marker and one nuclear marker (\Sexpr{length(sBeastTax)}
+mitochondrial marker and one nuclear marker (\Sexpr{length(sBeastTaxa)}
 individuals: \Sexpr{sBeastESU["ESU1"]} of \texttt{ESU1},
 \Sexpr{sBeastESU["Hawaii"]} of \texttt{Hawaii}, \Sexpr{sBeastESU["Wpac"]} of
 \texttt{Wpac}, \Sexpr{sBeastESU["RedSea"]} of \texttt{RedSea},
@@ -668,15 +665,16 @@ tree method \cite{Heled2013}.
 \subsection{Sequence data}
 
 <<loci-characteristics-data, cache=TRUE, echo=FALSE, warning=FALSE>>=
+generate_loci_table(locChar)
 @
 
-The complete sequence data set was \Sexpr{sum(lociChar["bp_alg", ])}~bp (with
-\Sexpr{sum(lociChar["bp_alg", c("16S", "COI", "ATP6")])}~bp from mitochondrial
-genome, and \Sexpr{sum(lociChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
+The complete sequence data set was \Sexpr{sum(locChar["bp_alg", ])}~bp (with
+\Sexpr{sum(locChar["bp_alg", c("16S", "COI", "ATP6")])}~bp from mitochondrial
+genome, and \Sexpr{sum(locChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
   "LSU")])}~bp from the nuclear genome,
-Table~\ref{tab:loci-characteristics}). Of the \Sexpr{sum(lociChar["S_i",])}
-parsimony-informative sites, \Sexpr{round(sum(lociChar["S_i", c("16S", "COI",
-  "ATP6")])/sum(lociChar["S_i",])*100, 0)}\% were from the mitochondrial loci
+Table~\ref{tab:loci-characteristics}). Of the \Sexpr{sum(locChar["S_i",])}
+parsimony-informative sites, \Sexpr{round(sum(locChar["S_i", c("16S", "COI",
+  "ATP6")])/sum(locChar["S_i",])*100, 0)}\% were from the mitochondrial loci
 (Table~\ref{tab:loci-characteristics}).
 
 <<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
@@ -707,20 +705,20 @@ sequenced for at least 1 nuclear locus and
 @
 
 <<gmyc-coi-vars, eval=TRUE, echo=FALSE, cache=TRUE, dependson='gmyc-coi-results'>>=
-minSingle <- min(subset(gmycSumm, analysisType == "single")$mean)
-maxSingle <- max(subset(gmycSumm, analysisType == "single")$mean)
-minMulti <- min(subset(gmycSumm, analysisType == "multi")$mean)
-maxMulti <- max(subset(gmycSumm, analysisType == "multi")$mean)
-stopifnot(all(subset(gmycSumm, analysisType == "single" &
-                 clock == "strict" & sequences == "allSeq")$mean == 16))
-stopifnot(all(subset(gmycSumm, analysisType == "single" &
-                 clock == "strict" & sequences == "noDup")$mean == 17))
-allSeqStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
-                               gmycSumm$clock == "strict" &
-                               gmycSumm$sequences == "allSeq", "mean"]
-noDupStrictSingle <- gmycSumm[gmycSumm$analysisType == "single" &
-                              gmycSumm$clock == "strict" &
-                              gmycSumm$sequences == "noDup", "mean"]
+minSingle <- min(subset(gmyc_summary, analysisType == "single")$mean)
+maxSingle <- max(subset(gmyc_summary, analysisType == "single")$mean)
+minMulti <- min(subset(gmyc_summary, analysisType == "multi")$mean)
+maxMulti <- max(subset(gmyc_summary, analysisType == "multi")$mean)
+stopifnot(all(subset(gmyc_summary, analysisType == "single" &
+                       clock == "strict" & sequences == "allSeq")$mean == 16))
+stopifnot(all(subset(gmyc_summary, analysisType == "single" &
+                       clock == "strict" & sequences == "noDup")$mean == 17))
+allSeqStrictSingle <- gmyc_summary[gmyc_summary$analysisType == "single" &
+                                     gmyc_summary$clock == "strict" &
+                                     gmyc_summary$sequences == "allSeq", "mean"]
+noDupStrictSingle <- gmyc_summary[gmyc_summary$analysisType == "single" &
+                                    gmyc_summary$clock == "strict" &
+                                    gmyc_summary$sequences == "noDup", "mean"]
 @
 
 The maximum-likelihood estimates for the number of putative species varied

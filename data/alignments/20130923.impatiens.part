@@ -1,0 +1,11 @@
+BEGIN ASSUMPTIONS;
+    charset 16S = 1-555;
+    charset 16Sc = 556-1179;
+    charset ATP6 = 1180-1832;
+    charset c0036 = 1833-2469;
+    charset c0775 = 2470-2751;
+    charset COI = 2752-3424;
+    charset H3a = 3425-3758;
+    charset ITS = 3759-4843;
+    charset LSU = 4844-5966;
+END;

@@ -1,0 +1,92 @@
+sources: remake/
+
+packages:
+  - ape
+  - chopper
+  - doMC
+  - ggplot2
+  - maps
+  - pegas
+  - plyr
+  - phylobase
+  - phyloch
+  - XML
+  - xtable
+  - splits
+
+targets:
+  all:
+     depends:
+       #- figures
+       #- tables
+       - impatiens_phylogeography.tex
+
+  data:
+    depends:
+      - impDB
+      - impTree
+      - impAlg
+      - locChar
+
+  impDB:
+    command: load_impDB("data/impatiensDB.csv")
+
+  impTree:
+    ## TODO: need to include scripts to generate this tree
+    command: load_impTree("data/allimpatiens_strict.tree.nex")  # from 20140519
+
+  ## Alignments
+  alg_files:
+    command: get_alg_files(pattern = I("afa$"))
+
+  impAlg:
+    command: load_impAlg("data/alignments/20130923.impatiens.phy") # needs to be generated
+
+  impAlg_char:
+    command: load_impAlg("data/alignments/20130923.impatiens.phy", as.character = TRUE)
+
+  locus_files:
+    command: get_locus_files(algfile = "data/alignments/20130923.impatiens.phy",
+                             partfile="data/20130923.partition-raxml-perlocus")
+
+  ## Locus characteristics
+  locChar:
+    command: extract_loci_characteristics(locus_files)
+    packages: chopper
+
+  ## Ambiguities
+  alg_amb:
+    command: alg_ambiguities(alg_files)
+
+  ## *BEAST taxa
+  sBeastTaxa:
+    command: getTaxaBEASTxml("data/sBEAST_analyses/20140721.impatiens_allESU1_coiRate01.xml")
+
+  ## Locus coverage
+  locus_coverage:
+    command: get_locus_coverage(locus_files)
+
+  locus_graph_data:
+    command: get_locus_graph_data(locus_coverage, impDB, locus_files)
+
+  ## GMYC
+  gmyc_results:
+    command: readRDS(file = "data/gmyc_results.rds")
+
+  gmyc_summary:
+    command: get_gmyc_summary(gmyc_results)
+
+  ## Manuscript ---------------------------------------------------------------
+  impatiens_phylogeography.tex:
+    depends:
+      - impAlg
+      - impAlg_char
+      - impTree
+      - impDB
+      - alg_amb
+      - locChar
+      - sBeastTaxa
+      - locus_coverage
+      - locus_graph_data
+      - gmyc_summary
+    knitr: true
