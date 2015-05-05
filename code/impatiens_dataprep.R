@@ -1,6 +1,6 @@
 runNJonAlg <- function(folder, pattern, db=impDB) {
 ### Makes NJ trees saved in individual PDF files from alignments
-### it also renames the extractions using the extToLbl function
+### it also renames the extractions using the extract_to_label function
 ### folder -- is the folder that contains the alignements, also where
 ###           the PDFs will be saved
 ### pattern -- regexp to identify the alignment files, supposed .afa extension
@@ -14,7 +14,7 @@ runNJonAlg <- function(folder, pattern, db=impDB) {
     toKeep <- !apply(sapply(tmpAlg, base.freq), 2, function(x) all(is.na(x)))
     cat(length(toKeep), sum(toKeep), "\n")
     tmpTr <- nj(dist.dna(tmpAlg[toKeep, ]))
-    tmpTr$tip.label <- extToLblStr(tmpTr$tip.label, db)
+    tmpTr$tip.label <- extract_to_string_label(tmpTr$tip.label, db)
     plot.phylo(ladderize(tmpTr), no.margin=T, cex=.5)
     legend("topright", listAlg[i])
   }
@@ -45,120 +45,120 @@ makeTraitFile <- function(alg, output, db=impDB, allowedESUs,
 }
 
 
-impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
-impExt <- impDB$Extract[nzchar(impDB$Extract)]
-stopifnot(ncol(impDB) > 1)
+## impDB <- read.csv(file="~/Documents/Impatiens/impatiens_phylogeography/data/impatiensDB.csv", stringsAsFactors=FALSE)
+## impExt <- impDB$Extract[nzchar(impDB$Extract)]
+## stopifnot(ncol(impDB) > 1)
 
-### Main analysis -- these commands should produce the final output for the published
-###  analyses. If it's not the case, it should go somewhere else.
+## ### Main analysis -- these commands should produce the final output for the published
+## ###  analyses. If it's not the case, it should go somewhere else.
 
-## Create alignments for individual markers for main phylogeny
-impAlg <- mergeSeq(impExt, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
-                   markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
-                   gblocks=list("ITS" = "-t=d -b4=5 -b5=a -p=n"), justCheck=F)
-concatenateAlignments(pattern="afa$", path="/tmp/seq", output="/tmp/seq/20130923.impatiens.phy",
-                      partition="/tmp/seq/20130923.impatiens.part", partition.format="nexus",
-                      create.conc=TRUE, colsep="", colw=10000)
-alg2nex(file="/tmp/seq/20130923.impatiens.phy", partition.file="/tmp/seq/20130923.impatiens.part")
+## ## Create alignments for individual markers for main phylogeny
+## impAlg <- mergeSeq(impExt, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
+##                    markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
+##                    gblocks=list("ITS" = "-t=d -b4=5 -b5=a -p=n"), justCheck=F)
+## concatenateAlignments(pattern="afa$", path="/tmp/seq", output="/tmp/seq/20130923.impatiens.phy",
+##                       partition="/tmp/seq/20130923.impatiens.part", partition.format="nexus",
+##                       create.conc=TRUE, colsep="", colw=10000)
+## alg2nex(file="/tmp/seq/20130923.impatiens.phy", partition.file="/tmp/seq/20130923.impatiens.part")
 
-## unfortunately at this stage, still need manual editing of the partition... compare -orig.nex and .nex
+## ## unfortunately at this stage, still need manual editing of the partition... compare -orig.nex and .nex
 
-## Create alignements for individual markers for *BEAST analysis of ESU1 "complex"
-##   For this, first look at available sequences for the complex and select specimens
-##   that have at least 1 mt marker and 1 nuc marker (except for LSU that is too conserved).
+## ## Create alignements for individual markers for *BEAST analysis of ESU1 "complex"
+## ##   For this, first look at available sequences for the complex and select specimens
+## ##   that have at least 1 mt marker and 1 nuc marker (except for LSU that is too conserved).
 
-impExtESU1tmp <- subset(impDB, consensusESU %in% c("ESU1", "ESU3", "gracilis", "Hawaii", "Wpac", "RedSea"))
-impExtESU1tmp <- impExtESU1tmp$Extract[nzchar(impExtESU1tmp$Extract)]
-impAlgESU1tmp <- mergeSeq(impExtESU1tmp, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
-                          markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
-                          justCheck=TRUE)
-impExtESU1 <- rownames(subset(impAlgESU1tmp, (impAlgESU1tmp$"16S" == TRUE | impAlgESU1tmp$"16Sc" == TRUE |
-                                              impAlgESU1tmp$"COI" == TRUE | impAlgESU1tmp$"ATP6" == TRUE) &
-                              (impAlgESU1tmp$"c0036" == TRUE | impAlgESU1tmp$"c0775" == TRUE |
-                               impAlgESU1tmp$"ITS" == TRUE | impAlgESU1tmp$"H3a" == TRUE)))
-impAlgESU1 <- mergeSeq(impExtESU1, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
-                       markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
-                       gblocks=list("ITS" = "-t=d -b4=5 -b5=a -p=n"), justCheck=F)
-concatenateAlignments(pattern="afa$", path="~/Documents/Impatiens/20130929.impatiens_sampling",
-                      output="~/Documents/Impatiens/20130929.impatiens_sampling/20130930.impatiens_starbeast.phy",
-                      partition="~/Documents/Impatiens/20130929.impatiens_sampling/partition",
-                      partition.format="nexus", colw=10000, colsep="")
-alg2nex(file="~/Documents/Impatiens/20130929.impatiens_sampling/20130930.impatiens_starbeast.phy",
-        partition.file="~/Documents/Impatiens/20130929.impatiens_sampling/partition")
+## impExtESU1tmp <- subset(impDB, consensusESU %in% c("ESU1", "ESU3", "gracilis", "Hawaii", "Wpac", "RedSea"))
+## impExtESU1tmp <- impExtESU1tmp$Extract[nzchar(impExtESU1tmp$Extract)]
+## impAlgESU1tmp <- mergeSeq(impExtESU1tmp, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
+##                           markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
+##                           justCheck=TRUE)
+## impExtESU1 <- rownames(subset(impAlgESU1tmp, (impAlgESU1tmp$"16S" == TRUE | impAlgESU1tmp$"16Sc" == TRUE |
+##                                               impAlgESU1tmp$"COI" == TRUE | impAlgESU1tmp$"ATP6" == TRUE) &
+##                               (impAlgESU1tmp$"c0036" == TRUE | impAlgESU1tmp$"c0775" == TRUE |
+##                                impAlgESU1tmp$"ITS" == TRUE | impAlgESU1tmp$"H3a" == TRUE)))
+## impAlgESU1 <- mergeSeq(impExtESU1, output="/tmp/seq", seqFolder="~/Documents/seqRepository",
+##                        markers=c("16S", "16Sc", "COI", "ATP6", "c0036", "c0775", "ITS", "LSU", "H3a"),
+##                        gblocks=list("ITS" = "-t=d -b4=5 -b5=a -p=n"), justCheck=F)
+## concatenateAlignments(pattern="afa$", path="~/Documents/Impatiens/20130929.impatiens_sampling",
+##                       output="~/Documents/Impatiens/20130929.impatiens_sampling/20130930.impatiens_starbeast.phy",
+##                       partition="~/Documents/Impatiens/20130929.impatiens_sampling/partition",
+##                       partition.format="nexus", colw=10000, colsep="")
+## alg2nex(file="~/Documents/Impatiens/20130929.impatiens_sampling/20130930.impatiens_starbeast.phy",
+##         partition.file="~/Documents/Impatiens/20130929.impatiens_sampling/partition")
 
-makeTraitFile(alg="/tmp/seq/20130930-133004-COI.afa", output="/tmp/seq/traitsAllESUs.txt",
-              allowedESUs=c("ESU1", "ESU3", "RedSea", "Hawaii", "Wpac", "gracilis"))
+## makeTraitFile(alg="/tmp/seq/20130930-133004-COI.afa", output="/tmp/seq/traitsAllESUs.txt",
+##               allowedESUs=c("ESU1", "ESU3", "RedSea", "Hawaii", "Wpac", "gracilis"))
 
-## Redo analyses without mtDNA
-concatenateAlignments(pattern="(c0036|c0775|H3a|ITS|LSU).+afa$",
-                      path="~/Documents/Impatiens/20130929.impatiens_sampling/origAlignments",
-                      output="~/Documents/Impatiens/20130929.impatiens_sampling/20130929.impatiens_noNuc_allESU1.phy",
-                      partition="/tmp/partitionnuc", partition.format="nexus", create.conc=TRUE, colsep="", colw=10000)
+## ## Redo analyses without mtDNA
+## concatenateAlignments(pattern="(c0036|c0775|H3a|ITS|LSU).+afa$",
+##                       path="~/Documents/Impatiens/20130929.impatiens_sampling/origAlignments",
+##                       output="~/Documents/Impatiens/20130929.impatiens_sampling/20130929.impatiens_noNuc_allESU1.phy",
+##                       partition="/tmp/partitionnuc", partition.format="nexus", create.conc=TRUE, colsep="", colw=10000)
 
-alg2nex(file="~/Documents/Impatiens/20130929.impatiens_sampling/20130929.impatiens_noNuc_allESU1.phy",
-        partition.file="/tmp/partitionnuc")
+## alg2nex(file="~/Documents/Impatiens/20130929.impatiens_sampling/20130929.impatiens_noNuc_allESU1.phy",
+##         partition.file="/tmp/partitionnuc")
 
-### 20140702 -- raxml on individual loci
+## ### 20140702 -- raxml on individual loci
 
-### all mt
-concatenateAlignments(pattern="_(COI|ATP6|16S)\\.phy$", path="data", input.format="seq",
-                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
-                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.part",
-                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
-removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
-
-
-### all nuc
-concatenateAlignments(pattern="_(c0036|c0775|H3a|ITS|LSU)\\.phy$", path="data", input.format="seq",
-                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
-                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.part",
-                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
-removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
-
-### c0036
-removeEmptySeqs(file="data/20130923.impatiens_c0036.phy",
-                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0036.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
-
-### c0775
-removeEmptySeqs(file="data/20130923.impatiens_c0775.phy",
-                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0775.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?", drop="S0213")
-
-## H3a
-removeEmptySeqs(file="data/20130923.impatiens_H3a.phy",
-                output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
-h3aAlg <- read.dna(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
-                   format="seq")
-write.dna(h3aAlg[- match("S0213", dimnames(h3aAlg)[[1]]), ],
-          file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
-          format="seq", colsep="", colw=10000)
-
-## rDNA
-concatenateAlignments(pattern="_(ITS|LSU)\\.phy$", path="data", input.format="seq",
-                      output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
-                      partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.part",
-                      partition.format="raxml", colsep="", colw=10000, drop="S0213")
-removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
-                formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
+## ### all mt
+## concatenateAlignments(pattern="_(COI|ATP6|16S)\\.phy$", path="data", input.format="seq",
+##                       output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
+##                       partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.part",
+##                       partition.format="raxml", colsep="", colw=10000, drop="S0213")
+## removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.mtloci.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
 
 
-## fasToPhase("/tmp/seq/20130929-172701-c0036.afa")
-## fasToPhase("/tmp/seq/20130929-172701-c0775.afa")
-## fasToPhase("/tmp/seq/20130929-172701-ITS.afa")
+## ### all nuc
+## concatenateAlignments(pattern="_(c0036|c0775|H3a|ITS|LSU)\\.phy$", path="data", input.format="seq",
+##                       output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
+##                       partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.part",
+##                       partition.format="raxml", colsep="", colw=10000, drop="S0213")
+## removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.nucloci.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
 
-## system("PHASE -d1 /tmp/seq/20130929-172701-c0036.inp /tmp/seq/20130929-172701-c0036.out")
-## system("PHASE -d1 /tmp/seq/20130929-172701-c0775.inp /tmp/seq/20130929-172701-c0775.out")
-## system("PHASE -d1 /tmp/seq/20130929-172701-ITS.inp /tmp/seq/20130929-172701-ITS.out")
+## ### c0036
+## removeEmptySeqs(file="data/20130923.impatiens_c0036.phy",
+##                 output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0036.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
 
-## phaseToFas("/tmp/seq/20130929-172701-c0036.out", "/tmp/seq/20130929-172701-c0036.afa",
-##            "/tmp/seq/20130929-172701-c0036-phased.afa", removeEmptySeqs=TRUE)
+## ### c0775
+## removeEmptySeqs(file="data/20130923.impatiens_c0775.phy",
+##                 output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.c0775.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", gap="?", drop="S0213")
 
-## phaseToFas("/tmp/seq/20130929-172701-c0775.out", "/tmp/seq/20130929-172701-c0775.afa",
-##            "/tmp/seq/20130929-172701-c0775-phased.afa", removeEmptySeqs=TRUE)
+## ## H3a
+## removeEmptySeqs(file="data/20130923.impatiens_H3a.phy",
+##                 output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", gap="?")
+## h3aAlg <- read.dna(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+##                    format="seq")
+## write.dna(h3aAlg[- match("S0213", dimnames(h3aAlg)[[1]]), ],
+##           file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.H3a.phy",
+##           format="seq", colsep="", colw=10000)
 
-## phaseToFas("/tmp/seq/20130929-172701-ITS.out", "/tmp/seq/20130929-172701-ITS.afa",
-##            "/tmp/seq/20130929-172701-ITS-phased.afa", removeEmptySeqs=TRUE) ## problematic output; only 1 ambiguity
+## ## rDNA
+## concatenateAlignments(pattern="_(ITS|LSU)\\.phy$", path="data", input.format="seq",
+##                       output="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
+##                       partition="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.part",
+##                       partition.format="raxml", colsep="", colw=10000, drop="S0213")
+## removeEmptySeqs(file="~/Documents/Impatiens/20140702.impatiens_raxml_perlocus/20140702.rDNA.phy",
+##                 formatin="seq", formatout="seq", colw=10000, colsep="", overwrite=T, gap="?")
+
+
+## ## fasToPhase("/tmp/seq/20130929-172701-c0036.afa")
+## ## fasToPhase("/tmp/seq/20130929-172701-c0775.afa")
+## ## fasToPhase("/tmp/seq/20130929-172701-ITS.afa")
+
+## ## system("PHASE -d1 /tmp/seq/20130929-172701-c0036.inp /tmp/seq/20130929-172701-c0036.out")
+## ## system("PHASE -d1 /tmp/seq/20130929-172701-c0775.inp /tmp/seq/20130929-172701-c0775.out")
+## ## system("PHASE -d1 /tmp/seq/20130929-172701-ITS.inp /tmp/seq/20130929-172701-ITS.out")
+
+## ## phaseToFas("/tmp/seq/20130929-172701-c0036.out", "/tmp/seq/20130929-172701-c0036.afa",
+## ##            "/tmp/seq/20130929-172701-c0036-phased.afa", removeEmptySeqs=TRUE)
+
+## ## phaseToFas("/tmp/seq/20130929-172701-c0775.out", "/tmp/seq/20130929-172701-c0775.afa",
+## ##            "/tmp/seq/20130929-172701-c0775-phased.afa", removeEmptySeqs=TRUE)
+
+## ## phaseToFas("/tmp/seq/20130929-172701-ITS.out", "/tmp/seq/20130929-172701-ITS.afa",
+## ##            "/tmp/seq/20130929-172701-ITS-phased.afa", removeEmptySeqs=TRUE) ## problematic output; only 1 ambiguity

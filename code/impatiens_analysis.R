@@ -31,7 +31,6 @@ hasMt <- locus_graph_data[locus_graph_data$Locus %in% c("16S", "COI", "ATP6"), ]
 hasMtNuc <- locus_graph_data[locus_graph_data$Extract %in% hasMt$Extract &
                      locus_graph_data$Locus %in% c("c0036", "c0775", "ITS", "LSU", "H3a"), ]
 
-
 ### ---- loci-coverage-plot ----
 lbl <- c("16S", "COI", "ATP6", "c0036", "c0775", "H3a", "ITS", "LSU")
 sub_loc <- locus_graph_data[match(lbl, locus_graph_data[["Locus"]]), ]
@@ -42,7 +41,7 @@ ggplot(data=locus_graph_data) +
     scale_x_continuous(breaks=sub_loc$Center, labels=lbl) +
     scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
     scale_colour_manual(values=impPal) +
-    theme(legend.position=c(.75,.22),
+    theme(legend.position=c(0, 1),
           panel.background=element_blank(),
           panel.grid.major=element_blank(),
           panel.grid.minor=element_blank(),
@@ -145,186 +144,49 @@ ggplot(data=locus_graph_data) +
  ##           shape=analysisType)) + geom_point()
 
 
-## ### full impatiens Tree
-## ### ---- impatiens-tree ----
-## library(ape)
-## source("code/extToLbl.R")
-## if( !file.exists("data/20140519.impTree-beast.phy") )
-##     write.tree(impTree, file="data/20140519.impTree-beast.phy")
-## if (! file.exists("data/RAxML_bootstrap_nooutgroup.phy")) {
-##     allRaxmlBS <- read.tree(file="data/RAxML_bootstrap.result")
-##     noOutgroup <- lapply(allRaxmlBS, function(tr) drop.tip(tr, "S0213"))
-##     class(noOutgroup) <- "multiPhylo"
-##     write.tree(noOutgroup, file="data/RAxML_bootstrap_nooutgroup.phy")
-## }
-## if (length(list.files(pattern="annotateBEASTtree$", path="data/")) != 3) {
-##     rxmlCmd <- paste("~/Software/RAxML-8.0.1/./raxmlHPC-PTHREADS-SSE3 -m GTRGAMMA",
-##                      "-p 12345 -f b -t data/20140519.impTree-beast.phy",
-##                      "-z data/RAxML_bootstrap_nooutgroup.phy -T8 -n annotateBEASTtree")
-##     system(rxmlCmd)
-##     system("mv *.annotateBEASTtree data/")
-## }
-## ## noOutgroup <- read.tree(file="data/RAxML_bootstrap_nooutgroup.phy")
-## ## ppNoOutGroup <- prop.part(noOutgroup)
-## ## pcNoOutGroup <- prop.clades(impTree, part=ppNoOutGroup)
-## ## save(pcNoOutGroup, file="data/pcNoOutGroup.RData")
-## load("data/pcNoOutGroup.RData")
-## impTree <- ladderize(impTree)
-## posTips <- max(branching.times(impTree))
-## impTree <- extToLbl(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
-## esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
-##              "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+### ---- starbeast-summary ----
+sbSummPlot <- reshape2::melt(star_beast_summary_all[, -match(c("PS_logLik", "SS_logLik", "stdSS", "stdPS"),
+                                                names(star_beast_summary_all))],
+                             measure.vars=c("BFSS", "BFPS"))
 
-## impNodLbl <- impTree$posterior
-## impNodLblCol <- rep(NULL, length(impNodLbl))
-## impNodLblCol[impNodLbl >= .99] <- "black"
+meanESU1SS <- mean(subset(star_beast_summary_all, groupings == "allESU1")$SS_logLik)
 
-## impAllNds <- 1:length(impNodLbl)
-## impKeepNds <- impAllNds[!is.na(impNodLblCol)]
+BFHawaii <- round(2 * mean(subset(star_beast_summary_all, groupings == "noHawaii")$stdSS), 1)
+BFWpac <- round(2 * mean(subset(star_beast_summary_all, groupings == "noWpac")$stdSS), 1)
+BFRedSea <- round(2 * mean(subset(star_beast_summary_all, groupings == "noRedSea")$stdSS), 1)
+BFsplit  <- round(2 * mean(subset(star_beast_summary_all, groupings == "allESU1split")$stdSS), 1)
+BFrandom <- round(2 * (mean(star_beast_results[star_beast_results$groupings=="random" &
+                                                 !is.na(star_beast_results$SS_logLik), "SS_logLik"]) - meanESU1SS), 1)
 
-## par(mai=c(1,0,0,0))
-## plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0, 12.5))
-## nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
-##                frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
-##                bg=impNodLblCol[!is.na(impNodLblCol)],
-##                ##fg=impNodLblCol[!is.na(impNodLblCol)],
-##                cex=.3)
-## barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
-##                 cex.plot=.3, extra.space=.1, text.offset=1.02,
-##                 seg.col=impPal[esuList])
-## abline(v=max(branching.times(impTree)) - c(1:4, 6:10), lty=1, col="gray70")
-## abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
-## axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
-## legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
+BFHawaiiNoCOI <- round(2 * mean(subset(star_beast_summary_noCOI, groupings == "noHawaii")$stdSS), 1)
+BFWpacNoCOI <- round(2 * mean(subset(star_beast_summary_noCOI, groupings == "noWpac")$stdSS), 1)
+BFRedSeaNoCOI <- round(2 * mean(subset(star_beast_summary_noCOI, groupings == "noRedSea")$stdSS), 1)
 
-## ### RAxML tree
-## ### ---- raxml-tree ----
-## raxmlImpTr <- read.tree(file="data/raxml_fullcomplex/RAxML_bipartitions.result",)
-## raxmlImpTr <- drop.tip(root(raxmlImpTr, "S0213"), "S0213")
-## raxmlImpTr <- ladderize(raxmlImpTr)
+BFHawaiiNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noHawaii")$stdSS), 1)
+BFWpacNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noWpac")$stdSS), 1)
+BFRedSeaNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noRedSea")$stdSS), 1)
 
-## raxmlImpTr <- extToLbl(raxmlImpTr, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+sbCol <- wesanderson::wes_palette("Zissou", 5)[c(1, 5)]
+names(sbCol) <- c("BFSS", "BFPS")
 
-## ndCol <- character(length(raxmlImpTr$node.label))
-## ndCol[as.numeric(raxmlImpTr$node.label) >= 90] <- "black"
-## ndCol[as.numeric(raxmlImpTr$node.label) >= 80 &
-##       as.numeric(raxmlImpTr$node.label) < 90] <- "red"
-## ndAll <- 1:length(ndCol)
-## ndKeep <- ndAll[nzchar(ndCol)]
-
-## par(mai=c(0,0,0,0))
-## plot(raxmlImpTr, cex=.6, show.tip.label=FALSE, x.lim=c(0,.245))
-## barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""),
-##                 raxmlImpTr, cex.text=.4, cex.plot=.3, extra.space=.155,
-##                 text.offset=1.02, seg.col=impPal[esuList])
-## nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(raxmlImpTr),
-##            bg=ndCol[nzchar(ndCol)], frame="circ", cex=.275)
-## add.scale.bar()
+ggplot(sbSummPlot, aes(x=plotGroupings, y=value, group=variable, colour=variable)) +
+    scale_x_discrete(limits=c("M0", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
+    scale_colour_manual(values=sbCol, breaks=c("BFSS", "BFPS"),
+                        labels=c("Stepping Stone Sampling", "Path Sampling")) +
+    geom_point(position=position_dodge(width=.3)) +
+    stat_summary(fun.y = mean, geom="point", size=3,
+                 position=position_dodge(width=.3)) +
+    geom_hline(yintercept=-10, width=.1, col=sbCol[2], linetype=2) +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    labs(y="Bayes Factors ", x="Models") +
+    theme(legend.justification=c(0,0), legend.position=c(0,0)) +
+    facet_grid( ~ dataIncluded)
 
 
-## ### Per locus trees
-## ### ---- per-locus-trees ----
-## loci <- c("c0036", "c0775", "H3a", "mtDNA", "rDNA")
-## raxFiles <- file.path("data/raxml_perlocus", paste0("RAxML_bipartitions.", loci))
-## stopifnot(all(sapply(raxFiles, file.exists)))
-## uniqExt <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
-
-## par(mai=c(0,0,.5,0))
-## layout(matrix(c(4,1,2,4,3,5), 2, 3, byrow=TRUE))
-## for (i in 1:length(raxFiles)) {
-##     raxmlTr <- read.tree(file=raxFiles[i])
-##     raxmlCol <- impDB[match(raxmlTr$tip.label, uniqExt), "consensusESU"]
-##     raxmlCol <- impPal[raxmlCol]
-##     plotTr <- ladderize(raxmlTr)
-##     plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)
-##     ndCol <- character(length(plotTr$node.label))
-##     ndCol[as.numeric(plotTr$node.label) >= 80] <- "black"
-##     ndAll <- 1:length(ndCol)
-##     ndKeep <- ndAll[nzchar(ndCol)]
-##     plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.5)
-##     nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ",
-##                cex=.3)
-##     add.scale.bar()
-##     if (i == 4) {
-##         textLgd <- c("Medit", "WA", "Gala", "EP", "ESU2", "tiger", "tigerRedSea", "ESU3", "gracilis",
-##                      "RedSea", "ESU1", "Wpac", "Hawaii")
-##         legend(x=0, y=70, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
-##     }
-## }
-
-## ### StarBeast summary results (marginal likelihood summaries)
-## ### ---- starbeast-summary ----
-## sbeastOrig <- read.csv(file="data/starbeastResults.csv")
-## sbeast <- sbeastOrig[, c("groupings", "runs", "chainLength", "dataIncluded",
-##                          "PS_logLik", "SS_logLik")]
-## sbeast <- sbeast[grep("[0-9]$", sbeast$runs), ] # runs with X at the ends are not meant to be included
-
-## sbCol <- wes.palette(5, "Zissou")[c(1, 5)]
-## names(sbCol) <- c("BFSS", "BFPS")
-
-## sbSummAll <- subset(sbeast, chainLength == "long" & dataIncluded == "all" & groupings != "random")
-## meanESU1SS <- mean(subset(sbSummAll, groupings == "allESU1")$SS_logLik)
-## meanESU1PS <- mean(subset(sbSummAll, groupings == "allESU1")$PS_logLik)
-## sbSummAll$stdSS <- sbSummAll$SS_logLik - meanESU1SS
-## sbSummAll$stdPS <- sbSummAll$PS_logLik - meanESU1PS
-## sbSummAll$BFSS <- 2 * sbSummAll$stdSS
-## sbSummAll$BFPS <- 2 * sbSummAll$stdPS
-## sbSummAll$dataIncluded <- "All data"
-## sbSummAll$plotGroupings <- sbSummAll$groupings
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1"] <- "M0"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "allESU1split"] <- "oversplit"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noHawaii"] <- "M5"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noRedSea"] <- "M6"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpac"] <- "M4"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacHawaii"] <- "M3"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacRedSea"] <- "M2"
-## levels(sbSummAll$plotGroupings)[levels(sbSummAll$plotGroupings) == "noWpacRedSeaHawaii"] <- "M1"
-## sbSummPlot <- melt(sbSummAll[, -match(c("PS_logLik", "SS_logLik", "stdSS", "stdPS"), names(sbSummAll))],
-##                    measure.vars=c("BFSS", "BFPS"))
-
-## sbSummNoCOI <- subset(sbeast, chainLength == "long" & dataIncluded == "noCOI" & groupings != "random")
-## meanESU1SSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$SS_logLik)
-## meanESU1PSnoCOI <- mean(subset(sbSummNoCOI, groupings == "allESU1")$PS_logLik)
-## sbSummNoCOI$stdSS <- sbSummNoCOI$SS_logLik - meanESU1SSnoCOI
-## sbSummNoCOI$stdPS <- sbSummNoCOI$PS_logLik - meanESU1SSnoCOI
-## sbSummNoCOI$dataIncluded <- "No COI"
-## sbSummNoMt <- subset(sbeast, dataIncluded == "noMt")
-## meanESU1SSnoMt <- mean(subset(sbSummNoMt, groupings == "allESU1")$SS_logLik)
-## sbSummNoMt$stdSS <- sbSummNoMt$SS_logLik - meanESU1SSnoMt
-
-## BFHawaii <- round(2 * mean(subset(sbSummAll, groupings == "noHawaii")$stdSS), 1)
-## BFWpac <- round(2 * mean(subset(sbSummAll, groupings == "noWpac")$stdSS), 1)
-## BFRedSea <- round(2 * mean(subset(sbSummAll, groupings == "noRedSea")$stdSS), 1)
-## BFsplit  <- round(2 * mean(subset(sbSummAll, groupings == "allESU1split")$stdSS), 1)
-## BFrandom <- round(2 * (mean(sbeast[sbeast$groupings=="random" & !is.na(sbeast$SS_logLik), "SS_logLik"]) - meanESU1SS), 1)
-
-## BFHawaiiNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noHawaii")$stdSS), 1)
-## BFWpacNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noWpac")$stdSS), 1)
-## BFRedSeaNoCOI <- round(2 * mean(subset(sbSummNoCOI, groupings == "noRedSea")$stdSS), 1)
-
-## BFHawaiiNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noHawaii")$stdSS), 1)
-## BFWpacNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noWpac")$stdSS), 1)
-## BFRedSeaNoMt <- round(2 * mean(subset(sbSummNoMt, groupings == "noRedSea")$stdSS), 1)
-
-
-## ggplot(sbSummPlot, aes(x=plotGroupings, y=value, group=variable, colour=variable)) +
-##     scale_x_discrete(limits=c("M0", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
-##     scale_colour_manual(values=sbCol, breaks=c("BFSS", "BFPS"),
-##                         labels=c("Stepping Stone Sampling", "Path Sampling")) +
-##     geom_point(position=position_dodge(width=.3)) +
-##     stat_summary(fun.y = mean, geom="point", size=3,
-##                  position=position_dodge(width=.3)) +
-##     geom_hline(yintercept=-10, width=.1, col=sbCol[2], linetype=2) +
-##     theme(legend.position="top", legend.title=element_blank(),
-##           panel.background = element_rect(fill = "gray95"),
-##           panel.grid.major = element_line(colour = "white", size=0.1),
-##           panel.grid.minor = element_line(NA)) +
-##     labs(y="Bayes Factors ", x="Models") +
-##     theme(legend.justification=c(0,0), legend.position=c(0,0)) +
-##     facet_grid( ~ dataIncluded)
-
-
-## ## sbNoCoiPlotSS <- ggplot(sbSummNoCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
+## ## sbNoCoiPlotSS <- ggplot(star_beast_summary_noCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +
 ## ##     stat_summary(fun.y = mean, geom="point", colour=sbCol[2], size=3) +
 ## ##     geom_hline(yintercept=-5, width=.2, col=sbCol[2], linetype=2) +
 ## ##     theme(legend.position="top", legend.title=element_blank(),
@@ -336,6 +198,95 @@ ggplot(data=locus_graph_data) +
 
 
 ## #multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
+
+
+
+### full impatiens Tree
+### ---- impatiens-tree ----
+impTree <- ladderize(impTree)
+posTips <- max(branching.times(impTree))
+impTree <- extract_to_label(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
+             "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+
+impNodLbl <- impTree$posterior
+impNodLblCol <- rep(NULL, length(impNodLbl))
+impNodLblCol[impNodLbl >= .99] <- "black"
+
+impAllNds <- 1:length(impNodLbl)
+impKeepNds <- impAllNds[!is.na(impNodLblCol)]
+
+par(mai=c(1,0,0,0))
+plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0, 12.5))
+nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
+               frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
+               bg=impNodLblCol[!is.na(impNodLblCol)],
+               ##fg=impNodLblCol[!is.na(impNodLblCol)],
+               cex=.3)
+barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
+                cex.plot=.3, extra.space=.1, text.offset=1.02,
+                seg.col=impPal[esuList])
+abline(v=max(branching.times(impTree)) - c(1:4, 6:10), lty=1, col="gray70")
+abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
+axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
+legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
+
+### RAxML tree
+### ---- raxml-tree ----
+## TODO -- needs to be transferred to remake
+raxmlImpTr <- read.tree(file="data/raxml_fullcomplex/RAxML_bipartitions.result")
+raxmlImpTr <- drop.tip(root(raxmlImpTr, "S0213"), "S0213")
+raxmlImpTr <- ladderize(raxmlImpTr)
+
+raxmlImpTr <- extract_to_label(raxmlImpTr, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+
+ndCol <- character(length(raxmlImpTr$node.label))
+ndCol[as.numeric(raxmlImpTr$node.label) >= 90] <- "black"
+ndCol[as.numeric(raxmlImpTr$node.label) >= 80 &
+      as.numeric(raxmlImpTr$node.label) < 90] <- "red"
+ndAll <- 1:length(ndCol)
+ndKeep <- ndAll[nzchar(ndCol)]
+
+par(mai=c(0,0,0,0))
+plot(raxmlImpTr, cex=.6, show.tip.label=FALSE, x.lim=c(0,.245))
+barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""),
+                raxmlImpTr, cex.text=.4, cex.plot=.3, extra.space=.155,
+                text.offset=1.02, seg.col=impPal[esuList])
+nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(raxmlImpTr),
+           bg=ndCol[nzchar(ndCol)], frame="circ", cex=.275)
+add.scale.bar()
+
+
+### Per locus trees
+### ---- per-locus-trees ----
+loci <- c("c0036", "c0775", "H3a", "mtDNA", "rDNA")
+raxFiles <- file.path("data/raxml_perlocus", paste0("RAxML_bipartitions.", loci))
+stopifnot(all(sapply(raxFiles, file.exists)))
+uniqExt <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
+
+par(mai=c(0,0,.5,0))
+layout(matrix(c(4,1,2,4,3,5), 2, 3, byrow=TRUE))
+for (i in 1:length(raxFiles)) {
+    raxmlTr <- read.tree(file=raxFiles[i])
+    raxmlCol <- impDB[match(raxmlTr$tip.label, uniqExt), "consensusESU"]
+    raxmlCol <- impPal[raxmlCol]
+    plotTr <- ladderize(raxmlTr)
+    plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)
+    ndCol <- character(length(plotTr$node.label))
+    ndCol[as.numeric(plotTr$node.label) >= 80] <- "black"
+    ndAll <- 1:length(ndCol)
+    ndKeep <- ndAll[nzchar(ndCol)]
+    plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.5)
+    nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ",
+               cex=.3)
+    add.scale.bar()
+    if (i == 4) {
+        textLgd <- c("Medit", "WA", "Gala", "EP", "ESU2", "tiger", "tigerRedSea", "ESU3", "gracilis",
+                     "RedSea", "ESU1", "Wpac", "Hawaii")
+        legend(x=0, y=70, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
+    }
+}
+
 
 
 ## ### NJ analyses
@@ -360,156 +311,154 @@ ggplot(data=locus_graph_data) +
 
 
 
-## ### ---- gmyc-coi-plot ----
-## levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "allSeq"] <- "All Sequences"
-## levels(gmycSumm$sequences)[levels(gmycSumm$sequences) == "noDup"]  <- "Unique haplotypes"
-## levels(gmycSumm$clock)[levels(gmycSumm$clock) == "strict"] <- "Strict clock"
-## levels(gmycSumm$clock)[levels(gmycSumm$clock) == "relaxed"] <- "Relaxed clock"
-## ggplot(data=gmycSumm, aes(x=demographic, y=mean,
-##            ymin=low, ymax=high, color=analysisType)) +
-##     geom_linerange(width=.2, linetype=2, position=position_dodge(width = 0.6)) +
-##     geom_point(position=position_dodge(width = 0.6)) +
-##     ylab("Estimated number of species") +
-##     scale_y_continuous(breaks=seq(12,30,by=2)) +
-##     facet_grid( ~ sequences + clock) +
-##     labs(x = "Tree priors") +
-##     theme(legend.position="top", legend.title=element_blank(),
-##           panel.background = element_rect(fill = "gray95"),
-##           panel.grid.major = element_line(colour = "white", size=0.1),
-##           panel.grid.minor = element_line(NA)) +
-##     scale_color_manual(values = wes.palette(5, "Zissou")[c(1, 5)],
-##                         labels=c("multi-threshold GMYC", "single threshold GMYC"))
+### ---- gmyc-coi-plot ----
+levels(gmyc_summary$sequences)[levels(gmyc_summary$sequences) == "allSeq"] <- "All Sequences"
+levels(gmyc_summary$sequences)[levels(gmyc_summary$sequences) == "noDup"]  <- "Unique haplotypes"
+levels(gmyc_summary$clock)[levels(gmyc_summary$clock) == "strict"] <- "Strict clock"
+levels(gmyc_summary$clock)[levels(gmyc_summary$clock) == "relaxed"] <- "Relaxed clock"
+ggplot(data=gmyc_summary, aes(x=demographic, y=mean,
+           ymin=low, ymax=high, color=analysisType)) +
+    geom_linerange(width=.2, linetype=2, position=position_dodge(width = 0.6)) +
+    geom_point(position=position_dodge(width = 0.6)) +
+    ylab("Estimated number of species") +
+    scale_y_continuous(breaks=seq(12,30,by=2)) +
+    facet_grid( ~ sequences + clock) +
+    labs(x = "Tree priors") +
+    theme(legend.position="top", legend.title=element_blank(),
+          panel.background = element_rect(fill = "gray95"),
+          panel.grid.major = element_line(colour = "white", size=0.1),
+          panel.grid.minor = element_line(NA)) +
+    scale_color_manual(values = wesanderson::wes_palette("Zissou", 5)[c(1, 5)],
+                        labels=c("multi-threshold GMYC", "single threshold GMYC"))
 
-## ### ---- gmyc-tree-plot-prep ----
-## ## find the tree with the most conservative estimate
-## load("data/gmycRes.RData")
-## nspecies <- sapply(gmycRes, function(x) {
-##     tmpSingle <- x$simpleGmyc
-##     tmpSingle$entity[which.max(tmpSingle$likelihood)]
-## })
-## nmTrees <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmycRes))
-## nmTrees <- gsub("^allSeq_", "All sequences, ", nmTrees)
-## nmTrees <- gsub("^noDup_", "Haplotypes, ", nmTrees)
-## nmTrees <- gsub("relaxed_", "Relaxed Clock, ", nmTrees)
-## nmTrees <- gsub("strict_", "Strict Clock, ", nmTrees)
-## nmTrees <- gsub("yule$", "Yule", nmTrees)
-## nmTrees <- gsub("coalexp", "Coalescent (Exponential growth)", nmTrees)
-## nmTrees <- gsub("coalcst", "Coalescent (Constant)", nmTrees)
+### ---- gmyc-tree-plot-prep ----
+## find the tree with the most conservative estimate
+nspecies <- sapply(gmyc_results, function(x) {
+    tmpSingle <- x$simpleGmyc
+    tmpSingle$entity[which.max(tmpSingle$likelihood)]
+})
+nmTrees <- gsub(".+[0-9]\\.(.+)\\..+\\..+$", "\\1", names(gmyc_results))
+nmTrees <- gsub("^allSeq_", "All sequences, ", nmTrees)
+nmTrees <- gsub("^noDup_", "Haplotypes, ", nmTrees)
+nmTrees <- gsub("relaxed_", "Relaxed Clock, ", nmTrees)
+nmTrees <- gsub("strict_", "Strict Clock, ", nmTrees)
+nmTrees <- gsub("yule$", "Yule", nmTrees)
+nmTrees <- gsub("coalexp", "Coalescent (Exponential growth)", nmTrees)
+nmTrees <- gsub("coalcst", "Coalescent (Constant)", nmTrees)
 
-## allSeqGmEd <- lapply(gmycRes[1:6], function(x) gmycEdges(x$simpleGmyc))
-## uniqSeqGmEd <- lapply(gmycRes[7:12], function(x) gmycEdges(x$simpleGmyc))
+allSeqGmEd <- lapply(gmyc_results[1:6], function(x) gmycEdges(x$simpleGmyc))
+uniqSeqGmEd <- lapply(gmyc_results[7:12], function(x) gmycEdges(x$simpleGmyc))
 
-## ### ---- gmyc-tree-plot-allSeq ----
-## par(mfrow=c(3, 2))
-## for (i in 1:6) {
-##     resKeep <- gmycRes[[i]]$simpleGmyc
-##     stopifnot(identical(class(resKeep), "gmyc"))
-##     keepTree <- resKeep$tree
-##     ## Get threshold
-##     keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
-##     ## Find edge length for edge leading to node associate with threshold
-##     ##   so we can draw line in the middle of the edge
-##     keepBrTimes <- sort(branching.times(keepTree))
-##     keepWhichEdge <- which(keepBrTimes == -keepThreshold)
-##     ## We place the threshold line between where the thershold point is and
-##     ##  the following (in branching order) node in the tree
-##     thresLine <- max(branching.times(keepTree)) -
-##         mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
-##     plotTree <- ladderize(keepTree)
-##     colEdges <- rep("black", nrow(plotTree$edge))
-##     edgesToChange <- gmycMatchEdges(allSeqGmEd[[i]], plotTree)
-##     nSpp <- length(edgesToChange)
-##     if (nSpp == 14) {
-##         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
-##                              "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
-##                              "Wpac")]
-##     } else if (nSpp == 16) {
-##         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
-##                              "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
-##                              "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
-##                              "tigerRedSea")]
-##     }
-##     else stop("Houston, we have a problem.")
-##     for (j in 1:nSpp) {
-##         colEdges[edgesToChange[[j]]] <- colToUse[j]
-##     }
-##     par(mai= c(1, 0, 0, 0))
-##     plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
-##          x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
-##          edge.color=colEdges, edge.width=0.5)
-##     mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
-##     segments(x0=thresLine, x1=thresLine, y0=10,
-##              y1=Ntip(keepTree), col="red", lwd=2, lty=2)
-## }
+### ---- gmyc-tree-plot-allSeq ----
+par(mfrow=c(3, 2))
+for (i in 1:6) {
+    resKeep <- gmyc_results[[i]]$simpleGmyc
+    stopifnot(identical(class(resKeep), "gmyc"))
+    keepTree <- resKeep$tree
+    ## Get threshold
+    keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+    ## Find edge length for edge leading to node associate with threshold
+    ##   so we can draw line in the middle of the edge
+    keepBrTimes <- sort(branching.times(keepTree))
+    keepWhichEdge <- which(keepBrTimes == -keepThreshold)
+    ## We place the threshold line between where the thershold point is and
+    ##  the following (in branching order) node in the tree
+    thresLine <- max(branching.times(keepTree)) -
+        mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
+    plotTree <- ladderize(keepTree)
+    colEdges <- rep("black", nrow(plotTree$edge))
+    edgesToChange <- gmycMatchEdges(allSeqGmEd[[i]], plotTree)
+    nSpp <- length(edgesToChange)
+    if (nSpp == 14) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
+                             "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
+                             "Wpac")]
+    } else if (nSpp == 16) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
+                             "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
+                             "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
+                             "tigerRedSea")]
+    }
+    else stop("Houston, we have a problem.")
+    for (j in 1:nSpp) {
+        colEdges[edgesToChange[[j]]] <- colToUse[j]
+    }
+    par(mai= c(1, 0, 0, 0))
+    plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
+         x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
+         edge.color=colEdges, edge.width=0.5)
+    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
+    segments(x0=thresLine, x1=thresLine, y0=10,
+             y1=Ntip(keepTree), col="red", lwd=2, lty=2)
+}
 
-## ### ---- gmyc-tree-plot-uniqSeq ----
-## par(mfrow=c(3, 2))
-## for (i in 7:12) {
-##     k <- i - 6
-##     resKeep <- gmycRes[[i]]$simpleGmyc
-##     stopifnot(identical(class(resKeep), "gmyc"))
-##     keepTree <- resKeep$tree
-##     ## Get threshold
-##     keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
-##     ## Find edge length for edge leading to node associate with threshold
-##     ##   so we can draw line in the middle of the edge
-##     keepBrTimes <- sort(branching.times(keepTree))
-##     keepWhichEdge <- which(keepBrTimes == -keepThreshold)
-##     ## We place the threshold line between where the thershold point is and
-##     ##  the following (in branching order) node in the tree
-##     thresLine <- max(branching.times(keepTree)) -
-##         mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
-##     plotTree <- ladderize(keepTree)
-##     colEdges <- rep("black", nrow(plotTree$edge))
-##     edgesToChange <- gmycMatchEdges(uniqSeqGmEd[[k]], plotTree)
-##     nSpp <- length(edgesToChange)
-##     if (nSpp == 14) {
-##         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
-##                              "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
-##                              "Wpac")]
-##     }  else if (nSpp == 16) {
-##         colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
-##                              "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
-##                              "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
-##                              "tigerRedSea")]
-##     } else stop("Houston, we have a problem.")
-##     for (j in 1:nSpp) {
-##         colEdges[edgesToChange[[j]]] <- colToUse[j]
-##     }
-##     par(mai= c(1, 0, 0, 0))
-##     plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
-##          x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
-##          edge.color=colEdges, edge.width=0.5)
-##     mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
-##     segments(x0=thresLine, x1=thresLine, y0=10,
-##              y1=Ntip(keepTree), col="red", lwd=2, lty=2)
-## }
+### ---- gmyc-tree-plot-uniqSeq ----
+par(mfrow=c(3, 2))
+for (i in 7:12) {
+    k <- i - 6
+    resKeep <- gmyc_results[[i]]$simpleGmyc
+    stopifnot(identical(class(resKeep), "gmyc"))
+    keepTree <- resKeep$tree
+    ## Get threshold
+    keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+    ## Find edge length for edge leading to node associate with threshold
+    ##   so we can draw line in the middle of the edge
+    keepBrTimes <- sort(branching.times(keepTree))
+    keepWhichEdge <- which(keepBrTimes == -keepThreshold)
+    ## We place the threshold line between where the thershold point is and
+    ##  the following (in branching order) node in the tree
+    thresLine <- max(branching.times(keepTree)) -
+        mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
+    plotTree <- ladderize(keepTree)
+    colEdges <- rep("black", nrow(plotTree$edge))
+    edgesToChange <- gmycMatchEdges(uniqSeqGmEd[[k]], plotTree)
+    nSpp <- length(edgesToChange)
+    if (nSpp == 14) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
+                             "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
+                             "Wpac")]
+    }  else if (nSpp == 16) {
+        colToUse <- impPal[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
+                             "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
+                             "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
+                             "tigerRedSea")]
+    } else stop("Houston, we have a problem.")
+    for (j in 1:nSpp) {
+        colEdges[edgesToChange[[j]]] <- colToUse[j]
+    }
+    par(mai= c(1, 0, 0, 0))
+    plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
+         x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
+         edge.color=colEdges, edge.width=0.5)
+    mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
+    segments(x0=thresLine, x1=thresLine, y0=10,
+             y1=Ntip(keepTree), col="red", lwd=2, lty=2)
+}
 
-## ### ---- specimen-table ----
-## library(xtable)
-## spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract")]
-## spcmTable <- spcmTable[regmatches(spcmTable$Extract, regexpr("^[^,]+", spcmTable$Extract)) %in% dimnames(impAlg)[[1]], ]
-## spcmTable <- spcmTable[-match("S0213", spcmTable$Extract), ]
-## stopifnot(all(spcmTable$consensusESU %in% esuList))
-## spcmTable <- spcmTable[order(spcmTable$consensusESU), ]
-## spcmTable$Country <- iconv(spcmTable$Country, "latin1", "ASCII", "")
-## spcmTable$Country <- gsub("Runion", "R\\'{e}union", spcmTable$Country, fixed=TRUE)
-## spcmTable$Country <- gsub("Nosy B", "Nosy B\\'{e}", spcmTable$Country, fixed=TRUE)
-## spcmTable$UFID <- gsub("_", " ", spcmTable$UFID, fixed=TRUE)
-## spcmTable$Extract <- gsub("_", " ", spcmTable$Extract, fixed=TRUE)
-## names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.")
-## spcmTable <- xtable(spcmTable,
-##                     caption=c("Specimen information including location, catalog number, and ESU (consensus)",
-##                         "Specimen information"),
-##                     label="tab:specimen-table")
-## headerTable <- paste("\\hline", paste(names(spcmTable), collapse=" & "), "\\\\ \\hline \\endfirsthead \n",
-##                      "\\caption{(continued) specimen information} \n")
-## print.xtable(spcmTable, tabular.environment="longtable", floating=FALSE,
-##              hline.after = c(-1, nrow(spcmTable)),
-##              add.to.row = list(pos = list(-1, 0),
-##                  command = c(headerTable, "\\hline \\endhead \n")),
-##              sanitize.text.function=function(x) {x}, caption.placement="top",
-##              include.rownames=FALSE)
+### ---- specimen-table ----
+spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract")]
+spcmTable <- spcmTable[regmatches(spcmTable$Extract, regexpr("^[^,]+", spcmTable$Extract)) %in% dimnames(impAlg)[[1]], ]
+spcmTable <- spcmTable[-match("S0213", spcmTable$Extract), ]
+stopifnot(all(spcmTable$consensusESU %in% esuList))
+spcmTable <- spcmTable[order(spcmTable$consensusESU), ]
+spcmTable$Country <- iconv(spcmTable$Country, "latin1", "ASCII", "")
+spcmTable$Country <- gsub("Runion", "R\\'{e}union", spcmTable$Country, fixed=TRUE)
+spcmTable$Country <- gsub("Nosy B", "Nosy B\\'{e}", spcmTable$Country, fixed=TRUE)
+spcmTable$UFID <- gsub("_", " ", spcmTable$UFID, fixed=TRUE)
+spcmTable$Extract <- gsub("_", " ", spcmTable$Extract, fixed=TRUE)
+names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.")
+spcmTable <- xtable(spcmTable,
+                    caption=c("Specimen information including location, catalog number, and ESU (consensus)",
+                        "Specimen information"),
+                    label="tab:specimen-table")
+headerTable <- paste("\\hline", paste(names(spcmTable), collapse=" & "), "\\\\ \\hline \\endfirsthead \n",
+                     "\\caption{(continued) specimen information} \n")
+print.xtable(spcmTable, tabular.environment="longtable", floating=FALSE,
+             hline.after = c(-1, nrow(spcmTable)),
+             add.to.row = list(pos = list(-1, 0),
+                 command = c(headerTable, "\\hline \\endhead \n")),
+             sanitize.text.function=function(x) {x}, caption.placement="top",
+             include.rownames=FALSE)
 
 ## ### ---- median-tmrca-WAgroup ----
 ## ## Get mean and median for node corresponding to MRCA for all
@@ -588,11 +537,11 @@ ggplot(data=locus_graph_data) +
 ## ## trITS <- read.tree(file="20130507-ITS.tre")
 ## ## trH3a <- read.tree(file="../20130507-H3a.tre")
 
-## ## trc0036 <- extToLbl(trc0036, impDB)
-## ## trc0775 <- extToLbl(trc0775, impDB)
-## ## trLSU <- extToLbl(trLSU, impDB)
-## ## trITS <- extToLbl(trITS, impDB)
-## ## trH3a <- extToLbl(trH3a, impDB)
+## ## trc0036 <- extract_to_label(trc0036, impDB)
+## ## trc0775 <- extract_to_label(trc0775, impDB)
+## ## trLSU <- extract_to_label(trLSU, impDB)
+## ## trITS <- extract_to_label(trITS, impDB)
+## ## trH3a <- extract_to_label(trH3a, impDB)
 
 ## ## pdf(file="/tmp/trees.pdf")
 ## ## plot(trc0036, no.margin=T, cex=.5)
@@ -607,11 +556,11 @@ ggplot(data=locus_graph_data) +
 ## ## phy2nex(file="~/Documents/Impatiens/20130507.impatiens_partfinder/20130507.impatiens.phy",
 ## ##         partition.file="~/Documents/Impatiens/20130507.impatiens_partfinder/20130507.impatiens.part")
 
-## ## rownames(impAlg) <- extToLblStr(rownames(impAlg), impDB)
+## ## rownames(impAlg) <- extract_to_labelStr(rownames(impAlg), impDB)
 
 ## ## tmpTr <- read.tree(file="/tmp/seq/RAxML_bestTree.T1")
 ## ## tmpTr <- root(tmpTr, grep("S0213", tmpTr$tip.label))
-## ## tmpTr$tip.label <- extToLblStr(tmpTr$tip.label, impDB)
+## ## tmpTr$tip.label <- extract_to_labelStr(tmpTr$tip.label, impDB)
 ## ## tmpTr <- ladderize(tmpTr)
 ## ## posMarkers <- seq(1, by=.02, length.out=ncol(impAlg))
 ## ## tipOrder <- tmpTr$tip.label[tmpTr$edge[which(tmpTr$edge %in% 1:Ntip(tmpTr))]]
@@ -628,7 +577,7 @@ ggplot(data=locus_graph_data) +
 
 
 ## ### summary table
-## ## impAlgNm <- extToLblStr(rownames(impAlg), impDB)
+## ## impAlgNm <- extract_to_string_label(rownames(impAlg), impDB)
 ## ## impAlg$ESU <- sapply(impAlgNm, function(x) unlist(strsplit(x, "_"))[3])
 
 ## ## library(reshape)

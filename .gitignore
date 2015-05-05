@@ -62,3 +62,5 @@ data/.~lock*
 figures/
 cache/
 
+/annotation.tex
+/auto/

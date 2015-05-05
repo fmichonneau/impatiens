@@ -1,0 +1,2 @@
+#!/bin/sh
+raxmlHPC-HYBRID -s infile -n result -m GTRGAMMA -x 12345 -N 500 -q part -p 12345 -f a 

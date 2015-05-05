@@ -1,0 +1,41 @@
+
+
+This is RAxML version 8.0.0 released by Alexandros Stamatakis on Dec 13 2013.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+David Dao         (KIT)
+Charlie Taylor    (UF)
+
+
+RAxML Bipartition Computation: Drawing support values from trees in file data/RAxML_bootstrap_nooutgroup.phy onto tree in file data/allimpatiens_strict.phy
+
+
+RAxML was called as follows:
+
+/home/francois/Software/RAxML-8.0.1/./raxmlHPC-PTHREADS-SSE3 -m GTRGAMMA -p 12345 -f b -t data/allimpatiens_strict.phy -z data/RAxML_bootstrap_nooutgroup.phy -T8 -n annotateBEASTtree 
+
+
+
+
+Found 1 tree in File data/allimpatiens_strict.phy
+
+
+
+Found 500 trees in File data/RAxML_bootstrap_nooutgroup.phy
+
+
+
+Found 1 tree in File data/allimpatiens_strict.phy
+
+
+
+Time for Computation of Bipartitions 0.207743
+Tree with bipartitions written to file:  /home/francois/Documents/Impatiens/impatiens_phylogeography/RAxML_bipartitions.annotateBEASTtree
+Tree with bipartitions as branch labels written to file:  /home/francois/Documents/Impatiens/impatiens_phylogeography/RAxML_bipartitionsBranchLabels.annotateBEASTtree
+Execution information file written to :  /home/francois/Documents/Impatiens/impatiens_phylogeography/RAxML_info.annotateBEASTtree

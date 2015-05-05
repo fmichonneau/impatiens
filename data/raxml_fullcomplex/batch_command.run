@@ -1,0 +1,39 @@
+#!/bin/sh
+#PBS -q normal
+#PBS -N NGBW-JOB-RAXMLHPC2_TGB-1FB5A6992C134023B2269473049BBC5A
+#PBS -l walltime=00:300:00
+#PBS -o scheduler_stdout.txt
+#PBS -e scheduler_stderr.txt
+#PBS -W umask=0007
+##PBS -V
+
+#PBS -v QOS=2
+
+#PBS -M  terri@sdsc.edu,mmiller@sdsc.edu
+#PBS -m ae
+#PBS -A TG-DEB090011
+#PBS -l nodes=2:ppn=32
+cd /projects/ps-ngbt/backend/trestles_workspace/NGBW-JOB-RAXMLHPC2_TGB-1FB5A6992C134023B2269473049BBC5A
+
+source /etc/profile.d/modules.sh
+
+SDSC-gateway-submit-attributes $PBS_JOBID $(sed -n '/^email=/ {s/email=//; p;}' _JOBINFO.TXT)
+
+
+#We need the signal handler to ensure that the "wait" gets interrupted.
+trap "date +'%s %a %b %e %R:%S %Z %Y' > term.txt " SIGTERM TERM
+
+date +'%s %a %b %e %R:%S %Z %Y' > start.txt
+
+curl -k https://www.phylo.org/portal2/taskupdate.action?taskId=489419\&jh=NGBW-JOB-RAXMLHPC2_TGB-1FB5A6992C134023B2269473049BBC5A\&status=START
+
+export CIPRES_THREADSPP=6
+export CIPRES_NP=10
+
+(./batch_command.cmdline 1>stdout.txt 2>stderr.txt)&
+wait
+
+date +'%s %a %b %e %R:%S %Z %Y' > done.txt
+qstat -f $PBS_JOBID | grep Job
+qstat -f $PBS_JOBID | grep resources
+curl -k https://www.phylo.org/portal2/taskupdate.action?taskId=489419\&jh=NGBW-JOB-RAXMLHPC2_TGB-1FB5A6992C134023B2269473049BBC5A\&status=DONE

@@ -5,8 +5,8 @@
 ##' characters must match the column names of the spreadsheet that
 ##' contains the information about the species. This function is not
 ##' intended to be used by itself, but rather to be called by
-##' \sQuote{extToLbl} or more generally to be used in conjunction with
-##' \sQuote{sapply}.
+##' \sQuote{extract_to_label} or more generally to be used in
+##' conjunction with \sQuote{sapply}.
 ##' @title Generate labels from the extraction numbers.
 ##' @param str The character string to be matched and converted
 ##' @param db The database in CSV format that link the extraction
@@ -14,9 +14,9 @@
 ##' @param fields The sequence of information to be collated to form
 ##' the label.
 ##' @return A character string corresponding to the formated label.
-##' @author François Michonneau
-extToLblStr <- function(str, db, fields=c("Genus", "Species", "consensusESU",
-                                     "Country", "UFID", "Extract")) {
+##' @author Francois Michonneau
+extract_to_string_label <- function(str, db, fields=c("Genus", "Species", "consensusESU",
+                                          "Country", "UFID", "Extract")) {
   extNb <- str
   extDb <- db$Extract
   dups <- grep(",", extDb)
@@ -25,7 +25,8 @@ extToLblStr <- function(str, db, fields=c("Genus", "Species", "consensusESU",
       dupDb <- db[dups, ]
       for (i in 1:length(dups)) {
           allDup <- unlist(strsplit(dupDb$Extract[i], ","))
-          matDt <- matrix(rep(dupDb[i, ], length(allDup)), nrow=length(allDup), byrow=TRUE)
+          matDt <- matrix(rep(dupDb[i, ], length(allDup)), nrow=length(allDup),
+                          byrow=TRUE)
           tmpDt <- cbind(allDup, matDt)
           tmpRes <- rbind(tmpRes, tmpDt)
       }
@@ -46,19 +47,19 @@ extToLblStr <- function(str, db, fields=c("Genus", "Species", "consensusESU",
 
 ##' Converts tip labels from a tree from the extraction number to a full string.
 ##'
-##' For details see the documentation of extToLblStr
+##' For details see the documentation of extract_to_string_label
 ##' @title Convert tip labels
 ##' @param tr The tree for which the tip labels need to be converted.
 ##' @param db The database that link the information between the
 ##' extraction numbers and the species they belong to.
 ##' @param ... Additional arguments to be passed to
-##' extToLblStr. Particularly useful to control elements being used in
+##' extract_to_string_label. Particularly useful to control elements being used in
 ##' the labels.
 ##' @return a tree in the phylo format with converted labels.
 ##' @author François Michonneau
-extToLbl <- function(tr, db, ...) {
+extract_to_label <- function(tr, db, ...) {
   extNb <- tr$tip.label
-  newLbl <- sapply(extNb, extToLblStr, db, ...)
+  newLbl <- sapply(extNb, extract_to_string_label, db, ...)
   tr$tip.label <- newLbl
   tr
 }

@@ -537,7 +537,7 @@ our analysis to allow the estimation of the topology when all individuals for
 the species tested where attributed to \texttt{ESU1}. The null hypothesis was
 that all putative species were reproductively isolated.
 
-<<star-beast-stats, cache=TRUE, echo=FALSE>>=
+<<star-beast-stats, echo=FALSE>>=
 @
 
 In these analyses, we selected individuals for which we had at least one
@@ -664,9 +664,10 @@ tree method \cite{Heled2013}.
 
 \subsection{Sequence data}
 
-<<loci-characteristics-data, cache=TRUE, echo=FALSE, warning=FALSE>>=
-generate_loci_table(locChar)
+<<loci-coverage-data, warning=TRUE, echo=FALSE>>=
+
 @
+
 
 The complete sequence data set was \Sexpr{sum(locChar["bp_alg", ])}~bp (with
 \Sexpr{sum(locChar["bp_alg", c("16S", "COI", "ATP6")])}~bp from mitochondrial
@@ -677,13 +678,11 @@ parsimony-informative sites, \Sexpr{round(sum(locChar["S_i", c("16S", "COI",
   "ATP6")])/sum(locChar["S_i",])*100, 0)}\% were from the mitochondrial loci
 (Table~\ref{tab:loci-characteristics}).
 
-<<loci-characteristics-table, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE, results='asis'>>=
 
+<<loci-characteristics-data, results="asis", echo=FALSE, warning=FALSE>>=
+generate_loci_table(locChar)
 @
 
-<<loci-coverage-data, cache=TRUE, dependson='loci-characteristics-data', warning=FALSE, echo=FALSE>>=
-
-@
 
 We obtained sequence data from \Sexpr{length(unique(locWhich[,
   "Extract"]))} individuals covering the entire known geographical
@@ -701,10 +700,10 @@ sequenced for at least 1 nuclear locus and
 
 \subsection{Species limits with GMYC}
 
-<<gmyc-coi-results, cache=TRUE, eval=TRUE, echo=FALSE>>=
+<<gmyc-coi-results, eval=TRUE, echo=FALSE>>=
 @
 
-<<gmyc-coi-vars, eval=TRUE, echo=FALSE, cache=TRUE, dependson='gmyc-coi-results'>>=
+<<gmyc-coi-vars, eval=TRUE, echo=FALSE>>=
 minSingle <- min(subset(gmyc_summary, analysisType == "single")$mean)
 maxSingle <- max(subset(gmyc_summary, analysisType == "single")$mean)
 minMulti <- min(subset(gmyc_summary, analysisType == "multi")$mean)
@@ -726,7 +725,7 @@ widely and ranged from \Sexpr{minSingle} to \Sexpr{maxSingle} for the
 single-threshold method (sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti}
 for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
-<<gmyc-coi-plot, dependson='gmyc-coi-data', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
+<<gmyc-coi-plot, eval=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
 @
 
 Species estimates from sGMYC were more conservative and with narrower confidence
@@ -840,7 +839,7 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M0: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" in favor of the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
+<<starbeast-summary, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M0: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" in favor of the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
 @
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
@@ -884,7 +883,7 @@ threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
-<<impatiens-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in million years.">>=
+<<impatiens-tree, eval=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in million years.">>=
 @
 
 The phylogenetic relationships recovered with BEAST and RAxML of the species
@@ -926,13 +925,13 @@ Fig.~\ref{fig:impatiens-map-group1}).
 % speciation event in each clade about 9.5 Ma).
 
 
-<<impatiens-map-WA, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA, Gala, EP)">>=
+<<impatiens-map-WA, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA, Gala, EP)">>=
 @
 
-<<impatiens-map-group1, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.">>=
+<<impatiens-map-group1, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.">>=
 @
 
-<<impatiens-map-group2, dependson='init-map', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU2, tiger, and tigerRedSea.">>=
+<<impatiens-map-group2, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU2, tiger, and tigerRedSea.">>=
 @
 
 
@@ -1466,7 +1465,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 \section{Supplementary materials}
 
 
-<<loci-coverage-plot, cache=TRUE, dependson='loci-coverage-data', warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
+<<loci-coverage-plot, warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
 
 @
 
@@ -1495,32 +1494,32 @@ confirmed with genetic data that capture a larger fraction of the genome.
 \end{table}
 
 %% raxml tree
-<<raxml-tree, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values $\\geq$ 90, red circles bootstrap values $\\geq$ 80. Colored vertical bars represent consensus ESUs.'>>=
+<<raxml-tree, eval=TRUE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.scap='Maximum-likelihood phylogeny for all concatenated loci', fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated using RAxML with a GTR+G model for each partition. Black circles represent bootstrap values $\\geq$ 90, red circles bootstrap values $\\geq$ 80. Colored vertical bars represent consensus ESUs.'>>=
 
 @
 
 %% locus trees
 
-<<per-locus-trees, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=8, fig.scap='Genealogies per locus', fig.cap='Maximum-likelihood genealogies (unrooted) for each locus reconstructed using RAxML with a GTR+G model of molecular evolution for each partitions. Black circles on the nodes indicate bootstrap values $\\geq$ 80 based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA\" is the concatenation of ATP6, COI, 16S; ``rDNA\" is the concatenation of ITS and LSU.' >>=
+<<per-locus-trees, eval=TRUE, echo=FALSE, fig.keep='last', fig.width=6, fig.height=8, fig.scap='Genealogies per locus', fig.cap='Maximum-likelihood genealogies (unrooted) for each locus reconstructed using RAxML with a GTR+G model of molecular evolution for each partitions. Black circles on the nodes indicate bootstrap values $\\geq$ 80 based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA\" is the concatenation of ATP6, COI, 16S; ``rDNA\" is the concatenation of ITS and LSU.' >>=
 
 @
 
 %% gmyc tree
 
-<<gmyc-tree-plot-prep, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='hide', message=FALSE, warning=FALSE>>=
+<<gmyc-tree-plot-prep, eval=TRUE, echo=FALSE, results='hide', message=FALSE, warning=FALSE>>=
 @
 
-<<gmyc-tree-plot-allSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
+<<gmyc-tree-plot-allSeq, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
 @
 
-<<gmyc-tree-plot-uniqSeq, dependson='gmyc-tree-plot-prep', eval=TRUE, cache=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
+<<gmyc-tree-plot-uniqSeq, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
 @
 
 \clearpage
 
 %% specimen table
 
-<<specimen-table, dependson='init-phylo', eval=TRUE, cache=TRUE, echo=FALSE, results='asis'>>=
+<<specimen-table, eval=TRUE, echo=FALSE, results='asis'>>=
 
 @
 

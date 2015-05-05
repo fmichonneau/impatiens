@@ -1,4 +1,5 @@
-sources: remake/
+sources:
+  - R/
 
 packages:
   - ape
@@ -13,13 +14,15 @@ packages:
   - XML
   - xtable
   - splits
+  - wesanderson
+  - reshape2
 
 targets:
   all:
      depends:
        #- figures
        #- tables
-       - impatiens_phylogeography.tex
+       - impatiens_phylogeography.pdf
 
   data:
     depends:
@@ -31,11 +34,30 @@ targets:
   impDB:
     command: load_impDB("data/impatiensDB.csv")
 
+
+  ## ---- Trees ----
+
   impTree:
     ## TODO: need to include scripts to generate this tree
     command: load_impTree("data/allimpatiens_strict.tree.nex")  # from 20140519
 
-  ## Alignments
+  data/allimpatiens_strict.phy:
+    command: write.tree(impTree, "data/allimpatiens_strict.phy")
+
+  data/RAxML_bootstrap_nooutgroup.phy:
+    command: drop_tip_from_raxml_trees("data/RAxML_bootstrap.result", outfile = "data/RAxML_bootstrap_nooutgroup.phy")
+
+  raxml_trees:
+    command: annotate_beast_with_bootstrap(beast_tree = "data/allimpatiens_strict.phy",
+                                           raxml_tree = "data/RAxML_bootstrap_nooutgroup.phy")
+
+  data/prop_clades_nooutgroup.rds:
+    command: get_prop_clades("data/RAxML_bootstrap_nooutgroup.phy", rds_file = "data/prop_clades_nooutgroup.rds")
+
+
+
+  ## ---- Alignments ----
+
   alg_files:
     command: get_alg_files(pattern = I("afa$"))
 
@@ -49,32 +71,62 @@ targets:
     command: get_locus_files(algfile = "data/alignments/20130923.impatiens.phy",
                              partfile="data/20130923.partition-raxml-perlocus")
 
-  ## Locus characteristics
+
+  ## ---- Locus characteristics ----
+
   locChar:
     command: extract_loci_characteristics(locus_files)
     packages: chopper
 
-  ## Ambiguities
-  alg_amb:
-    command: alg_ambiguities(alg_files)
-
-  ## *BEAST taxa
-  sBeastTaxa:
-    command: getTaxaBEASTxml("data/sBEAST_analyses/20140721.impatiens_allESU1_coiRate01.xml")
-
-  ## Locus coverage
   locus_coverage:
     command: get_locus_coverage(locus_files)
 
   locus_graph_data:
     command: get_locus_graph_data(locus_coverage, impDB, locus_files)
 
-  ## GMYC
+
+  ## ---- Ambiguities ----
+  alg_amb:
+    command: alg_ambiguities(alg_files)
+
+
+  ## ---- *BEAST taxa ----
+
+  sBeastTaxa:
+    command: getTaxaBEASTxml("data/sBEAST_analyses/20140721.impatiens_allESU1_coiRate01.xml")
+
+
+  ## ---- GMYC ----
+
   gmyc_results:
     command: readRDS(file = "data/gmyc_results.rds")
 
   gmyc_summary:
     command: get_gmyc_summary(gmyc_results)
+
+
+  ## ---- *BEAST results ----
+
+  star_beast_results:
+    command: get_sbeast_results(file = "data/starbeastResults.csv")
+
+  star_beast_summary_all:
+    command: get_sbeast_summary_all(star_beast_results)
+
+  star_beast_summary_noCOI:
+    command: get_sbeast_summary_noCOI(star_beast_results)
+
+  star_beast_summary_noMt:
+    command: get_sbeast_summary_noMt(star_beast_results)
+
+
+  ## ---- Maps -----
+
+  impatiens_map_data:
+    command: get_impatiens_map_data(impDB)
+
+
+
 
   ## Manuscript ---------------------------------------------------------------
   impatiens_phylogeography.tex:
@@ -84,9 +136,22 @@ targets:
       - impTree
       - impDB
       - alg_amb
-      - locChar
       - sBeastTaxa
+      - locChar
       - locus_coverage
       - locus_graph_data
       - gmyc_summary
+      - gmyc_results
+      - star_beast_results
+      - star_beast_summary_all
+      - star_beast_summary_noCOI
+      - star_beast_summary_noMt
+      - impatiens_map_data
     knitr: true
+
+  impatiens_phylogeography.pdf:
+    command: system(I("make"))
+    depends:
+      - impatiens_phylogeography.tex
+      - code/impatiens_analysis.R
+      - code/impatiens_map.R
