@@ -684,15 +684,15 @@ generate_loci_table(locChar)
 @
 
 
-We obtained sequence data from \Sexpr{length(unique(locWhich[,
+We obtained sequence data from \Sexpr{length(unique(locus_graph_data[,
   "Extract"]))} individuals covering the entire known geographical
 range of \textit{Holothuria impatiens}. All of these individuals were
 sequenced for at least one mitochondrial locus, and
 \Sexpr{round(length(unique(hasMtNuc[,
-  "Extract"]))/length(unique(locWhich[, "Extract"]))*100, 0)}\% were
+  "Extract"]))/length(unique(locus_graph_data[, "Extract"]))*100, 0)}\% were
 sequenced for at least 1 nuclear locus and
 \Sexpr{round(sum(table(hasMtNuc[, "Extract"]) >=
-  2)/length(unique(locWhich[, "Extract"])) *100, 0) }\% for 2 or more
+  2)/length(unique(locus_graph_data[, "Extract"])) *100, 0) }\% for 2 or more
 (Fig.~\ref{fig:loci-coverage-plot}).
 
 % Here comment on results based on RAxML runs on individual loci.
