@@ -1,5 +1,3 @@
-### ---- init-map ----
-iwp <- map_data("world2")
 
 ### ---- impatiens-map ----
 ### Global impatiens map
@@ -14,18 +12,18 @@ iwp <- map_data("world2")
 
 ### ---- impatiens-map-WA ----
 ## 1. WA + EP + Gala
-draw_impatiens_map(impatiens_map_data, bg = iwp, palette = impPal,
+draw_impatiens_map(impatiens_map_data, bg = map_data("world2"), palette = impPal,
                    ESUs =  c("WA", "EP", "Gala"), x.lim = c(250, 310),
                    y.lim = c(-25, 25))
 
 ### ---- impatiens-map-group2 ----
 ## 2. tiger + ESU2 + redSeaTiger
-draw_impatiens_map(impatiens_map_data, bg = iwp, palette = impPal,
+draw_impatiens_map(impatiens_map_data, bg = map_data("world2"), palette = impPal,
                    ESUs =  c("tiger", "ESU2", "tigerRedSea"),
                    x.lim =c(25, 220), y.lim = c(-25, 25))
 
 ### ---- impatiens-map-group1 ----
 ## 3. ESU3 + RedSea + Gracilis + Hawaii + WPac + ESU1
-draw_impatiens_map(impatiens_map_data, bg = iwp, palette = impPal,
+draw_impatiens_map(impatiens_map_data, bg = map_data("world2"), palette = impPal,
                    ESUs = c("ESU1", "ESU3", "RedSea", "gracilis", "Hawaii", "Wpac"),
                    x.lim = c(30, 220), y.lim = c(-27, 29))
