@@ -145,10 +145,6 @@ ggplot(data=locus_graph_data) +
 
 
 ### ---- starbeast-summary ----
-sbSummPlot <- reshape2::melt(star_beast_summary_all[, -match(c("PS_logLik", "SS_logLik", "stdSS", "stdPS"),
-                                                names(star_beast_summary_all))],
-                             measure.vars=c("BFSS", "BFPS"))
-
 meanESU1SS <- mean(subset(star_beast_summary_all, groupings == "allESU1")$SS_logLik)
 
 BFHawaii <- round(2 * mean(subset(star_beast_summary_all, groupings == "noHawaii")$stdSS), 1)
@@ -166,24 +162,7 @@ BFHawaiiNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noH
 BFWpacNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noWpac")$stdSS), 1)
 BFRedSeaNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noRedSea")$stdSS), 1)
 
-sbCol <- wesanderson::wes_palette("Zissou", 5)[c(1, 5)]
-names(sbCol) <- c("BFSS", "BFPS")
 
-ggplot(sbSummPlot, aes(x=plotGroupings, y=value, group=variable, colour=variable)) +
-    scale_x_discrete(limits=c("M0", "oversplit", "M5", "M4", "M6", "M3", "M2", "M1")) +
-    scale_colour_manual(values=sbCol, breaks=c("BFSS", "BFPS"),
-                        labels=c("Stepping Stone Sampling", "Path Sampling")) +
-    geom_point(position=position_dodge(width=.3)) +
-    stat_summary(fun.y = mean, geom="point", size=3,
-                 position=position_dodge(width=.3)) +
-    geom_hline(yintercept=-10, width=.1, col=sbCol[2], linetype=2) +
-    theme(legend.position="top", legend.title=element_blank(),
-          panel.background = element_rect(fill = "gray95"),
-          panel.grid.major = element_line(colour = "white", size=0.1),
-          panel.grid.minor = element_line(NA)) +
-    labs(y="Bayes Factors ", x="Models") +
-    theme(legend.justification=c(0,0), legend.position=c(0,0)) +
-    facet_grid( ~ dataIncluded)
 
 
 ## ## sbNoCoiPlotSS <- ggplot(star_beast_summary_noCOI, aes(x=groupings, y=stdSS)) + geom_point(position="dodge", colour=sbCol[1]) +

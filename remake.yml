@@ -20,8 +20,9 @@ packages:
 targets:
   all:
      depends:
-       #- figures
+       - figures
        #- tables
+       - impatiens_phylogeography.tex
        - impatiens_phylogeography.pdf
 
   data:
@@ -30,6 +31,11 @@ targets:
       - impTree
       - impAlg
       - locChar
+
+  figures:
+    depends:
+      - figures-remake/gmyc-coi-plot.pdf
+      - figures-remake/starbeast-summary-plot.pdf
 
   impDB:
     command: load_impDB("data/impatiensDB.csv")
@@ -125,13 +131,17 @@ targets:
   impatiens_map_data:
     command: get_impatiens_map_data(impDB)
 
-
+  ###
   ### ******  FIGURES ******
+  ###
+
   figures-remake/gmyc-coi-plot.pdf:
     command: gmyc_coi_plot(gmyc_summary, pdf.output="figures-remake/gmyc-coi-plot.pdf",
-                          width = 7, height=4, standAlone=TRUE)
+                          width = 7, height = 4, standAlone = TRUE)
 
-
+  figures-remake/starbeast-summary-plot.pdf:
+    command: starbeast_summary_plot(star_beast_summary_all, pdf.output="figures-remake/starbeast-summary-plot.pdf",
+                                    width = 7, height = 4, standAlone = TRUE)
 
 
   ## Manuscript ---------------------------------------------------------------
@@ -153,6 +163,7 @@ targets:
       - star_beast_summary_noCOI
       - star_beast_summary_noMt
       - impatiens_map_data
+      - figures
     knitr: true
 
   impatiens_phylogeography.pdf:

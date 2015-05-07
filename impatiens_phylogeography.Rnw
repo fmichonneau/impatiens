@@ -730,11 +730,17 @@ for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 \begin{figure}
 
-{\centering \includegraphics[width=\maxwidth]{figures/latex-gmyc-coi-plot-1}
+{\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-coi-plot}
 
 }
 
-\caption[Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies]{Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.}\label{fig:gmyc-coi-plot}
+\caption[Number of species estimated by single and multi-threshold GMYC methods
+on COI phylogenies]{Number of species estimated by single and multi-threshold
+  GMYC methods on COI phylogenies. The dots represent the number of species
+  associated with the node(s) that correspond(s) to the highest likelihood(s)
+  for the location of the shift(s), the dotted lines represent the range for the
+  estimated number of species for nodes within 2 likelihood units of the
+  maximum-likelihood estimate.}\label{fig:gmyc-coi-plot}
 \end{figure}
 
 
@@ -849,8 +855,17 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, fig.scap='Bayes factors for alternate models of species assignments for putative species related to \\texttt{ESU1}.', fig.cap='Bayes factors comparing the null hypothesis (M0: \\texttt{ESU1}, \\texttt{RedSea}, \\texttt{Wpac}, \\texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost\" species added (oversplit), no \\texttt{Hawaii} (M5), no \\texttt{Wpac} (M4), no \\texttt{RedSea} (M6), no \\texttt{Wpac} and no \\texttt{Hawaii} (M3), no \\texttt{noWpac} and no \\texttt{RedSea} (M2), all individuals attributed to \\texttt{ESU1} (M1), see also Table~\\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence\" in favor of the null hypothesis according to Kass \\& Raftery \\cite{Kass1995}.'>>=
+<<starbeast-summary, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE>>=
 @
+
+\begin{figure}
+
+{\centering \includegraphics[width=\maxwidth]{figures-remake/starbeast-summary-plot}
+
+}
+
+\caption[Bayes factors for alternate models of species assignments for putative species related to \texttt{ESU1}.]{Bayes factors comparing the null hypothesis (M0: \texttt{ESU1}, \texttt{RedSea}, \texttt{Wpac}, \texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost" species added (oversplit), no \texttt{Hawaii} (M5), no \texttt{Wpac} (M4), no \texttt{RedSea} (M6), no \texttt{Wpac} and no \texttt{Hawaii} (M3), no \texttt{noWpac} and no \texttt{RedSea} (M2), all individuals attributed to \texttt{ESU1} (M1), see also Table~\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence" in favor of the null hypothesis according to Kass \& Raftery \cite{Kass1995}.}\label{fig:starbeast-summary}
+\end{figure}
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
 estimates of the marginal likelihoods (Fig~\ref{fig:starbeast-summary}). The
