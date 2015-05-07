@@ -126,6 +126,12 @@ targets:
     command: get_impatiens_map_data(impDB)
 
 
+  ### ******  FIGURES ******
+  figures-remake/gmyc-coi-plot.pdf:
+    command: gmyc_coi_plot(gmyc_summary, pdf.output="figures-remake/gmyc-coi-plot.pdf",
+                          width = 7, height=4, standAlone=TRUE)
+
+
 
 
   ## Manuscript ---------------------------------------------------------------

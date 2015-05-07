@@ -725,8 +725,18 @@ widely and ranged from \Sexpr{minSingle} to \Sexpr{maxSingle} for the
 single-threshold method (sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti}
 for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
-<<gmyc-coi-plot, eval=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
-@
+% <<gmyc-coi-plot, eval=TRUE, echo=FALSE, fig.keep='last', fig.height=4, fig.scap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies', fig.cap='Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.'>>=
+% @
+
+\begin{figure}
+
+{\centering \includegraphics[width=\maxwidth]{figures/latex-gmyc-coi-plot-1}
+
+}
+
+\caption[Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies]{Number of species estimated by single and multi-threshold GMYC methods on COI phylogenies. The dots represent the number of species associated with the node(s) that correspond(s) to the highest likelihood(s) for the location of the shift(s), the dotted lines represent the range for the estimated number of species for nodes within 2 likelihood units of the maximum-likelihood estimate.}\label{fig:gmyc-coi-plot}
+\end{figure}
+
 
 Species estimates from sGMYC were more conservative and with narrower confidence
 intervals (CI) than the mGMYC approach. The maximum-likelihood estimates for the
