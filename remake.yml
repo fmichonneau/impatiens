@@ -43,6 +43,8 @@ targets:
       - figures-remake/impatiens-map-group2.pdf
       - figures-remake/raxml-tree.pdf
       - figures-remake/per-locus-trees.pdf
+      - figures-remake/gmyc-tree-all-sequences.pdf
+      - figures-remake/gmyc-tree-unique-sequences.pdf
 
   impDB:
     command: load_impDB("data/impatiensDB.csv")
@@ -171,6 +173,14 @@ targets:
     command: per_locus_trees(per_locus_raxml_files, impDB, pdf.output = target_name,
                              width = 6, height = 8)
 
+  figures-remake/gmyc-tree-all-sequences.pdf:
+    command: gmyc_tree_all_sequences(gmyc_results, pdf.output = target_name,
+                                     width = 6, height = 8)
+
+  figures-remake/gmyc-tree-unique-sequences.pdf:
+    command: gmyc_tree_unique_sequences(gmyc_results, pdf.output = target_name,
+                                        width = 6, height = 8)
+
   ## Manuscript ---------------------------------------------------------------
   impatiens_phylogeography.tex:
     depends:
@@ -197,6 +207,8 @@ targets:
       - figures-remake/impatiens-map-group2.pdf
       - figures-remake/raxml-tree.pdf
       - figures-remake/per-locus-trees.pdf
+      - figures-remake/gmyc-tree-all-sequences.pdf
+      - figures-remake/gmyc-tree-unique-sequences.pdf
     knitr: true
 
   impatiens_phylogeography.pdf:

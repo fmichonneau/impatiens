@@ -1561,15 +1561,20 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 
 %% gmyc tree
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-all-sequences}}
+  \caption{Position of the species delineated with GMYC on COI genealogies
+    estimated using various priors with BEAST. Each color corresponds to a
+    different putative species.}\label{fig:gmyc-tree-plot-allSeq}
+\end{figure}
 
-<<gmyc-tree-plot-prep, eval=TRUE, echo=FALSE, results='hide', message=FALSE, warning=FALSE>>=
-@
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-unique-sequences}}
+  \caption{Position of the species delineated with GMYC on COI genealogies
+    estimated using various priors with BEAST. Each color corresponds to a
+    different putative species.}\label{fig:gmyc-tree-plot-uniqSeq}
+\end{figure}
 
-<<gmyc-tree-plot-allSeq, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
-@
-
-<<gmyc-tree-plot-uniqSeq, eval=TRUE, echo=FALSE, fig.keep='last', message=FALSE, warning=FALSE, results='hide', fig.width=6, fig.height=8, fig.scap='Position of the species delineated using GMYC on COI genealogies', fig.cap='Position of the species delineated with GMYC on COI genealogies estimated using various priors with BEAST. Each color corresponds to a different putative species'>>=
-@
 
 \clearpage
 
