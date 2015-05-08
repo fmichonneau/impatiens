@@ -146,12 +146,14 @@ targets:
   ###
 
   figures-remake/gmyc-coi-plot.pdf:
-    command: gmyc_coi_plot(gmyc_summary, pdf.output="figures-remake/gmyc-coi-plot.pdf",
-                          width = 7, height = 4, standAlone = TRUE)
+    command: gmyc_coi_plot(gmyc_summary, pdf.output = target_name, width = 7, height = 4)
 
   figures-remake/starbeast-summary-plot.pdf:
-    command: starbeast_summary_plot(star_beast_summary_all, pdf.output="figures-remake/starbeast-summary-plot.pdf",
-                                    width = 7, height = 4, standAlone = TRUE)
+    command: starbeast_summary_plot(star_beast_summary_all, pdf.output = target_name, width = 7, height = 4)
+
+  figures-remake/impatiens-tree-plot.pdf:
+    command: impatiens_tree_plot(impTree, impDB, pdf.output = target_name, height = 8, width = 8)
+
   figures-remake/loci-coverage-plot.pdf:
     command: loci_coverage_plot(locus_graph_data, pdf.output="figures-remake/loci-coverage-plot.pdf",
                                 width = 6.5, height = 8)
@@ -200,8 +202,10 @@ targets:
       - star_beast_summary_noCOI
       - star_beast_summary_noMt
       - impatiens_map_data
-      - figures
+      - figures-remake/gmyc-coi-plot.pdf
+      - figures-remake/starbeast-summary-plot.pdf
       - figures-remake/loci-coverage-plot.pdf
+      - figures-remake/impatiens-tree-plot.pdf
       - figures-remake/impatiens-map-WA.pdf
       - figures-remake/impatiens-map-group1.pdf
       - figures-remake/impatiens-map-group2.pdf
