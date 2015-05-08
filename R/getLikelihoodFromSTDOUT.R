@@ -19,8 +19,7 @@ getNbFromFile <- function(file, fast=TRUE) {
 }
 
 getNb <- function(path) {
-    owd <- getwd()
-    setwd(path)
+    owd <- setwd(path)
     allStdOut <- list.files(path=path, recursive=TRUE, pattern="STDOUT")
     res <- vector("list", length(allStdOut))
     for (i in 1:length(allStdOut)) {

@@ -36,7 +36,6 @@ randomizeTraits <- function(traitFile, output) {
         outVec2[k] <- "\t\t</sp>"
         k <- k + 1
     }
-    
-    cat(outVec1, "\n\n----------------\n\n", outVec2, file="/tmp/xx.txt", sep="\n")
-}
 
+    cat(outVec1, "\n\n----------------\n\n", outVec2, file=output, sep="\n")
+}
