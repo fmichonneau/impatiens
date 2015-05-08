@@ -908,8 +908,16 @@ threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
 
 \subsection{Phylogenetic relationships among the ESUs}
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
-<<impatiens-tree, eval=TRUE, echo=FALSE, fig.keep='last', fig.height=8, fig.cap="Bayesian phylogenetic tree of the \\textit{Holothuria impatiens} complex. Vertical bars along the tips of the tree show the different ESUs found in the complex. Axis on the bottom in million years.">>=
-@
+
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-tree-plot}}
+
+  \caption{Bayesian phylogenetic tree of the \textit{Holothuria impatiens}
+    complex. Vertical bars along the tips of the tree show the different ESUs
+    found in the complex. Axis on the bottom in million
+    years.}\label{fig:impatiens-tree}
+\end{figure}
+
 
 The phylogenetic relationships recovered with BEAST and RAxML of the species
 included in the ``\textit{H. impatiens}'' complex on the concatenated alignment

@@ -108,3 +108,37 @@ loci_coverage_plot <- function(locus_graph_data, ...) {
     plot2pdf(p, ...)
 }
 
+
+impatiens_tree_plot <- function(impTree, impDB, ...) {
+    imp_tree_plot_ <- function(impTree, impDB, impPal) {
+        impTree <- ladderize(impTree)
+        posTips <- max(branching.times(impTree))
+        impTree <- extract_to_label(impTree, impDB, c("consensusESU", "Country", "UFID", "Extract"))
+        esuList <- c("ESU1", "ESU2", "ESU3", "gracilis", "tiger", "tigerRedSea", "Medit", "WA",
+                     "Gala", "EP", "Hawaii", "Wpac", "RedSea")
+
+        impNodLbl <- impTree$posterior
+        impNodLblCol <- rep(NULL, length(impNodLbl))
+        impNodLblCol[impNodLbl >= .99] <- "black"
+
+        impAllNds <- 1:length(impNodLbl)
+        impKeepNds <- impAllNds[!is.na(impNodLblCol)]
+
+        par(mai=c(1,0,0,0))
+        plot.phylo(impTree, root.edge=TRUE, show.tip.label=FALSE, x.lim=c(0, 12.5))
+        nodelabels(text=rep("", length(impKeepNds)), node=impKeepNds+Ntip(impTree),
+                   frame="circ", col=impNodLblCol[!is.na(impNodLblCol)],
+               bg=impNodLblCol[!is.na(impNodLblCol)],
+                   ##fg=impNodLblCol[!is.na(impNodLblCol)],
+                   cex=.3)
+        barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""), impTree, cex.text=.4,
+                        cex.plot=.3, extra.space=.1, text.offset=1.02,
+                        seg.col=load_impPal()[esuList])
+        abline(v=max(branching.times(impTree)) - c(1:4, 6:10), lty=1, col="gray70")
+        abline(v=max(branching.times(impTree) - 5), lty=2, col="gray50")
+        axis(side=1, at=max(branching.times(impTree)) - 0:11, labels=c(0, paste("-", 1:10, sep=""), NA))
+        legend(x=0, y=10, pch=16, col="black", legend=c("PP $\\geq$ 0.99"), bg="white")
+    }
+    plot2pdf(imp_tree_plot_(impTree = impTree, impDB), ... )
+}
+

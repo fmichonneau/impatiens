@@ -36,6 +36,7 @@ targets:
     depends:
       - figures-remake/gmyc-coi-plot.pdf
       - figures-remake/starbeast-summary-plot.pdf
+      - figures-remake/impatiens-tree-plot.pdf
       - figures-remake/loci-coverage-plot.pdf
 
   impDB:
