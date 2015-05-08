@@ -1,3 +1,30 @@
+gmycEdges <- function(gmycOut) {
+    ## returns a list of edges (in phylobase format) associated for which
+    ## each element is a groups identified with gmyc
+    gmGrp <- gmycGroups(gmycOut)
+    tr <- gmycOut$tree
+    tr4 <- as(tr, "phylo4")
+    nGrp <- max(gmGrp)
+    edList <- lapply(1:16, function(x) {
+        tips <- names(gmGrp)[gmGrp == x]
+        if (length(tips) > 1) {
+            anc <- MRCA(tr4, tips)
+            desc <- phylobase::descendants(tr4, anc, "all")
+            getEdge(tr4, desc)
+        }
+        else 
+            getEdge(tr4, tips)
+    })    
+}
+
+gmycMatchEdges <- function(listEdges, tr) {
+    ## returns index of each of the edges
+    ## listEdges is output of gmycEdges
+    trEdges <- paste(tr$edge[,1], tr$edge[,2], sep="-")
+    lapply(listEdges, function(e) match(e, trEdges))
+}
+
+
 get_gmyc_summary <- function(gmycRes) {
     gmycSumm <- lapply(gmycRes, function(x) {
                            tmpSingle <- x$simpleGmyc
