@@ -53,7 +53,6 @@ options(tikzDefaultEngine = "xetex")
 options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
             "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
 read_chunk('code/impatiens_analysis.R')
-read_chunk('code/impatiens_map.R')
 @
 
 <<common-variables, echo=FALSE>>=
@@ -957,16 +956,26 @@ Fig.~\ref{fig:impatiens-map-group1}).
 % concurrent throughout the diversification history of the complex (e.g., the first
 % speciation event in each clade about 9.5 Ma).
 
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-WA}}
 
-<<impatiens-map-WA, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA, Gala, EP)">>=
-@
+  \caption{Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA,
+    Gala, EP)}\label{fig:impatiens-map-WA}
+\end{figure}
 
-<<impatiens-map-group1, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.">>=
-@
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group1}}
 
-<<impatiens-map-group2, eval=TRUE, echo=FALSE, fig.keep="last", message=FALSE, warning=FALSE, results="hide", fig.cap="Distribution map for ESU2, tiger, and tigerRedSea.">>=
-@
+  \caption{Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.}
+  \label{fig:impatiens-map-group1}
+\end{figure}
 
+\begin{figure}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group2}}
+
+  \caption{Distribution map for ESU2, tiger, and tigerRedSea.}
+  \label{fig:impatiens-map-group2}
+\end{figure}
 
 
 \section{Discussion}

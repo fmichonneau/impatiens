@@ -142,3 +142,31 @@ impatiens_tree_plot <- function(impTree, impDB, ...) {
     plot2pdf(imp_tree_plot_(impTree = impTree, impDB), ... )
 }
 
+## 1. WA + EP + Gala
+draw_map_WA <- function(impatiens_map_data, ...) {
+    p <- draw_impatiens_map(impatiens_map_data, bg = map_data("world2"),
+                            palette = load_impPal(), ESUs =  c("WA", "EP", "Gala"),
+                            x.lim = c(250, 310), y.lim = c(-25, 25))
+    plot2pdf(p, ...)
+}
+
+
+## 2. tiger + ESU2 + redSeaTiger
+draw_map_group2 <- function(impatiens_map_data, ...) {
+    p <- draw_impatiens_map(impatiens_map_data, bg = map_data("world2"),
+                            palette = load_impPal(),
+                            ESUs =  c("tiger", "ESU2", "tigerRedSea"),
+                            x.lim =c(25, 220), y.lim = c(-25, 25))
+    plot2pdf(p, ...)
+}
+
+
+## 3. ESU3 + RedSea + Gracilis + Hawaii + WPac + ESU1
+draw_map_group1 <- function(impatiens_map_data, ...) {
+    p <- draw_impatiens_map(impatiens_map_data, bg = map_data("world2"),
+                            palette = load_impPal(),
+                            ESUs = c("ESU1", "ESU3", "RedSea", "gracilis", "Hawaii", "Wpac"),
+                            x.lim = c(30, 220), y.lim = c(-27, 29))
+    plot2pdf(p, ...)
+}
+

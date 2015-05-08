@@ -38,6 +38,9 @@ targets:
       - figures-remake/starbeast-summary-plot.pdf
       - figures-remake/impatiens-tree-plot.pdf
       - figures-remake/loci-coverage-plot.pdf
+      - figures-remake/impatiens-map-WA.pdf
+      - figures-remake/impatiens-map-group1.pdf
+      - figures-remake/impatiens-map-group2.pdf
 
   impDB:
     command: load_impDB("data/impatiensDB.csv")
@@ -148,6 +151,14 @@ targets:
     command: loci_coverage_plot(locus_graph_data, pdf.output="figures-remake/loci-coverage-plot.pdf",
                                 width = 6.5, height = 8)
 
+  figures-remake/impatiens-map-WA.pdf:
+    command: draw_map_WA(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
+
+  figures-remake/impatiens-map-group1.pdf:
+    command: draw_map_group1(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
+
+  figures-remake/impatiens-map-group2.pdf:
+    command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
 
 
   ## Manuscript ---------------------------------------------------------------
@@ -171,6 +182,9 @@ targets:
       - impatiens_map_data
       - figures
       - figures-remake/loci-coverage-plot.pdf
+      - figures-remake/impatiens-map-WA.pdf
+      - figures-remake/impatiens-map-group1.pdf
+      - figures-remake/impatiens-map-group2.pdf
     knitr: true
 
   impatiens_phylogeography.pdf:
