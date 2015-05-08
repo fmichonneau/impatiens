@@ -78,3 +78,22 @@ starbeast_summary_plot <- function(star_beast_summary_all, ...) {
 
     plot2pdf(p, ...)
 }
+
+loci_coverage_plot <- function(locus_graph_data, ...) {
+    lbl <- c("16S", "COI", "ATP6", "c0036", "c0775", "H3a", "ITS", "LSU")
+    sub_loc <- locus_graph_data[match(lbl, locus_graph_data[["Locus"]]), ]
+    sub_loc$Center <- (sub_loc$end + sub_loc$begin)/2
+    p <- ggplot(data=locus_graph_data) +
+      geom_segment(aes(x=begin, xend=end, y=Order, yend=Order, colour=consensusESU),
+                   lineend="round", size=I(1.5)) +
+      scale_x_continuous(breaks=sub_loc$Center, labels=lbl) +
+      scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
+      scale_colour_manual(values=load_impPal()) +
+      theme(legend.position=c(0, 1),
+            panel.background=element_blank(),
+            panel.grid.major=element_blank(),
+            panel.grid.minor=element_blank(),
+            axis.ticks=element_blank())
+    plot2pdf(p, ...)
+}
+

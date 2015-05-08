@@ -1489,10 +1489,12 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 \section{Supplementary materials}
 
+\begin{figure}
+{\centering \includegraphics[width=\maxwidth]{figures-remake/loci-coverage-plot}}
 
-<<loci-coverage-plot, warning=FALSE, echo=FALSE, fig.keep='last', fig.width=6.5, fig.height=8, fig.cap='Representation of the loci sequenced for each individual included in the analyses.'>>=
-
-@
+\caption{Representation of the loci sequenced for each individual included in
+  the analysis.}\label{fig:loci-coverage-plot}
+\end{figure}
 
 
 \begin{table}[h]

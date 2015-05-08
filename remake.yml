@@ -36,6 +36,7 @@ targets:
     depends:
       - figures-remake/gmyc-coi-plot.pdf
       - figures-remake/starbeast-summary-plot.pdf
+      - figures-remake/loci-coverage-plot.pdf
 
   impDB:
     command: load_impDB("data/impatiensDB.csv")
@@ -142,6 +143,10 @@ targets:
   figures-remake/starbeast-summary-plot.pdf:
     command: starbeast_summary_plot(star_beast_summary_all, pdf.output="figures-remake/starbeast-summary-plot.pdf",
                                     width = 7, height = 4, standAlone = TRUE)
+  figures-remake/loci-coverage-plot.pdf:
+    command: loci_coverage_plot(locus_graph_data, pdf.output="figures-remake/loci-coverage-plot.pdf",
+                                width = 6.5, height = 8)
+
 
 
   ## Manuscript ---------------------------------------------------------------
@@ -164,6 +169,7 @@ targets:
       - star_beast_summary_noMt
       - impatiens_map_data
       - figures
+      - figures-remake/loci-coverage-plot.pdf
     knitr: true
 
   impatiens_phylogeography.pdf:
