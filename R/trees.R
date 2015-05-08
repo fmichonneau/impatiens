@@ -34,3 +34,10 @@ get_prop_clades <- function(raxml_trees, rds_file){
     pcNoOutGroup <- ape::prop.clades(impTree, part=ppNoOutGroup)
     saveRDS(pcNoOutGroup, file=rds_file)
 }
+
+load_per_locus_raxml_tree_files <- function() {
+    loci <- c("c0036", "c0775", "H3a", "mtDNA", "rDNA")
+    raxFiles <- file.path("data/raxml_perlocus", paste0("RAxML_bipartitions.", loci))
+    stopifnot(all(sapply(raxFiles, file.exists)))
+    raxFiles
+}

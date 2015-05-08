@@ -164,64 +164,6 @@ BFRedSeaNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noR
 ## #multiplot(sbAllPlotSS, sbNoCoiPlotSS, layout=matrix(c(1,1,2), nrow=1))
 
 
-### RAxML tree
-### ---- raxml-tree ----
-## TODO -- needs to be transferred to remake
-raxmlImpTr <- read.tree(file="data/raxml_fullcomplex/RAxML_bipartitions.result")
-raxmlImpTr <- drop.tip(root(raxmlImpTr, "S0213"), "S0213")
-raxmlImpTr <- ladderize(raxmlImpTr)
-
-raxmlImpTr <- extract_to_label(raxmlImpTr, impDB, c("consensusESU", "Country", "UFID", "Extract"))
-
-ndCol <- character(length(raxmlImpTr$node.label))
-ndCol[as.numeric(raxmlImpTr$node.label) >= 90] <- "black"
-ndCol[as.numeric(raxmlImpTr$node.label) >= 80 &
-      as.numeric(raxmlImpTr$node.label) < 90] <- "red"
-ndAll <- 1:length(ndCol)
-ndKeep <- ndAll[nzchar(ndCol)]
-
-par(mai=c(0,0,0,0))
-plot(raxmlImpTr, cex=.6, show.tip.label=FALSE, x.lim=c(0,.245))
-barMonophyletic(groupLabel=esuList, groupMatch=paste("^", esuList, "_", sep=""),
-                raxmlImpTr, cex.text=.4, cex.plot=.3, extra.space=.155,
-                text.offset=1.02, seg.col=impPal[esuList])
-nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(raxmlImpTr),
-           bg=ndCol[nzchar(ndCol)], frame="circ", cex=.275)
-add.scale.bar()
-
-
-### Per locus trees
-### ---- per-locus-trees ----
-loci <- c("c0036", "c0775", "H3a", "mtDNA", "rDNA")
-raxFiles <- file.path("data/raxml_perlocus", paste0("RAxML_bipartitions.", loci))
-stopifnot(all(sapply(raxFiles, file.exists)))
-uniqExt <- regmatches(impDB$Extract, regexpr("^[^,]+", impDB$Extract))
-
-par(mai=c(0,0,.5,0))
-layout(matrix(c(4,1,2,4,3,5), 2, 3, byrow=TRUE))
-for (i in 1:length(raxFiles)) {
-    raxmlTr <- read.tree(file=raxFiles[i])
-    raxmlCol <- impDB[match(raxmlTr$tip.label, uniqExt), "consensusESU"]
-    raxmlCol <- impPal[raxmlCol]
-    plotTr <- ladderize(raxmlTr)
-    plotTr$tip.label <- gsub("_", " ", plotTr$tip.label)
-    ndCol <- character(length(plotTr$node.label))
-    ndCol[as.numeric(plotTr$node.label) >= 80] <- "black"
-    ndAll <- 1:length(ndCol)
-    ndKeep <- ndAll[nzchar(ndCol)]
-    plot(plotTr, tip.color=raxmlCol, main=loci[i], cex=.5)
-    nodelabels(text=rep("", length(ndKeep)), node=ndKeep+Ntip(plotTr), bg=ndCol[nzchar(ndCol)], frame="circ",
-               cex=.3)
-    add.scale.bar()
-    if (i == 4) {
-        textLgd <- c("Medit", "WA", "Gala", "EP", "ESU2", "tiger", "tigerRedSea", "ESU3", "gracilis",
-                     "RedSea", "ESU1", "Wpac", "Hawaii")
-        legend(x=0, y=70, legend=textLgd, col=impPal[textLgd], lty=1, lwd=3)
-    }
-}
-
-
-
 ## ### NJ analyses
 ## ### ---- nj-coi ----
 ## source("~/R-scripts/findGroups.R")

@@ -41,6 +41,8 @@ targets:
       - figures-remake/impatiens-map-WA.pdf
       - figures-remake/impatiens-map-group1.pdf
       - figures-remake/impatiens-map-group2.pdf
+      - figures-remake/raxml-tree.pdf
+      - figures-remake/per-locus-trees.pdf
 
   impDB:
     command: load_impDB("data/impatiensDB.csv")
@@ -65,7 +67,8 @@ targets:
   data/prop_clades_nooutgroup.rds:
     command: get_prop_clades("data/RAxML_bootstrap_nooutgroup.phy", rds_file = "data/prop_clades_nooutgroup.rds")
 
-
+  per_locus_raxml_files:
+    command: load_per_locus_raxml_tree_files()
 
   ## ---- Alignments ----
 
@@ -160,6 +163,13 @@ targets:
   figures-remake/impatiens-map-group2.pdf:
     command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
 
+  figures-remake/raxml-tree.pdf:
+    command: raxml_tree_plot("data/raxml_fullcomplex/RAxML_bipartitions.result", impDB,
+                             pdf.output = target_name, width = 6.5, height = 8)
+
+  figures-remake/per-locus-trees.pdf:
+    command: per_locus_trees(per_locus_raxml_files, impDB, pdf.output = target_name,
+                             width = 6, height = 8)
 
   ## Manuscript ---------------------------------------------------------------
   impatiens_phylogeography.tex:
@@ -185,6 +195,8 @@ targets:
       - figures-remake/impatiens-map-WA.pdf
       - figures-remake/impatiens-map-group1.pdf
       - figures-remake/impatiens-map-group2.pdf
+      - figures-remake/raxml-tree.pdf
+      - figures-remake/per-locus-trees.pdf
     knitr: true
 
   impatiens_phylogeography.pdf:
