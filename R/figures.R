@@ -1,12 +1,23 @@
+tikz_ <- function(obj, file, width, height, standAlone = TRUE, ...) {
+    tikzDevice::tikz(file = file, width = width, height = height,
+                     packages = c("\n\\nonstopmode\n", getOption("tikzXelatexPackages")),
+                     standAlone = standAlone, ...)
+
+    on.exit(dev.off())
+    if (inherits(obj, "ggplot"))
+        print(obj)
+    else {
+        eval.parent(substitute(obj))
+    }
+}
+
+
 plot2pdf <- function(plt, pdf.output, width, height, latex = "xetex", ...) {
     stopifnot(grepl("\\.pdf$", pdf.output))
     unlink(tikz.plot <- gsub("\\.pdf$", ".tikz", pdf.output))
     unlink(log.plot <- gsub("\\.pdf$", ".log", pdf.output))
 
-    tikz(file = tikz.plot, width = width, height = height,
-         packages = c("\n\\nonstopmode\n", getOption("tikzXelatexPackages")), ...)
-    print(plt)
-    dev.off()
+    tikz_(plt, file = tikz.plot, width = width, height = height, ...)
 
     ## from knitr
     unlink(pdf.output)
