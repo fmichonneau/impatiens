@@ -858,7 +858,21 @@ distributions and are morphologically indistinguishable
 
 }
 
-\caption[Bayes factors for alternate models of species assignments for putative species related to \texttt{ESU1}.]{Bayes factors comparing the null hypothesis (M0: \texttt{ESU1}, \texttt{RedSea}, \texttt{Wpac}, \texttt{Hawaii} are all different species) to alternate models of species assignment: additional ``ghost" species added (oversplit), no \texttt{Hawaii} (M5), no \texttt{Wpac} (M4), no \texttt{RedSea} (M6), no \texttt{Wpac} and no \texttt{Hawaii} (M3), no \texttt{noWpac} and no \texttt{RedSea} (M2), all individuals attributed to \texttt{ESU1} (M1), see also Table~\ref{tab:delineationModels}. The small dots indicate the values obtained for independent replicated estimations, the large dots the mean of these values. Estimates obtained using the stepping-stone sampling method (on the left in blue) are consistent with the estimates obtained using the path sampling method (on the right in red). The horizontal dashed red line represents the value considered as ``very strong evidence" in favor of the null hypothesis according to Kass \& Raftery \cite{Kass1995}.}\label{fig:starbeast-summary}
+\caption[Bayes factors for alternate models of species assignments for putative
+species related to \texttt{ESU1}.]{Bayes factors comparing the null hypothesis
+  (M0: \texttt{ESU1}, \texttt{RedSea}, \texttt{Wpac}, \texttt{Hawaii} are all
+  different species) to alternate models of species assignment: additional
+  ``ghost" species added (oversplit), no \texttt{Hawaii} (M5), no \texttt{Wpac}
+  (M4), no \texttt{RedSea} (M6), no \texttt{Wpac} and no \texttt{Hawaii} (M3),
+  no \texttt{noWpac} and no \texttt{RedSea} (M2), all individuals attributed to
+  \texttt{ESU1} (M1), see also Table~\ref{tab:delineationModels}. The small dots
+  indicate the values obtained for independent replicated estimations, the large
+  dots the mean of these values. Estimates obtained using the stepping-stone
+  sampling method (on the left in blue) are consistent with the estimates
+  obtained using the path sampling method (on the right in red). The horizontal
+  dashed red line represents the value considered as ``very strong evidence" in
+  favor of the null hypothesis according to Kass \& Raftery
+  \cite{Kass1995}.}\label{fig:starbeast-summary}
 \end{figure}
 
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
