@@ -288,8 +288,8 @@ fm-ITS-r is the reverse complement of LSUFW1 (LSU D1,D2 fw1: 56-74 in
 
 We conducted PCR in 25$\mu$L reactions using either 15.4~$\mu$L of water,
 2.5~$\mu$L of Sigma-Alrich \textregistered 10X PCR buffer, 2.5~$\mu$L of dNTP,
-2~$\mu$L of MgCl$_2$, 1~$\mu$L of the forward primer, 1~$\mu$L of the reverse
-primer, and 0.1~$\mu$L of Sigma-Aldrich\textregistered Jumpstart$^{\text{TM}}$
+2~$\mu$L of MgCl$_2$, 1~$\mu$L for each of the forward and reverse primers (at
+10 mM), and 0.1~$\mu$L of Sigma-Aldrich\textregistered Jumpstart$^{\text{TM}}$
 Taq DNA polymerase or the Promega GoTaq MasterMix following manufacturer
 recommendations.
 
