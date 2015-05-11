@@ -271,16 +271,13 @@ In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
 nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775
 (Table~\ref{tab:pcrConditions}). ATP6 primers were developed in this study based
 on sequences available for this locus in GenBank. c0036 and c0775 are anonymous
-markers developed from a 454 run on genomic DNA from \textit{Holothuria edulis},
-and additional details will be provided in a future
-study. %(\cite{MichonneauInPrep}).
-Briefly, these loci were identified using blastx on the contigs obtained from
-the 454 run against the predicted proteins for the sea urchin
-\textit{Strongylocentrotus purpuratus} genome. c0036 matches a portion of the
-gene encoding for an histone H3-like centromeric protein A-like (locus
-XP\_003723879), with an e-value of 2.10$^{-43}$. c0775 matches a portion of the
-gene encoding for the protein SFI1 (locus XP\_792620), with an e-value of
-3.10$^{-16}$.
+markers developed from a 454 run on genomic DNA from \textit{Holothuria edulis}.
+These loci were identified using blastx on the contigs obtained from the 454 run
+against the predicted proteins for the sea urchin \textit{Strongylocentrotus
+  purpuratus} genome. c0036 matches a portion of the gene encoding for an
+histone H3-like centromeric protein A-like (locus XP\_003723879), with an
+e-value of 2.10$^{-43}$. c0775 matches a portion of the gene encoding for the
+protein SFI1 (locus XP\_792620), with an e-value of 3.10$^{-16}$.
 
 Primers and PCR conditions used are provided in
 Table~\ref{tab:pcrConditions}. Because of the length of ITS1-5.8S-ITS2, we used
