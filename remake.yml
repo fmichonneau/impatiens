@@ -220,4 +220,3 @@ targets:
     depends:
       - impatiens_phylogeography.tex
       - code/impatiens_analysis.R
-      - code/impatiens_map.R
