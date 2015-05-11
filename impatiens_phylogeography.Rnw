@@ -475,7 +475,7 @@ with the highest likelihood.
 \subsection{Species limits with coloration and geography}
 
 To determine whether the putative species delineated with GMYC were biologically
-sound, we investigated color patterns, geographical distribution and ecology.
+sound, we investigated their color patterns, geographical distribution and ecology.
 
 Coloration information was obtained from the photographs of the live specimens
 and from field observations. Ecological and geographical coordinates were
@@ -497,12 +497,13 @@ retrieved from the collecting information associated with the specimens.
 
 Some of the putative species delineated by GMYC form well defined but shallow
 clusters, have geographically defined ranges, but cannot be differentiated
-morphologically. Their ranges overlap (\texttt{Hawaii}, \texttt{Wpac}) or border
-(\texttt{RedSea}) the widespread \texttt{ESU1}, bringing into question the
-reproductive isolation of these lineages. To test whether these clusters are
-reproductively isolated, we compared competing hypotheses of species delineation
-with *BEAST v 1.8.0 \cite{Heled2010} using Bayes factors (BF) estimated by the
-stepping-stone (SS) and the path sampling (PS) methods \cite{Baele2012}.
+morphologically. Their ranges overlap (e.g., \texttt{Hawaii}, \texttt{Wpac}) or
+border (e.g., \texttt{RedSea}) the widespread \texttt{ESU1}, bringing into
+question the reproductive isolation of these lineages. To test whether these
+clusters are reproductively isolated, we compared competing hypotheses of
+species delineation with *BEAST v 1.8.0 \cite{Heled2010} using Bayes factors
+(BF) estimated by the stepping-stone (SS) and the path sampling (PS) methods
+\cite{Baele2012}.
 
 *BEAST infers the species trees from a multi-locus dataset using the
 multispecies coalescent in a Bayesian framework to account for intraspecies
@@ -543,13 +544,13 @@ individuals: \Sexpr{sBeastESU["ESU1"]} of \texttt{ESU1},
 \Sexpr{sBeastESU["gracilis"]} of \texttt{gracilis}, \Sexpr{sBeastESU["ESU3"]} of
 \texttt{ESU3}). We used data from the following markers: 16S, COI, ATP6, c0036,
 c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of the
-entire complex, using Gblocks to remove ambiguous parts of the alignment in ITS,
-PartitionFinder to find the most appropriate partition scheme and models of
-molecular evolution. We unlinked clocks for all markers, used strict molecular
-clocks, fixing the COI clock at 1\%.million years$^{-1}$ which is the rate
-estimated from the analyses on COI used for the GMYC analyses. The rate for the
-other clocks were estimated relatively to the COI clock. We ran at least two
-independent runs for 50.10$^{6}$ generations for each group.
+entire complex (see below): using Gblocks to remove ambiguous parts of the
+alignment in ITS, PartitionFinder to find the most appropriate partition scheme
+and models of molecular evolution. We unlinked clocks for all markers, used
+strict molecular clocks, fixing the COI clock at 1\%.million years$^{-1}$ which
+is the rate estimated from the analyses on COI used for the GMYC analyses. The
+rate for the other clocks were estimated relatively to the COI clock. We ran at
+least two independent runs for 50.10$^{6}$ generations for each group.
 
 \begin{table}
   \centering
@@ -575,9 +576,9 @@ by Baele et al \cite{Baele2012} with path steps of 100, and sampling along
 evenly spaced quantiles of a $Beta(0.3, 1)$ distribution, but increased the
 chain lengths to 3.10$^{6}$. We interpreted an absolute difference between the
 marginal likelihoods estimated with the stepping stone and the path sampling
-methods higher than 1 as a failure of the estimate to converge. In these cases,
+methods higher than 1 as a failure of the estimates to converge. In these cases,
 we repeated the analysis from a different starting point until the difference
-between the likelihoods was lower than 1.
+between the likelihoods was less than 1.
 
 To rule out that this approach did not favor models that included more species,
 we added a ``ghost'' species in the analysis. This ``ghost'' species was
