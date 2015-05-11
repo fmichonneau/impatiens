@@ -1,3 +1,41 @@
+gmycGroups <- function(gmycOut) {
+
+    stopifnot(gmycOut$method == "single")
+
+    tr <- gmycOut$tree
+    threshold <- -gmycOut$threshold.time[which.max(gmycOut$likelihood)]
+    bt <- branching.times(tr)
+    tr4 <- as(tr, "phylo4")
+
+    grps <- integer(length(tr$tip.label))
+    names(grps) <- tr$tip.label
+    grpNb <- 1L
+    treeDepth <- max(branching.times(tr))
+
+    for (i in 1:length(tr$tip.label)) {
+        if (grps[i] == 0) {
+            tmpAnc <- phylobase::ancestors(tr4, i)
+            tmpBt <- sapply(tmpAnc, function(x) nodeDepth(tr4, x))
+            tmpBt <- treeDepth - tmpBt
+            dThreshold <- tmpBt - threshold
+            if (any(dThreshold < 0)) {
+                tmpGrp <- phylobase::descendants(tr4,
+                                                 tmpAnc[which(dThreshold == max(dThreshold[dThreshold <= 0]))], type="tips")
+            }
+            else {
+                tmpGrp <- getNode(tr4, tipLabels(tr4)[i])
+            }
+            grps[names(tmpGrp)] <- grpNb
+            grpNb <- grpNb + 1L
+            if (length(grps) > length(tr$tip.label)) browser()
+        }
+        else {
+            next
+        }
+    }
+    grps
+}
+
 gmycEdges <- function(gmycOut) {
     ## returns a list of edges (in phylobase format) associated for which
     ## each element is a groups identified with gmyc
@@ -12,9 +50,9 @@ gmycEdges <- function(gmycOut) {
             desc <- phylobase::descendants(tr4, anc, "all")
             getEdge(tr4, desc)
         }
-        else 
+        else
             getEdge(tr4, tips)
-    })    
+    })
 }
 
 gmycMatchEdges <- function(listEdges, tr) {
