@@ -238,7 +238,7 @@ differentiation.
 Specimens were collected at low tide, on snorkel, on SCUBA or by dredging. Most
 specimens were photographed while alive \textit{in situ} or in the lab,
 anesthetized in a 1:1 solution of sea water and 7.5\% solution of magnesium
-chloride hexahydrate, then preserved in 75\% ethanol. When possible tentacles
+chloride hexahydrate, then preserved in 75\% ethanol. When possible, tentacles
 were clipped, immediately put in 95-99\% ethanol, and later used for DNA
 extractions.
 
@@ -261,7 +261,7 @@ Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 <<ambiguities, echo=FALSE>>=
 @
 
-DNA was extracted using either Invitrogen\texttrademark\ DNAZol\textregistered\
+DNA was extracted using either Invitrogen$^{\text{TM}}$ DNAZol\textregistered\
 or Omega Bio-Tek$^{\text{TM}}$ E.Z.N.A\textregistered\ Mollusc DNA kit following
 manufacturer recommendations. DNA was most often extracted from tentacles,
 sometimes from gonads, longitudinal muscles or body wall. When possible, the
