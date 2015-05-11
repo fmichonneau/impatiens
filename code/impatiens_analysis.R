@@ -197,8 +197,7 @@ spcmTable$UFID <- gsub("_", " ", spcmTable$UFID, fixed=TRUE)
 spcmTable$Extract <- gsub("_", " ", spcmTable$Extract, fixed=TRUE)
 names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.")
 spcmTable <- xtable(spcmTable,
-                    caption=c("Specimen information including location, catalog number, and ESU (consensus)",
-                        "Specimen information"),
+                    caption=c("Specimen information including location, catalog number, and ESU (consensus)"),
                     label="tab:specimen-table")
 headerTable <- paste("\\hline", paste(names(spcmTable), collapse=" & "), "\\\\ \\hline \\endfirsthead \n",
                      "\\caption{(continued) specimen information} \n")

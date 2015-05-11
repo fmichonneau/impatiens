@@ -306,8 +306,7 @@ these positions in the alignment, which are considered as missing data by all
 the software used in this study.
 
 \begin{table}
-  \caption[Primers and PCR conditions for the markers used in this
-  study.]{Primers and PCR conditions for the markers used in this study. Temp:
+  \caption{Primers and PCR conditions for the markers used in this study. Temp:
     annealing temperature, Cycles: number of PCR cycles used to amplify the
     locus, Ref.: reference used for the primers.}
 \begin{tabular}{ l l p{6cm} l l p{2cm}}
@@ -648,13 +647,11 @@ tree method \cite{Heled2013}.
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/species_limits}
-    \caption[Correspondence between the different methods used to delineate the
-    species of the ``\textit{Holothuria impatiens}'' complex]{Correspondence
-      between the different criteria used to delineate the species of the
-      ``\textit{Holothuria impatiens}'' complex. Medit: Mediterranean, WA:
-      Western Atlantic, Gala: Galapagos, EP: Eastern Pacific; PNG: Papua New
-      Guinea; Wpac: Western Pacific.}
+    \includegraphics[width=6.5in]{manual-figures/species_limits.pdf}
+    \caption{Correspondence between the different criteria used to delineate the
+      species of the ``\textit{Holothuria impatiens}'' complex. Medit:
+      Mediterranean, WA: Western Atlantic, Gala: Galapagos, EP: Eastern Pacific;
+      PNG: Papua New Guinea; Wpac: Western Pacific.}
     \label{fig:species-limits}
 \end{figure}
 
@@ -723,14 +720,13 @@ for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-coi-plot}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-coi-plot.pdf}}
 
-  \caption[Number of species estimated by single and multi-threshold GMYC methods
-  on COI phylogenies]{Number of species estimated by single and multi-threshold
-    GMYC methods on COI phylogenies. The dots represent the number of species
+  \caption{Number of species estimated by single and multi-threshold GMYC
+    methods on COI phylogenies. The dots represent the number of species
     associated with the node(s) that correspond(s) to the highest likelihood(s)
-    for the location of the shift(s), the dotted lines represent the range for the
-    estimated number of species for nodes within 2 likelihood units of the
+    for the location of the shift(s), the dotted lines represent the range for
+    the estimated number of species for nodes within 2 likelihood units of the
     maximum-likelihood estimate.}\label{fig:gmyc-coi-plot}
 \end{figure}
 
@@ -813,7 +809,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group1}
+    \includegraphics[width=6.5in]{manual-figures/figure-group1.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
       UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
@@ -824,7 +820,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group2}
+    \includegraphics[width=6.5in]{manual-figures/figure-group2.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287 (juvenile); B. ESU2,
       Guam, UF6729; C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa,
@@ -837,7 +833,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group3}
+    \includegraphics[width=6.5in]{manual-figures/figure-group3.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. WA, St Martin, UF11790; B. EP, Panama (no Voucher).}
     \label{fig:photo-WA+EP}
@@ -851,17 +847,16 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
 
-{\centering \includegraphics[width=\maxwidth]{figures-remake/starbeast-summary-plot}
+{\centering \includegraphics[width=\maxwidth]{figures-remake/starbeast-summary-plot.pdf}
 
 }
 
-\caption[Bayes factors for alternate models of species assignments for putative
-species related to \texttt{ESU1}.]{Bayes factors comparing the null hypothesis
-  (M0: \texttt{ESU1}, \texttt{RedSea}, \texttt{Wpac}, \texttt{Hawaii} are all
-  different species) to alternate models of species assignment: additional
-  ``ghost" species added (oversplit), no \texttt{Hawaii} (M5), no \texttt{Wpac}
-  (M4), no \texttt{RedSea} (M6), no \texttt{Wpac} and no \texttt{Hawaii} (M3),
-  no \texttt{noWpac} and no \texttt{RedSea} (M2), all individuals attributed to
+\caption{Bayes factors comparing the null hypothesis (M0: \texttt{ESU1},
+  \texttt{RedSea}, \texttt{Wpac}, \texttt{Hawaii} are all different species) to
+  alternate models of species assignment: additional ``ghost" species added
+  (oversplit), no \texttt{Hawaii} (M5), no \texttt{Wpac} (M4), no
+  \texttt{RedSea} (M6), no \texttt{Wpac} and no \texttt{Hawaii} (M3), no
+  \texttt{noWpac} and no \texttt{RedSea} (M2), all individuals attributed to
   \texttt{ESU1} (M1), see also Table~\ref{tab:delineationModels}. The small dots
   indicate the values obtained for independent replicated estimations, the large
   dots the mean of these values. Estimates obtained using the stepping-stone
@@ -915,7 +910,7 @@ threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
 % TODO -- add definition of abbreviation for each ESU in figure legend if needed.
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-tree-plot}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-tree-plot.pdf}}
 
   \caption{Bayesian phylogenetic tree of the \textit{Holothuria impatiens}
     complex. Vertical bars along the tips of the tree show the different ESUs
@@ -963,21 +958,21 @@ Fig.~\ref{fig:impatiens-map-group1}).
 % speciation event in each clade about 9.5 Ma).
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-WA}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-WA.pdf}}
 
   \caption{Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA,
     Gala, EP)}\label{fig:impatiens-map-WA}
 \end{figure}
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group1}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group1.pdf}}
 
   \caption{Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.}
   \label{fig:impatiens-map-group1}
 \end{figure}
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group2}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group2.pdf}}
 
   \caption{Distribution map for ESU2, tiger, and tigerRedSea.}
   \label{fig:impatiens-map-group2}
@@ -1513,7 +1508,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 \section{Supplementary materials}
 
 \begin{figure}
-{\centering \includegraphics[width=\maxwidth]{figures-remake/loci-coverage-plot}}
+{\centering \includegraphics[width=\maxwidth]{figures-remake/loci-coverage-plot.pdf}}
 
 \caption{Representation of the loci sequenced for each individual included in
   the analysis.}\label{fig:loci-coverage-plot}
@@ -1522,7 +1517,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 \begin{table}[h]
   \centering
-  \caption[Partition table]{Partition table. The subscript number corresponds to
+  \caption{Partition table. The subscript number corresponds to
     the to the codon position in the alignment. The ``real'' codon position is
     offset by 2 for COI, H3a and ATP6 (i.e., COI$_1$ is 3rd codon position)}
   \begin{tabular} { l l l }
@@ -1545,7 +1540,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 %% raxml tree
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/raxml-tree}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/raxml-tree.pdf}}
   \caption{Maximum-likelihood phylogeny for all concatenated loci',
     fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated
     using RAxML with a GTR+G model for each partition. Black circles represent
@@ -1556,7 +1551,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 %% locus trees
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/per-locus-trees}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/per-locus-trees.pdf}}
   \caption{Maximum-likelihood genealogies (unrooted) for each locus
     reconstructed using RAxML with a GTR+G model of molecular evolution for each
     partitions. Black circles on the nodes indicate bootstrap values $\\geq$ 80
@@ -1568,14 +1563,14 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 %% gmyc tree
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-all-sequences}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-all-sequences.pdf}}
   \caption{Position of the species delineated with GMYC on COI genealogies
     estimated using various priors with BEAST. Each color corresponds to a
     different putative species.}\label{fig:gmyc-tree-plot-allSeq}
 \end{figure}
 
 \begin{figure}
-  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-unique-sequences}}
+  {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-unique-sequences.pdf}}
   \caption{Position of the species delineated with GMYC on COI genealogies
     estimated using various priors with BEAST. Each color corresponds to a
     different putative species.}\label{fig:gmyc-tree-plot-uniqSeq}
@@ -1589,6 +1584,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
 <<specimen-table, eval=TRUE, echo=FALSE, results='asis'>>=
 
 @
+
 
 \end{document}
 

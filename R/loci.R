@@ -65,8 +65,7 @@ generate_loci_table <- function(lociChar) {
                                  "(unaligned) sequences, $S$: number of segregating sites,",
                                  "$S_{i}$: number of parsimony informative sites.",
                                  "The statistics given for ITS are for the ones used in the",
-                                 "analysis (i.e., after using Gblock)."), # long
-                                 "Loci characteristics"),  # short
+                                 "analysis (i.e., after using Gblock).")),
                              label="tab:loci-characteristics"),
                       caption.placement="top",
                       sanitize.text.function = function(x) {x},
