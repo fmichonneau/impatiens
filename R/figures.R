@@ -100,7 +100,7 @@ loci_coverage_plot <- function(locus_graph_data, ...) {
       scale_x_continuous(breaks=sub_loc$Center, labels=lbl) +
       scale_y_discrete(labels=element_blank()) + ylab("Individuals") + xlab("Loci") +
       scale_colour_manual(values=load_impPal()) +
-      theme(legend.position=c(0, 1),
+      theme(legend.position=c(.85, 0.3),
             panel.background=element_blank(),
             panel.grid.major=element_blank(),
             panel.grid.minor=element_blank(),
