@@ -185,7 +185,7 @@ BFRedSeaNoMt <- round(2 * mean(subset(star_beast_summary_noMt, groupings == "noR
 
 
 ### ---- specimen-table ----
-spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract")]
+spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract", "uuid_idig")]
 spcmTable <- spcmTable[regmatches(spcmTable$Extract, regexpr("^[^,]+", spcmTable$Extract)) %in% dimnames(impAlg)[[1]], ]
 spcmTable <- spcmTable[-match("S0213", spcmTable$Extract), ]
 stopifnot(all(spcmTable$consensusESU %in% esuList))
@@ -195,7 +195,7 @@ spcmTable$Country <- gsub("Runion", "R\\'{e}union", spcmTable$Country, fixed=TRU
 spcmTable$Country <- gsub("Nosy B", "Nosy B\\'{e}", spcmTable$Country, fixed=TRUE)
 spcmTable$UFID <- gsub("_", " ", spcmTable$UFID, fixed=TRUE)
 spcmTable$Extract <- gsub("_", " ", spcmTable$Extract, fixed=TRUE)
-names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.")
+names(spcmTable) <- c("Catalog Nb.", "ESU (consensus)", "Location", "Specimen Nb.", "iDigBio UUID")
 spcmTable <- xtable(spcmTable,
                     caption=c("Specimen information including location, catalog number, and ESU (consensus)"),
                     label="tab:specimen-table")

@@ -16,6 +16,7 @@ packages:
   - splits
   - wesanderson
   - reshape2
+  - tikzDevice
 
 targets:
   all:
@@ -47,7 +48,7 @@ targets:
       - figures-remake/gmyc-tree-unique-sequences.pdf
 
   impDB:
-    command: load_impDB("data/impatiensDB.csv")
+    command: load_impDB("data/impatiensDB_withuuid.csv")
 
 
   ## ---- Trees ----
@@ -159,13 +160,13 @@ targets:
                                 width = 6.5, height = 8)
 
   figures-remake/impatiens-map-WA.pdf:
-    command: draw_map_WA(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
+    command: draw_map_WA(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
 
   figures-remake/impatiens-map-group1.pdf:
-    command: draw_map_group1(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
+    command: draw_map_group1(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
 
   figures-remake/impatiens-map-group2.pdf:
-    command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 7)
+    command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
 
   figures-remake/raxml-tree.pdf:
     command: raxml_tree_plot("data/raxml_fullcomplex/RAxML_bipartitions.result", impDB,
