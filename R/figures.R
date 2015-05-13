@@ -1,5 +1,8 @@
 tikz_ <- function(obj, file, width, height, standAlone = TRUE, ...) {
-    tikzDevice::tikz(file = file, width = width, height = height,
+    options(tikzDefaultEngine = "xetex")
+    options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
+                "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
+    tikzDevice::tikz(file = file, width = width, height = height, engine = "xetex",
                      packages = c("\n\\nonstopmode\n", getOption("tikzXelatexPackages")),
                      standAlone = standAlone, ...)
 
