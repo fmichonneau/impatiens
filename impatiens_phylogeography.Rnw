@@ -1545,7 +1545,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
   \caption{Maximum-likelihood phylogeny for all concatenated loci',
     fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated
     using RAxML with a GTR+G model for each partition. Black circles represent
-    bootstrap values $\\geq$ 90, red circles bootstrap values $\\geq$
+    bootstrap values $\geq$ 90, red circles bootstrap values $\geq$
     80. Colored vertical bars represent consensus
     ESUs.}\label{fig:raxml-tree}
 \end{figure}
@@ -1555,7 +1555,7 @@ confirmed with genetic data that capture a larger fraction of the genome.
   {\centering \includegraphics[width=\maxwidth]{figures-remake/per-locus-trees.pdf}}
   \caption{Maximum-likelihood genealogies (unrooted) for each locus
     reconstructed using RAxML with a GTR+G model of molecular evolution for each
-    partitions. Black circles on the nodes indicate bootstrap values $\\geq$ 80
+    partitions. Black circles on the nodes indicate bootstrap values $\geq$ 80
     based on 500 replicates. Terminals are colored based on their ESU. ``mtDNA"
     is the concatenation of ATP6, COI, 16S; ``rDNA" is the concatenation of ITS
     and LSU.}\label{fig:per-locus-trees}
