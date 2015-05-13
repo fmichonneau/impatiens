@@ -20,17 +20,19 @@ CalcDists <- function(latlongs) {
     name <- list(rownames(latlongs), rownames(latlongs))
     n <- nrow(latlongs)
     z <- matrix(0, n, n, dimnames = name)
-    for (i in 1:n) {
-        for (j in 1:n) z[i, j] <- gcd.hf(long1 = latlongs[i, 1],
-                                         lat1 = latlongs[i, 2],
-                                         long2 = latlongs[j, 1],
-                                         lat2 = latlongs[j,2])
+    if (n == 0) return(z) else {
+        for (i in 1:n) {
+            for (j in 1:n) z[i, j] <- gcd.hf(long1 = latlongs[i, 1],
+                                             lat1 = latlongs[i, 2],
+                                             long2 = latlongs[j, 1],
+                                             lat2 = latlongs[j,2])
+        }
+        z <- as.dist(z)
     }
-    z <- as.dist(z)
     return(z)
 }
 
-thinCoords <- function(coords=impMap) {
+thinCoords <- function(coords=impMap, min_dist = 100) {
     eachESU <- unique(coords$consensusESU)
     res <- vector("list", length(eachESU))
     tmpDt <- coords
@@ -43,7 +45,7 @@ thinCoords <- function(coords=impMap) {
     d[upper.tri(d, diag = TRUE)] <- NA
     lbl <- cbind(dimnames(d)[[1]][row(d)], dimnames(d)[[1]][col(d)])
     d <- as.vector(d)
-    whichDup <- lbl[which(d < 200), ]
+    whichDup <- lbl[which(d < min_dist), ]
     if (length(whichDup) > 0) {
         if(length(whichDup) == 2) {
             whichDup <- matrix(whichDup, ncol = 2, byrow = TRUE) # to deal with single result
@@ -61,7 +63,11 @@ get_impatiens_map_data <- function(impDB) {
     impMap <- impDB[nzchar(impDB$consensusESU), ]
     center <- 200
     impMap$Long.recenter <- ifelse(impMap$Long < center - 180, impMap$Long + 360, impMap$Long)
-    impMapThin <- thinCoords(impMap)
+    impMapThin <- lapply(unique(impMap$consensusESU), function(x) {
+                             impMap_tmp <- subset(impMap, consensusESU == x)
+                             thinCoords(impMap_tmp)
+                         })
+    impMapThin <- do.call("rbind", impMapThin)
     impMapThin <- impMapThin[!duplicated(paste(impMapThin$consensusESU, impMapThin$Lat2, impMapThin$Long2)), ]
     impMapThin
 }
