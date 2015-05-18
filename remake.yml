@@ -50,7 +50,6 @@ targets:
   impDB:
     command: load_impDB("data/impatiensDB_withuuid.csv")
 
-
   ## ---- Trees ----
 
   impTree:
@@ -147,42 +146,43 @@ targets:
   ###
 
   figures-remake/gmyc-coi-plot.pdf:
-    command: gmyc_coi_plot(gmyc_summary, pdf.output = target_name, width = 7, height = 4)
+    command: gmyc_coi_plot(gmyc_summary, pdf.output = target_name, width = 7, height = 4, dev = I(choose_dev()))
 
   figures-remake/starbeast-summary-plot.pdf:
-    command: starbeast_summary_plot(star_beast_summary_all, pdf.output = target_name, width = 7, height = 4)
+    command: starbeast_summary_plot(star_beast_summary_all, pdf.output = target_name, width = 7, height = 4, dev = I(choose_dev()))
 
   figures-remake/impatiens-tree-plot.pdf:
-    command: impatiens_tree_plot(impTree, impDB, pdf.output = target_name, height = 8, width = 8)
+    command: impatiens_tree_plot(impTree, impDB, pdf.output = target_name, height = 8, width = 8, dev = I(choose_dev()))
 
   figures-remake/loci-coverage-plot.pdf:
     command: loci_coverage_plot(locus_graph_data, pdf.output="figures-remake/loci-coverage-plot.pdf",
-                                width = 6.5, height = 8)
+                                width = 6.5, height = 8, dev = I(choose_dev()))
 
   figures-remake/impatiens-map-WA.pdf:
-    command: draw_map_WA(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
+    command: draw_map_WA(impatiens_map_data, pdf.output = target_name, width = 8, height = 6, dev = I(choose_dev()))
 
   figures-remake/impatiens-map-group1.pdf:
-    command: draw_map_group1(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
+    command: draw_map_group1(impatiens_map_data, pdf.output = target_name, width = 8, height = 6, dev = I(choose_dev()))
 
   figures-remake/impatiens-map-group2.pdf:
-    command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 6)
+    command: draw_map_group2(impatiens_map_data, pdf.output = target_name, width = 8, height = 6, dev = I(choose_dev()))
 
   figures-remake/raxml-tree.pdf:
     command: raxml_tree_plot("data/raxml_fullcomplex/RAxML_bipartitions.result", impDB,
-                             pdf.output = target_name, width = 6.5, height = 8)
+                             pdf.output = target_name, width = 6.5, height = 8,
+                             dev = I(choose_dev()))
 
   figures-remake/per-locus-trees.pdf:
     command: per_locus_trees(per_locus_raxml_files, impDB, pdf.output = target_name,
-                             width = 6, height = 8)
+                             width = 6, height = 8, dev = I(choose_dev()))
 
   figures-remake/gmyc-tree-all-sequences.pdf:
     command: gmyc_tree_all_sequences(gmyc_results, pdf.output = target_name,
-                                     width = 6, height = 8)
+                                     width = 6, height = 8, dev = I(choose_dev()))
 
   figures-remake/gmyc-tree-unique-sequences.pdf:
     command: gmyc_tree_unique_sequences(gmyc_results, pdf.output = target_name,
-                                        width = 6, height = 8)
+                                        width = 6, height = 8, dev = I(choose_dev()))
 
   ## Manuscript ---------------------------------------------------------------
   impatiens_phylogeography.tex:

@@ -1,0 +1,1 @@
+Depends: ape, doMC, ggplot2, maps, pegas, plyr, phylobase, phyloch, XML, xtable, splits, reshape2, tikzDevice
