@@ -24,4 +24,5 @@ install:
   - ./travis-tool.sh install_github fmichonneau/splits/pkg
   - ./travis-tool.sh install_github fmichonneau/chopper
   - ./travis-tool.sh install_github fmichonneau/phyloch
+  - ./travis-tool.sh install_github richfitz/storr
   - ./travis-tool.sh install_github richfitz/remake
