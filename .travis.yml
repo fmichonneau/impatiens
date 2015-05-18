@@ -23,3 +23,4 @@ install:
   - ./travis-tool.sh aptget_install texlive-latex-extra
   - ./travis-tool.sh install_github fmichonneau/chopper
   - ./travis-tool.sh install_github fmichonneau/phyloch
+  - ./travis-tool.sh install_github richfitz/remake
