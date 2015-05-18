@@ -3,5 +3,5 @@ chopper:
   repo: fmichonneau/chopper
 
 splits:
-  source: r-forge
-  url: http://r-forge.r-project.org/projects/splits
+  source: github
+  repo: fmichonneau/splits/pkg
