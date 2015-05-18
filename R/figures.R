@@ -1,10 +1,17 @@
-tikz_ <- function(obj, file, width, height, standAlone = TRUE, ...) {
-    options(tikzDefaultEngine = "xetex")
-    options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
-                "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
-    tikzDevice::tikz(file = file, width = width, height = height, engine = "xetex",
-                     packages = c("\n\\nonstopmode\n", getOption("tikzXelatexPackages")),
-                     standAlone = standAlone, ...)
+dev_ <- function(obj, file, standAlone = TRUE, dev = c("tikz", "pdf"), ...) {
+    dev <- match.arg(dev)
+
+    if (identical(dev, "tikz")) {
+        options(tikzDefaultEngine = "xetex")
+        options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
+                    "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
+        tikzDevice::tikz(file = file, engine = "xetex",
+                         packages = c("\n\\nonstopmode\n", getOption("tikzXelatexPackages")),
+                         standAlone = standAlone, ...)
+    } else {
+        file <- gsub("\\.tikz$", ".pdf", file)
+        pdf(file = file, ...)
+    }
 
     on.exit(dev.off())
     if (inherits(obj, "ggplot"))
@@ -15,30 +22,37 @@ tikz_ <- function(obj, file, width, height, standAlone = TRUE, ...) {
 }
 
 
-plot2pdf <- function(plt, pdf.output, width, height, latex = "xetex", ...) {
+plot2pdf <- function(plt, pdf.output, latex = "xetex", dev = c("tikz", "pdf"), ...) {
+    dev <- match.arg(dev)
     stopifnot(grepl("\\.pdf$", pdf.output))
     unlink(tikz.plot <- gsub("\\.pdf$", ".tikz", pdf.output))
-    unlink(log.plot <- gsub("\\.pdf$", ".log", pdf.output))
-
-    tikz_(plt, file = tikz.plot, width = width, height = height, ...)
-
-    ## from knitr
     unlink(pdf.output)
-    latex <- switch(latex,
-                    pdftex = getOption('tikzLatex'),
-                    xetex  = getOption('tikzXelatex'),
-                    luatex = getOption('tikzLualatex'),
-                    stop('a LaTeX engine must be specified for tikzDevice', call. = FALSE)
-                    )
-    owd <- setwd(dirname(pdf.output))
-    system2(latex, shQuote(basename(tikz.plot)), stdout = NULL)
-    setwd(owd)
 
-    if (!file.exists(pdf.output)) {
-        if (file.exists(log.plot)) {
-            message(paste(readLines(log.plot), collapse = "\n"))
+    dev_(plt, file = tikz.plot, dev = dev, ...)
+
+    if (identical(dev, "tikz")) {
+        unlink(log.plot <- gsub("\\.pdf$", ".log", pdf.output))
+        ## from knitr
+        latex <- switch(latex,
+                        pdftex = getOption('tikzLatex'),
+                        xetex  = getOption('tikzXelatex'),
+                        luatex = getOption('tikzLualatex'),
+                        stop('a LaTeX engine must be specified for tikzDevice', call. = FALSE)
+                        )
+        owd <- setwd(dirname(pdf.output))
+        system2(latex, shQuote(basename(tikz.plot)), stdout = NULL)
+        setwd(owd)
+
+        if (!file.exists(pdf.output)) {
+            if (file.exists(log.plot)) {
+                message(paste(readLines(log.plot), collapse = "\n"))
+            }
+            stop("failed to compile ", tikz.plot, ' to PDF',  call. = FALSE)
         }
-        stop("failed to compile ", tikz.plot, ' to PDF',  call. = FALSE)
+    } else {
+        if (!file.exists(pdf.output)) {
+            stop("the figure wasn't converted into a PDF file.")
+        }
     }
     return(NULL)
 }
