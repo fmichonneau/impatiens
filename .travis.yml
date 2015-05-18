@@ -9,13 +9,11 @@ script:
 before_install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
-  - wget http://webupd8.googlecode.com/files/install-google-fonts
-  - chmod +x install-google-fonts
-  - ./install-google-fonts
   - ./travis-tool.sh bootstrap
 
 install:
   - ./travis-tool.sh install_deps
+  - Rscript -e "source('R/install_fonts.R'); install_fonts()"
   - ./travis-tool.sh aptget_install pandoc
   - ./travis-tool.sh aptget_install pandoc-citeproc
   - ./travis-tool.sh aptget_install texlive-latex-recommended
