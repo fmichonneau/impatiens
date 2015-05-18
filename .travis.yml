@@ -21,6 +21,7 @@ install:
   - ./travis-tool.sh aptget_install pandoc-citeproc
   - ./travis-tool.sh aptget_install etoolbox
   - ./travis-tool.sh aptget_install texlive-latex-extra
+  - ./travis-tool.sh install_r mapproj
   - ./travis-tool.sh install_github fmichonneau/splits/pkg
   - ./travis-tool.sh install_github fmichonneau/chopper
   - ./travis-tool.sh install_github fmichonneau/phyloch
