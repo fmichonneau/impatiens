@@ -20,7 +20,7 @@
 
 % Use fancy fonts
 \usepackage{fontspec}
-\setmainfont[Ligatures=TeX]{Crimson Text}
+\setmainfont[Mapping=tex-text]{Crimson Text}
 \setsansfont{SourceSansPro-Regular}
 
 % tables
