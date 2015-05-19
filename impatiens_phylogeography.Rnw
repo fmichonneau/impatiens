@@ -1513,6 +1513,8 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 \section{Supplementary materials}
 
+\subsection{Supplementary figures}
+
 \begin{figure}
 {\centering \includegraphics[width=\maxwidth]{figures-remake/loci-coverage-plot.pdf}}
 
@@ -1521,28 +1523,6 @@ confirmed with genetic data that capture a larger fraction of the genome.
 \end{figure}
 
 
-\begin{table}[h]
-  \centering
-  \caption{Partition table. The subscript number corresponds to
-    the to the codon position in the alignment. The ``real'' codon position is
-    offset by 2 for COI, H3a and ATP6 (i.e., COI$_1$ is 3rd codon position)}
-  \begin{tabular} { l l l }
-    \hline
-    Partition & Model   & Loci              \\
-    \hline
-    1      & GTR+I+G    & 16S, ATP6$_2$     \\
-    2      & HKY+I+G    & ATP6$_1$, COI$_1$ \\
-    3      & HKY+I+G    & ATP6$_3$, c0775   \\
-    4      & GTR+I+G    & c0036             \\
-    5      & GTR+I+G    & COI$_2$, H3a$_2$  \\
-    6      & HKY+I      & COI$_3$           \\
-    7      & HKY        & H3a$_1$, LSU      \\
-    8      & JC         & H3a$_3$           \\
-    9      & HKY+G      & ITS               \\
-    \hline
-  \end{tabular}
-  \label{tab:sm-partitions}
-\end{table}
 
 %% raxml tree
 \begin{figure}
@@ -1587,8 +1567,34 @@ confirmed with genetic data that capture a larger fraction of the genome.
 
 %% specimen table
 
+\subsection{Supplementary Tables}
+
+\begin{table}[h]
+  \centering
+  \caption{Partition table. The subscript number corresponds to
+    the to the codon position in the alignment. The ``real'' codon position is
+    offset by 2 for COI, H3a and ATP6 (i.e., COI$_1$ is 3rd codon position)}
+  \begin{tabular} { l l l }
+    \hline
+    Partition & Model   & Loci              \\
+    \hline
+    1      & GTR+I+G    & 16S, ATP6$_2$     \\
+    2      & HKY+I+G    & ATP6$_1$, COI$_1$ \\
+    3      & HKY+I+G    & ATP6$_3$, c0775   \\
+    4      & GTR+I+G    & c0036             \\
+    5      & GTR+I+G    & COI$_2$, H3a$_2$  \\
+    6      & HKY+I      & COI$_3$           \\
+    7      & HKY        & H3a$_1$, LSU      \\
+    8      & JC         & H3a$_3$           \\
+    9      & HKY+G      & ITS               \\
+    \hline
+  \end{tabular}
+  \label{tab:sm-partitions}
+\end{table}
+
+
 Specimen Table in Supplementary Material (see
-\textsf{supp-materials-remake/specimen_table.csv}). \label{tab:specimen-table}
+\textsf{supp-materials-remake/specimen\_table.csv}). \label{tab:specimen-table}
 
 % <<specimen-table, eval=TRUE, echo=FALSE, results='asis'>>=
 
