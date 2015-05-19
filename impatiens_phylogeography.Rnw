@@ -648,7 +648,7 @@ tree method \cite{Heled2013}.
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/species_limits.pdf}
+    \includegraphics[width=6.5in]{figures-manual/species_limits.pdf}
     \caption{Correspondence between the different criteria used to delineate the
       species of the ``\textit{Holothuria impatiens}'' complex. Medit:
       Mediterranean, WA: Western Atlantic, Gala: Galapagos, EP: Eastern Pacific;
@@ -810,7 +810,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group1.jpg}
+    \includegraphics[width=6.5in]{figures-manual/figure-group1.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU1, R\'{e}union Island, UF6487; B. ESU1, R\'{e}union Island,
       UF6588; C. ESU1, Majuro, Marshall Islands, UF6748; D. ESU1, Okinawa, Japan, UF10950;
@@ -821,7 +821,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group2.jpg}
+    \includegraphics[width=6.5in]{figures-manual/figure-group2.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. ESU2, Nosy B\'{e}, Madagascar, UF7287 (juvenile); B. ESU2,
       Guam, UF6729; C. ESU2, Lizard Island, Australia, UF8355; D. ESU2, Okinawa,
@@ -834,7 +834,7 @@ distributions and are morphologically indistinguishable
 
 \begin{figure}
   \centering
-    \includegraphics[width=6.5in]{manual-figures/figure-group3.jpg}
+    \includegraphics[width=6.5in]{figures-manual/figure-group3.jpg}
     \caption{Dorsal view of members of the ``\textit{Holothuria impatiens}''
       complex. A. WA, St Martin, UF11790; B. EP, Panama (no Voucher).}
     \label{fig:photo-WA+EP}
