@@ -22,9 +22,13 @@ targets:
   all:
      depends:
        - figures
-       #- tables
        - impatiens_phylogeography.tex
        - impatiens_phylogeography.pdf
+       - tables
+
+  tables:
+    depends:
+      - supp-materials-remake/specimen_table.csv
 
   data:
     depends:
@@ -184,7 +188,16 @@ targets:
     command: gmyc_tree_unique_sequences(gmyc_results, pdf.output = target_name,
                                         width = 6, height = 8, dev = I(choose_dev()))
 
+  ## Tables -------------------------------------------------------------------
+
+  specimen_table:
+    command: get_specimen_table(impDB)
+
+  supp-materials-remake/specimen_table.csv:
+    command: make_csv(specimen_table, file = target_name)
+
   ## Manuscript ---------------------------------------------------------------
+
   impatiens_phylogeography.tex:
     depends:
       - impAlg
