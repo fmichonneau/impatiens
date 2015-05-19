@@ -1,10 +1,10 @@
 
 ### ---- specimen-table ----
-get_specimen_table <- function(impDB) {
+get_specimen_table <- function(impDB, impAlg) {
     spcmTable <- impDB[nzchar(impDB$Extract), c("UFID", "consensusESU", "Country", "Extract", "uuid_idig")]
     spcmTable <- spcmTable[regmatches(spcmTable$Extract, regexpr("^[^,]+", spcmTable$Extract)) %in% dimnames(impAlg)[[1]], ]
     spcmTable <- spcmTable[-match("S0213", spcmTable$Extract), ]
-    stopifnot(all(spcmTable$consensusESU %in% esuList))
+    stopifnot(all(spcmTable$consensusESU %in% load_esuList()))
     spcmTable <- spcmTable[order(spcmTable$consensusESU), ]
     spcmTable$Country <- iconv(spcmTable$Country, "latin1", "ASCII", "")
     spcmTable$Country <- gsub("Runion", "R\\'{e}union", spcmTable$Country, fixed=TRUE)

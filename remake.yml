@@ -191,7 +191,7 @@ targets:
   ## Tables -------------------------------------------------------------------
 
   specimen_table:
-    command: get_specimen_table(impDB)
+    command: get_specimen_table(impDB, impAlg)
 
   supp-materials-remake/specimen_table.csv:
     command: make_csv(specimen_table, file = target_name)
