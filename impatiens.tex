@@ -1,5 +1,54 @@
 % -*-
-\documentclass[12pt,letterpaper]{article}
+\documentclass[12pt,letterpaper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 
 %%%%% packages provided by sys bio template
 \usepackage{fixltx2e}
@@ -113,7 +162,7 @@
 
 \newcolumntype{b}{X}
 \newcolumntype{s}{>{\hsize=.2\hsize}X}
-
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 
 \begin{flushright}
@@ -147,19 +196,9 @@ Invertebrate Zoology, Florida Museum of Natural History, Gainesville, FL
 
 \vspace{1in}
 
-<<setup, echo=FALSE, cache=FALSE, include=FALSE>>=
-library(knitr)
-opts_chunk$set(fig.path='figures/latex-', cache.path='cache/latex-', dev="tikz",
-               external=TRUE, fig.width=7, fig.height=4, fig.align="center")
 
-options(tikzDefaultEngine = "xetex")
-options(tikzDocumentDeclaration = paste(getOption("tikzDocumentDeclaration"),
-            "\n\\renewcommand*{\\familydefault}{\\sfdefault}", sep=""))
-read_chunk('code/impatiens_analysis.R')
-@
 
-<<common-variables, echo=FALSE>>=
-@
+
 
 \subsubsection{Abstract} Identifying accurately species is critical for our
 understanding of patterns of diversity and speciation. However, for many
@@ -349,8 +388,8 @@ museum. A few additional tissue samples were taken from vouchers housed at other
 institutions or were obtained through collaborators without vouchers being
 retained (Table~\ref{tab:specimen-table} for details).
 
-We examined \Sexpr{nrow(impDB)} specimens morphologically and
-\Sexpr{nrow(impAlg)} were used for molecular analyses. These specimens were
+We examined 219 specimens morphologically and
+208 were used for molecular analyses. These specimens were
 collected across the entire known range of \textit{H. impatiens}: Mediterranean
 Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 (Table~\ref{tab:specimen-table}).
@@ -358,8 +397,7 @@ Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 
 \subsection{DNA extraction and amplification}
 
-<<ambiguities, echo=FALSE>>=
-@
+
 
 DNA was extracted using either Invitrogen$^{\text{TM}}$ DNAZol\textregistered\
 or Omega Bio-Tek$^{\text{TM}}$ E.Z.N.A\textregistered\ Mollusc DNA kit following
@@ -397,9 +435,9 @@ Sequencing of PCR products was performed by the Interdisciplinary Center for
 Biotechnology Research at the University of Florida. Chromatrograms were edited
 using Geneious \citep{Geneious558}.
 
-Overall, \Sexpr{nAmbTotal} positions
-(\Sexpr{round(nAmbPositions/dim(impAlg)[2], 4)*100}\% of the alignment length,
-and \Sexpr{round(nAmbTotal/totalNucl, 4)*100}\% of the total number of
+Overall, 84 positions
+(1.14\% of the alignment length,
+and 0.02\% of the total number of
 nucleotides in the alignment) contained heterozygous positions. We used the
 International Union of Pure and Applied Chemistry (IUPAC) nomenclature codes for
 these positions in the alignment, which are considered as missing data by all
@@ -548,9 +586,8 @@ of the individuals found in the Galapagos archipelago, the coast of the Eastern
 Pacific and in the Caribbean using a log-normal prior with a \textit{log}(mean)
 of 1.5, a \textit{log}(standard deviation) of 0.75 and an offset of 2.5. This
 distribution translates into a mean age of divergence of
-\Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago
-(Ma), (95\% confidence interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
-  meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}]).
+6.98 millions years ago
+(Ma), (95\% confidence interval of [3.53, 21.99]).
 
 We set the MCMC chain lengths at 5.10$^{7}$, sampling every 5.10$^{3}$
 generations. All analyses were run twice from independent starting points and
@@ -633,15 +670,14 @@ our analysis to allow the estimation of the topology when all individuals for
 the species tested where attributed to \texttt{ESU1}. The null hypothesis was
 that all putative species were reproductively isolated.
 
-<<star-beast-stats, echo=FALSE>>=
-@
+
 
 In these analyses, we selected individuals for which we had at least one
-mitochondrial marker and one nuclear marker (\Sexpr{length(sBeastTaxa)}
-individuals: \Sexpr{sBeastESU["ESU1"]} of \texttt{ESU1},
-\Sexpr{sBeastESU["Hawaii"]} of \texttt{Hawaii}, \Sexpr{sBeastESU["Wpac"]} of
-\texttt{Wpac}, \Sexpr{sBeastESU["RedSea"]} of \texttt{RedSea},
-\Sexpr{sBeastESU["gracilis"]} of \texttt{gracilis}, \Sexpr{sBeastESU["ESU3"]} of
+mitochondrial marker and one nuclear marker (43
+individuals: 9 of \texttt{ESU1},
+7 of \texttt{Hawaii}, 7 of
+\texttt{Wpac}, 5 of \texttt{RedSea},
+7 of \texttt{gracilis}, 8 of
 \texttt{ESU3}). We used data from the following markers: 16S, COI, ATP6, c0036,
 c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of the
 entire complex (see below): using Gblocks to remove ambiguous parts of the
@@ -758,35 +794,45 @@ tree method \citep{Heled2013}.
 
 \subsection{Sequence data}
 
-<<loci-coverage-data, warning=TRUE, echo=FALSE>>=
-
-@
 
 
-The complete sequence data set was \Sexpr{sum(locChar["bp_alg", ])}~bp (with
-\Sexpr{sum(locChar["bp_alg", c("16S", "COI", "ATP6")])}~bp from mitochondrial
-genome, and \Sexpr{sum(locChar["bp_alg", c("c0036", "c0775", "H3a", "ITS",
-  "LSU")])}~bp from the nuclear genome,
-Table~\ref{tab:loci-characteristics}). Of the \Sexpr{sum(locChar["S_i",])}
-parsimony-informative sites, \Sexpr{round(sum(locChar["S_i", c("16S", "COI",
-  "ATP6")])/sum(locChar["S_i",])*100, 0)}\% were from the mitochondrial loci
+
+The complete sequence data set was 5966~bp (with
+2505~bp from mitochondrial
+genome, and 3461~bp from the nuclear genome,
+Table~\ref{tab:loci-characteristics}). Of the 1220
+parsimony-informative sites, 69\% were from the mitochondrial loci
 (Table~\ref{tab:loci-characteristics}).
 
 
-<<loci-characteristics-data, results="asis", echo=FALSE, warning=FALSE>>=
-generate_loci_table(locChar)
-@
+% latex table generated in R 3.2.0 by xtable 1.8-0 package
+% Fri May 22 16:50:19 2015
+\begin{table}[ht]
+\centering
+\caption{Characteristics of the loci used for the phylogenetic analyses. $N$: number of individuals sequenced, $K$: number of unique sequences, bp: length of the aligned (unaligned) sequences, $S$: number of segregating sites, $S_{i}$: number of parsimony informative sites. The statistics given for ITS are for the ones used in the analysis (i.e., after using Gblock).} 
+\label{tab:loci-characteristics}
+\begin{tabular}{rllllllll}
+ & \multicolumn{3}{c}{mtDNA} & \multicolumn{5}{|c}{nucDNA} \\ 
+\cline{2-4} \cline{5-9}
+ & 16S & COI & ATP6 & c0036 & c0775 & H3a & ITS & LSU \\ 
+  \hline
+$N$ & 94 & 203 & 64 & 70 & 59 & 39 & 61 & 6 \\ 
+  $K$ & 94 & 203 & 59 & 70 & 23 & 34 & 61 & 6 \\ 
+  bp & 1179 (1117) & 673 (655) & 653 (653) & 637 (624) & 282 (282) & 334 (334) & 1085 (1040) & 1123 (1072) \\ 
+  $S$ & 479 & 219 & 330 & 140 & 47 & 46 & 419 & 201 \\ 
+  $S_{i}$ & 383 & 198 & 265 & 97 & 28 & 5 & 237 & 7 \\ 
+   \hline
+\end{tabular}
+\end{table}
 
 
-We obtained sequence data from \Sexpr{length(unique(locus_graph_data[,
-  "Extract"]))} individuals covering the entire known geographical
+
+We obtained sequence data from 207 individuals covering the entire known geographical
 range of \textit{Holothuria impatiens}. All of these individuals were
 sequenced for at least one mitochondrial locus, and
-\Sexpr{round(length(unique(hasMtNuc[,
-  "Extract"]))/length(unique(locus_graph_data[, "Extract"]))*100, 0)}\% were
+36\% were
 sequenced for at least 1 nuclear locus and
-\Sexpr{round(sum(table(hasMtNuc[, "Extract"]) >=
-  2)/length(unique(locus_graph_data[, "Extract"])) *100, 0) }\% for 2 or more
+34\% for 2 or more
 (Fig.~\ref{fig:loci-coverage-plot}).
 
 % Here comment on results based on RAxML runs on individual loci.
@@ -794,29 +840,13 @@ sequenced for at least 1 nuclear locus and
 
 \subsection{Species limits with GMYC}
 
-<<gmyc-coi-results, eval=TRUE, echo=FALSE>>=
-@
 
-<<gmyc-coi-vars, eval=TRUE, echo=FALSE>>=
-minSingle <- min(subset(gmyc_summary, analysisType == "single")$mean)
-maxSingle <- max(subset(gmyc_summary, analysisType == "single")$mean)
-minMulti <- min(subset(gmyc_summary, analysisType == "multi")$mean)
-maxMulti <- max(subset(gmyc_summary, analysisType == "multi")$mean)
-stopifnot(all(subset(gmyc_summary, analysisType == "single" &
-                       clock == "strict" & sequences == "allSeq")$mean == 16))
-stopifnot(all(subset(gmyc_summary, analysisType == "single" &
-                       clock == "strict" & sequences == "noDup")$mean == 17))
-allSeqStrictSingle <- gmyc_summary[gmyc_summary$analysisType == "single" &
-                                     gmyc_summary$clock == "strict" &
-                                     gmyc_summary$sequences == "allSeq", "mean"]
-noDupStrictSingle <- gmyc_summary[gmyc_summary$analysisType == "single" &
-                                    gmyc_summary$clock == "strict" &
-                                    gmyc_summary$sequences == "noDup", "mean"]
-@
+
+
 
 The maximum-likelihood estimates for the number of putative species varied
-widely and ranged from \Sexpr{minSingle} to \Sexpr{maxSingle} for the
-single-threshold method (sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti}
+widely and ranged from 14 to 20 for the
+single-threshold method (sGMYC), and from 17 to 23
 for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 
@@ -841,8 +871,8 @@ not overlap.
 
 On the genealogies estimated with a strict clock, sGMYC was less sensitive to
 the type of tree prior used, as the estimated number of species was identical
-for the three priors tested with \Sexpr{unique(allSeqStrictSingle)} and
-\Sexpr{unique(noDupStrictSingle)} estimated species for analyses on all
+for the three priors tested with 16 and
+17 estimated species for analyses on all
 haplotypes and on unique haplotypes respectively. The Yule prior produced equal
 or more conservative estimates of the number of species compared to the two
 types of coalescent priors.
@@ -943,8 +973,7 @@ distributions and are morphologically indistinguishable
 
 \subsection{Species limits with *BEAST}
 
-<<starbeast-summary, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE>>=
-@
+
 
 \begin{figure}
 
@@ -982,29 +1011,29 @@ than one individual, that do not differ morphologically (\texttt{Hawaii},
 (Figure~\ref{fig:starbeast-summary}). The Bayes factors for the models that
 considered \texttt{Hawaii}, \texttt{Wpac} and \texttt{RedSea} as being panmictic
 with \texttt{ESU1} lent ``very strong'' support in favor of the null hypothesis
-(BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The
+(BF=\ensuremath{-10.8}, \ensuremath{-10.5}, and \ensuremath{-24} respectively). The
 model with an additional ``ghost'' species also indicated a poorer fit (BF =
-\Sexpr{BFsplit}), indicating that this approach did not favor a model that
+\ensuremath{-5.7}), indicating that this approach did not favor a model that
 included more species. The model with a random assignment of the species had the
-worst fit (BF = \Sexpr{BFrandom}).
+worst fit (BF = \ensuremath{-243.5}).
 
 % The random assignment of individuals to species led to a much lower BF (BF =
-% \Sexpr{BFrandom}), indicating a strong
+% BFrandom), indicating a strong
 
 Similar results were obtained when COI was omitted. The differences in
 likelihood were however smaller leading to $-10$ < BF < $-6$ for models that
-considered \texttt{Hawaii} (BF = \Sexpr{BFHawaiiNoCOI}) and \texttt{Wpac} (BF =
-\Sexpr{BFWpacNoCOI}) as panmictic with \texttt{ESU1} indicating ``strong''
+considered \texttt{Hawaii} (BF = \ensuremath{-8.2}) and \texttt{Wpac} (BF =
+\ensuremath{-9.4}) as panmictic with \texttt{ESU1} indicating ``strong''
 support in favor of the null hypothesis. The BF was still below $-10$ for the
 model that considered \texttt{RedSea} as panmictic with \texttt{ESU1} (BF =
-\Sexpr{BFRedSeaNoCOI}).
+\ensuremath{-19.9}).
 
 Analyses conducted on nuclear data alone led to low BF that do not support the
-null model (BF = \Sexpr{BFHawaiiNoMt} for no \texttt{Hawaii}, and BF =
-\Sexpr{BFRedSeaNoMt} for no \texttt{RedSea}). For the model that considered
+null model (BF = \ensuremath{-0.2} for no \texttt{Hawaii}, and BF =
+\ensuremath{-4.9} for no \texttt{RedSea}). For the model that considered
 \texttt{Wpac} as the same species as \texttt{ESU1}, the BF was positive
 suggesting a better fit to the data than the null hypothesis, but below the
-threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
+threshold to consider the evidence ``strong'' (BF = 2.8).
 
 
 \subsection{Phylogenetic relationships among the ESUs}
