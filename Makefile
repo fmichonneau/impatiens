@@ -7,22 +7,22 @@ else
   dev=$(dev_tikz)
 endif
 
-all: impatiens_phylogeography.tex impatiens_phylogeography_nourl.bib clean-partial
+all: impatiens.tex impatiens_nourl.bib clean-partial
 	-xelatex  -interaction=nonstopmode "\input" $<
-	-bibtex impatiens_phylogeography
+	-bibtex impatiens
 	-xelatex  -interaction=nonstopmode "\input" $<
 	xelatex  -interaction=nonstopmode "\input" $<
 
-impatiens_phylogeography.tex: impatiens_phylogeography.Rnw remake.yml
-	-rm impatiens_phylogeography_nourl.bib
+impatiens.tex: impatiens.Rnw remake.yml
+	-rm impatiens_nourl.bib
 	Rscript -e "library(remake); Sys.setenv(DEV_TYPE = '$(dev)'); make('all');"
 
-impatiens_phylogeography_nourl.bib: impatiens_phylogeography.bib
-	-cp ~/Library/impatiens_phylogeography.bib .
+impatiens_nourl.bib:
+	-cp ~/Library/impatiens.bib .
 	Rscript parseURLs.R
 
-impatiens_phylogeography.docx: impatiens_phylogeography.tex impatiens_phylogeography_nourl.bib
-	pandoc -t docx -o $@ --csl systematic-biology.csl --bibliography impatiens_phylogeography_nourl.bib $<
+impatiens.docx: impatiens.tex impatiens_nourl.bib
+	pandoc -t docx -o $@ --csl systematic-biology.csl --bibliography impatiens_nourl.bib $<
 
 
 clean-partial:
@@ -33,5 +33,5 @@ clean-partial:
 	-rm *~
 
 clean: clean-partial
-	-rm impatiens_phylogeography.pdf
-	-rm impatiens_phylogeography.tex
+	-rm impatiens.pdf
+	-rm impatiens.tex

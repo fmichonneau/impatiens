@@ -1,5 +1,5 @@
 #!/usr/bin/Rscript
-bib <- readLines("impatiens_phylogeography.bib")
+bib <- readLines("impatiens.bib")
 
 allUrl <- grep("^url", bib)
 allTitle <- grep("^title", bib)
@@ -22,6 +22,5 @@ for (i in 1:length(allUrl)) {
 
 bib <- bib[ - allUrl]
 
-cat(bib, sep="\n", file="impatiens_phylogeography_nourl.bib")
+cat(bib, sep="\n", file="impatiens_nourl.bib")
 message(nReplaced, " URL have been added to the title.")
-

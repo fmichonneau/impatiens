@@ -22,8 +22,8 @@ targets:
   all:
      depends:
        - figures
-       - impatiens_phylogeography.tex
-       - impatiens_phylogeography.pdf
+       - impatiens.tex
+       - impatiens.pdf
        - tables
 
   tables:
@@ -198,7 +198,7 @@ targets:
 
   ## Manuscript ---------------------------------------------------------------
 
-  impatiens_phylogeography.tex:
+  impatiens.tex:
     depends:
       - impAlg
       - impAlg_char
@@ -229,8 +229,8 @@ targets:
       - figures-remake/gmyc-tree-unique-sequences.pdf
     knitr: true
 
-  impatiens_phylogeography.pdf:
+  impatiens.pdf:
     command: system(I("make"))
     depends:
-      - impatiens_phylogeography.tex
+      - impatiens.tex
       - code/impatiens_analysis.R
