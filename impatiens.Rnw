@@ -128,7 +128,7 @@ Version dated: \today
 
 \begin{center}
   \noindent{\Large \bf Cryptic and not-so-cryptic species in the complex
-    ``\textit{Holothuria (Thymiosycia) imaptiens}'' (Forssk\r{a}l, 1775)
+    ``\textit{Holothuria (Thymiosycia) impatiens}'' (Forsskal, 1775)
     (Echinodermata: Holothuroidea: Holothuriidae)}
 
 \bigskip
@@ -194,54 +194,60 @@ refining our understanding of speciation.
 
 %% introduction
 
-Despite challenges with definitions, species constitute the biological units
-used to assess patterns of diversity, identify regions of conservation concern
-and manage exploited resources \citep{Pimm2014}. For many taxonomic groups,
-species limits are misunderstood and the level of undescribed diversity debated,
-making global estimates of diversity poorly constrained
+Despite challenges with definitions, species remain the basic units in any
+biological inquiry, such as assessing patterns of diversity, identifying regions
+of conservation concern, and managing resources \citep{Pimm2014}. For most
+groups, species limits are often misunderstood and the level of undescribed
+diversity uncertain, making even estimates of diversity poorly constrained
 \citep{Appeltans2012,Costello2013}. Additionally, conservation efforts aim at
 preserving the evolutionary potential of the species, but limited understanding
-of the processes that maintain present and future diversity hinders these goals
-\citep{Moritz2002}. Genetic data, and barcoding in particular, are facilitating
-the documentation of biodiversity not only by providing an inexpensive and
-efficient way to identify species and resolve complexes, but also by providing
-insights into the evolutionary history of the species.
+of the processes that maintain present and future diversity can hinder these
+goals \citep{Moritz2002}. Genetic data, and DNA barcoding in particular, are
+facilitating the documentation of biodiversity not only by providing an
+inexpensive and efficient way to identify species and resolve complexes, but
+also by providing insights into their evolutionary history.
 
-Barcoding has revealed that many species, thought to be well-understood, are
-complexes. In most cases, these ``pseudo-cryptic'' species differ
-morphologically but in traits not traditionally considered, or in traits not
-available to taxonomists because of the preservation methods or the lack of
-information about the natural history of the species \citep{Knowlton1993}. For
-instance, differences in coloration \citep{Brown2007,Malay2010}, habitat
-\citep{Prada2013}, or host preference \citep{Hebert2004}, were not considered as
-indicative of species limits before cryptic lineages were uncovered by molecular
-data. In these cases, the single-locus approach provided a way to infer species
-limits using the evolutionary significant unit (ESU) concept \citep{Moritz1994}
-that defines species-level units based on reciprocal monophyly in at least one
-marker (typically mtDNA), and at least another defining attribute (morphology,
-distribution, reciprocal monophyly in another trait). If this approach has
-allowed to unravel high levels of unrecognized diversity, when other defining
-attributes to infer reproductive isolation are lacking, the patterns of genetic
-differentiation have remained difficult to interpret objectively.
+Molecular studies have revealed that many species, thought to be
+well-understood, are complexes. Cryptic species are likely common, especially in
+the sea, because unlike us primates, most organisms rely on chemical signaling
+for species recognition \citep{Knowlton1993}. In most cases, these
+``pseudo-cryptic'' species differ morphologically but in traits not
+traditionally considered, or in traits not typically available to taxonomists in
+preserved specimens \citep{Knowlton1993}. For instance, differences in
+coloration \citep{Brown2007,Malay2010}, habitat \citep{Prada2013}, or host
+preference \citep{Hebert2004}, have often been ignored as indicative of species
+differences in themselves, before the abundance of cryptic lineages was realized
+through molecular studies. During the past decade, single-locus DNA barcoding
+has taken off as quick means of re-evaluating species limits. While deep
+divergence in a single marker is not diagnostic of species limits, concordant
+reciprocal monophyly in two traits does demonstrate the lack on gene flow. Thus
+combined, reciprocal monophyly of typically a mtDNA marker (DNA barcoding) with
+at least one other defining attribute (other loci, morphology, geographical
+distribution) provides a way to infer species limits using the evolutionary
+significant unit (ESU) concept \citep{Moritz1994} (see below). While this
+powerful approach has led to the recognition of many cryptic species, it has had
+limited efficacy in taxa that have lineages that are deeply divergent in mtDNA,
+but lack other differentiating attributes. Such patterns can arise from the
+fusion of previously differentiated populations, but could also be indicative of
+truly cryptic species. In such cases, testing for divergence in other
+(non-mitochondrial) loci provides a straightforward test of
+differentiation. However, this approach has been particularly limiting because
+of the slow rate of divergence or paralogy in typical ``workhorse'' nuclear loci
+that be amplified by broadly universal primers, and coversely the lack of
+universality in primers that use rapidly evolving markers, such as
+microsatellites.
 
-Many species rely on chemical recognition systems to maintain species integrity
-(e.g., mate recognition, habitat specificity) \citep{Knowlton1993}. Not only
-these systems are poorly characterized or difficult to investigate in the
-context of a taxonomic study, they also rarely translate into morphological,
-behavioral or ecological differences. The absence of defining traits that
-correlates with genetic clusters identified from single-locus data make these
-species ``true cryptic'' complexes. New methods based on the multispecies
-coalescent are emerging as powerful ways to investigate species limits in these
-complexes when evidence is equivocal. By using multi-locus datasets, these
-methods overcome some of the shortcomings of single-locus analyses that were
-unable to distinguish between different processes leading to identical patterns
-(e.g., incomplete lineage sorting and introgression), and do not depend on
-arbitrary threshold of genetic divergence. Instead, they account for the
-stochastic process associated with the independent sorting of genealogies along
-the species tree, and use it to estimate the species tree and the demographic
-history of the species \citep{Fujita2012a}. These methods also provide a
-statistical framework to test competing species delineation hypotheses
-\citep{Baele2012}.
+New methods based on the multispecies coalescent are emerging as powerful ways
+to investigate species limits in challenging complexes where previous evidence
+was equivocal. By using multi-locus datasets, these methods overcome some of the
+shortcomings of single-locus analyses that were unable to distinguish between
+different processes leading to identical patterns (e.g., incomplete lineage
+sorting and introgression), and do not depend on arbitrary threshold of genetic
+divergence. Instead, they account for the stochastic process associated with the
+independent sorting of genealogies along the species tree, and use it to
+estimate the species tree and the demographic history of the species
+\citep{Fujita2012a}. These methods also provide a statistical framework to test
+competing species delineation hypotheses \citep{Baele2012}.
 
 Among marine organisms, the discovery of high levels of cryptic diversity has
 challenged the importance of physical barriers as the primary driver of
@@ -251,17 +257,17 @@ Indo-Pacific in particular, lack clear geographical barriers to dispersal,
 opportunities for allopatric speciation seem limited. Yet, while many closely
 related species have non-overlapping distributions suggesting that allopatric
 speciation is prevalent, overlap in the distribution of sister species is
-common. These observations have led to the realization that (1) selection (along
-environmental gradients, sexual selection, host specificity) may play an
+common. These observations have led to the realization that (1) selection (e.g.,
+along environmental gradients, sexual selection, host specificity) may play an
 important role in reproductive isolation (reviewed in \citep{Bowen2013}); (2)
-changes in species distributions have obscured the geographic context at the
-time of speciation. By clarifying the identity of the species, by providing more
-accurate estimates of the timing of speciation, and by estimating populations
-sizes, the multispecies coalescent may shed light on the relative contribution
-of these factors in shaping patterns of diversity, reveal new patterns and
-refine our understanding of speciation in the sea.
+changes in species distributions can rapidly obscure the geographic context at
+the time of speciation. By clarifying species boundaries, providing more
+accurate estimates of the timing of speciation, and populations sizes, the
+multispecies coalescent may shed light on the relative contribution of these
+factors in shaping patterns of diversity, reveal new patterns and refine our
+understanding of speciation in the sea.
 
-In this study, we use coloration patterns, genetic, distributional and
+In this study, I use color patterns, genetic, distributional and
 ecological data, to unravel at least 13 species within ``\textit{Holothuria
   impatiens}'' (see column ``consensus'' in
 Table~\ref{fig:species-limits}). This complex includes both species that can be
@@ -271,36 +277,36 @@ complex and the elucidation of the phylogenetic relationships of its species
 provide the opportunity to investigate the spatial and temporal dynamics of this
 radiation.
 
-Forssk\r{a}l described posthumously in 1775 \textit{Fistularia impatiens} from
+Forssk\r{a}l (1775) posthumously described \textit{Fistularia impatiens} from
 material he collected in Suez, Egypt \citep{Forsskal1775}. The description is
 limited, but indicates that the body wall is gray with dark spot, and with
 well-developed, lightly colored tubercles. The drawing accompanying the
 description corroborates these observations. Since then, the species has been
-attributed to \textit{Holothuria}, the mostly reef-associated and most diverse
-genus within the Holothuriidae. The range of \textit{H. impatiens} has been
-extended, and today is recognized as the most widespread species in the
-genus. Its range extends from the Red Sea through the entire Indo-West Pacific,
-to the East Pacific, Caribbean and the Mediterranean. Pearson \citep{Pearson1915}
-described \textit{Thymiosycia} as one of five subgenera in \textit{Holothuria},
-and designated \textit{Holothuria impatiens} as the type species. The modern
-concept of \textit{Thymiosycia} was proposed by Rowe \citep{Rowe1969} to include
-13 species.
+attributed to \textit{Holothuria}, the largely reef-associated and most diverse
+genus within the Holothuriidae. \textit{Holothuria impatiens} is the type
+species of \textit{Thymiosycia} \citealt{Pearson1915}, a subgenus of
+\textit{Holothuria}. The modern concept of \textit{Thymiosycia} was proposed by
+\citet{Rowe1969} to include 13 species.
 % characterized by well developed, regular and symmetrical tables and buttons.
 
-\textit{Holothuria impatiens} is a common, to locally abundant species found
-under rocks (in particular in lagoons and back-reef habitats), and is largely
+
+\textit{Holothuria impatiens} today is recognized as the most widespread species
+in the genus, ranging from the Red Sea through the entire Indo-West Pacific, to
+the East Pacific, Caribbean and the Mediterranean. It is a common, to locally
+abundant species found under rocks and other cryptic habitats, and largely
 restricted to shallow water (< 10~m), although it has been recorded down to
-158~m (Y. Samyn, pers. comm.).  Because of its ubiquitous distribution, it is
-one of the more studied species in the family with studies on its reproduction
-\citep{Harriott1985}; Cuvierian tubules \citep{Flammang2002,Becker+Flammang2010};
-toxicity \citep{Bakus1974}; feeding preferences \citep{Roberts1982}; parasites
-\citep{Martens1994}; the chemical composition, statistical analysis of the shape,
-and ontogenic changes in ossicles \citep{Hampton1958,Hampton1959,Cutress1996}. It
-has also been included in molecular phylogenies that investigated relationships
-among the major groups of holothurians (e.g., \citep{Lacey2005}) or as an
-outgroup when studying relationships within a sub-genus (e.g.,
+158~m (Y. Samyn, pers. comm.).  Because of its broad distribution, it is
+one of the more studied species of sea cucumbers, with studies on its reproduction
+\citep{Harriott1985}; Cuvierian tubules
+\citep{Flammang2002,Becker+Flammang2010}; toxicity \citep{Bakus1974}; feeding
+preferences \citep{Roberts1982}; parasites \citep{Martens1994}; chemical
+composition, morphometrics of the shape of, and ontogenic changes in,
+ossicles \citep{Hampton1958,Hampton1959,Cutress1996}. It has also been included
+in molecular phylogenies that investigated relationships among the major groups
+of holothurians (e.g., \citep{Lacey2005}) or as an outgroup when studying
+relationships within a sub-genus (e.g.,
 \citep{Honey-Escandon2012}). \textit{Holothuria impatiens} is a low-value
-commercial species that is fished in the Eastern Pacific
+commercial species that is fished at least in the Eastern Pacific
 \citep{Toral-Granda2008}, Madagascar \citep{Conand2007}, and Palau
 \citep{Pakoa2009}.
 
@@ -321,7 +327,7 @@ mitochondrial locus COI to delineate putative species
 patterns, ecology and geographic information) to assess the validity of these
 putative species. When no other line of evidence could separate the putative
 species identified with GMYC, we used model comparison in *BEAST
-\citep{Heled2010,Baele2012} to validate species limits. Our study shows that
+\citep{Heled2010,Baele2012} to evaluate species limits. Our study shows that
 these methods can be added to the lines of evidence typically used in
 integrative taxonomy, and provide a powerful tool for evaluating species limits
 in rapidly evolving groups with limited morphological and genetic
@@ -351,8 +357,8 @@ retained (Table~\ref{tab:specimen-table} for details).
 
 We examined \Sexpr{nrow(impDB)} specimens morphologically and
 \Sexpr{nrow(impAlg)} were used for molecular analyses. These specimens were
-collected across the entire known range of \textit{H. impatiens}: Mediterranean
-Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
+collected across the entire known range of \textit{H. impatiens}: Mediterranean,
+Caribbean, Red Sea, tropical Indian and Pacific Oceans
 (Table~\ref{tab:specimen-table}).
 
 
@@ -364,8 +370,8 @@ Sea, Caribbean Sea, Red Sea, tropical Indian and Pacific Oceans
 DNA was extracted using either Invitrogen$^{\text{TM}}$ DNAZol\textregistered\
 or Omega Bio-Tek$^{\text{TM}}$ E.Z.N.A\textregistered\ Mollusc DNA kit following
 manufacturer recommendations. DNA was most often extracted from tentacles,
-sometimes from gonads, longitudinal muscles or body wall. When possible, the
-extractions were performed on tissue sampled in the field.
+sometimes from tube feet, gonads, longitudinal muscles or body wall. When
+possible, the extractions were performed on tissue sampled in the field.
 
 In this study we amplified the mitochondrial markers COI, 16S, ATP6 and the
 nuclear markers histone 3 (H3a), 18S, ITS1-5.8S-ITS2, c0036 and c0775
@@ -452,15 +458,15 @@ significant units (ESUs)'', and ``species'':
   and follows the terminology used by the authors of the method \citep{Pons2006,
     Monaghan2009}.
 \item ``Evolutionary significant units (ESUs)'' are defined as reciprocally
-  monophyletic lineages in COI that are also characterized by another
-  independent defining attribute (e.g., coloration, morphology, geographical
-  distribution, reciprocal monophyly in another marker). We use this concept
-  as defined by Moritz \citep{Moritz1994}.
-\item The ``species'' are the lineages supported by the model of species
-  delineation that best explains the data as assessed by Bayes factors estimated
-  from the multispecies coalescent in *BEAST. They provide an indirect
-  assessment of reproductive isolation and the species are assumed to not
-  exchange genes, forming independent distinct lineages.
+  monophyletic lineages in one marker (COI in this study) that are also
+  characterized by another independent defining attribute (e.g., coloration,
+  morphology, geographical distribution, reciprocal monophyly in another
+  marker). We use this concept as defined by Moritz \citep{Moritz1994}.
+\item The term ``species'' is used in this study to denote lineages supported by
+  the model of species delineation that best explains the data as assessed by
+  Bayes factors estimated from the multispecies coalescent in *BEAST. They
+  provide an indirect assessment of reproductive isolation and the species are
+  assumed to not exchange genes, forming independent distinct lineages.
 \end{itemize}
 
 \subsection{Species limits with GMYC}
@@ -479,11 +485,11 @@ To obtain the ultrametric trees required by this method, we used BEAST as it
 provides a powerful statistical framework to interpret the chronological context
 of molecular variation \citep{Drummond2014}. Despite some investigations of the
 effects of priors on the number of species estimated by GMYC
-(\citep{Monaghan2009, Fujisawa2013, Talavera2013}), we here revisit the impact of
-specifying a strict or a log-normal relaxed clock, as well as the type of tree
-prior used (coalescent with constant population size \citep{Kingman1982},
+(\citep{Monaghan2009, Fujisawa2013, Talavera2013}), we here revisit the impact
+of specifying a strict or a log-normal relaxed clock, as well as the type of
+tree prior used (coalescent with constant population size \citep{Kingman1982},
 coalescent with exponentially growing population size \citep{Griffiths1994}, and
-Yule \citep{Yule1925}). The type of clock used will affect branch lengths, it is
+Yule \citep{Yule1925}). The type of clock used affects branch lengths, it is
 however difficult to predict \textit{a priori} how the misspecification of this
 parameter will influence the results. Monaghan et al \citep{Monaghan2009}
 indicate that using a coalescent constant tree prior is a more conservative
@@ -498,9 +504,9 @@ To our knowledge few studies have investigated the effect of retaining identical
 haplotypes in the analysis (but see \citep{Talavera2013}). In other studies,
 identical sequences were removed as they were thought to make the task of
 estimating the transition problematic \citep{Monaghan2009}, as the GMYC method
-cannot accommodate for the null branch lengths associated with identical
-sequences \citep{Fujisawa2013}. Contrary to other programs, BEAST does not assign
-zero edge length to terminal branches for identical sequences, and thus allows
+cannot accommodate for null branch lengths associated with identical sequences
+\citep{Fujisawa2013}. Contrary to other programs, BEAST does not assign zero
+edge length to terminal branches for identical sequences, and thus allows
 retaining them in the analysis. There are obvious theoretical advantages for
 retaining identical sequences: BEAST assumes that the sequences represent a
 random sample of the population when estimating effective population
@@ -536,6 +542,13 @@ We used a log-normal distribution as the prior for the mean rate of substitution
 for the log-normal relaxed clock and the strict clock, with a \textit{log}(mean)
 of -4 and a \textit{log}(standard deviation) of 1.
 
+% GP: not sure what you mean by that.  Since Galap and EP are sisters, they are
+% both equally sister to the WA species
+
+% GP: [We discussed this earlier, but I forget the details.  This does not read
+% well without more detail.  You say 3 Ma is last contact, then use 7 Ma for
+% divergence without justification.  Your confidence interval does not include 3
+% Ma…]
 As no fossils are known in \textit{Holothuria}, we used the closure of the
 isthmus of Panama to calibrate the clock. The isthmus of Panama was completely
 closed about 3 Ma but most species were probably isolated earlier
@@ -572,14 +585,14 @@ number of species corresponds to the minimum and maximum numbers of species for
 threshold values found within 2 log-likelihood units of the threshold associated
 with the highest likelihood.
 
-\subsection{Species limits with coloration and geography}
+\subsection{Species limits, coloration, and geography}
 
 To determine whether the putative species delineated with GMYC were biologically
 sound, we investigated their color patterns, geographical distribution and ecology.
 
-Coloration information was obtained from the photographs of the live specimens
-and from field observations. Ecological and geographical coordinates were
-retrieved from the collecting information associated with the specimens.
+Coloration was obtained from photographs of the live specimens and from field
+observations. Habitat, habit and location were retrieved from collecting
+information associated with the specimens.
 
 %% To compare intra- and inter-specific variation in ossicle size and shape in the
 %% dorsal body wall, we measured various characteristics of buttons and tables
@@ -596,12 +609,12 @@ retrieved from the collecting information associated with the specimens.
 \subsection{Species limits with *BEAST}
 
 Some of the putative species delineated by GMYC form well defined but shallow
-clusters, have geographically defined ranges, but cannot be differentiated
-morphologically. Their ranges overlap (e.g., \texttt{Hawaii}, \texttt{Wpac}) or
-border (e.g., \texttt{RedSea}) the widespread \texttt{ESU1}, bringing into
-question the reproductive isolation of these lineages. To test whether these
-clusters are reproductively isolated, we compared competing hypotheses of
-species delineation with *BEAST v 1.8.0 \citep{Heled2010} using Bayes factors
+clusters, have distinct ranges, but cannot be differentiated morphologically. A
+notable cluster includes the widespread putative species (ESU1) whose range
+overlaps with that of two related putative species (\texttt{Hawaii},
+\texttt{Wpac}) and borders a third (\texttt{RedSea}). To test whether these four
+putative species are reproductively isolated, we compared competing hypotheses
+of species delineation with *BEAST v 1.8.0 \citep{Heled2010} using Bayes factors
 (BF) estimated by the stepping-stone (SS) and the path sampling (PS) methods
 \citep{Baele2012}.
 
@@ -625,32 +638,35 @@ this approach, we tested whether we could detect the signature of reproductive
 isolation among individuals assigned to different putative species by GMYC but
 that cannot be teased apart based on color patterns or other evidence.
 
+% rephrase sentence below
 We investigated whether *BEAST favored models where all or some of the following
 ESUs were considered distinct species: \texttt{WPac}, \texttt{Hawaii} and
 \texttt{RedSea}, or were panmictic with \texttt{ESU1} (Table
-\ref{tab:delineationModels}). We included \texttt{ESU3} and \texttt{gracilis} in
-our analysis to allow the estimation of the topology when all individuals for
-the species tested where attributed to \texttt{ESU1}. The null hypothesis was
-that all putative species were reproductively isolated.
+\ref{tab:delineationModels}). We included the more distant putative species
+\texttt{ESU3} and \texttt{gracilis} in our analysis to allow the estimation of
+the topology when all individuals for the species tested where attributed to
+\texttt{ESU1}. The null hypothesis was that all putative species were
+reproductively isolated.
 
 <<star-beast-stats, echo=FALSE>>=
 @
 
-In these analyses, we selected individuals for which we had at least one
-mitochondrial marker and one nuclear marker (\Sexpr{length(sBeastTaxa)}
-individuals: \Sexpr{sBeastESU["ESU1"]} of \texttt{ESU1},
-\Sexpr{sBeastESU["Hawaii"]} of \texttt{Hawaii}, \Sexpr{sBeastESU["Wpac"]} of
-\texttt{Wpac}, \Sexpr{sBeastESU["RedSea"]} of \texttt{RedSea},
-\Sexpr{sBeastESU["gracilis"]} of \texttt{gracilis}, \Sexpr{sBeastESU["ESU3"]} of
-\texttt{ESU3}). We used data from the following markers: 16S, COI, ATP6, c0036,
-c0775, ITS, LSU and H3a; and the same approach as for the phylogeny of the
-entire complex (see below): using Gblocks to remove ambiguous parts of the
-alignment in ITS, PartitionFinder to find the most appropriate partition scheme
-and models of molecular evolution. We unlinked clocks for all markers, used
-strict molecular clocks, fixing the COI clock at 1\%.million years$^{-1}$ which
-is the rate estimated from the analyses on COI used for the GMYC analyses. The
-rate for the other clocks were estimated relatively to the COI clock. We ran at
-least two independent runs for 50.10$^{6}$ generations for each group.
+In these analyses, we selected individuals for which we had sequences from at
+least one mitochondrial marker and one nuclear marker
+(\Sexpr{length(sBeastTaxa)} individuals: \Sexpr{sBeastESU["ESU1"]} of
+\texttt{ESU1}, \Sexpr{sBeastESU["Hawaii"]} of \texttt{Hawaii},
+\Sexpr{sBeastESU["Wpac"]} of \texttt{Wpac}, \Sexpr{sBeastESU["RedSea"]} of
+\texttt{RedSea}, \Sexpr{sBeastESU["gracilis"]} of \texttt{gracilis},
+\Sexpr{sBeastESU["ESU3"]} of \texttt{ESU3}). We used data from the following
+markers: 16S, COI, ATP6, c0036, c0775, ITS, LSU and H3a; and the same approach
+as for the phylogeny of the entire complex (see below): using Gblocks to remove
+ambiguous parts of the alignment in ITS, PartitionFinder to find the most
+appropriate partition scheme and models of molecular evolution. We unlinked
+clocks for all markers, used strict molecular clocks, fixing the COI clock at
+1\%.million years$^{-1}$, the rate estimated from the analyses on COI used for
+the GMYC analyses. The rate for the other clocks were estimated relatively to
+the COI clock. We ran at least two independent runs for 50.10$^{6}$ generations
+for each group.
 
 \begin{table}
   \centering
@@ -781,10 +797,10 @@ generate_loci_table(locChar)
 We obtained sequence data from \Sexpr{length(unique(locus_graph_data[,
   "Extract"]))} individuals covering the entire known geographical
 range of \textit{Holothuria impatiens}. All of these individuals were
-sequenced for at least one mitochondrial locus, and
+sequenced for at least one mitochondrial locus,
 \Sexpr{round(length(unique(hasMtNuc[,
   "Extract"]))/length(unique(locus_graph_data[, "Extract"]))*100, 0)}\% were
-sequenced for at least 1 nuclear locus and
+sequenced for at least 1 nuclear locus, and
 \Sexpr{round(sum(table(hasMtNuc[, "Extract"]) >=
   2)/length(unique(locus_graph_data[, "Extract"])) *100, 0) }\% for 2 or more
 (Fig.~\ref{fig:loci-coverage-plot}).
@@ -814,10 +830,10 @@ noDupStrictSingle <- gmyc_summary[gmyc_summary$analysisType == "single" &
                                     gmyc_summary$sequences == "noDup", "mean"]
 @
 
-The maximum-likelihood estimates for the number of putative species varied
-widely and ranged from \Sexpr{minSingle} to \Sexpr{maxSingle} for the
-single-threshold method (sGMYC), and from \Sexpr{minMulti} to \Sexpr{maxMulti}
-for the multi-threshold method (mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
+The maximum-likelihood estimates for the number of putative species varied from
+\Sexpr{minSingle} to \Sexpr{maxSingle} for the single-threshold method (sGMYC),
+and from \Sexpr{minMulti} to \Sexpr{maxMulti} for the multi-threshold method
+(mGMYC) (Fig~\ref{fig:gmyc-coi-plot}).
 
 
 \begin{figure}
@@ -856,7 +872,7 @@ different priors used. For the analyses based on all sequences, the difference
 between the 14 species estimated with the Yule prior and the 16 species
 estimated with the other priors was caused by (1) the lumping of
 \texttt{tigerRedSea} and \texttt{tiger}; (2) the later time to coalescence for
-divergent haplotypes related to \texttt{ESU3} with the Yule prior.
+divergent haplotypes within the \texttt{ESU3} when using the Yule prior.
 
 For the analyses based on unique haplotypes and a relaxed clock, with the Yule
 prior, the coalescence of the haplotypes happened later in the tree leading to
@@ -864,11 +880,11 @@ lower estimated number of species compared to the coalescent priors. With the
 relaxed clock, many coalescent events were reconstructed in the vicinity of the
 threshold leading to broad confidence intervals.
 
-With the strict clock analyses, the additional species delineated between the
-unique haplotypes and all sequences corresponds to the recognition of both
+With the strict clock analyses, the single additional species delineated between
+the unique haplotypes and all sequences represents the separate recognition of
 \texttt{tiger} and \texttt{tigerRedSea}.
 
-For all analyses, at least one putative species was represented by a single
+In all analyses, at least one putative species was represented by a single
 sequence. A divergent lineage related to \texttt{ESU1}, collected in Lizard
 Island, Australia, was assigned to its own species (\texttt{ESU1\_Lizard} in
 Fig.~\ref{fig:species-limits}). In all analyses (except with the most
@@ -878,7 +894,7 @@ from Papua New Guinea), were each assigned to their own species
 (\texttt{ESU3\_Deep} and \texttt{ESU3\_PNG} respectively in
 Fig.~\ref{fig:species-limits}).
 
-\subsection{Species limits with coloration and geography}
+\subsection{Species limits, coloration, and geography}
 
 Members of the ``\textit{H. impatiens}'' complex are characterized by two
 dominant colors. The dark coloration is typically solid towards the anterior
@@ -888,24 +904,27 @@ across individuals. The dark color is typically brown but varies in lightness
 and can take a red or purple tint. The lighter color is typically gray but
 varies in lightness from light brown to yellow or even white. The light-colored
 areas typically harbor a ``salt-and-pepper'' pattern with small dark spots on
-the light background. Despite these common characteristics, the combination of
-color patterns and geographical distribution allows us to distinguish
-unambiguously at least ten species (Fig.~\ref{fig:species-limits},
-\ref{fig:photo-ESU1-andFriends}, \ref{fig:photo-ESU2-andFriends}).
+the light background.
 
-\texttt{Medit}, \texttt{WA}, \texttt{Gala}, \texttt{EP}, \texttt{ESU1} have
-similar color patterns but subtle differences, and the restriction of their
-ranges to an oceanic basin or an archipelago allow teasing them
-apart. \texttt{ESU2} is the only species with bright yellow papillae and
-tentacles (Figure~\ref{fig:photo-ESU2-andFriends}). \texttt{tiger} and
+Despite these common characteristics, the combination of color patterns and
+geographical distribution allows us to distinguish unambiguously at least ten
+species (Fig.~\ref{fig:species-limits}, \ref{fig:photo-ESU1-andFriends},
+\ref{fig:photo-ESU2-andFriends}). \texttt{Medit}, \texttt{WA}, \texttt{Gala},
+\texttt{EP}, \texttt{ESU1} have similar color patterns but subtle differences,
+and the restriction of their ranges to an oceanic basin or an archipelago allow
+separation. \texttt{ESU2} is the only species with bright yellow papillae and
+tentacles, but is otherwise quite variable in coloration
+(Figure~\ref{fig:photo-ESU2-andFriends}). \texttt{tiger} and
 \texttt{tigerRedSea} are also very distinctive with sparse, dark, tubercles that
 barely raise from the body wall, giving them a smoother appearance than the
 other species. They are also much larger than the other species and specimens
-reach regularly more than 30~cm. \texttt{gracilis} has very large, conical,
-typically red tubercles, and a very distinctive ``gritty'' texture.
+reach regularly more than 30~cm. They live in deep crevices on fore reefs from
+which they partially emerge at night, with their posterior remaining anchored;
+this makes them challenging to collect. \texttt{gracilis} has very large,
+conical, typically red tubercles, and a very distinctive ``gritty'' texture.
 \texttt{ESU3} has elongated, pyramidal tubercles with white papillae. However,
-\texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} have broadly overlapping
-distributions and are morphologically indistinguishable
+\texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} are morphologically
+indistinguishable and have broadly overlapping distributions
 (Figure~\ref{fig:photo-ESU1-andFriends}).
 
 \begin{figure}
@@ -968,6 +987,7 @@ distributions and are morphologically indistinguishable
   \citep{Kass1995}.}\label{fig:starbeast-summary}
 \end{figure}
 
+% GP: [This section needs a lead sentence summarizing what follows]
 Both path sampling (PS) and stepping-stone sampling (SS) gave almost identical
 estimates of the marginal likelihoods (Fig~\ref{fig:starbeast-summary}). The
 values reported for the Bayes factors (BF) are the means of the two independent
@@ -976,31 +996,30 @@ evidence in favor of the null hypothesis specifying that \texttt{Wpac},
 \texttt{Hawaii}, \texttt{RedSea} and \texttt{ESU1} are all reproductively
 isolated species.
 
-The model that included putative species identified by GMYC represented by more
-than one individual, that do not differ morphologically (\texttt{Hawaii},
-\texttt{Wpac} and \texttt{ESU1}) had the highest marginal likelihood
-(Figure~\ref{fig:starbeast-summary}). The Bayes factors for the models that
-considered \texttt{Hawaii}, \texttt{Wpac} and \texttt{RedSea} as being panmictic
-with \texttt{ESU1} lent ``very strong'' support in favor of the null hypothesis
-(BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac}, and \Sexpr{BFRedSea} respectively). The
-model with an additional ``ghost'' species also indicated a poorer fit (BF =
-\Sexpr{BFsplit}), indicating that this approach did not favor a model that
-included more species. The model with a random assignment of the species had the
-worst fit (BF = \Sexpr{BFrandom}).
+The model that included all putative species identified by GMYC represented by
+more than one individual, and that do not differ morphologically
+(\texttt{Hawaii}, \texttt{Wpac} and \texttt{ESU1}) had the highest marginal
+likelihood (Figure~\ref{fig:starbeast-summary}). The Bayes factors showed ``very
+strong'' support for the null hypothesis when compared with the models that
+considered each of \texttt{Hawaii}, \texttt{Wpac} and \texttt{RedSea} in turn
+panmictic with \texttt{ESU1} (BF=\Sexpr{BFHawaii}, \Sexpr{BFWpac}, and \Sexpr{BFRedSea}
+respectively). The model with an additional ``ghost'' species also indicated a
+poorer fit (BF = \Sexpr{BFsplit}), indicating that this approach did not favor a
+model that included more species. The model with a random assignment of the
+species had the worst fit (BF = \Sexpr{BFrandom}).
 
 % The random assignment of individuals to species led to a much lower BF (BF =
 % \Sexpr{BFrandom}), indicating a strong
 
 Similar results were obtained when COI was omitted. The differences in
-likelihood were however smaller leading to $-10$ < BF < $-6$ for models that
-considered \texttt{Hawaii} (BF = \Sexpr{BFHawaiiNoCOI}) and \texttt{Wpac} (BF =
-\Sexpr{BFWpacNoCOI}) as panmictic with \texttt{ESU1} indicating ``strong''
-support in favor of the null hypothesis. The BF was still below $-10$ for the
-model that considered \texttt{RedSea} as panmictic with \texttt{ESU1} (BF =
-\Sexpr{BFRedSeaNoCOI}).
+likelihood were however smaller, BF = \Sexpr{BFHawaiiNoCOI},
+\Sexpr{BFWpacNoCOI}, \Sexpr{BFRedSeaNoCOI}, for models that considered
+\texttt{Hawaii}, \texttt{Wpac}, and \texttt{RedSea} as panmictic with
+\texttt{ESU1}, indicating ``strong'' to ``very strong'' support in favor of the
+null hypothesis.
 
-Analyses conducted on nuclear data alone led to low BF that do not support the
-null model (BF = \Sexpr{BFHawaiiNoMt} for no \texttt{Hawaii}, and BF =
+Analyses conducted on nuclear data alone led to low BF values, that did not
+support the null model (BF = \Sexpr{BFHawaiiNoMt} for no \texttt{Hawaii}, and
 \Sexpr{BFRedSeaNoMt} for no \texttt{RedSea}). For the model that considered
 \texttt{Wpac} as the same species as \texttt{ESU1}, the BF was positive
 suggesting a better fit to the data than the null hypothesis, but below the
@@ -1020,9 +1039,9 @@ threshold to consider the evidence ``strong'' (BF = \Sexpr{BFWpacNoMt}).
 \end{figure}
 
 
-The phylogenetic relationships recovered with BEAST and RAxML of the species
-included in the ``\textit{H. impatiens}'' complex on the concatenated alignment
-were identical (Fig.~\ref{fig:impatiens-tree} and
+% GP: [This section needs a lead sentence summarizing what follows]
+The phylogenetic relationships recovered with BEAST and RAxML on the
+concatenated alignment were identical (Fig.~\ref{fig:impatiens-tree} and
 Fig.~\ref{fig:raxml-tree}). The topology was highly supported, and the nodes
 corresponding to the most recent common ancestors of the ESUs had high posterior
 probabilities (> 0.99) and bootstrap values (10 out of 13 ESUs > 0.9, others >
@@ -1038,20 +1057,18 @@ other clade (\texttt{ESU1}, \texttt{Hawaii}, \texttt{Wpac}, \texttt{ESU3},
 Sea).
 
 The geographical ranges of the species vary considerably. Some are restricted to
-an ocean basin (\texttt{Medit}, \texttt{WA}, \texttt{RedSea},
-\texttt{tigerRedSea}) or an archipelago (\texttt{Hawaii}, \texttt{Gala}) but
-others have ranges that encompass large sections of the Indo-West Pacific
-(\texttt{ESU1}, \texttt{ESU2}, \texttt{ESU3}). This diversity of distributions
-results in the co-occurrence of several species of the complex across most of
-the Indo-West Pacific, and culminates in the Philippines where at least 5
-species are found. More generally, at least 3 species are co-occurring in the
-Northern part of the Western Pacific (the Philippines, Micronesia, Hawaiian
+single basins (Mediterranean, Western Atlantic, Red Sea), or archipelagoes
+(Hawaii, Galapagos) but others have ranges that encompass large sections of the
+Indo-West Pacific. This diversity of distributions results in the co-occurrence
+of several species in most parts of the Indo-West Pacific, peaking with at least
+5 species in the Philippines. At least 3 species broadly co-occur across the
+northern tropical Pacific basin (from the Philippines to the Hawaiian
 archipelago).
 
-Overall, species found in the Indo-Pacific have overlapping ranges, even for
-species that diverged recently. For instance, \texttt{Wpac} and \texttt{Hawaii}
-co-occur with \texttt{ESU1} and diverged most recently (1.8~Ma and 2.2~Ma
-respectively, Fig.~\ref{fig:impatiens-tree} and
+Species in the Indo-West Pacific have overlapping ranges, even for those that
+diverged relatively recently. For instance, \texttt{Wpac} and \texttt{Hawaii}
+co-occur with \texttt{ESU1} from which they diverged and diverged (1.8~Ma and
+2.2~Ma respectively, Fig.~\ref{fig:impatiens-tree} and
 Fig.~\ref{fig:impatiens-map-group1}).
 
 % The phylogeny also highlights that several speciation events in the complex were
@@ -1062,20 +1079,21 @@ Fig.~\ref{fig:impatiens-map-group1}).
   {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-WA.pdf}}
 
   \caption{Distribution maps of the ESUs in Eastern Pacific and Caribbean (WA,
-    Gala, EP)}\label{fig:impatiens-map-WA}
+    Gala, EP) based on sequenced individuals.}\label{fig:impatiens-map-WA}
 \end{figure}
 
 \begin{figure}
   {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group1.pdf}}
 
-  \caption{Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac.}
+  \caption{Distribution map for ESU1, ESU3, gracilis, Hawaii, RedSea, Wpac based
+    on sequenced individuals.}
   \label{fig:impatiens-map-group1}
 \end{figure}
 
 \begin{figure}
   {\centering \includegraphics[width=\maxwidth]{figures-remake/impatiens-map-group2.pdf}}
 
-  \caption{Distribution map for ESU2, tiger, and tigerRedSea.}
+  \caption{Distribution map for ESU2, tiger, and tigerRedSea based on sequenced individuals.}
   \label{fig:impatiens-map-group2}
 \end{figure}
 
@@ -1084,120 +1102,130 @@ Fig.~\ref{fig:impatiens-map-group1}).
 
 \subsection{Species limits in the \textit{``Holothuria impatiens''} complex}
 
-Species delineation is a complex issue and the conclusions will depend of the
-characters and methods chosen. Here, using complementary approaches, combining
-discovery (GMYC) and testing methods (*BEAST), we unraveled at least 13 species
-within the complex ``\textit{Holothuria impatiens}'' supported by multiple lines
-of evidence.
+Species delineation is a complex issue and results can depend on the characters
+and methods chosen. Here, using complementary approaches, combining discovery
+(GMYC) and testing methods (*BEAST), we unraveled at least 13 species within the
+complex ``\textit{Holothuria impatiens}'' supported by multiple lines of
+evidence.
 
-The discovery methods, based on genetic differentiation in the mitochondrial
-locus COI, found putative species that require additional material to be
-evaluated. In particular, three individuals characterized by divergent
-haplotypes, related to \texttt{ESU1} for one, and to \texttt{ESU3} for the
-others, were consistently recovered as separate species. In both cases, a single
-individual was available, making it impossible to assess reproductive isolation
-with *BEAST. The individual related to \texttt{ESU1} (UF8191) had the typical
-color pattern of \texttt{ESU1}, with which it co-occurs and no line of evidence
-seem to indicate that it could be a different species. The same situation occurs
-with one of the individuals related to \texttt{ESU3} (N0027) that cannot be
-differentiated from other individuals from \texttt{ESU3}. The other individual
-related to \texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a
-soft bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
+The discovery methods, based on genetic differentiation in COI, delineated at
+least 13 putative species. Ten of these were supported by morphological (color)
+or broad geographical evidence, while three were not so distinguishable.
+Testing methods supported the remaining three as genetically-isolated, cryptic
+species, corroborating the existence of 13 species.
+
+The consideration of geography and differences in color patterns allowed the
+recognition of 10 species in the complex in retrospect
+(Figure~\ref{fig:species-limits}). Taxonomic studies of most marine
+invertebrates have relied on preserved specimens. Preservation can render
+delicate morphological characters, including coloration, difficult or impossible
+to see, as color patterns are frequently lost or fade with time. Because hard
+parts are easily preserved, are often divergent among related species, and their
+form is generally not impacted by preservation, they tend to be favored for
+differentiating species. In sea cucumbers, species-level taxonomy has relied
+almost entirely on the shape of ossicles, microscopic calcareous secretions
+found in many tissues, because ossicles show substantial diversity and
+variability, whilst variation in the simple anatomy of these animals is limited
+at lower taxonomic levels. Even with ossicles, workers have mostly focused on
+those found in the body wall, ignoring ossicles in internal structures, until
+recent decades. Little attention has been given to intraspecific variation,
+often ossicle assemblages are described from only a single individual. This, in
+combination with the fact that related species often co-occur in the same
+habitat, has contributed to the failure to recognize and differentiate species
+in this complex.
+
+Three additional species, that do not seem to be distinguishable
+morphologically, and that co-occur were validated by the multispecies coalescent
+statistical framework. % GP: awkward last sentence, rework as above
+
+% GP: [highlighted section is about minor issue and needs to move down (and
+% ideally, streamlined) in discussion.  Discussion should start with the big
+% bang results, not these minor unresolved details]
+In particular, three individuals characterized by divergent haplotypes, related
+to \texttt{ESU1} for one, and to \texttt{ESU3} for the others, were consistently
+recovered as separate species. In both cases, a single individual was available,
+making it impossible to assess reproductive isolation with *BEAST. The
+individual related to \texttt{ESU1} (UF8191) had the typical color pattern of
+\texttt{ESU1}, with which it co-occurs and no line of evidence seem to indicate
+that it could be a different species. The same situation occurs with one of the
+individuals related to \texttt{ESU3} (N0027) that cannot be differentiated from
+other individuals from \texttt{ESU3}. The other individual related to
+\texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a soft
+bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
 typically reef-asssoicated \texttt{ESU3}. The distinct ecology and deeply
 divergent sequences characterizing this individual suggest it could represent a
 different species but additional material is needed to assess this hypothesis.
 
-The combination of geography and differences in color patterns, in retrospect,
-allow the differentiation of 10 species in the complex
-(Figure~\ref{fig:species-limits}). Taxonomic studies of most marine
-invertebrates have relied on preserved specimens. Preservation can render
-delicate morphological characters, including coloration, difficult or impossible
-to see, and are frequently lost or fade with time. Because hard parts are easily
-preserved and their form is generally not impacted by preservation, taxonomists
-often favor them to differentiate species. For instance, in sea cucumbers,
-species-level taxonomy has almost entirely relied on the shape of ossicles,
-microscopic calcareous secretions found in many tissues. Because ossicles show
-substantial diversity and variability, whilst variation in the simple anatomy of
-these animals is limited at lower taxonomic levels. Even with ossicles, until
-recent decades, workers have mostly focused on those found in the body wall,
-ignoring ossicles in internal structures, and have paid little attention to
-intraspecific variation, typically illustrating the ossicle assemblage of a
-single individual. This, in combination with the fact that several of these
-species co-occur and can share the same habitat, has contributed to the failure
-to recognize this diversity, and differentiate species in this complex.
-
-Three additional species, that do not seem to be distinguishable
-morphologically, and that co-occur were validated by the multispecies coalescent
-statistical framework.
-
-
-
 \subsection{Species limits with GMYC}
 
 Despite being widely used to delineate species, the sensitivity of the GMYC
-method to the factors affecting the shape of the tree used have not been
+method to factors affecting the shape of the tree used have not been
 investigated thoroughly. Tree shape can be affected by biological factors or by
 the type of analysis used to build the tree. Simulated data have been used to
 test the influence of diversification rates, effective population sizes, and
 migration rates, on the accuracy and precision of GMYC estimates
 \citep{Papadopoulou2008, Esselstyn2012}. Some of the effects of the
-methodological choices have been evaluated by the authors of the method
-\citep{Pons2006, Monaghan2009, Fujisawa2013} and by others \citep{Talavera2013},
-but the conclusions might be difficult to generalize as they depend in part on
-the nature of the dataset. Other species delineation methods using sequence data
-are also available (e.g., RESL \citep{Ratnasingham2013}, ABGD
-\citep{Puillandre2012a}, bPTP \citep{Zhang2013}, bGMYC \citep{Reid2012}), and it
-would be interesting to investigate how they perform compared to the results
-obtained here.
+methodological choices have been evaluated \citep{Pons2006, Monaghan2009,
+  Fujisawa2013, Talavera2013}, but it is difficult to generalize as impacts
+depend in part on the nature of the dataset. Other species delineation methods
+using sequence data are also available (e.g., RESL \citep{Ratnasingham2013},
+ABGD \citep{Puillandre2012a}, bPTP \citep{Zhang2013}, bGMYC \citep{Reid2012}),
+and it would be interesting to investigate how they perform compared to the
+results obtained here.
 
 The multiple-threshold method (mGMYC) led to higher estimates of putative
-species, and was less accurate than the single-threshold method (sGMYC). We did
-not find any other line of evidence that could corroborate the delineation
-proposed by this approach. In particular, some of the putative species proposed
-by mGMYC would split lineages that were otherwise highly supported by the
-multi-locus phylogeny. The overall lower accuracy of mGMYC was also observed by
-the authors of the method using a simulated dataset. They however found that the
-95\% confidence set for the estimated number of putative species between sGMYC
-and mGMYC were overlapping \citep{Fujisawa2013}. We observed this pattern on the
-analyses using only unique haplotypes but not in the analysis that included all
-sequences.
+species, and was less accurate than the single-threshold method (sGMYC). Species
+delineated by sGMYC were corroborated by the integrative taxonomic and multigene
+coalescent methods. In contrast, some of the putative species proposed by mGMYC
+were split lineages not obtained by the other methods. The lower accuracy of
+mGMYC was also observed by the authors of the method using a simulated
+dataset. They however found that the 95\% confidence set for the estimated
+number of putative species between sGMYC and mGMYC were overlapping
+\citep{Fujisawa2013}. We observed this pattern on the analyses using only unique
+haplotypes but not in the analysis that included all sequences.
+% last two sentences need work.
 
-On our dataset, when analyzing all sequences, the number of putative species was
-consistently 16, except for the relaxed clock with the Yule prior in which case
-it was 14. The method is therefore relatively robust to prior specification on
-our dataset. The 16 species delineation is the most realistic as it recovers
+The number of putative species obtained using sGMYC with all sequences was
+consistently 16, except for the relaxed clock with the Yule prior where it was
+14. The method was therefore relatively robust to prior specification on our
+dataset. The 16 species delineation is the most realistic as it recovers
 morphologically differentiated species that were not considered distinct in the
-14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). Additionally,
-sGMYC recovered more putative species than we can confidently recognize, since
-they were represented by single individuals. This is a common pitfall of
-single-locus species delineation methods, where the broad geographical sampling
-of many individuals will reveal unique, divergent haplotypes that may not
-represent different species. However, in our analysis, it is worth noting that
-all our recognized species were apparently reciprocally monophyletic making the
-GMYC approach suitable.
+14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). %unclear
+sGMYC recovered more putative species than we can confidently recognize, as it
+included exemplars represented by single individuals in which variation cannot
+be evaluated. This is a common challenge in single-locus species delineation
+methods, where the broad geographical sampling of many individuals often reveal
+unique, divergent haplotypes that may not represent different species.
+
+%% This sentence needs to be moved somewhere else as it's not related to
+%% divergent haplotypes but is more general
+However, in our analysis, it is worth noting that all our recognized species
+were apparently reciprocally monophyletic making the GMYC approach suitable.
 
 The combination of priors used in our study led to overestimating the number of
-species when it was tested by the authors of the method \citep{Monaghan2009}. On
-the other hand, Talavera et al \citep{Talavera2013} did not find any notable
+species when it was tested by the authors of the method
+\citep{Monaghan2009}. %unclear
+On the other hand, Talavera et al \citep{Talavera2013} did not find any notable
 differences using trees estimated with different sets of priors. Our dataset
 differs from these studies by including a younger radiation, less species, and
-more individuals per species.
+more individuals per species. % this paragraph is difficult to follow
 
 % Esseltyn+2012 also used both all sequences & only unique, but didn't provide
 % the differences in results
 
-Talavera et al \citep{Talavera2013} did not find that using all haplotypes or
-only the unique haplotypes affected the number of species estimated with the
-GMYC method. Here, we confirmed the theoretical expectation that removing the
-duplicated sequences overestimated the number of species and decreased the
-precision of the estimates when the tree was estimated with BEAST. Removing
+Talavera et al \citep{Talavera2013} found that using all haplotypes vs only
+unique haplotypes did not impact the number of species estimated with GMYC. In
+contrast, we confirmed the theoretical expectation that removing the duplicated
+sequences led to an overestimation of the number of species and decreased the
+precision of the estimates if the tree was estimated with BEAST. Removing
 identical sequences in the analysis overestimates the effective population size
-parameters that BEAST uses. In turn, these overestimated sizes spuriously
-increase the time to coalescence for the lineages, making the estimation of the
-inflection point between species- and population-level coalescent events earlier
-in the tree, and more difficult to detect. This bias leads to oversplitting and
-decreases accuracy. Investigating how many individuals need to be sampled to
-obtain correct estimates would be worth pursuing.
+parameters that BEAST uses. In turn, these overestimated population sizes
+spuriously increase the time to coalescence for the lineages, making the
+estimation of the inflection point between species- and population-level
+coalescent events earlier in the tree, and more difficult to detect. This bias
+leads to oversplitting and decreases accuracy. Investigating how many
+individuals need to be sampled to obtain accurate estimates would be worth
+pursuing.
 
 GMYC was developed with the intent of automating the estimation of the number of
 species from large-scale single-locus sampling efforts, particularly from
@@ -1209,6 +1237,11 @@ context of a taxonomic study where the goal is to identify species limits among
 a few hundred individuals, the factors affecting tree shape need to be
 considered, and additional lines of evidence need to be included to validate the
 putative species delineated \citep{Marshall2011a, Esselstyn2012}.
+
+% GP: [Would be good to articulate the best way to use GMYC for metabarcoding
+% type efforts – spell out the best practice in terms of priors, replicate
+% haplotypes, thresholds etc.  Spelling out of best practice, and putting this
+% in abstract too will be useful to readers]
 
 \subsection{Species limits with *BEAST}
 
@@ -1222,135 +1255,169 @@ when the same data is used to recognize species, and to provide statistical
 support for these species. Here, COI was used to assign species to individuals
 for putative species that could not be differentiated morphologically.
 
-The confounding effects of using COI to formulate the species hypotheses and to
-test species limits can stem from: (1) the information contained in the
+The confounding effects of using COI alone to formulate the species hypotheses
+and to test species limits can stem from: (1) the information contained in the
 nucleotides forming the locus, and (2) from the absence of recombination in
-mitochondrial DNA. We attempted to evaluate the relative contribution of these
+mitochondrial DNA. % I need to spell this out better, GP is confused by it
+We attempted to evaluate the relative contribution of these
 confounding effects by conducting the analyses without COI and without
 mitochondrial respectively. The results for the analyses conducted without COI
 were qualitatively similar to the analyses performed with this locus, but the
 statistical evidence in favor of the hypothesis considering these closely
 related lineages as different species, was weaker. There was no statistical
-evidence supporting this hypothesis when the analysis was conducted on nuclear
-data alone, owing to the low differentiation in these loci for the putative
-species tested by the models. These results suggest that the remaining of the
-mitochondrial loci used in our study also favor the null hypothesis, but
-additional independent nuclear loci with enough differentiation to tease out
-these species are needed.
+evidence supporting this hypothesis % [need spell out the hypothesis, as not
+%% mentioned in this section]
+when the analysis was conducted on nuclear data alone. This was likely the
+result of insufficient differentiation among the putative species at these
+loci. These results suggest that the remaining of the mitochondrial loci used in
+our study also favor the null hypothesis, but additional independent nuclear
+loci with enough differentiation to tease out these species are needed.
+%% GP [this is an important paragraph and needs to be carefully rewritten]
 
-Another potential issue with assigning species to individuals based on their COI
-sequences, is that they may not reflect species limits because of introgression
-or incomplete lineage sorting. Recently diverged species might still be poly- or
-paraphyletic in their COI genealogy making species assignment
-inaccurate. Inaccurate species assignment can potentially be detected from the
-population sizes estimated by *BEAST that will be unusually high
-\citep{Leache2013, Drummond2014}. This would however require to analyze more loci
-than in the present study to obtain accurate estimates of population sizes
-\citep{Heled2010, Harris2013}. Determining how the Bayes factors will behave if
-the null hypothesis is misspecified remains to be investigated.
+Other confounding issues with assigning individuals to species based on COI
+sequences are introgression and incomplete lineage sorting. % GP: need to
+%% discuss introgression if you mention it
+Recently diverged species might still be poly- or paraphyletic in their
+COI genealogy making species assignment inaccurate.
+%% [this is not about inaccurate species assignment per se, but lumping young
+%% species into a single species], GP comment shows that I need to clarify the
+%% context of species assignment in this case.
+Inaccurate species assignment can potentially be detected from the population
+sizes estimated by *BEAST that will be unusually high \citep{Leache2013,
+  Drummond2014}. This would however require to analyze more loci than in the
+present study to obtain accurate estimates of population sizes \citep{Heled2010,
+  Harris2013}. Determining how the Bayes factors will behave if the null
+hypothesis is misspecified remains to be investigated. %% [context of last
+%% sentence unclear to me.  This paragraph needs work.  Not sure if my edit
+%% capture what you are trying to say]
 
 \subsection{Species limits and coloration}
 
-Before the confirmation by molecular methods that differences in coloration were
-relevant to differentiate closely related species, marine invertebrate
-taxonomists have been reluctant to consider species defined solely by
-differences in coloration \citep{Knowlton1993}. Although variation in coloration
-within ``\textit{H. impatiens}'' has been noticed by previous workers, and some
-unusual color morphs were described as sub-species by Clark \citep{Clark1921,
+Before molecular methods have called attention to coloration being relevant for
+differentiating closely related species, marine invertebrate taxonomists have
+generally been reluctant to consider species defined solely by differences in
+coloration \citep{Knowlton1993}. Although variation in coloration within
+``\textit{H. impatiens}'' has been noticed by previous workers, and some unusual
+color morphs were described as sub-species by Clark \citep{Clark1921,
   Clark1938}, the focus on ossicle shape to distinguish sea cucumber species has
-led to an underestimation of the diversity in this group.
+led to an underestimation of species diversity.
 
 The purpose of coloration in sea cucumbers has not been explored but since
 species can be distinguished based on their color patterns, natural selection
 may play a role in its evolution. Color patterns have been documented to be
 diagnostic of species limits in crustaceans \citep{Malay2010}, nemerteans
-\citep{Knowlton1993}, fish \citep{McMillan1999}. In some of these cases, the
-association between color patterns and species limits is maintained by assortative
-mating (fish \citep{McMillan1999}, crabs \citep{Detto2007, Baldwin2012}). Given
-that most sea cucumbers inhabit cryptic habitats and do not possess
-image-forming eyes, the mechanisms maintaining a tight association between
-coloration and species identity needs to be investigated.
+\citep{Knowlton1993}, fish \citep{McMillan1999}, mollusks
+\citep{Meyer2005-Evolution}. In some of these cases, the association between
+color patterns and species limits is maintained by assortative mating (fish
+\citep{McMillan1999}, crabs \citep{Detto2007, Baldwin2012}). Given that most sea
+cucumbers inhabit cryptic habitats and do not possess image-forming eyes, the
+mechanisms maintaining a tight association between coloration and species
+identity through assortative mating is unlikely.
+%% discuss other potential forces that may shape it – predators (mimicry),
+%% accidental (neutral evolution), etc.
 
-While some species of ``\textit{H. impatiens}'' harbor slight variations of the
-typical color pattern characterizing the complex, others deviate from it and are
-polymorphic. For instance, \texttt{ESU2} has two color morphs: a common color
-pattern that occur throughout the range of the species, and one restricted to
-the Western Indian Ocean (Nosy B\'{e}, Madagascar and R\'{e}union Island). Both
-\texttt{gracilis} (alternate morph in the southern part of the Great Barrier
-Reef) and \texttt{ESU1} (alternate morph found in Lizard Island, Australia;
-Hawaii; and Guam) are also polymorphic.  Interestingly, these alternate color
-morphs are similar for the three species (uniform chocolate brown background
-with white to yellowish tubercles), and could result from allelic polymorphism
-shared across species in genes involved in the pigmentation pathways (as in
-albinism or melanism), or from convergent selection. These two hypotheses are
-not mutually exclusive. Furthermore, since coloration seems indicative of
-species limits, these alternate color morphs could also represent additional
-cryptic lineages.
+While some species of ``\textit{H. impatiens}'' have distinctive aspects to
+their coloration, others do not and are polymorphic. For instance, \texttt{ESU2}
+has two color morphs: a common color pattern that occur throughout the range of
+the species, and one restricted to the Western Indian Ocean (Madagascar and
+R\'{e}union Island). Both \texttt{gracilis} (alternate morph in the southern
+part of the Great Barrier Reef) and \texttt{ESU1} (alternate morph found in
+Lizard Island, Australia; Hawaii; and Guam) are also polymorphic.
+Interestingly, these alternate color morphs are similar for the three species
+(uniform chocolate brown background with white to yellowish tubercles), and
+could result from allelic polymorphism shared across species in genes involved
+in the pigmentation pathways (as in albinism or melanism), or from convergent
+selection. These two hypotheses are not mutually exclusive. Furthermore, since
+coloration seems indicative of species limits, these alternate color morphs
+could also represent additional cryptic lineages.
+
+%% [paragraph needs work.  Several things confounded – typical vs atypical,
+%% variable vs not variable, diagnostic vs not diagnostic, geographically
+%% homogeneous vs allopatric color forms]
 
 % TODO -- add pictures of alternate color morphs
 
-Even though, there is no genetic differentiation in the markers used in this
-study to distinguish individuals exhibiting these alternate color patterns,
-studies in fish indicate that color differentiation between incipient species
-might precede any genetic signal (e.g., \citep{McMillan1999,
-  Gaither2014}). Additional genetic data (microsatellites, SNPs) can test
-whether they represent distinct evolutionary lineages.
+
+
+Even though alternate color patterns in these species
+%% [which ones – several are variable, so need to be clear)
+are not genetically distinguishable with the markers used in this study, these
+color morphs may represent incipient species.  Studies in fish indicate that
+color differentiation can precede genetic divergence in commonly surveyed
+markers (e.g., \citep{McMillan1999, Gaither2014}). Additional genetic data
+(microsatellites, SNPs) can test whether they represent distinct evolutionary
+lineages.
 
 
 \subsection{Geographical distributions}
 
-The geographical ranges of the species vary considerably, and a diversity of
-processes seem to best explain their present distributions. Interestingly no
-speciation along a continental margin is observed in the complex.
+The geographical ranges of the species in this complex vary considerably, and a
+diversity of processes seem to be responsible for their present
+distributions.
+
+Interestingly no speciation along a continental margin is observed in the
+complex. %% this sentence is out of context.  You need to present background for
+         %% the reader if you want to discuss this]
 
 The close phylogenetic relationship of \texttt{WA} with \texttt{EP} and
-\texttt{Gala} indicates that the closure of the isthmus of Panama led to the
-isolation of the species in the two basins.
+\texttt{Gala} indicates that American species in the complex form a clade, which
+has in part diversified through the emergence of the isthmus of Panama. The
+differentiation of continental and Galapagos populations into separate species
+parallels a similar divergence in the sea urchin genus \textit{Eucidaris}
+% \citep{Lessios}. Additional sampling is needed to assess the range of
+\texttt{Gala}. Both the insular \textit{E. galapagoensis} (Galapagos, Cocos,
+Clipperton) and continental \textit{E. thouarsi} range broadly. The range of the
+former spans broader open ocean barriers within its range than the barriers tha
+separate it from the mainland \textit{E. thouarsi}, a distributional pattern
+suggestive of ecological speciation driven by oceanic-continental habitat
+differences.
 
-The estimated ages of \texttt{Medit}, and the two Red Sea species are older
-(8.4-10.5 My, 1.1-1.7 My and 3.2-4.1 My respectively) than the last salinity
-crises characterizing these seas (\textit{c.} 5 My for the Mediterranean
-\citep{Hernandez-Molina2014} and potentially as early as \textit{c.} 19,000 years
-ago for the Red Sea). This, in combination with the occurrence of these species
-outside their basins (\texttt{Medit} is known from Portugal and the Canaries;
-and both Red Sea species from Djibouti) indicate that these species invaded
-these seas recently and found refugia at the periphery of these basins during
-the salinity crises \citep{DiBattista2013}. It is also interesting to note that
-the age of divergence for the two species from the Red Sea do not coincide
-suggesting that different events were responsible for the geographic isolation
-of these populations.
+Three species are largely endemic to marginal seas, suggestive that basinal
+isolation may have been responsible for their origin. However, the estimated
+ages of all three (\texttt{Medit}, \texttt{RedSea}, \texttt{tigerRedSea})
+species are older (8.4-10.5 My, 1.1-1.7 My and 3.2-4.1 My respectively) than the
+last salinity crises characterizing these seas (\textit{c.} 5 My for the
+Mediterranean \citep{Hernandez-Molina2014} and potentially as late as
+\textit{c.} 19,000 years ago for the Red Sea). This, in combination with their
+occurrence outside their basins (\texttt{Medit} is known from Portugal and the
+Canaries; and both Red Sea species from Djibouti) indicate that these species
+invaded these seas recently and found refugia at the periphery of these basins
+during the salinity crises \citep{DiBattista2013}. It is also interesting to
+note that the age of divergence for the two species from the Red Sea do not
+coincide suggesting that different events were responsible for the geographic
+isolation of these populations.
 
 \texttt{tiger} and \texttt{tigerRedSea} are nocturnal species found on the reef
 slope. They are very sensitive to light, and retract quickly, deep into the reef
 matrix if a diver shines light on them. These species are known from a handful
 of individuals, and it is possible that their ranges are larger than what is
-reported here.
+reported here. %% [This paragraph is a bit loose in context here.  Undersampling
+               %% is clearly an issue for all taxa]
 
-For species with wide ranges the causes of population divergence are less
-obvious, and the current distributions may not reflect species distributions at
-the time of speciation. The two most widespread species (\texttt{ESU1} and
+For species with wide ranges the geographic context of their divergence are less
+obvious, and current distributions may not reflect species distributions at the
+time of speciation. The two most widespread species (\texttt{ESU1} and
 \texttt{ESU2}) are sympatric or parapatric with their closely related species,
-and both form the terminal clades in their respective radiations. This pattern
-suggests that these species were the sequential source of the peripheral species
+and both form the terminal branches in their respective radiations. This pattern
+suggests that these species were the sequential source of peripheral species
 \citep{Malay2010}.
 
-The lack of genetic differentiation between the Indian and Pacific Oceans for
-the species of the complex that occur on each sides of the Indo-Pacific barrier
-(IPB) is noteworthy. The IPB results from the restricted seaway between the
+The lack of genetic differentiation between the Indian and Pacific Ocean
+populations for species whose distribution spans the Indo-Pacific barrier (IPB)
+is noteworthy. The IPB results from the restriction of the seaway between the
 Sunda and the Sahul shelves. During glaciation events, when sea levels were
-100+~m below present level, only a narrow channel connected Indian and Pacific
-Oceans. In a recent literature survey, 15 out of 18 species of fish and
+100+~m below present level, only a narrow channel connected the Indian and
+Pacific Oceans. In a recent literature survey, 15 out of 18 species of fish and
 invertebrate investigated showed genetic differentiation across the IBP
-associated with these low stands events \citep{Gaither2010}. Additionally, the
-genetic diversity of \texttt{ESU1} is low: among the 61 individuals sequenced,
-we found a total of 18 haplotypes, with the 3 most common haplotypes found in 40
-individuals. Finally, both Marquesas and Oman, characterized by distinct
-ecological conditions from the rest of the Indo-Pacific hypothesized to increase
-the speed and probability of divergence, harbor the most widespread haplotype
-suggesting recent colonization of these peripheral areas to \texttt{ESU1}'s
-range. Together, these lines of evidence suggest a recent geographical expansion
-for the widespread species in the complex, but more analyses to confirm this
-hypothesis are needed.
+\citep{Gaither2010}. Additionally, the genetic diversity of \texttt{ESU1} is
+low: among the 61 individuals sequenced, we found a total of 18 haplotypes, with
+the 3 most common haplotypes found in 40 individuals. Finally, both Marquesas
+and Oman, characterized by distinct ecological conditions from the rest of the
+Indo-Pacific hypothesized to increase the speed and probability of divergence,
+harbor the most widespread haplotype suggesting recent colonization of these
+peripheral areas to \texttt{ESU1}'s range. Together, these lines of evidence
+suggest a recent geographical expansion for the widespread species in the
+complex, but more analyses to confirm this hypothesis are needed.
 
 Differences in the geographical ranges for some of the species might be
 explained by differences in habitat preferences. For instance, \texttt{tiger} is
@@ -1367,8 +1434,8 @@ co-existence of multiple species in sympatry.
 Local diversity results from the accumulation of species that are reproductively
 isolated. Because reproductive isolation is most commonly initiated in allopatry
 \citep{Coyne2004}, understanding how quickly species can be found in sympatry
-after diverging in geographical isolation is key to gain insights into the
-temporal dynamics of local diversity.
+after diverging in geographical isolation is key to understanding the temporal
+dynamics of local diversity.
 
 The restriction of marine invertebrates to ``oceanic'' and ``continental''
 habitats has been documented for a range of organisms (e.g., land snails
@@ -1376,31 +1443,32 @@ habitats has been documented for a range of organisms (e.g., land snails
 hermit crabs \citep{Malay2010}), and a variety of biotic and abiotic factors may
 explain this pattern (reviewed in \citep{Malay2010}). Interestingly, clades
 associated with continental habitats are characterized by much faster rates of
-secondary sympatry than species associated with insular habitats in both
-vertebrates (e.g., \citep{Taylor2005, Hodge2012}), and invertebrates (e.g.,
-\citep{Meyer2005-evolution, Malay2010, Williams2011}). As a result, closely
-related species typically show strict allopatric distributions in oceanic
-setting (e.g., as in \citep{Meyer2005-evolution}) but often occur in sympatry
-along continental margins (e.g., \citep{Williams2011}). Differences in rates of
-secondary sympatry vary across taxa but are faster in continental settings. For
-instance, in the wrasse \textit{Anampes} sympatric sister species in continental
-setting diverged 600 ka ago, while the most closely related sympatric species in
-oceanic setting shared a common ancestor more than 10 Ma ago
-\citep{Hodge2012}. In the turbinid \textit{Lunella}, none of the 7 lineages
+attainment of secondary sympatry than species associated with insular habitats
+in both vertebrates (e.g., \citep{Taylor2005, Hodge2012}), and invertebrates
+(e.g., \citep{Meyer2005-evolution, Malay2010, Williams2011}). As a result,
+closely related species typically show strict allopatric distributions in
+oceanic setting (e.g., as in \citep{Meyer2005-evolution}) but often occur in
+sympatry along continental margins (e.g., \citep{Williams2011}). Differences in
+rates of secondary sympatry vary across taxa but are faster in continental
+settings. For instance, in the wrasse \textit{Anampes} sympatric sister species
+in continental setting diverged 600 ka ago, while the most closely related
+sympatric species in oceanic setting shared a common ancestor more than 10 Ma
+ago \citep{Hodge2012}. In the turbinid \textit{Lunella}, none of the 7 lineages
 inhabiting oceanic islands that have diverged more than 15 Ma occur in sympatry
 while sister species found along the coastline of Oman have diverged 5 Ma
 \citep{Williams2011}.
 
 The ``\textit{Holothuria impatiens}'' complex shows a strickingly different
 pattern, and \texttt{ESU1}, \texttt{Hawaii} and \texttt{Wpac} are, to our
-knowledge, the fastest documented examples of speciation for a broadcast spawner
+knowledge, the fastest documented examples of speciation for a broadcast-spawning
 invertebrate in an oceanic setting (\texttt{ESU1} and \texttt{Hawaii} diverged
-less than 2~Ma, and \texttt{ESU1} and \texttt{Wpac} about 2.5~Ma). Thus, species
-have been able to evolve reproductive isolation rapidly, and differ enough
-ecologically to allow for co-existence. In other words, the temporal dynamics of
-diversification in some oceanic species of the ``\textit{Holothuria impatiens}''
-complex is similar to what is observed for species occurring in continental
-settings.
+less than 2~Ma, and \texttt{ESU1} and \texttt{Wpac} about 2.5~Ma).
+%%  [can you generalize to marine animal?  Any fist faster?  Also, how does Echinometra compare?]
+Thus, these species have been able to evolve reproductive isolation rapidly, and
+differ sufficiently in their ecology to allow co-existence. In other words, the
+temporal dynamics of diversification in some oceanic species of the
+``\textit{Holothuria impatiens}'' complex are as rapid as those observed for
+taxa occurring along continental margins.
 
 Gamete recognition proteins (GRPs) play an important role in driving
 reproductive isolation in many free spawning organisms, such as sea urchins
@@ -1409,10 +1477,10 @@ instance, strong positive selection has been detected in the GRPs between
 closely related species of sea urchins in sympatry but not in allopatry
 \citep{Geyer2003}, suggesting the role of these proteins in maintaining species
 limits.  GRPs have not yet been identified in sea cucumbers but bindin is known
-from sea urchins \citep{Lessios2011} and sea stars \citep{Patino2009} which
-indicates that it is plesiomorphic in the clade that sea cucumbers emerged
-from. They could explain how species in the ``\textit{H. impatiens}'' complex
-acquired reproductive isolation quickly.
+from sea urchins \citep{Lessios2011} and sea stars \citep{Patino2009} indicating
+that it is plesiomorphic in the clade that sea cucumbers emerged from. They
+could explain how species in the ``\textit{H. impatiens}'' complex acquired
+reproductive isolation quickly. %% [last sentence too vague – you need to explain why]
 
 Hellberg \citep{Hellberg1998} proposed that climatic fluctuations isolate
 populations temporarily leading to speciation (transient allopatry), and as
@@ -1429,11 +1497,23 @@ habitat between the islands restricts the distribution of the species. These
 hypotheses could explain why most species remain allopatric for long periods of
 time and are restricted to archipelagos (as observed for \texttt{Hawaii} and
 \texttt{Gala}): rare migrants fail to colonize as local adaptation to
-environmental conditions render them maladapted to new islands. This model
-implies niche conservatism: species are narrowly adapted to a particular
-environment. The predictions of this model would suggest that \texttt{ESU1} has
-broadened its niche to allow the colonization of the range of \texttt{Hawaii}
-and \texttt{Wpac}.
+environmental conditions render them maladapted to new islands.
+%% [more importantly genomes of rare migrants will be swamped out if they
+%% interbreed readily].
+This model implies niche conservatism: species are narrowly adapted to a
+particular environment. The predictions of this model would suggest that
+\texttt{ESU1} has broadened its niche to allow the colonization of the range of
+\texttt{Hawaii} and \texttt{Wpac}.
+%%% [We should talk about this.  I feel the main issue is what happens when
+%%% populations meet, not so much the ecology.  In a continental setting two
+%%% populations meet en force, so that species boundaries are continually tested
+%%% – this favors evolution of reproductive character displacement (through
+%%% GRPs) and leads to rapid secondary sympatry.  In oceanic settings rare
+%%% colonists, when not yet sufficiently isolated, would get swallowed by
+%%% interbreeding into the receiving pop.  A rescue of this (in
+%%% cukes/echinoderms?) could be is there is strong sexual selection driving
+%%% rapid GRP divergence, so they arrive unable to interbreed…]
+
 
 % TODO -- need drawing for hypothesis here
 
@@ -1456,31 +1536,28 @@ and \texttt{Wpac}.
 % fixation of alleles that might contribute to rapid acquisition of reproductive
 % isolation.
 
-\subsection{Future directions}
 
-A shortcoming of the approach used in this study is that the results might be
-strongly influenced by the loci that harbor the most genetic differentiation,
-here the mitochondrial data. A recent extension of these methods, using
-single-nucleotide polymorphisms across the genome \citep{Leache2014} would allow
-the confirmation of the species delineated in this study.
+% \section{Conclusions}
 
-\section{Conclusions}
+%% [I would cut this section, and focus on getting all this into the abstract in
+%% a well written manner.  Also start the story with the method and species
+%% delimitation part and have the cuke story in a secondary position]
 
-This study showed that the widespread, common and well known sea cucumber,
-\textit{Holothuria impatiens} is actually a complex of at least 13
-species. This estimate is conservative as additional lineages that could not be
-fully evaluated were also unraveled.
+% This study showed that the widespread, common and well known sea cucumber,
+% \textit{Holothuria impatiens} is actually a complex of at least 13
+% species. This estimate is conservative as additional lineages that could not be
+% fully evaluated were also unraveled.
 
-The multispecies coalescent framework allows the investigation of species limits
-in situations where evidence might have been inconclusive in the past. It is now
-possible to investigate species limits in groups that show some level of genetic
-differentiation but no morphological differences. The re-evaluation of species
-limits, and a better accuracy in the estimation of the divergence times, may
-improve our understanding of the speciation process by revealing new patterns
-and generating new hypotheses. Here, we showed that some species in this complex
-are characterized by the most rapid rate of secondary sympatry documented for a
-broadcast spawner in an oceanic setting. These results would need to be
-confirmed with genetic data that capture a larger fraction of the genome.
+% The multispecies coalescent framework allows the investigation of species limits
+% in situations where evidence might have been inconclusive in the past. It is now
+% possible to investigate species limits in groups that show some level of genetic
+% differentiation but no morphological differences. The re-evaluation of species
+% limits, and a better accuracy in the estimation of the divergence times, may
+% improve our understanding of the speciation process by revealing new patterns
+% and generating new hypotheses. Here, we showed that some species in this complex
+% are characterized by the most rapid rate of secondary sympatry documented for a
+% broadcast spawner in an oceanic setting. These results would need to be
+% confirmed with genetic data that capture a larger fraction of the genome.
 
 % More generally, we unraveled an unusual pattern where the range of most species
 % of this complex are broadly overlapping.
