@@ -53,9 +53,9 @@
 \usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
 
-% Words are cut where needed
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=american]{english}
+% Words are cut where needed %% syst-bio uses Babel
+% \usepackage{polyglossia}
+% \setdefaultlanguage[variant=american]{english}
 
 % Use fancy fonts
 \usepackage{fontspec}
@@ -121,7 +121,7 @@ Version dated: \today
 \end{flushright}
 
 \bigskip
-\noindent CRYPTIC AND NOT-SO-CRYPTIC SEA CUCUMBER SPECIES COMPLEX
+\noindent CRYPTIC AND NOT-SO-CRYPTIC SPECIES IN SEA CUCUMBER SPECIES COMPLEX
 
 \bigskip
 \medskip
@@ -1307,7 +1307,7 @@ species can be distinguished based on their color patterns, natural selection
 may play a role in its evolution. Color patterns have been documented to be
 diagnostic of species limits in crustaceans \citep{Malay2010}, nemerteans
 \citep{Knowlton1993}, fish \citep{McMillan1999}, mollusks
-\citep{Meyer2005-Evolution}. In some of these cases, the association between
+\citep{Meyer2005-evolution}. In some of these cases, the association between
 color patterns and species limits is maintained by assortative mating (fish
 \citep{McMillan1999}, crabs \citep{Detto2007, Baldwin2012}). Given that most sea
 cucumbers inhabit cryptic habitats and do not possess image-forming eyes, the
