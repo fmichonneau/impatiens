@@ -8,7 +8,7 @@
 \usepackage{amsfonts}
 \usepackage{verbatim}
 \usepackage[english]{babel}
-\usepackage{pifont}
+%% not needed: \usepackage{pifont}
 \usepackage{color}
 \usepackage{setspace}
 \usepackage{lscape}
@@ -32,7 +32,7 @@
 \usepackage{array}
 %\usepackage{mhchem}
 \usepackage{ifthen}
-\usepackage{caption}
+%% I am already using it: \usepackage{caption}
 \usepackage{hyperref}
 %\usepackage{xcolor}
 \usepackage{amsthm}
