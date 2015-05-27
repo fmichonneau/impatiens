@@ -7,7 +7,7 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{verbatim}
-\usepackage[english]{babel}
+%% \usepackage[english]{babel} %% I use polyglossia instead
 %% not needed: \usepackage{pifont}
 \usepackage{color}
 \usepackage{setspace}
@@ -53,9 +53,9 @@
 \usepackage{xunicode}
 \defaultfontfeatures{Mapping=tex-text}
 
-% Words are cut where needed %% syst-bio uses Babel
-% \usepackage{polyglossia}
-% \setdefaultlanguage[variant=american]{english}
+% Words are cut where needed
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=american]{english}
 
 % Use fancy fonts
 \usepackage{fontspec}
@@ -1108,53 +1108,42 @@ and methods chosen. Here, using complementary approaches, combining discovery
 complex ``\textit{Holothuria impatiens}'' supported by multiple lines of
 evidence.
 
-The discovery methods, based on genetic differentiation in COI, delineated at
-least 13 putative species. Ten of these were supported by morphological (color)
-or broad geographical evidence, while three were not so distinguishable.
-Testing methods supported the remaining three as genetically-isolated, cryptic
-species, corroborating the existence of 13 species.
+Traditional detailed taxonomic investigation in this complex failed to capture
+the diversity unraveled by molecular analysis in this complex. For most putative
+species thus identified, variation in traits not typically considered to
+discriminate closely related species in sea cucumbers arose as being being
+diagnostic in the light of genetic data. The consideration of geography and
+differences in color patterns allowed the recognition of 10 species in the
+complex in retrospect (Figure~\ref{fig:species-limits}). Taxonomic studies of
+most marine invertebrates have relied on preserved specimens. Preservation can
+render delicate morphological characters, including coloration, difficult or
+impossible to see, as color patterns are frequently lost or fade with
+time. Because hard parts are easily preserved, are often divergent among related
+species, and their form is generally not impacted by preservation, they tend to
+be favored for differentiating species. In sea cucumbers, species-level taxonomy
+has relied almost entirely on the shape of ossicles, microscopic calcareous
+secretions found in many tissues, because ossicles show substantial diversity
+and variability, whilst variation in the simple anatomy of these animals is
+limited at lower taxonomic levels. Even with ossicles, workers have mostly
+focused on those found in the body wall, ignoring ossicles in internal
+structures, until recent decades. Little attention has been given to
+intraspecific variation, often ossicle assemblages are described from only a
+single individual. This, in combination with the fact that related species often
+co-occur in the same habitat, has contributed to the failure to recognize and
+differentiate species in this complex.
 
-The consideration of geography and differences in color patterns allowed the
-recognition of 10 species in the complex in retrospect
-(Figure~\ref{fig:species-limits}). Taxonomic studies of most marine
-invertebrates have relied on preserved specimens. Preservation can render
-delicate morphological characters, including coloration, difficult or impossible
-to see, as color patterns are frequently lost or fade with time. Because hard
-parts are easily preserved, are often divergent among related species, and their
-form is generally not impacted by preservation, they tend to be favored for
-differentiating species. In sea cucumbers, species-level taxonomy has relied
-almost entirely on the shape of ossicles, microscopic calcareous secretions
-found in many tissues, because ossicles show substantial diversity and
-variability, whilst variation in the simple anatomy of these animals is limited
-at lower taxonomic levels. Even with ossicles, workers have mostly focused on
-those found in the body wall, ignoring ossicles in internal structures, until
-recent decades. Little attention has been given to intraspecific variation,
-often ossicle assemblages are described from only a single individual. This, in
-combination with the fact that related species often co-occur in the same
-habitat, has contributed to the failure to recognize and differentiate species
-in this complex.
+Mitochondrial data has rapidly shown that several species are currently lumped
+under \textit{Holothuria impatiens}, but the exact number of species and their
+boundaries are more complex issues, in particular in groups which little about
+their biology is known. The discovery methods, based on genetic differentiation
+in COI, delineated at least 13 putative species. Ten of these were supported by
+morphological (color) or broad geographical evidence, while three were not so
+distinguishable.  Testing methods supported the remaining three as
+genetically-isolated, cryptic species, corroborating the existence of at least
+13 species. This study includes additional putative species whose status could
+not be fully evaluated given that they were represented by a single individual
+(see below).
 
-Three additional species, that do not seem to be distinguishable
-morphologically, and that co-occur were validated by the multispecies coalescent
-statistical framework. % GP: awkward last sentence, rework as above
-
-% GP: [highlighted section is about minor issue and needs to move down (and
-% ideally, streamlined) in discussion.  Discussion should start with the big
-% bang results, not these minor unresolved details]
-In particular, three individuals characterized by divergent haplotypes, related
-to \texttt{ESU1} for one, and to \texttt{ESU3} for the others, were consistently
-recovered as separate species. In both cases, a single individual was available,
-making it impossible to assess reproductive isolation with *BEAST. The
-individual related to \texttt{ESU1} (UF8191) had the typical color pattern of
-\texttt{ESU1}, with which it co-occurs and no line of evidence seem to indicate
-that it could be a different species. The same situation occurs with one of the
-individuals related to \texttt{ESU3} (N0027) that cannot be differentiated from
-other individuals from \texttt{ESU3}. The other individual related to
-\texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a soft
-bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
-typically reef-asssoicated \texttt{ESU3}. The distinct ecology and deeply
-divergent sequences characterizing this individual suggest it could represent a
-different species but additional material is needed to assess this hypothesis.
 
 \subsection{Species limits with GMYC}
 
@@ -1242,6 +1231,29 @@ putative species delineated \citep{Marshall2011a, Esselstyn2012}.
 % type efforts – spell out the best practice in terms of priors, replicate
 % haplotypes, thresholds etc.  Spelling out of best practice, and putting this
 % in abstract too will be useful to readers]
+
+Three additional species, that do not seem to be distinguishable
+morphologically, and that co-occur were validated by the multispecies coalescent
+statistical framework. % GP: awkward last sentence, rework as above
+
+% GP: [highlighted section is about minor issue and needs to move down (and
+% ideally, streamlined) in discussion.  Discussion should start with the big
+% bang results, not these minor unresolved details]
+In particular, three individuals characterized by divergent haplotypes, related
+to \texttt{ESU1} for one, and to \texttt{ESU3} for the others, were consistently
+recovered as separate species. In both cases, a single individual was available,
+making it impossible to assess reproductive isolation with *BEAST. The
+individual related to \texttt{ESU1} (UF8191) had the typical color pattern of
+\texttt{ESU1}, with which it co-occurs and no line of evidence seem to indicate
+that it could be a different species. The same situation occurs with one of the
+individuals related to \texttt{ESU3} (N0027) that cannot be differentiated from
+other individuals from \texttt{ESU3}. The other individual related to
+\texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a soft
+bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
+typically reef-asssoicated \texttt{ESU3}. The distinct ecology and deeply
+divergent sequences characterizing this individual suggest it could represent a
+different species but additional material is needed to assess this hypothesis.
+
 
 \subsection{Species limits with *BEAST}
 
