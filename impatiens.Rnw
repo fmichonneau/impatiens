@@ -1741,16 +1741,22 @@ particular environment. The predictions of this model would suggest that
 %% gmyc tree
 \begin{figure}
   {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-all-sequences.pdf}}
-  \caption{Position of the species delineated with GMYC on COI genealogies
-    estimated using various priors with BEAST. Each color corresponds to a
-    different putative species.}\label{fig:gmyc-tree-plot-allSeq}
+  \caption{Position of the species delineated with sGMYC on COI genealogies
+    estimated from all sequences using various priors with BEAST. Each color
+    corresponds to a different putative species. The vertical red dashed line
+    corresponds to the position of the threshold associated with the highest
+    likelihood, the vertical gray dotted lines corresponds to the position of
+    the confidence interval for the threshold.}\label{fig:gmyc-tree-plot-allSeq}
 \end{figure}
 
 \begin{figure}
   {\centering \includegraphics[width=\maxwidth]{figures-remake/gmyc-tree-unique-sequences.pdf}}
-  \caption{Position of the species delineated with GMYC on COI genealogies
-    estimated using various priors with BEAST. Each color corresponds to a
-    different putative species.}\label{fig:gmyc-tree-plot-uniqSeq}
+  \caption{Position of the species delineated with sGMYC on COI genealogies
+    estimated from unique haplotypes using various priors with BEAST. Each color
+    corresponds to a different putative species. The vertical red dashed line
+    corresponds to the position of the threshold associated with the highest
+    likelihood, the vertical gray dotted lines corresponds to the position of
+    the confidence interval for the threshold.}\label{fig:gmyc-tree-plot-uniqSeq}
 \end{figure}
 
 

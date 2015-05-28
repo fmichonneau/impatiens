@@ -261,104 +261,80 @@ get_gmyc_results_names <- function(gmyc_results) {
     nmTrees
 }
 
-gmyc_tree_all_sequences <- function(gmyc_results, ...) {
+### returns the position of the the thresholds (and the confidence
+### interval) for the GMYC runs.
+get_gmyc_thresholds <- function(resKeep) {
+    keepTree <- resKeep$tree
+    ## Get threshold
+    keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
+    keepThresholdRange <- range(resKeep$threshold.time[resKeep$likelihood > (max(resKeep$likelihood) - 2)])
+    ## Find edge length for edge leading to node associate with threshold
+    ##   so we can draw line in the middle of the edge
+    keepBrTimes <- sort(branching.times(keepTree))
+    keepWhichEdge <- which(keepBrTimes == -keepThreshold)
+    keepWhichMinEdge <- which(keepBrTimes == -keepThresholdRange[1])
+    keepWhichMaxEdge <- which(keepBrTimes == -keepThresholdRange[2])
+    ## We place the threshold line between where the threshold point is and
+    ##  the following (in branching order) node in the tree
+    thresLine <- max(branching.times(keepTree)) -
+      mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
+    thresLineMin <- max(branching.times(keepTree)) -
+      mean(c(keepBrTimes[keepWhichMinEdge], keepBrTimes[keepWhichMinEdge + 1]))
+    thresLineMax <- max(branching.times(keepTree)) -
+      mean(c(keepBrTimes[keepWhichMaxEdge], keepBrTimes[keepWhichMaxEdge + 1]))
+    c(thresLine, thresLineMin, thresLineMax)
+}
 
-    gmyc_tree_all_ <- function(gmyc_results) {
-        nmTrees <- get_gmyc_results_names(gmyc_results)
-        allSeqGmEd <- lapply(gmyc_results[1:6], function(x) gmycEdges(x$simpleGmyc))
 
-        par(mfrow=c(3, 2))
-        for (i in 1:6) {
-            resKeep <- gmyc_results[[i]]$simpleGmyc
-            stopifnot(identical(class(resKeep), "gmyc"))
-            keepTree <- resKeep$tree
-            ## Get threshold
-            keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
-            ## Find edge length for edge leading to node associate with threshold
-            ##   so we can draw line in the middle of the edge
-            keepBrTimes <- sort(branching.times(keepTree))
-            keepWhichEdge <- which(keepBrTimes == -keepThreshold)
-            ## We place the threshold line between where the thershold point is and
-            ##  the following (in branching order) node in the tree
-            thresLine <- max(branching.times(keepTree)) -
-              mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
-            plotTree <- ladderize(keepTree)
-            colEdges <- rep("black", nrow(plotTree$edge))
-            edgesToChange <- gmycMatchEdges(allSeqGmEd[[i]], plotTree)
-            nSpp <- length(edgesToChange)
-            if (nSpp == 14) {
-                colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
-                                            "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
-                                            "Wpac")]
-            } else if (nSpp == 16) {
-                colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
-                                            "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
-                                            "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
-                                            "tigerRedSea")]
-            }
-              else stop("Houston, we have a problem.")
-            for (j in 1:nSpp) {
-                colEdges[edgesToChange[[j]]] <- colToUse[j]
-            }
-            par(mai= c(1, 0, 0, 0))
-            plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
-                 x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
-                 edge.color=colEdges, edge.width=0.5)
-            mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
-            segments(x0=thresLine, x1=thresLine, y0=10,
-                     y1=Ntip(keepTree), col="red", lwd=2, lty=2)
+gmyc_trees_ <- function(gmyc_results, indices) {
+    nmTrees <- get_gmyc_results_names(gmyc_results)
+    gmycTreeEdges <- lapply(gmyc_results[indices], function(x) gmycEdges(x$simpleGmyc))
+
+    par(mfrow=c(3, 2))
+    for (i in indices) {
+        if (i > 6) {
+            k <- i - 6
+        } else k <- i
+        resKeep <- gmyc_results[[i]]$simpleGmyc
+        stopifnot(identical(class(resKeep), "gmyc"))
+        resThres <- get_gmyc_thresholds(resKeep)
+        plotTree <- ladderize(resKeep$tree)
+        colEdges <- rep("black", nrow(plotTree$edge))
+        edgesToChange <- gmycMatchEdges(gmycTreeEdges[[k]], plotTree)
+        keepBrTimes <- branching.times(resKeep$tree)
+        nSpp <- length(edgesToChange)
+        if (nSpp == 14) {
+            colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
+                                        "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
+                                        "Wpac")]
+        } else if (nSpp == 16) {
+            colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
+                                        "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
+                                        "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
+                                        "tigerRedSea")]
+        } else stop("Houston, we have a problem.")
+        for (j in 1:nSpp) {
+            colEdges[edgesToChange[[j]]] <- colToUse[j]
         }
+        par(mai= c(1, 0, 0, 0))
+        plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
+             x.lim=c( 2 * resThres[1] - max(keepBrTimes), max(keepBrTimes)),
+             edge.color=colEdges, edge.width=0.5)
+        mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
+        segments(x0=resThres[1], x1=resThres[1], y0=10,
+                 y1=Ntip(resKeep$tree), col="red", lwd=2, lty=2)
+        segments(x0 = resThres[2], x1 = resThres[2], y0 = 10, y1 = Ntip(resKeep$tree),
+                 col = "gray", lwd = 2, lty = 3)
+        segments(x0 = resThres[3], x1 = resThres[3], y0 = 10, y1 = Ntip(resKeep$tree),
+                 col = "gray", lwd = 2, lty = 3)
+
     }
-    plot2pdf(gmyc_tree_all_(gmyc_results), ...)
+}
+
+gmyc_tree_all_sequences <- function(gmyc_results, ...) {
+    plot2pdf(gmyc_trees_(gmyc_results, 1:6), ...)
 }
 
 gmyc_tree_unique_sequences <- function(gmyc_results, ...) {
-
-    gmyc_tree_uniq_ <- function(gmyc_results) {
-        nmTrees <- get_gmyc_results_names(gmyc_results)
-        uniqSeqGmEd <- lapply(gmyc_results[7:12], function(x) gmycEdges(x$simpleGmyc))
-
-        par(mfrow=c(3, 2))
-        for (i in 7:12) {
-            k <- i - 6
-            resKeep <- gmyc_results[[i]]$simpleGmyc
-            stopifnot(identical(class(resKeep), "gmyc"))
-            keepTree <- resKeep$tree
-            ## Get threshold
-            keepThreshold <- resKeep$threshold.time[which.max(resKeep$likelihood)]
-            ## Find edge length for edge leading to node associate with threshold
-            ##   so we can draw line in the middle of the edge
-            keepBrTimes <- sort(branching.times(keepTree))
-            keepWhichEdge <- which(keepBrTimes == -keepThreshold)
-            ## We place the threshold line between where the thershold point is and
-            ##  the following (in branching order) node in the tree
-            thresLine <- max(branching.times(keepTree)) -
-              mean(c(keepBrTimes[keepWhichEdge], keepBrTimes[keepWhichEdge + 1]))
-            plotTree <- ladderize(keepTree)
-            colEdges <- rep("black", nrow(plotTree$edge))
-            edgesToChange <- gmycMatchEdges(uniqSeqGmEd[[k]], plotTree)
-            nSpp <- length(edgesToChange)
-            if (nSpp == 14) {
-                colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3", "gracilis",
-                                            "tiger", "Gala", "Medit", "ESU3_Deep", "ESU1_Lizard", "RedSea",
-                                            "Wpac")]
-            }  else if (nSpp == 16) {
-                colToUse <- load_impPal()[c("EP", "Hawaii", "WA", "ESU1", "ESU2", "ESU3",
-                                            "gracilis", "tiger", "Gala", "Medit", "ESU3_PNG",
-                                            "ESU1_Lizard", "RedSea", "Wpac", "ESU3_Deep",
-                                            "tigerRedSea")]
-            } else stop("Houston, we have a problem.")
-            for (j in 1:nSpp) {
-                colEdges[edgesToChange[[j]]] <- colToUse[j]
-            }
-            par(mai= c(1, 0, 0, 0))
-            plot(plotTree, show.tip.label=FALSE, no.margin=TRUE,
-                 x.lim=c( 2 * thresLine - max(keepBrTimes), max(keepBrTimes)),
-                 edge.color=colEdges, edge.width=0.5)
-            mtext(paste(LETTERS[i], nmTrees[i], sep=". "), side=1, line=-1, cex=.7)
-            segments(x0=thresLine, x1=thresLine, y0=10,
-                     y1=Ntip(keepTree), col="red", lwd=2, lty=2)
-        }
-    }
-    plot2pdf(gmyc_tree_uniq_(gmyc_results), ...)
+    plot2pdf(gmyc_trees_(gmyc_results, 7:12), ...)
 }
