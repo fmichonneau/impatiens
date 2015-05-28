@@ -1114,7 +1114,7 @@ species thus identified, variation in traits not typically considered to
 discriminate closely related species in sea cucumbers arose as being being
 diagnostic in the light of genetic data. The consideration of geography and
 differences in color patterns allowed the recognition of 10 species in the
-complex in retrospect (Figure~\ref{fig:species-limits}). Taxonomic studies of
+complex in retrospect (Figure~\ref{fig:species-limits}). Taxonomic studies off
 most marine invertebrates have relied on preserved specimens. Preservation can
 render delicate morphological characters, including coloration, difficult or
 impossible to see, as color patterns are frequently lost or fade with
@@ -1156,65 +1156,58 @@ migration rates, on the accuracy and precision of GMYC estimates
 \citep{Papadopoulou2008, Esselstyn2012}. Some of the effects of the
 methodological choices have been evaluated \citep{Pons2006, Monaghan2009,
   Fujisawa2013, Talavera2013}, but it is difficult to generalize as impacts
-depend in part on the nature of the dataset. Other species delineation methods
-using sequence data are also available (e.g., RESL \citep{Ratnasingham2013},
-ABGD \citep{Puillandre2012a}, bPTP \citep{Zhang2013}, bGMYC \citep{Reid2012}),
-and it would be interesting to investigate how they perform compared to the
-results obtained here.
+depend in part on the nature of the dataset.
 
-The multiple-threshold method (mGMYC) led to higher estimates of putative
-species, and was less accurate than the single-threshold method (sGMYC). Species
-delineated by sGMYC were corroborated by the integrative taxonomic and multigene
-coalescent methods. In contrast, some of the putative species proposed by mGMYC
-were split lineages not obtained by the other methods. The lower accuracy of
-mGMYC was also observed by the authors of the method using a simulated
-dataset. They however found that the 95\% confidence set for the estimated
-number of putative species between sGMYC and mGMYC were overlapping
-\citep{Fujisawa2013}. We observed this pattern on the analyses using only unique
-haplotypes but not in the analysis that included all sequences.
-% last two sentences need work.
+The single-threshold method (sGMYC) provided more accurate estimates of the
+number of species included in our sample compared to the multiple-threshold
+method (mGMYC). Species delineated using sGMYC were corroborated by the
+integrative taxonomic and multigene coalescent methods. In contrast, mGMYC
+oversplit lineages supported by other lines of evidence. The lower accuracy of
+mGMYC was also observed by the authors of the method using simulated datasets
+\citep{Fujisawa2013}. In their study, they observed that the 95\% confidence set
+for the estimated number of putative species using sGMYC and mGMYC overlapped
+\citep{Fujisawa2013}. In this study, overlap between the estimates of sGMYC and
+mGMYC was only observed when the analysis was performed on haplotypes but not
+when it was performed on all sequences.
 
-The number of putative species obtained using sGMYC with all sequences was
-consistently 16, except for the relaxed clock with the Yule prior where it was
-14. The method was therefore relatively robust to prior specification on our
-dataset. The 16 species delineation is the most realistic as it recovers
-morphologically differentiated species that were not considered distinct in the
-14 species hypothesis (\texttt{tiger} and \texttt{tigerRedSea}). %unclear
-sGMYC recovered more putative species than we can confidently recognize, as it
-included exemplars represented by single individuals in which variation cannot
-be evaluated. This is a common challenge in single-locus species delineation
-methods, where the broad geographical sampling of many individuals often reveal
-unique, divergent haplotypes that may not represent different species.
-
-%% This sentence needs to be moved somewhere else as it's not related to
-%% divergent haplotypes but is more general
-However, in our analysis, it is worth noting that all our recognized species
-were apparently reciprocally monophyletic making the GMYC approach suitable.
-
-The combination of priors used in our study led to overestimating the number of
-species when it was tested by the authors of the method
-\citep{Monaghan2009}. %unclear
-On the other hand, Talavera et al \citep{Talavera2013} did not find any notable
-differences using trees estimated with different sets of priors. Our dataset
-differs from these studies by including a younger radiation, less species, and
-more individuals per species. % this paragraph is difficult to follow
-
+Performing the analysis on all sequences yielded to more accurate estimates of
+the number of putative species, and made the method more robust to the choice of
+priors. The number of putative species obtained using sGMYC with all sequences
+was consistently 16, except for the relaxed clock with the Yule prior where it
+was 14. The 16 species delineation was the most realistic as it recovers all
+morphologically distinct ESUs. \citet{Talavera2013} found that using all
+haplotypes or only unique haplotypes did not impact the number of species
+estimated using GMYC. In contrast, we confirmed the theoretical expectation that
+removing the duplicated sequences led to an overestimation of the number of
+species and decreased the precision of the estimates if the tree was estimated
+with BEAST. Removing identical sequences in the analysis overestimates the
+effective population size parameters that BEAST uses. In turn, these
+overestimated population sizes spuriously increase the time to coalescence for
+the lineages, making the estimation of the inflection point between species- and
+population-level coalescent events earlier in the tree, and more difficult to
+detect. This bias leads to oversplitting and decreases accuracy. Investigating
+how the number of individuals sampled per species increases the accuracy of the
+delineation be worth investigating.
 % Esseltyn+2012 also used both all sequences & only unique, but didn't provide
 % the differences in results
 
-Talavera et al \citep{Talavera2013} found that using all haplotypes vs only
-unique haplotypes did not impact the number of species estimated with GMYC. In
-contrast, we confirmed the theoretical expectation that removing the duplicated
-sequences led to an overestimation of the number of species and decreased the
-precision of the estimates if the tree was estimated with BEAST. Removing
-identical sequences in the analysis overestimates the effective population size
-parameters that BEAST uses. In turn, these overestimated population sizes
-spuriously increase the time to coalescence for the lineages, making the
-estimation of the inflection point between species- and population-level
-coalescent events earlier in the tree, and more difficult to detect. This bias
-leads to oversplitting and decreases accuracy. Investigating how many
-individuals need to be sampled to obtain accurate estimates would be worth
-pursuing.
+
+The results of this study highlights that the most appropriate combination of
+priors and parameters to use in GMYC analyses depends on the
+dataset. \citet{Monaghan2009} obtained the most accurate results when using a
+coalescent prior and a relaxed log-normal clock on unique haplotypes (but they
+did not perform the analysis using all sequences), and concluded that the Yule
+prior led to an overestimation of the number of species for 4 of the 5 taxonomic
+groups they investigated. On the other hand, \citet{Talavera2013} did not find
+any notable differences in the number of species estimated using trees estimated
+with different sets of priors. With this dataset, we obtained the most accurate
+results when we used sGMYC on all sequences, and the best precision when using a
+relaxed log-normal clock and a coalescent prior with exponential population
+growth. The most appropriate set of parameters to use when performing a GMYC
+analysis will be influenced by the number of individuals included, how divergent
+the species are, and how heterogeneous the substitution rate is among the
+species included. The species to be delineated also need to be reciprocally
+monophyletic to make the GMYC approach suitable.
 
 GMYC was developed with the intent of automating the estimation of the number of
 species from large-scale single-locus sampling efforts, particularly from
@@ -1223,24 +1216,29 @@ imprecision from the true number of species may be acceptable. The advantage of
 the method, namely providing a rapid and objective assessment of the number of
 species, outweighs the possible deviations from the true value. However, in the
 context of a taxonomic study where the goal is to identify species limits among
-a few hundred individuals, the factors affecting tree shape need to be
-considered, and additional lines of evidence need to be included to validate the
-putative species delineated \citep{Marshall2011a, Esselstyn2012}.
+a few hundred individuals, factors affecting tree shape need to be considered,
+and additional lines of evidence need to be included to validate the putative
+species delineated \citep{Marshall2011a, Esselstyn2012}. More generally, any
+study that uses GMYC to estimate species boundaries among a diverse group of
+samples should run the analysis using several methods that produce robust
+branch-length estimates.
 
 % GP: [Would be good to articulate the best way to use GMYC for metabarcoding
 % type efforts – spell out the best practice in terms of priors, replicate
 % haplotypes, thresholds etc.  Spelling out of best practice, and putting this
 % in abstract too will be useful to readers]
 
-Three additional species, that do not seem to be distinguishable
-morphologically, and that co-occur were validated by the multispecies coalescent
-statistical framework. % GP: awkward last sentence, rework as above
 
 % GP: [highlighted section is about minor issue and needs to move down (and
 % ideally, streamlined) in discussion.  Discussion should start with the big
 % bang results, not these minor unresolved details]
-In particular, three individuals characterized by divergent haplotypes, related
-to \texttt{ESU1} for one, and to \texttt{ESU3} for the others, were consistently
+sGMYC recovered more putative species than we can confidently recognize, as it
+included exemplars represented by single individuals in which variation cannot
+be evaluated. This is a common challenge in single-locus species delineation
+methods, where the broad geographical sampling of many individuals often reveal
+unique, divergent haplotypes that may not represent different species.  In
+particular, three individuals characterized by divergent haplotypes, related to
+\texttt{ESU1} for one, and to \texttt{ESU3} for the others, were consistently
 recovered as separate species. In both cases, a single individual was available,
 making it impossible to assess reproductive isolation with *BEAST. The
 individual related to \texttt{ESU1} (UF8191) had the typical color pattern of
@@ -1250,10 +1248,14 @@ individuals related to \texttt{ESU3} (N0027) that cannot be differentiated from
 other individuals from \texttt{ESU3}. The other individual related to
 \texttt{ESU3} (RUMF-ZE-0074) is small, and was dredged from 32~m in a soft
 bottom bay of Kume Island, Ryukyus, Japan, a different habitat from the
-typically reef-asssoicated \texttt{ESU3}. The distinct ecology and deeply
+typically reef-associated \texttt{ESU3}. The distinct ecology and deeply
 divergent sequences characterizing this individual suggest it could represent a
 different species but additional material is needed to assess this hypothesis.
 
+% Other species delineation methods using sequence data are also available
+% (e.g., RESL \citep{Ratnasingham2013}, ABGD \citep{Puillandre2012a}, bPTP
+% \citep{Zhang2013}, bGMYC \citep{Reid2012}), and it would be interesting to
+% investigate how they perform compared to the results obtained here.
 
 \subsection{Species limits with *BEAST}
 
