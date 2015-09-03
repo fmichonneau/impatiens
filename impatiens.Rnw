@@ -321,14 +321,14 @@ known geographic range of this complex, and assembled a multi-locus dataset.
 
 To identify species limits in the complex, we used a combination of
 complementary methods of species delineation following modifications of the
-approaches outlined by \citep{Leache2010,Satler2013,Grummer2014}. First, we used
+approaches outlined by \citep{Leache2010,Satler2013,Grummer2014}. First, I used
 the Generalized Mixed Yule Coalescent method (GMYC) on a portion of the
 mitochondrial locus COI to delineate putative species
-\citep{Pons2006,Monaghan2009}. We then used independent lines of evidence (color
+\citep{Pons2006,Monaghan2009}. I then used independent lines of evidence (color
 patterns, ecology and geographic information) to assess the validity of these
 putative species. When no other line of evidence could separate the putative
 species identified with GMYC, we used model comparison in *BEAST
-\citep{Heled2010,Baele2012} to evaluate species limits. Our study shows that
+\citep{Heled2010,Baele2012} to evaluate species limits. This study shows that
 these methods can be added to the lines of evidence typically used in
 integrative taxonomy, and provide a powerful tool for evaluating species limits
 in rapidly evolving groups with limited morphological and genetic
@@ -553,15 +553,15 @@ of -4 and a \textit{log}(standard deviation) of 1.
 As no fossils are known in \textit{Holothuria}, we used the closure of the
 isthmus of Panama to calibrate the clock. The isthmus of Panama was completely
 closed about 3 Ma but most species were probably isolated earlier
-\citep{Lessios2008}. We chose a conservative estimate to account for the fact
-that the sister species lineages found across the isthmus are the lineages found
-in the Galapagos and the Caribbean (the coastal Eastern Pacific lineage is
-sister to the one found in the Galapagos, Fig.~\ref{fig:impatiens-tree}). We
-constrained the age of the node corresponding to the most recent common ancestor
-of the individuals found in the Galapagos archipelago, the coast of the Eastern
-Pacific and in the Caribbean using a log-normal prior with a \textit{log}(mean)
-of 1.5, a \textit{log}(standard deviation) of 0.75 and an offset of 2.5. This
-distribution translates into a mean age of divergence of
+\citep{Lessios2008,Bacon2015}. We chose a conservative prior to calibrate the
+clock as the presence of two species in the Eastern Pacific (\texttt{Gala} and
+\texttt{EP}, Fig.~\ref{impatiens-tree}) suggests that the vicariance event
+associated with the raise of the isthmus of Panama happened earlier rather than
+later. We constrained the age of the node corresponding to the most recent
+common ancestor of the individuals found in the Galapagos archipelago, the coast
+of the Eastern Pacific and in the Caribbean using a log-normal prior with a
+\textit{log}(mean) of 1.5, a \textit{log}(standard deviation) of 0.75 and an
+offset of 2.5. This distribution translates into a mean age of divergence of
 \Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago
 (Ma), (95\% confidence interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
   meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}]).
