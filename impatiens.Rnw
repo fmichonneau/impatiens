@@ -1718,12 +1718,10 @@ particular environment. The predictions of this model would suggest that
 %% raxml tree
 \begin{figure}
   {\centering \includegraphics[width=\maxwidth]{figures-remake/raxml-tree.pdf}}
-  \caption{Maximum-likelihood phylogeny for all concatenated loci',
-    fig.cap='Maximum-likelihood phylogeny for all concatenated loci estimated
+  \caption{Maximum-likelihood phylogeny for all concatenated loci estimated
     using RAxML with a GTR+G model for each partition. Black circles represent
-    bootstrap values $\geq$ 90, red circles bootstrap values $\geq$
-    80. Colored vertical bars represent consensus
-    ESUs.}\label{fig:raxml-tree}
+    bootstrap values $\geq$ 90, red circles bootstrap values $\geq$ 80. Colored
+    vertical bars represent consensus ESUs.}\label{fig:raxml-tree}
 \end{figure}
 
 %% locus trees
