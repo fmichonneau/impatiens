@@ -484,6 +484,21 @@ to use HKY+G for each of the first 2 codon positions, and HKY for the last one.
 exactly identical.
 
 
+# 20150903 -- Test Yule calibrated
+
+## Rationale
+
+After reading a post on the BEAST mailing list, it seems that Yule calibrated
+is needed if tree contains calibrated nodes. Testing impact on results, by
+running analysis with all sequences, relaxed clock and calibrated Yule prior.
+
+## Methods
+
+* Because the XML files were created with BEAST 1.8.0, I had to re-create the
+  XML file with beauti. Imported nexus file from a paritition finder analysis.
+* submitted to CIPRES (sinqueso) with job limit at 50 hours
+
+## Results
 
 - - - - - - - - - - - 
 
@@ -849,6 +864,8 @@ Redoing this with RAxML.
   analyses on COI alone:
   - used a log-normal with mean 1.5, sd 0.75 and offset of 2.5.
   - I do not expect much difference
+
+
 
 - - - - - - - - - 
 
