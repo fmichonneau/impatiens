@@ -561,10 +561,10 @@ later. We constrained the age of the node corresponding to the most recent
 common ancestor of the individuals found in the Galapagos archipelago, the coast
 of the Eastern Pacific and in the Caribbean using a log-normal prior with a
 \textit{log}(mean) of 1.5, a \textit{log}(standard deviation) of 0.75 and an
-offset of 2.5. This distribution translates into a mean age of divergence of
-\Sexpr{round(qlnorm(0.5, meanlog=1.5, sdlog=0.75) + 2.5, 2)} millions years ago
-(Ma), (95\% confidence interval of [\Sexpr{paste0(round(qlnorm(c(0.025, 0.975),
-  meanlog=1.5, sdlog=0.75) + 2.5, 2), collapse=", ")}]).
+offset of 2.5. This distribution translates into a mean age of of divergence of
+\Sexpr{round(exp(1.5),2)} millions years ago (Ma), (95\% confidence interval of
+[\Sexpr{paste0(round(qlnorm(c(0.025, 0.975), meanlog=1.5, sdlog=0.75) + 2.5, 2),
+  collapse=", ")}]).
 
 We set the MCMC chain lengths at 5.10$^{7}$, sampling every 5.10$^{3}$
 generations. All analyses were run twice from independent starting points and
