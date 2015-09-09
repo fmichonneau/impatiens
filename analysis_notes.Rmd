@@ -4,7 +4,7 @@
 Initially this document was linear and merged together details about the
 analyses for (1) all sequences, (2) just COI for doing the GMYC and (3) the
 *BEAST analyses on the ESU1 complex. I'm now reformatting it so it's divided in
-three sections (and an additional one for early analyses that I didn't keep). 
+three sections (and an additional one for early analyses that I didn't keep).
 
 # Starting over the analyses
 
@@ -141,9 +141,9 @@ grouping majoritarily.
 
 Changing a few things:
 - in site model: checked fix mean subst. rate, and all subst. rate are checked
-  for 'estimate'    
+  for 'estimate'
 - in clock rate, mtDNA_clock is unchecked for estimate, but fixed at 0.0185
-- add additional "oversplit" population 
+- add additional "oversplit" population
 
 ## 20141121 -- starBEAST (with STACEY)
 
@@ -215,7 +215,7 @@ author of Stacey for suggestions.
   script  to make:
   - PHYLIP file for partitionfinder
   - NEXUS file for BEAST
-  
+
 ```{r eval=FALSE}
   library(seqManagement)
   setwd("~/Documents/Impatiens/20140421.COI_partitionFinder")
@@ -252,14 +252,14 @@ author of Stacey for suggestions.
   and the files I generated don't work with BEAST 2.0.2. I'm thus going to use
   BEAST 1.8.0 so I can use Cipres and submitted all my analyses at once.
 * Define EP+WA+Gala as group with MRCA set to lognormal distribution mean (1.5),
-  sd (0.75) and offset (2.5) 
+  sd (0.75) and offset (2.5)
 * Strict clock: estimated with lognormal prior mean (-4), SD (1)
   Relaxed clock: estimated with lognormal prior mean (-4), SD (1)
-  
+
 ### Results for these analyses
 * The trace files look good. However the values of the marginal likelihoods are
   all over the place and indicate that something is going on. I emailed on
-  20140430 Guy Baele to see what could be the problem here. 
+  20140430 Guy Baele to see what could be the problem here.
 
 ## 20140428 -- BEAST on COI sequences
 * To make code easier
@@ -280,16 +280,16 @@ author of Stacey for suggestions.
   - converts to NEXUS using `alg2nex()`
 
 ```{r eval=FALSE}
-  library(seqManagement)  
+  library(seqManagement)
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
   alg2nex(file="20140428.COI_noDup.phy", format="seq", interleaved=FALSE,
             partition.file="20140428.COI_noDup.part")
-```	
+```
 
 - then in this folder, generate all the BEAST input files (using
     BEAST 1.8.0)
   - to get the tips in the WA+EP+Gala clade:
-  
+
 ```{r eval=FALSE}
   library(ape)
   setwd("~/Documents/Impatiens/20140428.noDup_datapreparation")
@@ -305,7 +305,7 @@ author of Stacey for suggestions.
 - Used the same parameters as in the previous analyses (`allSeq`) EXCEPT for
     WA+EP+Gala constrained as monophyletic in this analysis and not in the
     other!
-	
+
 ### Results for these analyses
 * *noDup_relaxed_coalcst* no convergence, needs to be run longer
 * *noDup_relaxed_coalexp* no convergence, needs to be run longer
@@ -397,7 +397,7 @@ sequences and (2) no duplicated sequences; for relaxed clock and coalcst models.
    |`noDup_relaxed_yule`   | barely | barely |   yes
    |`noDup_strict_coalcst` |  no    | barely |   yes
    |`noDup_strict_coalexp` |  no    |  no    |   no
-   |`noDup_strict_yule`    |  barely|  XXX   |   XXX    
+   |`noDup_strict_yule`    |  barely|  XXX   |   XXX
 
 ### conclusions
 
@@ -453,8 +453,8 @@ estimated base frequencies) were showing signs of poor mixing on posterior and
 prior that seemed correlated with over-parametrization of the model. This
 however doesn't seem a problem (nice mixing, and convergence) for the run with a
 single GTR+G model or for the model with 3 partitions (HKY+G for positions 1 &
-2, but HKY for position 3). ESUs above 350 in these cases. 
- 
+2, but HKY for position 3). ESUs above 350 in these cases.
+
 There are slight differences in the topologies and the posterior probabilities
 associated with the nodes, but nothing too crazy. However, some haplotypes with
 low support jump around quite a bit and depending on their positions, I see that
@@ -476,7 +476,7 @@ to use HKY+G for each of the first 2 codon positions, and HKY for the last one.
     mean at -4 and SD at 1
 
 ## Results
-* Nice mixing for all runs. Used these as final. 
+* Nice mixing for all runs. Used these as final.
 
 
 **TODO:**
@@ -500,7 +500,109 @@ running analysis with all sequences, relaxed clock and calibrated Yule prior.
 
 ## Results
 
-- - - - - - - - - - - 
+* ESS values not so good. Likelihood OK (> 700) but posterior, prior and others
+  pretty low.
+  - the tmrca for the EP+WA+Gala is off, BEAST didn't seem to take into
+    consideration the offset for the prior (listed correctly in one place of the
+    file but not the other)
+	- strong correlation between tmrca,rootHeight,yule.BirthRate,clock parameters.
+
+## Next analysis
+
+- use simpler models of molecular evolution
+- make sure the offset is properly written in input file
+
+# 20150904 -- Test Yule calibrated (2)
+
+## Methods
+
+- Use HKY+G for first 2 codon positions, HKY for 3rd
+- calibration of tmrca: mean in *real space* of 5, log(SD) 1, offset 2.5
+- calibration for clock (relaxed): lognormal mean at -4, SD at 1
+
+## Results
+
+- Overall, still pretty poor mixing/no convergence.
+- It seems that estimating both a relaxed clock and an accurate speciation rate
+  for the Yule calibrated distribution is difficult with just COI. Alternative
+  hypothesis, too much information being used to estimate parameters from all
+  the COI partitions.
+
+## Next analysis
+
+- To attempt to detect whether the lack of convergence/poor mixing is caused by
+  the interaction between relaxed clock & Yule calibrated or because of
+  overparametrization with too many partitions, 2 analyses:
+  * One with a single HKY+G for all codon positions
+  * One with strict clock
+
+# 20150907 -- Test Yule calibrated (3)
+
+## Methods for allSeq\_strict\_calYule
+
+- Use HKY+G for first 2 codon positions, HKY for 3rd
+- calibration of tmrca: lognormal distribution with mean in *real space* of 5,
+  log(SD) of 1, offset 2.5
+- calibration for clock (strict): lognormal distribution log(mean) at -4, SD at
+1
+
+## Methods for allSeq\_noCodon\_relaxed\_calYule
+
+- Use HKY+G for all codon positions
+- calibration of tmrca: lognormal distribution with mean in *real space* of 5,
+log(SD) of 1, offset 2.5
+- calibration of lognormal relaxed clock: lognormal distribution log(mean) at
+-4, log(SD) 1
+
+## Results allSeq\_strict\_calYule
+
+- Really good mixing, all ESS > 1000
+
+## Results allSeq\_noCodon\_relaxed\_calYule
+
+- poor mixing/convergence, low ESS for the usual parameters
+
+## Conclusions
+
+- Estimating both the parameter of the calibrated Yule and the relaxed clock is
+too much for just COI.
+- The posterior distrubtions for the tmrca are identical in both cases (not
+  surprising given that the only amount of information that is being used to
+  calibrate tree/clock)
+- The posterior distributions for the total age of the tree is shifted towards
+  older ages for the strict clock (and is probably more realistic as it
+  estimates it at ~10 Ma while the relaxed clock puts the median around ~5 Ma)
+- It now remains to know if using calibrated Yule instead of Yule influences the
+results/timing on the tree.
+
+## Next step
+
+- Running analysis with exactly same parameters/priors as
+  allSeq\_strict\_calYule but with using Yule prior for the tree.
+
+# 20150908 -- Test Yule calibrated (4)
+
+## Methods
+
+Same as above but using Yule prior instead of Calibrated Yule.
+
+## Results
+
+Good mixing/convergence. Very similar results. The posterior distribution for
+the tmrca(EP+WA+Gala) seems to be closer than the prior for Calibrated Yule than
+for Yule.
+
+The posterior for rootHeight is a little tighter and the mean/median suggest a
+younger radiation with Calibrated Yule.
+
+The clock.rate estimates are however almost completely identical (a little
+faster for Calibrated Yule at 0.0095 (compared to 0.00907)
+
+
+
+
+
+- - - - - - - - - - -
 
 # Entire complex analyses
 
@@ -576,7 +678,7 @@ running analysis with all sequences, relaxed clock and calibrated Yule prior.
   - one for mt loci
   - one for nuc loci (c0036, c0775 and H3a)
   - one for nuc rDNA (ITS + LSU)
-  
+
 ## 20140502 -- BEAST entire complex
 
 ### Methods
@@ -729,10 +831,10 @@ Because the first run was not constrained in term of number of generation,
 truncating file to 185e6 generations to match length of second run.
 
 ```{bash}
-grep -n 185000000 20140519.allImpatiens.log 
+grep -n 185000000 20140519.allImpatiens.log
 mv 20140519.allImpatiens.log 20140519.allImpatiens_full.log
 head -18842 20140519.allImpatiens_full.log > 20140519.allImpatiens.log
-grep -n 185000000 20140519.impTreeAll.trees 
+grep -n 185000000 20140519.impTreeAll.trees
 head -18925 20140519.impTreeAll.trees > 20140519.impTree_185e6.trees
 echo "END;" >> 20140519.impTree_185e6.trees
 ```
@@ -867,7 +969,7 @@ Redoing this with RAxML.
 
 
 
-- - - - - - - - - 
+- - - - - - - - -
 
 # Old analyses I didn't keep
 
@@ -892,7 +994,7 @@ Redoing this with RAxML.
 * 50e6 generation; log and echo every 5e3
 * file names: 20130513.imp_starBeast
 
-## 20130515.Beast 
+## 20130515.Beast
 
 Given the results from 20130513.StarBeast, with low ESSs for many parameters, I
 decided to first run the analysis with the estimation of a single tree to see if
@@ -1018,7 +1120,7 @@ In folder 20130606.starBeast
 and
 
     ./logcombiner -trees -burnin 16000000 ~/Documents/Impatiens/20130606.impatiens\_starBeast/20130606.StarBEAST.species.trees ~/Documents/Impatiens/20130606.impatiens\_starBeast/20130606.StarBEAST.species.postburn.trees
-	
+
 1. combining both sets of trees into one file:
 
     ./logcombiner -trees ~/Documents/Impatiens/20130606.impatiens\_starBeast/20130604.StarBEAST.species.postburn.trees ~/Documents/Impatiens/20130606.impatiens\_starBeast/20130606.StarBEAST.species.postburn.trees ~/Documents/Impatiens/20130604+06.StarBeast.species.trees
@@ -1038,4 +1140,3 @@ and
 
 ## 20130618.starBeast
 * exact same run, just changed seed, and walltime to 120 hours.
-  
