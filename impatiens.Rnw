@@ -1109,29 +1109,29 @@ and methods chosen. Here, using complementary approaches, combining discovery
 complex ``\textit{Holothuria impatiens}'' supported by multiple lines of
 evidence.
 
-Traditional detailed taxonomic investigation in this complex failed to capture
-the diversity unraveled by molecular analysis in this complex. For most putative
-species thus identified, variation in traits not typically considered to
-discriminate closely related species in sea cucumbers arose as being being
-diagnostic in the light of genetic data. The consideration of geography and
-differences in color patterns allowed the recognition of 10 species in the
-complex in retrospect (Figure~\ref{fig:species-limits}). Taxonomic studies off
-most marine invertebrates have relied on preserved specimens. Preservation can
-render delicate morphological characters, including coloration, difficult or
-impossible to see, as color patterns are frequently lost or fade with
-time. Because hard parts are easily preserved, are often divergent among related
-species, and their form is generally not impacted by preservation, they tend to
-be favored for differentiating species. In sea cucumbers, species-level taxonomy
-has relied almost entirely on the shape of ossicles, microscopic calcareous
-secretions found in many tissues, because ossicles show substantial diversity
-and variability, whilst variation in the simple anatomy of these animals is
-limited at lower taxonomic levels. Even with ossicles, workers have mostly
-focused on those found in the body wall, ignoring ossicles in internal
-structures, until recent decades. Little attention has been given to
-intraspecific variation, often ossicle assemblages are described from only a
-single individual. This, in combination with the fact that related species often
-co-occur in the same habitat, has contributed to the failure to recognize and
-differentiate species in this complex.
+Traditional detailed taxonomic investigations failed to capture the diversity
+unraveled by molecular analysis in this complex. For most putative species thus
+identified, variation in traits not typically considered to discriminate closely
+related species in sea cucumbers arose as being being diagnostic in the light of
+genetic data. The consideration of geography and differences in color patterns
+allowed the recognition of 10 species in the complex in retrospect
+(Figure~\ref{fig:species-limits}). Taxonomic studies for most marine
+invertebrates have relied on preserved specimens. Preservation can render
+delicate morphological characters, including coloration, difficult or impossible
+to see, as color patterns are frequently lost or fade with time. Because hard
+parts are easily preserved, are often divergent among related species, and their
+form is generally not impacted by preservation, they tend to be favored for
+differentiating species. In sea cucumbers, species-level taxonomy has relied
+almost entirely on the shape of ossicles, microscopic calcareous secretions
+found in many tissues, because ossicles show substantial diversity and
+variability, whilst variation in the simple anatomy of these animals is limited
+at lower taxonomic levels. Even with ossicles, workers have mostly focused on
+those found in the body wall, ignoring ossicles in internal structures, until
+recent decades. Little attention has been given to intraspecific variation,
+often ossicle assemblages are described from only a single individual. This, in
+combination with the fact that related species often co-occur in the same
+habitat, has contributed to the failure to recognize and differentiate species
+in this complex.
 
 Mitochondrial data has rapidly shown that several species are currently lumped
 under \textit{Holothuria impatiens}, but the exact number of species and their
@@ -1139,7 +1139,7 @@ boundaries are more complex issues, in particular in groups which little about
 their biology is known. The discovery methods, based on genetic differentiation
 in COI, delineated at least 13 putative species. Ten of these were supported by
 morphological (color) or broad geographical evidence, while three were not so
-distinguishable.  Testing methods supported the remaining three as
+distinguishable. Testing methods supported the remaining three as
 genetically-isolated, cryptic species, corroborating the existence of at least
 13 species. This study includes additional putative species whose status could
 not be fully evaluated given that they were represented by a single individual
@@ -1150,14 +1150,14 @@ not be fully evaluated given that they were represented by a single individual
 
 Despite being widely used to delineate species, the sensitivity of the GMYC
 method to factors affecting the shape of the tree used have not been
-investigated thoroughly. Tree shape can be affected by biological factors or by
-the type of analysis used to build the tree. Simulated data have been used to
-test the influence of diversification rates, effective population sizes, and
-migration rates, on the accuracy and precision of GMYC estimates
-\citep{Papadopoulou2008, Esselstyn2012}. Some of the effects of the
-methodological choices have been evaluated \citep{Pons2006, Monaghan2009,
-  Fujisawa2013, Talavera2013}, but it is difficult to generalize as impacts
-depend in part on the nature of the dataset.
+investigated thoroughly. Tree shape are affected by biological factors and by
+the method used to build the tree. Simulated data have been used to test the
+influence of diversification rates, effective population sizes, and migration
+rates, on the accuracy and precision of GMYC estimates \citep{Papadopoulou2008,
+  Esselstyn2012}. Some of the effects of the methodological choices have been
+evaluated \citep{Pons2006, Monaghan2009, Fujisawa2013, Talavera2013}, but it is
+difficult to generalize as its impacts depend in part on the nature of the
+dataset.
 
 The single-threshold method (sGMYC) provided more accurate estimates of the
 number of species included in our sample compared to the multiple-threshold
@@ -1167,62 +1167,64 @@ oversplit lineages supported by other lines of evidence. The lower accuracy of
 mGMYC was also observed by the authors of the method using simulated datasets
 \citep{Fujisawa2013}. In their study, they observed that the 95\% confidence set
 for the estimated number of putative species using sGMYC and mGMYC overlapped
-\citep{Fujisawa2013}. In this study, overlap between the estimates of sGMYC and
-mGMYC was only observed when the analysis was performed on haplotypes but not
-when it was performed on all sequences.
+\citep{Fujisawa2013}. Here, overlap between the sGMYC and mGMYC estimates of was
+only observed when the analysis was performed on haplotypes but not when it was
+performed on all sequences.
 
 Performing the analysis on all sequences yielded to more accurate estimates of
-the number of putative species, and made the method more robust to the choice of
-priors. The number of putative species obtained using sGMYC with all sequences
-was consistently 16, except for the relaxed clock with the Yule prior where it
-was 14. The 16 species delineation was the most realistic as it recovers all
-morphologically distinct ESUs. \citet{Talavera2013} found that using all
-haplotypes or only unique haplotypes did not impact the number of species
-estimated using GMYC. In contrast, we confirmed the theoretical expectation that
-removing the duplicated sequences led to an overestimation of the number of
-species and decreased the precision of the estimates if the tree was estimated
-with BEAST. Removing identical sequences in the analysis overestimates the
-effective population size parameters that BEAST uses. In turn, these
-overestimated population sizes spuriously increase the time to coalescence for
-the lineages, making the estimation of the inflection point between species- and
-population-level coalescent events earlier in the tree, and more difficult to
-detect. This bias leads to oversplitting and decreases accuracy. Investigating
-how the number of individuals sampled per species increases the accuracy of the
-delineation be worth investigating.
+the number of putative species, and made the results were more consistent
+regardless of the prior chosen. The number of putative species obtained using
+sGMYC with all sequences was consistently 16, except for the relaxed clock with
+the Yule prior where it was 14. The 16 species delineation was the most
+realistic as it recovered all morphologically distinct
+ESUs. \citet{Talavera2013} found that using all sampled haplotypes did not
+impact the number of species estimated using GMYC compared to using only unique
+haplotypes. In contrast, here we confirmed the theoretical expectation that
+removing duplicated sequences led to an overestimation of the number of species
+and decreased the precision of the estimates if the tree was estimated with
+BEAST. Removing identical sequences in the analysis overestimates the effective
+population size parameters that BEAST uses to infer the coalescence times for
+the lineages. In turn, these spurious increases coalescence times make the
+estimation of the inflection point between species- and population-level
+coalescent events that GMYC uses earlier in the tree, and more difficult to
+detect. This bias leads to the oversplitting of lineages and decreases
+accuracy. Investigating how the number of individuals sampled per species
+increases the accuracy of the delineation could be worth investigating.
 % Esseltyn+2012 also used both all sequences & only unique, but didn't provide
 % the differences in results
 
 
-The results of this study highlights that the most appropriate combination of
-priors and parameters to use in GMYC analyses depends on the
-dataset. \citet{Monaghan2009} obtained the most accurate results when using a
-coalescent prior and a relaxed log-normal clock on unique haplotypes (but they
-did not perform the analysis using all sequences), and concluded that the Yule
-prior led to an overestimation of the number of species for 4 of the 5 taxonomic
-groups they investigated. On the other hand, \citet{Talavera2013} did not find
-any notable differences in the number of species estimated using trees estimated
-with different sets of priors. With this dataset, we obtained the most accurate
-results when we used sGMYC on all sequences, and the best precision when using a
-relaxed log-normal clock and a coalescent prior with exponential population
-growth. The most appropriate set of parameters to use when performing a GMYC
-analysis will be influenced by the number of individuals included, how divergent
-the species are, and how heterogeneous the substitution rate is among the
-species included. The species to be delineated also need to be reciprocally
-monophyletic to make the GMYC approach suitable.
+The results of this study, in concert with previous studies, highlight that the
+most appropriate combination of priors and parameters to use in GMYC analyses
+depends on the dataset. \citet{Monaghan2009} obtained the most accurate results
+when using a coalescent prior and a relaxed log-normal clock on unique
+haplotypes (but they did not perform the analysis using all sequences), and
+concluded that the Yule prior led to an overestimation of the number of species
+for 4 of the 5 taxonomic groups they investigated. On the other hand,
+\citet{Talavera2013} did not find any notable differences in the number of
+species estimated using trees estimated with different sets of priors. With this
+dataset, we obtained the most accurate results when we used sGMYC on all
+sequences, and the best precision when using a relaxed log-normal clock and a
+coalescent prior with exponential population growth. However, the most
+appropriate set of parameters to use when performing a GMYC analysis will be
+influenced by the number of individuals included, how divergent the species are,
+and the heterogeneity in the substitution rate among the lineages included. In
+addition, the species to be delineated need to be fully sorted into reciprocally
+monophyletic lineages to make the GMYC approach suitable.
 
 GMYC was developed with the intent of automating the estimation of the number of
 species from large-scale single-locus sampling efforts, particularly from
-environmental samples. In this context, a reasonable amount of inaccuracy or
-imprecision from the true number of species may be acceptable. The advantage of
-the method, namely providing a rapid and objective assessment of the number of
-species, outweighs the possible deviations from the true value. However, in the
-context of a taxonomic study where the goal is to identify species limits among
-a few hundred individuals, factors affecting tree shape need to be considered,
-and additional lines of evidence need to be included to validate the putative
-species delineated \citep{Marshall2011a, Esselstyn2012}. More generally, any
-study that uses GMYC to estimate species boundaries among a diverse group of
-samples should run the analysis using several methods that produce robust
-branch-length estimates.
+environmental samples \citep{Pons2006}. In this context, a reasonable amount of
+inaccuracy or imprecision from the true number of species may be acceptable. The
+advantage of the method, namely providing a rapid and objective assessment of
+the number of species, outweighs the possible deviations from the true
+value. However, in the context of a taxonomic study where the goal is to
+identify species limits among a few hundred individuals, factors affecting tree
+shape need to be considered, and additional lines of evidence need to be
+included to validate the putative species delineated \citep{Marshall2011a,
+  Esselstyn2012}. More generally, any study that uses GMYC to estimate species
+boundaries among a diverse group of samples should run the analysis using
+several methods that produce robust branch-length estimates.
 
 % GP: [Would be good to articulate the best way to use GMYC for metabarcoding
 % type efforts – spell out the best practice in terms of priors, replicate
@@ -1267,27 +1269,38 @@ other lines of evidence are equivocal (e.g., \citep{Grummer2014,
 can however be challenging. When morphological evidence is scarce, and deeply
 divergent lineages are recovered with genetic data, circularity is introduced
 when the same data is used to recognize species, and to provide statistical
-support for these species. Here, COI was used to assign species to individuals
-for putative species that could not be differentiated morphologically.
+support for these species. Here, COI (the fastest evolving marker in this study)
+was used to assign species to individuals for putative species that could not be
+differentiated morphologically.
 
-The confounding effects of using COI alone to formulate the species hypotheses
-and to test species limits can stem from: (1) the information contained in the
-nucleotides forming the locus, and (2) from the absence of recombination in
-mitochondrial DNA. % I need to spell this out better, GP is confused by it
-We attempted to evaluate the relative contribution of these
-confounding effects by conducting the analyses without COI and without
-mitochondrial respectively. The results for the analyses conducted without COI
-were qualitatively similar to the analyses performed with this locus, but the
-statistical evidence in favor of the hypothesis considering these closely
-related lineages as different species, was weaker. There was no statistical
-evidence supporting this hypothesis % [need spell out the hypothesis, as not
-%% mentioned in this section]
-when the analysis was conducted on nuclear data alone. This was likely the
-result of insufficient differentiation among the putative species at these
+Assigning species based on their differentiation on the fastest evolving
+mitochondrial marker available could bias the results in two ways. First,
+because the marker evolves faster than the other loci used, the information
+carried by this locus could potentially overwhelm the signal contained in the
+other loci, and thus the results of the model comparison will strongly favor the
+results suggested by the fastest evolving marker. Second, the COI genealogy and
+by extension the mitonchondrial markers might not accurately represent species
+limits because of introgression among closely related lineages within the
+complex. This could be reinforced by the fact that the mitochondrial markers
+will evolve on average faster than the nuclear loci, and therefore reinforce the
+delineation hypothesis put forth by the fastest evolving marker. We attempted to
+evaluate the relative contribution of these confounding effects by conducting
+the analyses without COI and without mitochondrial data respectively. % add
+%% sentence about predictions
+The results for the analyses conducted without COI were qualitatively similar to
+the analyses performed with this locus, but the statistical evidence in favor of
+the hypothesis considering these closely related lineages as different species,
+was weaker. When the analysis was conducted on nuclear data alone, the results
+were not as consistent but nonetheless supported the existence of several
+reproductively isolated lineages among these morphologically indistinguishable
+species. The lack of support for the null hypothesis was likely the result of
+insufficient differentiation among the putative species for the nuclear
 loci. These results suggest that the remaining of the mitochondrial loci used in
 our study also favor the null hypothesis, but additional independent nuclear
 loci with enough differentiation to tease out these species are needed.
-%% GP [this is an important paragraph and needs to be carefully rewritten]
+
+% Although we have no evidence supporting this here, introgression and incomplete
+lineage sorting...
 
 Other confounding issues with assigning individuals to species based on COI
 sequences are introgression and incomplete lineage sorting. % GP: need to
